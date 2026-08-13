@@ -1431,10 +1431,6 @@ function EmploiDuTempsPage() {
           <div className="min-w-0">
             <p className="eyebrow">Emploi du temps</p>
             <h1 className="mt-1 text-3xl font-bold sm:text-4xl">Semaine type CE1</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {hoursLabel(weeklyTeachingTotal)} d'enseignement/semaine · Accueil, récréations et
-              pause méridienne fixes.
-            </p>
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-2 print:hidden">
             <Button variant="outline" size="sm" onClick={() => window.print()}>

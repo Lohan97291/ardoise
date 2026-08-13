@@ -411,10 +411,6 @@ function Dashboard() {
                   {timeLabel}
                 </span>
               </div>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                Une vue claire de la journée pour voir immédiatement les séances prévues, ce qu’il
-                reste à préparer et ce qui demande ton attention.
-              </p>
               <div className="mt-4">
                 <SchoolRhythmPill rhythm={schoolRhythm} />
               </div>
@@ -755,12 +751,6 @@ function Dashboard() {
               </Button>
             </div>
 
-            <p className="mt-3 text-sm text-muted-foreground">
-              {pendingPreparationItems.length > 0
-                ? `${pendingPreparationItems.length} élément${pendingPreparationItems.length > 1 ? "s" : ""} à anticiper aujourd'hui, relié${pendingPreparationItems.length > 1 ? "s" : ""} aux séances du cahier journal.`
-                : "Rien d'urgent à préparer pour l'instant. Le matériel habituel de classe reste masqué."}
-            </p>
-
             {preparationPreview.length > 0 ? (
               <ul className="mt-3 space-y-1.5">
                 {preparationPreview.map((item) => (
@@ -817,10 +807,6 @@ function Dashboard() {
               <DialogContent className="max-w-4xl p-0">
                 <DialogHeader className="border-b border-border px-6 py-5">
                   <DialogTitle>Préparation de la journée</DialogTitle>
-                  <DialogDescription>
-                    Retrouve ici les photocopies, manipulations et ajouts personnels liés aux
-                    séances du jour. Le matériel habituel de classe n'apparaît pas.
-                  </DialogDescription>
                 </DialogHeader>
 
                 <div className="grid gap-0 md:grid-cols-[minmax(0,1.15fr)_320px]">

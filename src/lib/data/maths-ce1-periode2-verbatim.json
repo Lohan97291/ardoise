@@ -13,22 +13,69 @@
           "title": "Nombres entiers jusqu'à 1000",
           "domain": "nb",
           "guidePage": 98,
-          "objective": null,
-          "note": "Page 98 (objectifs d'apprentissage du programme 2025, matériel du module et contenu détaillé de la séance 1) absente des captures fournies (_w01 à _w38). Contenu non transcrit pour respecter la consigne verbatim (interdiction d'inventer).",
+          "objective": "Représenter un nombre avec différentes écritures et passer de l'une à l'autre (jusqu'à 1000) ; connaître la valeur des chiffres selon leur position.",
           "seances": [
             {
               "seance_number": 1,
-              "title": null,
+              "title": "Connaître et utiliser la relation unités / dizaines / centaines",
               "type": "rech",
               "duration": 45,
               "guidePage": 98,
-              "materials": [],
-              "phases": [],
-              "note": "[page 98 non fournie dans les captures — contenu de la séance 1 non transcrit]"
+              "materials": [
+                "Matériel de numération (cubes) ou carrés PP1, PP2"
+              ],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Annoncer l'objectif de la séance: apprendre à écrire de différentes façons les nombres jusqu'à 1000.",
+                    "Organiser la classe en groupes de deux élèves.",
+                    "Annoncer à la classe:",
+                    "Relancer la recherche en annonçant aux élèves que le magasin ne dispose plus de plaques centaine ou de barres dizaine."
+                  ],
+                  "cons": [
+                    "Vous devez passer une commande de cubes dans un magasin qui les vend par centaine, dizaine et à l'unité. Écrivez sur l'ardoise comment commander 527 cubes. Vous pouvez utiliser le matériel (cubes ou carrés PP1 et PP2)."
+                  ],
+                  "el": [
+                    "Écrire au moins trois commandes différentes qu'on peut faire pour obtenir exactement 527 cubes avec le matériel fourni."
+                  ]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": [
+                    "Inventorier les différentes commandes proposées par les élèves: 5 centaines 2 dizaines 7 unités ; 52 dizaines 7 unités ; 5 centaines 27 unités ; 527 unités.",
+                    "Rappeler la relation entre unités et dizaines, entre dizaines et centaines, entre unités et centaines."
+                  ]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "cons": [
+                    "Vous allez préparer une commande de 24 dizaines et 6 unités de cubes (ou carrés). Mais il n'y a plus de barres dizaine dans le magasin. Il faut trouver deux solutions différentes pour pouvoir livrer la quantité de cubes demandée."
+                  ],
+                  "el": [
+                    "Trouver une solution pour construire une collection de cubes de 24 dizaines et 6 unités sans avoir de barres dizaine à disposition (exemples: 2c et 46u ou 246u).",
+                    "Effectuer ensuite P34 Cherchons ensemble."
+                  ],
+                  "note": "P34 Cherchons ensemble — Une classe de CE1 joue à faire des commandes de carrés à un marchand qui les vend par centaine, dizaine et à l'unité. La classe a besoin de 257 carrés. Propose quatre commandes différentes permettant d'obtenir exactement le nombre souhaité de carrés. Commande n°1: 2 centaines 5 dizaines 7 unités. Commande n°2: ... Commande n°3: ... Commande n°4: ..."
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": [
+                    "Faire P34 Ex1 et 2."
+                  ],
+                  "note": "Ces exercices ont pour objectif de consolider la capacité à écrire en chiffres le nombre de carrés d'une collection. 1 Le marchand vend des carrés par dizaine et à l'unité. Il n'a plus de centaine. Timéo a besoin de 408 carrés. Propose deux commandes différentes permettant d'obtenir exactement le nombre souhaité de carrés. Commande n°1: ... Commande n°2: ... ; 2 Le marchand vend des carrés par centaine et à l'unité. Il n'a plus de dizaine. Louise a besoin de 968 carrés. Propose deux commandes différentes permettant d'obtenir exactement le nombre souhaité de carrés. Commande n°1: ... Commande n°2: ... ; DIFFÉRENCIATION: Proposer aux élèves les plus fragiles de travailler dans le cadre d'un binôme. Fournir le matériel de numération pour aider les élèves à trouver les réponses possibles."
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": [
+                    "Demander aux élèves de faire la synthèse de ce qu'ils ont appris."
+                  ]
+                }
+              ]
             },
             {
               "seance_number": 2,
-              "title": "Connaitre la valeur des chiffres en fonction de leur position dans un nombre",
+              "title": "Connaître la valeur des chiffres selon leur position",
               "type": "rech",
               "duration": 45,
               "guidePage": 99,
@@ -61,18 +108,11 @@
                   "pe": [
                     "Circuler dans les rangs pour apporter une aide aux élèves les plus fragiles."
                   ],
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P35 Ex3",
-                    "3 Barre ce qui ne fait pas 164: 1c 6d 4u — 64u 1c — 4u 1c 6d — 1c 6u 4d — 4c 1d 6u — 1c 6d — 164u — 16c 4u — 16d 4u — 164 — 1 centaine 6 dizaines 4 unités",
-                    "DIFFÉRENCIATION: Proposer aux élèves les plus fragiles de travailler dans le cadre d'un binôme. Fournir le matériel de numération pour aider les élèves à trouver les commandes possibles."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P35 Ex3; 3 Barre ce qui ne fait pas 164: 1c 6d 4u — 64u 1c — 4u 1c 6d — 1c 6u 4d — 4c 1d 6u — 1c 6d — 164u — 16c 4u — 16d 4u — 164 — 1 centaine 6 dizaines 4 unités; DIFFÉRENCIATION: Proposer aux élèves les plus fragiles de travailler dans le cadre d'un binôme. Fournir le matériel de numération pour aider les élèves à trouver les commandes possibles."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P35 Ex4",
-                    "4 Barre ce qui ne fait pas 352: 2u 3c 5d — 35d 2u — 3c 5d — 35u 2c — 352u — 3c 5d 2u — 3c 52u"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P35 Ex4; 4 Barre ce qui ne fait pas 352: 2u 3c 5d — 35d 2u — 3c 5d — 35u 2c — 352u — 3c 5d 2u — 3c 52u"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -86,15 +126,13 @@
                     "Dans 352, il y a aussi 35 dizaines et 2 unités.",
                     "Dans 352, il y a aussi 352 unités."
                   ],
-                  "note": [
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Le chiffre des dizaines de 352 est 5. Le nombre de dizaines dans 352 est 35. (C'est le nombre total de paquets de 10 qu'on peut faire avec 352.)"
-                  ]
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Le chiffre des dizaines de 352 est 5. Le nombre de dizaines dans 352 est 35. (C'est le nombre total de paquets de 10 qu'on peut faire avec 352.)"
                 }
               ]
             },
             {
               "seance_number": 3,
-              "title": "Connaitre et utiliser diverses représentations d'un nombre et passer de l'une à l'autre",
+              "title": "Diverses représentations d'un nombre et passer de l'une à l'autre",
               "type": "rech",
               "duration": 45,
               "guidePage": 99,
@@ -135,28 +173,11 @@
                   "pe": [
                     "Circuler dans les rangs pour apporter une aide aux élèves les plus fragiles."
                   ],
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P35 Ex5",
-                    "5 Coche la réponse correcte.",
-                    "8 centaines + 2 dizaines + 9 unités = 928 / 829 / 19 / 289",
-                    "25 dizaines + 9 unités = 925 / 295 / 34 / 259",
-                    "5 unités + 6 centaines + 9 dizaines = 569 / 695 / 659 / 956",
-                    "20 dizaines + 86 unités = 286 / 106 / 88 / 862",
-                    "DIFFÉRENCIATION: Fournir le matériel de numération pour aider les élèves à trouver les réponses possibles."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P35 Ex5; 5 Coche la réponse correcte.; 8 centaines + 2 dizaines + 9 unités = 928 / 829 / 19 / 289; 25 dizaines + 9 unités = 925 / 295 / 34 / 259; 5 unités + 6 centaines + 9 dizaines = 569 / 695 / 659 / 956; 20 dizaines + 86 unités = 286 / 106 / 88 / 862; DIFFÉRENCIATION: Fournir le matériel de numération pour aider les élèves à trouver les réponses possibles."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P35 Ex6",
-                    "6 Complète.",
-                    "845 | 8c 4d 5u | 800 + 40 + 5",
-                    "704 | 7c 4u | ...",
-                    "... | 2c 8d | 200 + 80",
-                    "907 | ... | ...",
-                    "... | 6u 7d 9c | ...",
-                    "670 | ... | ..."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P35 Ex6; 6 Complète.; 845 | 8c 4d 5u | 800 + 40 + 5; 704 | 7c 4u | ...; ... | 2c 8d | 200 + 80; 907 | ... | ...; ... | 6u 7d 9c | ...; 670 | ... | ..."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -178,14 +199,13 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 100,
-              "materials": [],
+              "materials": [
+                "Fichier élève (P35, P36)"
+              ],
               "phases": [
                 {
                   "n": "Évaluation",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P36 Ex7",
-                    "7 Barre ce qui ne fait pas 7 centaines et 8 unités. [grilles de carrés] 7c 8u — 70d 8u — 870 — 8c 7u — 708 — 780 — 807"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P36 Ex7; 7 Barre ce qui ne fait pas 7 centaines et 8 unités. [grilles de carrés] 7c 8u — 70d 8u — 870 — 8c 7u — 708 — 780 — 807"
                 },
                 {
                   "n": "Consolidation",
@@ -194,27 +214,20 @@
                     "Expliciter que la pâtissière ne peut vendre que des sachets complets.",
                     "Donner un exemple pour l'exercice 9: 25d = 250."
                   ],
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P36 Ex8, 9 et 10",
-                    "8 Une pâtisserie a fabriqué 354 biscuits. Elle souhaite les vendre en sachets de 10 biscuits chacun. Combien de sachets complets de 10 biscuits peut-elle préparer? Combien de biscuits restera-t-il après avoir préparé tous les sachets complets?",
-                    "9 Écris en chiffres. 1c 3d 8u = ... 19d 5u = ... 4d 2d 7c = ... 61d 4u = ... 7u 50d = ...",
-                    "10 Écris le nombre correspondant. 700 + 30 + 9 = 739. 500 + 80 + 4 = ... 900 + 3 = ... 800 + 60 = ... 60 + 200 + 7 = ... 8 + 400 + 10 = ... 70 + 600 + 1 = ..."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P36 Ex8, 9 et 10; 8 Une pâtisserie a fabriqué 354 biscuits. Elle souhaite les vendre en sachets de 10 biscuits chacun. Combien de sachets complets de 10 biscuits peut-elle préparer? Combien de biscuits restera-t-il après avoir préparé tous les sachets complets?; 9 Écris en chiffres. 1c 3d 8u = ... 19d 5u = ... 4d 2d 7c = ... 61d 4u = ... 7u 50d = ...; 10 Écris le nombre correspondant. 700 + 30 + 9 = 739. 500 + 80 + 4 = ... 900 + 3 = ... 800 + 60 = ... 60 + 200 + 7 = ... 8 + 400 + 10 = ... 70 + 600 + 1 = ..."
                 },
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séance en prenant appui sur la trace écrite D8-2."
                   ],
-                  "note": [
-                    "Trace écrite D8-2 — Les nombres jusqu'à 1000. Je sais représenter un nombre avec différentes écritures et passer de l'une à l'autre. Exemple: 358 = 300 + 50 + 8 = trois-cent-cinquante-huit"
-                  ]
+                  "note": "Trace écrite D8-2 — Les nombres jusqu'à 1000. Je sais représenter un nombre avec différentes écritures et passer de l'une à l'autre. Exemple: 358 = 300 + 50 + 8 = trois-cent-cinquante-huit"
                 }
               ]
             },
             {
               "seance_number": 5,
-              "title": "Problèmes additifs du type parties-tout en une étape: transformation (recherche de l'état initial)",
+              "title": "Parties-tout : transformation (recherche de l'état initial)",
               "type": "rit",
               "duration": 20,
               "guidePage": 101,
@@ -232,10 +245,7 @@
                   "el": [
                     "Résoudre le plus possible de problèmes parmi les problèmes P37 Pb1, 2, 3, 4 dans le cahier de brouillon ou de mathématiques, en commençant par le problème 1 puis, indifféremment, les problèmes de son choix."
                   ],
-                  "note": [
-                    "PROBLÈME 1: Mehdi avait des billes, il en perd 5. Il lui reste 3 billes. Combien de billes Mehdi avait-il avant de jouer?",
-                    "PROBLÈME 2 (autre variante affichée en Cherchons ensemble): Louise avait des billes, elle en perd 10. Il lui reste 6 billes. Combien de billes reste-t-il à Louise maintenant? / Louise avait des billes, elle en gagne 10. Elle a maintenant 16 billes. Combien de billes Louise avait-elle avant de jouer? / Dans une boite, Louise a rangé 16 billes. Il y a 6 billes rouges et des billes jaunes. Combien de billes jaunes Louise a-t-elle dans sa boite?"
-                  ]
+                  "note": "PROBLÈME 1: Mehdi avait des billes, il en perd 5. Il lui reste 3 billes. Combien de billes Mehdi avait-il avant de jouer?; PROBLÈME 2 (autre variante affichée en Cherchons ensemble): Louise avait des billes, elle en perd 10. Il lui reste 6 billes. Combien de billes reste-t-il à Louise maintenant? / Louise avait des billes, elle en gagne 10. Elle a maintenant 16 billes. Combien de billes Louise avait-elle avant de jouer? / Dans une boite, Louise a rangé 16 billes. Il y a 6 billes rouges et des billes jaunes. Combien de billes jaunes Louise a-t-elle dans sa boite?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Explicitation",
@@ -250,19 +260,17 @@
                   "cons": [
                     "Que cherche-t-on? Medhi a-t-il gagné ou perdu des billes, combien? Combien de billes a-t-il à la fin de la récréation?"
                   ],
-                  "note": [
-                    "Schéma en barres: ? billes au début = 5 billes perdues + 3 billes à la fin."
-                  ]
+                  "note": "Schéma en barres: ? billes au début = 5 billes perdues + 3 billes à la fin."
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Pratique guidée",
-                  "el": [
-                    "Résoudre le problème P37 Pb2 . Éva a gagné 6 billes pendant la récréation. Elle a maintenant 19 billes. Combien de billes Éva avait-elle avant de jouer?"
-                  ],
                   "pe": [
                     "Mettre à disposition des élèves le matériel de numération pour jouer la scène.",
                     "Relire l'énoncé phrase par phrase pour accompagner la simulation de la situation.",
                     "Prendre appui sur les schémas pour modéliser la situation avec une soustraction: 19 - 6 = 13."
+                  ],
+                  "el": [
+                    "Résoudre le problème P37 Pb2 . Éva a gagné 6 billes pendant la récréation. Elle a maintenant 19 billes. Combien de billes Éva avait-elle avant de jouer?"
                   ]
                 },
                 {
@@ -270,34 +278,24 @@
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séance en prenant appui sur la trace écrite P8-1."
                   ],
-                  "note": [
-                    "Trace écrite P8-1: Louise joue aux billes (2). Louise avait des billes, elle en perd 10. Il lui reste 6 billes. Combien de billes Louise avait-elle avant de jouer? 10 + 6 = 16. Louise avait 16 billes avant de jouer."
-                  ]
+                  "note": "Trace écrite P8-1: Louise joue aux billes (2). Louise avait des billes, elle en perd 10. Il lui reste 6 billes. Combien de billes Louise avait-elle avant de jouer? 10 + 6 = 16. Louise avait 16 billes avant de jouer."
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Circuler, observer, aider les élèves en les questionnant, sans donner la solution."
+                  ],
                   "el": [
                     "Résoudre les problèmes P37 Pb3 et 4 ."
                   ],
-                  "note": [
-                    "PROBLÈME: Lino joue au jeu de l'oie. Son pion avance de 5 cases et arrive sur la case 18. De quelle case le pion de Lino est-il parti?",
-                    "PROBLÈME: Léon joue au jeu de l'oie. Son pion recule de 6 cases et arrive à la case 23. De quelle case le pion de Léon est-il parti?"
-                  ],
-                  "pe": [
-                    "Circuler, observer, aider les élèves en les questionnant, sans donner la solution."
-                  ]
+                  "note": "PROBLÈME: Lino joue au jeu de l'oie. Son pion avance de 5 cases et arrive sur la case 18. De quelle case le pion de Lino est-il parti?; PROBLÈME: Léon joue au jeu de l'oie. Son pion recule de 6 cases et arrive à la case 23. De quelle case le pion de Léon est-il parti?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique autonome",
                   "el": [
                     "Résoudre le plus possible de problèmes parmi les problèmes P37 Pb5, 6, 7 et 8 ."
                   ],
-                  "note": [
-                    "PROBLÈME: Socha a gagné 10 billes pendant la récréation. Il a maintenant 35 billes. Combien de billes Socha avait-il au début de la récréation?",
-                    "PROBLÈME: Ce matin, Madame Fairise a fait les courses au marché. Elle a dépensé 24€. Il reste 38€ dans son portemonnaie en rentrant chez elle. Combien d'argent avait-elle dans son portemonnaie en allant au marché?",
-                    "PROBLÈME: Le marchand de glaces a vendu 150 glaces au cours de la journée. Ce soir, il lui reste 20 glaces. Combien de glaces le marchand avait-il à l'ouverture de son magasin?",
-                    "PROBLÈME: Zoé avait des billes, elle en perd 12. Il lui reste 60 billes. Combien de billes Zoé avait-elle au début?"
-                  ]
+                  "note": "PROBLÈME: Socha a gagné 10 billes pendant la récréation. Il a maintenant 35 billes. Combien de billes Socha avait-il au début de la récréation?; PROBLÈME: Ce matin, Madame Fairise a fait les courses au marché. Elle a dépensé 24€. Il reste 38€ dans son portemonnaie en rentrant chez elle. Combien d'argent avait-elle dans son portemonnaie en allant au marché?; PROBLÈME: Le marchand de glaces a vendu 150 glaces au cours de la journée. Ce soir, il lui reste 20 glaces. Combien de glaces le marchand avait-il à l'ouverture de son magasin?; PROBLÈME: Zoé avait des billes, elle en perd 12. Il lui reste 60 billes. Combien de billes Zoé avait-elle au début?"
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séquence",
@@ -314,8 +312,23 @@
               "duration": 15,
               "guidePage": 102,
               "materials": [],
-              "phases": [],
-              "note": "[page 102 (Calcul mental du module 8) non fournie dans les captures — contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Échauffement"
+                },
+                {
+                  "n": "Réactivation"
+                },
+                {
+                  "n": "Explicitation"
+                },
+                {
+                  "n": "Pratique guidée"
+                },
+                {
+                  "n": "Pratique autonome / Calcul chrono"
+                }
+              ]
             },
             {
               "seance_number": 7,
@@ -324,10 +337,14 @@
               "duration": 20,
               "guidePage": 103,
               "materials": [],
-              "phases": [],
-              "note": "[page 103 (Flash Maths / Atelier Suites évolutives du module 8) non fournie dans les captures — contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Atelier"
+                }
+              ]
             }
-          ]
+          ],
+          "note": "Page 98 (objectifs d'apprentissage du programme 2025, matériel du module et contenu détaillé de la séance 1) absente des captures fournies (_w01 à _w38). Contenu non transcrit pour respecter la consigne verbatim (interdiction d'inventer)."
         },
         {
           "number": 9,
@@ -338,11 +355,16 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Connaitre la suite écrite et la suite orale des nombres jusqu'à jusqu'à 199",
+              "title": "Connaître la suite écrite et orale jusqu'à 199",
               "type": "rech",
               "duration": 45,
               "guidePage": 104,
-              "materials": [],
+              "materials": [
+                "Tableau des nombres (A9)",
+                "Ardoises",
+                "Animation A9-1",
+                "P38"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -364,22 +386,16 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ 1",
-                    "Tableau à compléter avec les nombres qui manquent dans les cases jaunes (101 à 198)."
-                  ],
                   "el": [
                     "Écrire en chiffres sur l'ardoise les nombres dictés par l'enseignant: cent-vingt-sept, cent-seize, cent-quatre-vingt-dix, cent-quatre-vingt-douze, cent-cinquante-huit, cent-neuf.",
                     "ACTIVITÉ 2 P38 Cherchons ensemble . Lire les nombres montrés par l'enseignant dans le tableau vidéoprojeté de l'animation A9-1.",
                     "Trouver les nombres cachés dans le tableau des nombres jusqu'à 199, les écrire sur l'ardoise puis, après discussion au sein de la classe, dans le cahier."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1; Tableau à compléter avec les nombres qui manquent dans les cases jaunes (101 à 198)."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P38 Ex1",
-                    "1 Écris en chiffres. cent-trente-huit = 138 ; cent-sept = ... ; cent-soixante-quatre = ... ; cent-soixante-seize = ... ; cent-quatre-vingt-un = ... ; cent-soixante-dix = ..."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P38 Ex1; 1 Écris en chiffres. cent-trente-huit = 138 ; cent-sept = ... ; cent-soixante-quatre = ... ; cent-soixante-seize = ... ; cent-quatre-vingt-un = ... ; cent-soixante-dix = ..."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -394,11 +410,14 @@
             },
             {
               "seance_number": 2,
-              "title": "Connaitre la suite écrite et la suite orale des nombres jusqu'à jusqu'à 999",
+              "title": "Connaître la suite écrite et orale jusqu'à 999",
               "type": "rech",
               "duration": 45,
               "guidePage": 105,
-              "materials": [],
+              "materials": [
+                "Tableau des nombres",
+                "Ardoises"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -420,23 +439,16 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ 1",
-                    "Tableau: 590 591 ... 593 594 ... 596 597 ... / ... 602 ... 604 605 ... ... 608 / ... 611 612 613 614 ... ... 617 618"
-                  ],
                   "el": [
                     "Écrire en chiffres sur l'ardoise les nombres dictés par l'enseignant: deux-cent-vingt-neuf, quatre-cent-douze, neuf-cent-soixante-dix, sept-cents, six-cent-huit.",
                     "ACTIVITÉ 2 P39 Ex3 . Lire les nombres montrés par l'enseignant dans le tableau vidéoprojeté de l'animation A9-2.",
                     "Trouver les nombres cachés dans le tableau des nombres, les écrire sur l'ardoise puis, après discussion au sein de la classe, dans le cahier."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1; Tableau: 590 591 ... 593 594 ... 596 597 ... / ... 602 ... 604 605 ... ... 608 / ... 611 612 613 614 ... ... 617 618"
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P39 Ex2",
-                    "2 Écris en lettres en t'aidant des étiquettes. (six, quatre, vingt, soixante, cent, quatre)",
-                    "106 = ... ; 184 = ... ; 160 = ... ; 124 = ..."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P39 Ex2; 2 Écris en lettres en t'aidant des étiquettes. (six, quatre, vingt, soixante, cent, quatre); 106 = ... ; 184 = ... ; 160 = ... ; 124 = ..."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -451,11 +463,13 @@
             },
             {
               "seance_number": 3,
-              "title": "Écrire en lettres les nombres jusqu'à 999",
+              "title": "Réinvestissement",
               "type": "rech",
               "duration": 30,
-              "guidePage": 105,
-              "materials": [],
+              "guidePage": 106,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -480,24 +494,11 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P39 Ex4",
-                    "4 Écris en chiffres.",
-                    "cinq-cent-vingt-sept = ... ; six-cents = ...",
-                    "neuf-cent-douze = ... ; cent-huit = ...",
-                    "huit-cent-trente = ... ; trois-cent-cinquante-quatre = ..."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P39 Ex4; 4 Écris en chiffres.; cinq-cent-vingt-sept = ... ; six-cents = ...; neuf-cent-douze = ... ; cent-huit = ...; huit-cent-trente = ... ; trois-cent-cinquante-quatre = ..."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P39 Ex5",
-                    "5 Calcule.",
-                    "700 + 50 + 9 = ... ; 6 + 300 = ...",
-                    "900 + 2 = ... ; 80 + 1 + 600 = ...",
-                    "400 + 70 = ... ; 4 + 500 + 90 = ...",
-                    "Procédures visées (Exemple pour 700 + 50 + 9): Comprendre que le nombre 700 représente 7 centaines (et donc 0 dizaine, 0 unité isolée), que 50 représente 5 dizaines (et 0 unité isolée) et que 9 représente 9 unités. Identifier le 7 comme chiffre des centaines, le 5 comme chiffre des dizaines et le 9 comme chiffre des unités pour composer le nombre 759. Passer directement de la décomposition additive (700 + 50 + 9) à l'écriture chiffrée (759). Oraliser que sept-cents plus cinquante plus neuf aide à trouver le nom du nombre sept-cent-cinquante-neuf puis à l'écrire en chiffres. Savoir qu'on peut changer l'ordre des termes dans une addition sans changer le résultat (par exemple, 6 + 300 = 300 + 6)."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P39 Ex5; 5 Calcule.; 700 + 50 + 9 = ... ; 6 + 300 = ...; 900 + 2 = ... ; 80 + 1 + 600 = ...; 400 + 70 = ... ; 4 + 500 + 90 = ...; Procédures visées (Exemple pour 700 + 50 + 9): Comprendre que le nombre 700 représente 7 centaines (et donc 0 dizaine, 0 unité isolée), que 50 représente 5 dizaines (et 0 unité isolée) et que 9 représente 9 unités. Identifier le 7 comme chiffre des centaines, le 5 comme chiffre des dizaines et le 9 comme chiffre des unités pour composer le nombre 759. Passer directement de la décomposition additive (700 + 50 + 9) à l'écriture chiffrée (759). Oraliser que sept-cents plus cinquante plus neuf aide à trouver le nom du nombre sept-cent-cinquante-neuf puis à l'écrire en chiffres. Savoir qu'on peut changer l'ordre des termes dans une addition sans changer le résultat (par exemple, 6 + 300 = 300 + 6)."
                 }
               ]
             },
@@ -507,13 +508,14 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 107,
-              "materials": [],
-              "phases": [],
-              "note": "[page 106 (contenu détaillé du bilan de séquence, entre la fin de la séance 3 p.105 et l'atelier problèmes p.107) non fournie dans les captures — contenu non transcrit]"
+              "materials": [
+                "Fichier élève"
+              ],
+              "phases": []
             },
             {
               "seance_number": 5,
-              "title": "Résoudre des problèmes additifs de types variés en une étape",
+              "title": "Problèmes additifs de types variés en une étape",
               "type": "rit",
               "duration": 20,
               "guidePage": 107,
@@ -531,55 +533,43 @@
                   "el": [
                     "Résoudre le plus possible de problèmes parmi les problèmes P41 Pb1, 2, 3, 4 dans le cahier de brouillon ou de mathématiques, en commençant par le problème 1 puis, indifféremment, les problèmes de son choix."
                   ],
-                  "note": [
-                    "PROBLÈME: Louise avait des billes, elle en perd 10. Il lui reste 6 billes. Combien de billes Louise avait-elle avant de jouer? / Louise avait des billes, elle en perd 10. Combien de billes reste-t-il à Louise maintenant?",
-                    "PROBLÈME: Louise avait des billes, elle en gagne 6. Elle a maintenant 16 billes. Combien de billes Louise avait-elle avant de jouer? / Dans une boite, Louise a rangé 16 billes. Il y a 6 billes rouges et des billes jaunes. Combien de billes jaunes Louise a-t-elle dans sa boite?"
-                  ]
+                  "note": "PROBLÈME: Louise avait des billes, elle en perd 10. Il lui reste 6 billes. Combien de billes Louise avait-elle avant de jouer? / Louise avait des billes, elle en perd 10. Combien de billes reste-t-il à Louise maintenant?; PROBLÈME: Louise avait des billes, elle en gagne 6. Elle a maintenant 16 billes. Combien de billes Louise avait-elle avant de jouer? / Dans une boite, Louise a rangé 16 billes. Il y a 6 billes rouges et des billes jaunes. Combien de billes jaunes Louise a-t-elle dans sa boite?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Explicitation",
                   "pe": [
-                    "Vérifier la compréhension de l'énoncé du problème 1 en demandant à un élève de raconter ce qu'il se passe dans cette histoire.",
-                    "Mettre à disposition des élèves le matériel de numération pour jouer la scène.",
+                    "Vérifier la compréhension de l'énoncé du problème 1 en demandant à un élève de raconter ce qui se passe dans cette histoire.",
+                    "Mettre à disposition des élèves le matériel de numération PP1 pour jouer la scène.",
                     "Relire l'énoncé phrase par phrase pour accompagner la simulation de la situation.",
                     "Cette simulation avec le matériel de numération permet de faire comprendre aux élèves que, pour trouver le nombre de billes au début, il faut ajouter les billes perdues au nombre de billes à la fin.",
-                    "Prendre appui sur les schémas pour modéliser la situation avec une soustraction: 19 - 6 = 13."
+                    "Prendre appui sur le schéma en barres pour modéliser la situation avec une addition: 10 + 6 = 16.",
+                    "Expliciter également le schéma avec un déplacement sur un axe qui est avec l'énoncé dans le cahier."
                   ],
-                  "note": [
-                    "Schéma en barres: ? billes au début = 10 billes perdues + 6 billes à la fin. Schéma avec déplacement sur un axe: +6 billes, 19 billes à la fin — ? billes au début."
-                  ]
+                  "note": "Schéma en barres: ? billes au début = 10 billes perdues + 6 billes à la fin."
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 1",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séance en prenant appui sur la trace écrite P9-1."
                   ],
-                  "note": [
-                    "Trace écrite P9-1: Éva a gagné 6 billes pendant la récréation. Elle a maintenant 19 billes. Combien de billes Éva avait-elle avant la récréation? 10 + 6 = 16."
-                  ]
+                  "note": "Trace écrite P9-1 — Louise joue aux billes (2): Louise avait des billes, elle en perd 10. Il lui reste 6 billes. Combien de billes Louise avait-elle avant de jouer? 10 + 6 = 16. Louise avait 16 billes avant de jouer."
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Circuler, observer, aider les élèves en les questionnant, sans donner la solution."
+                  ],
                   "el": [
                     "Résoudre les problèmes P41 Pb5 et 7 ."
                   ],
-                  "note": [
-                    "PROBLÈME: Il y a 32 personnes dans un bus. 7 personnes montent dans le bus. Combien de personnes y a-t-il dans le bus maintenant?",
-                    "PROBLÈME: À un arrêt, 7 personnes montent dans un bus. Il y a maintenant 39 personnes dans le bus. Combien de personnes y avait-il dans le bus avant cet arrêt?"
-                  ],
-                  "pe": [
-                    "Circuler, observer, aider les élèves en les questionnant, sans donner la solution."
-                  ]
+                  "note": "PROBLÈME: Il y a 32 personnes dans un bus. 7 personnes montent dans le bus. Combien de personnes y a-t-il dans le bus maintenant?; PROBLÈME: À un arrêt, 7 personnes montent dans un bus. Il y a maintenant 39 personnes dans le bus. Combien de personnes y avait-il dans le bus avant cet arrêt?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique autonome",
                   "el": [
                     "Résoudre les problèmes P41 Pb6 et 8 ."
                   ],
-                  "note": [
-                    "PROBLÈME: Il y a 32 personnes dans un bus. À un arrêt, 7 personnes descendent. Combien de personnes y a-t-il dans le bus maintenant?",
-                    "PROBLÈME: Dans un bus, il y a 7 enfants et 32 adultes. Combien de personnes y a-t-il en tout dans le bus?"
-                  ]
+                  "note": "PROBLÈME: Il y a 32 personnes dans un bus. À un arrêt, 7 personnes descendent. Combien de personnes y a-t-il dans le bus maintenant?; PROBLÈME: Dans un bus, il y a 7 enfants et 32 adultes. Combien de personnes y a-t-il en tout dans le bus?"
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séquence",
@@ -599,9 +589,7 @@
               "phases": [
                 {
                   "n": "Calcul mental — Séance 1 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET: Énoncer à tour de rôle un nombre de la suite orale des nombres à partir de 200 jusqu'à 230, en comptant en avant de 1 en 1."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET: Énoncer à tour de rôle un nombre de la suite orale des nombres à partir de 200 jusqu'à 230, en comptant en avant de 1 en 1."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Mise en situation",
@@ -620,9 +608,7 @@
                     "Si l'ajout des nouvelles unités conduit à changer le nombre de dizaines comme pour calculer 87 + 8, on cherche d'abord combien il faut ajouter à 87 pour aller à la dizaine supérieure, c'est-à-dire à 90: il faut ajouter 3.",
                     "Il faut ensuite chercher ce qu'il reste à additionner afin d'avoir ajouté 8: il faut encore additionner 5 à 90 parce que 8, c'est 3 + 5. Cela fait 95."
                   ],
-                  "note": [
-                    "Trace écrite C9-1: Ajouter un nombre inférieur à 9 à un nombre. 87 + 8 = ? ... 87 + 8 = 95"
-                  ]
+                  "note": "Trace écrite C9-1: Ajouter un nombre inférieur à 9 à un nombre. 87 + 8 = ? ... 87 + 8 = 95"
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Pratique guidée",
@@ -639,9 +625,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en avant de 1 en 1, à partir de 230 jusqu'à 260."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en avant de 1 en 1, à partir de 230 jusqu'à 260."
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique guidée",
@@ -652,15 +636,11 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique autonome",
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C9-3."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C9-3."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en avant de 1 en 1, de 260 jusqu'à 300."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en avant de 1 en 1, de 260 jusqu'à 300."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique guidée",
@@ -677,21 +657,15 @@
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique autonome",
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C9-3."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C9-3."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 1 en 1, de 300 jusqu'à 260."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 1 en 1, de 300 jusqu'à 260."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Évaluation",
-                  "note": [
-                    "CALCUL CHRONO P40 — Ajouter un nombre inférieur à 9 à un nombre."
-                  ]
+                  "note": "CALCUL CHRONO P40 — Ajouter un nombre inférieur à 9 à un nombre."
                 },
                 {
                   "n": "Calcul mental — Clôture de la séquence",
@@ -743,30 +717,27 @@
           "title": "Longueurs : le mètre et le centimètre",
           "domain": "gm",
           "guidePage": 110,
-          "objective": null,
-          "note": "Page 110 (objectifs d'apprentissage du programme 2025, matériel du module et contenu détaillé du début de la séance 1) absente des captures fournies. Contenu non transcrit pour respecter la consigne verbatim.",
+          "objective": "Connaître et utiliser les unités de longueur (mètre, centimètre) et leurs relations (1 m = 100 cm) ; mesurer, comparer, estimer des longueurs.",
           "seances": [
             {
               "seance_number": 1,
-              "title": null,
+              "title": "Mesurer la longueur d'un segment avec une règle graduée",
               "type": "rech",
               "duration": 45,
               "guidePage": 110,
-              "materials": [],
+              "materials": [
+                "Règle rouge / règle bleue (PP3)",
+                "Double décimètre",
+                "Doc D10-1, D10-2"
+              ],
               "phases": [
                 {
                   "n": "Explicitation / Pratique guidée (fin, contenu visible sur la capture disponible)",
-                  "note": [
-                    "ACTIVITÉ 2 P42 Cherchons ensemble : « J'ai tracé une ligne brisée qui mesure 19 cm. Ugo a-t-il raison? Explique ta réponse. »",
-                    "Procédure visée: Mesurer la longueur de chaque segment et noter chaque mesure obtenue. Additionner les quatre mesures pour trouver la longueur de la ligne brisée."
-                  ]
+                  "note": "ACTIVITÉ 2 P42 Cherchons ensemble : « J'ai tracé une ligne brisée qui mesure 19 cm. Ugo a-t-il raison? Explique ta réponse. »; Procédure visée: Mesurer la longueur de chaque segment et noter chaque mesure obtenue. Additionner les quatre mesures pour trouver la longueur de la ligne brisée."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P42 Ex1",
-                    "1 Trouve les trois segments qui ont la même longueur que le segment qui relie A à B."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P42 Ex1; 1 Trouve les trois segments qui ont la même longueur que le segment qui relie A à B."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -778,7 +749,7 @@
             },
             {
               "seance_number": 2,
-              "title": "Connaitre et utiliser les unités mètre et centimètre et les symboles associés (m et cm)",
+              "title": "Connaître et utiliser les unités mètre et centimètre (1 m = 100 cm)",
               "type": "rech",
               "duration": 45,
               "guidePage": 111,
@@ -833,9 +804,7 @@
                   "el": [
                     "Effectuer l'exercice du document élève D10-3."
                   ],
-                  "note": [
-                    "Mètres ou centimètres? Complète avec cm ou m. — Un bébé mesure 50 ... — Une baleine peut mesurer jusqu'à 30 ... — La longueur d'un lit est de 2 ... — La piscine fait 25 ... de long. — Un enfant de 8 ans peut mesurer 120 ... — Une girafe peut mesurer 5 ... — La longueur d'un bus mesure environ 8 ... — La longueur d'une trousse est d'environ 20 ... — Certains arbres peuvent mesurer 30 ... de hauteur."
-                  ]
+                  "note": "Mètres ou centimètres? Complète avec cm ou m. — Un bébé mesure 50 ... — Une baleine peut mesurer jusqu'à 30 ... — La longueur d'un lit est de 2 ... — La piscine fait 25 ... de long. — Un enfant de 8 ans peut mesurer 120 ... — Une girafe peut mesurer 5 ... — La longueur d'un bus mesure environ 8 ... — La longueur d'une trousse est d'environ 20 ... — Certains arbres peuvent mesurer 30 ... de hauteur."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -847,11 +816,14 @@
             },
             {
               "seance_number": 3,
-              "title": "Connaitre les relations entre les unités mètre et centimètre",
+              "title": "Connaître les relations mètre / centimètre",
               "type": "rech",
               "duration": 45,
               "guidePage": 112,
-              "materials": [],
+              "materials": [
+                "Étiquettes de tailles (P43)",
+                "Ardoises"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -867,10 +839,7 @@
                   "el": [
                     "Résoudre la question a) du problème P43 Cherchons ensemble ."
                   ],
-                  "note": [
-                    "Aujourd'hui la directrice a mesuré quatre enfants: Éva 132 cm, Mehdi 108 cm, Lina 1 m 35 cm, Léon 1 m 10 cm. a) Range les quatre enfants du plus petit au plus grand. b) Quelle est la différence de taille entre Lina et Léon? c) Quelle est la différence de taille entre Mehdi et Éva?",
-                    "DIFFÉRENCIATION: Proposer des questions b) et c) aux élèves les plus rapides. Les calculs sont effectués mentalement ou en ligne."
-                  ]
+                  "note": "Aujourd'hui la directrice a mesuré quatre enfants: Éva 132 cm, Mehdi 108 cm, Lina 1 m 35 cm, Léon 1 m 10 cm. a) Range les quatre enfants du plus petit au plus grand. b) Quelle est la différence de taille entre Lina et Léon? c) Quelle est la différence de taille entre Mehdi et Éva?; DIFFÉRENCIATION: Proposer des questions b) et c) aux élèves les plus rapides. Les calculs sont effectués mentalement ou en ligne."
                 },
                 {
                   "n": "Explicitation",
@@ -894,10 +863,7 @@
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P43 Ex2",
-                    "2 Imagine la taille adulte qui correspondrait à chaque enfant et complète avec l'unité qui convient. — La hauteur de la Tour Eiffel: 324 ... — La taille d'un bébé à la naissance: 51 ... — La hauteur d'une maison: 6 ... — La longueur du bus: 11 ... — La taille d'une fille de 8 ans: 124 ... — La hauteur de l'immeuble: 12 ... — La hauteur de la porte: 2 ... — La longueur du crayon: ... 200 — La taille du moustique: 2 ..."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P43 Ex2; 2 Imagine la taille adulte qui correspondrait à chaque enfant et complète avec l'unité qui convient. — La hauteur de la Tour Eiffel: 324 ... — La taille d'un bébé à la naissance: 51 ... — La hauteur d'une maison: 6 ... — La longueur du bus: 11 ... — La taille d'une fille de 8 ans: 124 ... — La hauteur de l'immeuble: 12 ... — La hauteur de la porte: 2 ... — La longueur du crayon: ... 200 — La taille du moustique: 2 ..."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -916,14 +882,13 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 112,
-              "materials": [],
+              "materials": [
+                "Fichier élève (P44)"
+              ],
               "phases": [
                 {
                   "n": "Évaluation",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P44 Ex3",
-                    "3 Complète. Taille d'Iris: 1m 15 cm 3 cm. Longueur du bâton: 145cm ... m ... cm. Longueur du fil: 105cm ... m ... cm. Hauteur du sapin: 2m 20cm ... cm. Hauteur de la girafe: 5m 15cm ... cm. Longueur du lit: 1m 90cm ... cm."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P44 Ex3; 3 Complète. Taille d'Iris: 1m 15 cm 3 cm. Longueur du bâton: 145cm ... m ... cm. Longueur du fil: 105cm ... m ... cm. Hauteur du sapin: 2m 20cm ... cm. Hauteur de la girafe: 5m 15cm ... cm. Longueur du lit: 1m 90cm ... cm."
                 },
                 {
                   "n": "Consolidation",
@@ -931,25 +896,20 @@
                     "Réinvestir que, pour comparer des longueurs, il faut qu'elles soient exprimées avec la même unité: dans cet exercice, il faut donc convertir 1 mètre en 100 cm et chercher tous les poissons qui mesurent plus de 100 cm.",
                     "Effectuer le calcul de la différence mentalement ou en ligne."
                   ],
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P44 Ex4",
-                    "4 Entoure les noms des poissons qui mesurent plus de 1 m. Quelle est la différence de longueur entre la silure et l'espadon? Un thon rouge: 115 cm — un silure: 208 cm — une anguille: 122 cm — une truite fario: 23 cm — une carpe: 97 cm — un saumon: 43 cm — un brochet: 102 cm — un espadon: 170 cm."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P44 Ex4; 4 Entoure les noms des poissons qui mesurent plus de 1 m. Quelle est la différence de longueur entre la silure et l'espadon? Un thon rouge: 115 cm — un silure: 208 cm — une anguille: 122 cm — une truite fario: 23 cm — une carpe: 97 cm — un saumon: 43 cm — un brochet: 102 cm — un espadon: 170 cm."
                 },
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence en s'appuyant sur la trace écrite D10-4."
                   ],
-                  "note": [
-                    "Trace écrite D10-4 — Comparer les longueurs (m et cm). Je sais comparer des longueurs. Pour comparer des longueurs, il faut qu'elles soient exprimées avec la même unité. Exemple: Il est plus facile de comparer 1 m 25 cm et 130 cm si les deux mesures sont converties en centimètres. Je convertis les mètres en centimètres: 1 m = 100 cm. 1 m 25 cm = 100 cm + 25 cm = 125 cm. Maintenant, je peux comparer 125 cm et 130 cm. 125 cm < 130 cm."
-                  ]
+                  "note": "Trace écrite D10-4 — Comparer les longueurs (m et cm). Je sais comparer des longueurs. Pour comparer des longueurs, il faut qu'elles soient exprimées avec la même unité. Exemple: Il est plus facile de comparer 1 m 25 cm et 130 cm si les deux mesures sont converties en centimètres. Je convertis les mètres en centimètres: 1 m = 100 cm. 1 m 25 cm = 100 cm + 25 cm = 125 cm. Maintenant, je peux comparer 125 cm et 130 cm. 125 cm < 130 cm."
                 }
               ]
             },
             {
               "seance_number": 5,
-              "title": "Résoudre des problèmes additifs de comparaison en une étape: recherche de l'écart",
+              "title": "Comparaison : recherche de l'écart",
               "type": "rit",
               "duration": 20,
               "guidePage": 113,
@@ -967,9 +927,7 @@
                   "el": [
                     "Résoudre le problème pendant trois minutes dans le cahier de brouillon sans avoir accès au matériel."
                   ],
-                  "note": [
-                    "PROBLÈME 1: Une bande rouge mesure 15 cm de longueur. Une bande verte mesure 23 cm de longueur. Quelle est la différence de longueur entre les deux bandes?"
-                  ]
+                  "note": "PROBLÈME 1: Une bande rouge mesure 15 cm de longueur. Une bande verte mesure 23 cm de longueur. Quelle est la différence de longueur entre les deux bandes?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Explicitation",
@@ -989,50 +947,39 @@
                     "Expliciter comment il a procédé.",
                     "Chercher comment vérifier la réponse à l'aide des bandes affichées au tableau."
                   ],
-                  "note": [
-                    "Procédures observées: Surcompte de 15 cm à 23 cm (addition à trou: 15 + ? = 23). Retire la longueur de la petite bande à la longueur de la grande bande (soustraction: 23 - 15 = ?).",
-                    "Procédures de calcul observées: Utilise une addition à trou: 15 cm + ? = 23 cm. Utilise un schéma représentant le matériel de numération. Effectue des retraits successifs en décomposant le nombre à soustraire: 23 cm - 10 cm puis 13 cm - 5 cm."
-                  ]
+                  "note": "Procédures observées: Surcompte de 15 cm à 23 cm (addition à trou: 15 + ? = 23). Retire la longueur de la petite bande à la longueur de la grande bande (soustraction: 23 - 15 = ?).; Procédures de calcul observées: Utilise une addition à trou: 15 cm + ? = 23 cm. Utilise un schéma représentant le matériel de numération. Effectue des retraits successifs en décomposant le nombre à soustraire: 23 cm - 10 cm puis 13 cm - 5 cm."
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 1",
                   "pe": [
                     "Récapituler que, pour trouver la différence, l'écart entre deux nombres, on peut faire une soustraction: on prend le plus grand nombre et on enlève le plus petit."
                   ],
-                  "note": [
-                    "Trace écrite P10-1 — Les bandes en carton. Une bande verte mesure 15 cm de longueur. Une bande bleue mesure 23 cm de longueur. Quelle est la différence de longueur entre les deux bandes? 23 cm - 15 cm = 8 cm. La différence de longueur entre les deux bandes est 8 cm."
-                  ]
+                  "note": "Trace écrite P10-1 — Les bandes en carton. Une bande verte mesure 15 cm de longueur. Une bande bleue mesure 23 cm de longueur. Quelle est la différence de longueur entre les deux bandes? 23 cm - 15 cm = 8 cm. La différence de longueur entre les deux bandes est 8 cm."
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Pratique guidée",
-                  "el": [
-                    "Résoudre le problème P45 Pb2 en prenant appui sur la trace écrite du problème 1 laissée au tableau."
-                  ],
                   "pe": [
                     "Circuler dans les rangs pour apporter les étayages nécessaires.",
                     "Accompagner la traduction sous forme de schéma en barres sur l'ardoise."
                   ],
-                  "note": [
-                    "PROBLÈME 2: Une bande jaune mesure 150 cm de longueur. Une bande bleue mesure 120 cm de longueur. Quelle est la différence de longueur entre les deux bandes?"
-                  ]
+                  "el": [
+                    "Résoudre le problème P45 Pb2 en prenant appui sur la trace écrite du problème 1 laissée au tableau."
+                  ],
+                  "note": "PROBLÈME 2: Une bande jaune mesure 150 cm de longueur. Une bande bleue mesure 120 cm de longueur. Quelle est la différence de longueur entre les deux bandes?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique guidée",
                   "el": [
                     "Résoudre le problème P45 Pb3 ."
                   ],
-                  "note": [
-                    "PROBLÈME: Une carpe mesure 90 cm. Un brochet mesure 120 cm. Quelle est la différence de longueur entre la carpe et le brochet? Pour calculer la différence, le plus souvent les élèves cherchent combien il faut ajouter à 90 cm pour avoir 120 cm."
-                  ]
+                  "note": "PROBLÈME: Une carpe mesure 90 cm. Un brochet mesure 120 cm. Quelle est la différence de longueur entre la carpe et le brochet? Pour calculer la différence, le plus souvent les élèves cherchent combien il faut ajouter à 90 cm pour avoir 120 cm."
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique autonome",
                   "el": [
                     "Résoudre le problème P45 Pb4 ."
                   ],
-                  "note": [
-                    "PROBLÈME: Un boa mesure 380 cm. Un mamba noir mesure 430 cm. Quelle est la différence de longueur entre ces deux serpents?"
-                  ]
+                  "note": "PROBLÈME: Un boa mesure 380 cm. Un mamba noir mesure 430 cm. Quelle est la différence de longueur entre ces deux serpents?"
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 2 / de la séquence",
@@ -1044,13 +991,28 @@
             },
             {
               "seance_number": 6,
-              "title": "Ajouter ou soustraire un nombre entier de dizaines à un nombre",
+              "title": "Ajouter ou soustraire un nombre entier de dizaines",
               "type": "rit",
               "duration": 15,
               "guidePage": 114,
               "materials": [],
-              "phases": [],
-              "note": "[page 114 (Calcul mental du module 10, séances 1 à 4) non fournie dans les captures — contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Échauffement"
+                },
+                {
+                  "n": "Réactivation"
+                },
+                {
+                  "n": "Explicitation"
+                },
+                {
+                  "n": "Pratique guidée"
+                },
+                {
+                  "n": "Pratique autonome / Calcul chrono"
+                }
+              ]
             },
             {
               "seance_number": 7,
@@ -1086,7 +1048,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "note": "Page 110 (objectifs d'apprentissage du programme 2025, matériel du module et contenu détaillé du début de la séance 1) absente des captures fournies. Contenu non transcrit pour respecter la consigne verbatim."
         },
         {
           "number": 11,
@@ -1118,9 +1081,7 @@
                     "Écrire en chiffres le nombre de cubes de chaque collection.",
                     "Comparer les deux nombres pour savoir quelle collection a le plus de cubes."
                   ],
-                  "note": [
-                    "CE QUE DOIT SAVOIR L'ENSEIGNANT: L'objectif est d'amener les élèves à se détacher des relations entre groupements matériel pour aller vers les relations entre unités (10 unités = 1 dizaine, 10 dizaines = 1 centaine). La comparaison visuelle entre groupements n'est plus possible, les élèves sont amenés à mobiliser et verbaliser les relations entre unités de numération utilisées."
-                  ]
+                  "note": "CE QUE DOIT SAVOIR L'ENSEIGNANT: L'objectif est d'amener les élèves à se détacher des relations entre groupements matériel pour aller vers les relations entre unités (10 unités = 1 dizaine, 10 dizaines = 1 centaine). La comparaison visuelle entre groupements n'est plus possible, les élèves sont amenés à mobiliser et verbaliser les relations entre unités de numération utilisées."
                 },
                 {
                   "n": "Explicitation",
@@ -1141,26 +1102,24 @@
                     "Verbaliser: dans 305, il y a 3 centaines contre seulement 2 centaines dans 247.",
                     "Constater que 305 vient après 247 dans la suite orale des nombres."
                   ],
-                  "note": [
-                    "Procédures visées: Utilisation des écritures chiffrées (numération écrite) — Dénombrer les centaines, les dizaines et les unités de chaque collection, écrire chaque nombre en chiffres. Commencer par la comparaison du nombre de centaines puis, si nécessaire, du nombre de dizaines puis, si nécessaire, du nombre d'unités. Utilisation du nom des nombres à l'oral (numération orale) — Utiliser le nom des deux nombres à l'oral pour comparer leurs positions dans la comptine numérique."
-                  ]
+                  "note": "Procédures visées: Utilisation des écritures chiffrées (numération écrite) — Dénombrer les centaines, les dizaines et les unités de chaque collection, écrire chaque nombre en chiffres. Commencer par la comparaison du nombre de centaines puis, si nécessaire, du nombre de dizaines puis, si nécessaire, du nombre d'unités. Utilisation du nom des nombres à l'oral (numération orale) — Utiliser le nom des deux nombres à l'oral pour comparer leurs positions dans la comptine numérique."
                 }
               ]
             },
             {
               "seance_number": 2,
-              "title": null,
+              "title": "Ranger / ordonner des nombres dans l'ordre croissant ou décroissant",
               "type": "rech",
               "duration": 45,
-              "guidePage": 117,
-              "materials": [],
+              "guidePage": 118,
+              "materials": [
+                "Cartes-scores (D11-4)",
+                "Document D11-5"
+              ],
               "phases": [
                 {
                   "n": "Pratique autonome (fin, visible sur la capture disponible p.118)",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P46 Ex3",
-                    "3 Complète avec le symbole =, < ou >. 235 __ 250 ; 862 __ 859 ; 496 __ 700 ; 901 __ 899 ; 969 __ 972 ; 800 __ 799 ; 690 __ 597 ; 975 __ 976 ; 600+40 __ 600+8 ; 800+50+9 __ 859 ; 4+600 __ 900+70+2 ; 900+70+2 __ 969"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P46 Ex3; 3 Complète avec le symbole =, < ou >. 235 __ 250 ; 862 __ 859 ; 496 __ 700 ; 901 __ 899 ; 969 __ 972 ; 800 __ 799 ; 690 __ 597 ; 975 __ 976 ; 600+40 __ 600+8 ; 800+50+9 __ 859 ; 4+600 __ 900+70+2 ; 900+70+2 __ 969"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1168,16 +1127,17 @@
                     "Rappeler les procédures à mobiliser pour comparer deux nombres entiers et annoncer l'objectif de la séance suivante."
                   ]
                 }
-              ],
-              "note": "Page 117 (contenu détaillé du début de la séance 2) non fournie dans les captures — seule la fin de la séance (pratique autonome et clôture, visible en tête de la page 118) a pu être transcrite."
+              ]
             },
             {
               "seance_number": 3,
-              "title": "Ordonner des nombres dans l'ordre croissant ou décroissant",
+              "title": "Réinvestissement",
               "type": "rech",
               "duration": 30,
-              "guidePage": 118,
-              "materials": [],
+              "guidePage": 119,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1210,45 +1170,26 @@
                     "Je finis par copier le nombre le plus grand.",
                     "Je relis mon travail pour vérifier que je ne me suis pas trompé."
                   ],
-                  "note": [
-                    "CE QUE DOIT SAVOIR L'ENSEIGNANT: La désignation orale des nombres proposés dans les exercices n'est pas indispensable pour être capable de les ordonner. Un élève qui ne lit pas deux-cent-vingt-six et cent-quatre peut s'appuyer sur sa compréhension du système décimal pour comparer ces deux nombres et les ordonner: 104 est plus petit que 226 car 1 centaine, c'est plus petit que 2 centaines."
-                  ]
+                  "note": "CE QUE DOIT SAVOIR L'ENSEIGNANT: La désignation orale des nombres proposés dans les exercices n'est pas indispensable pour être capable de les ordonner. Un élève qui ne lit pas deux-cent-vingt-six et cent-quatre peut s'appuyer sur sa compréhension du système décimal pour comparer ces deux nombres et les ordonner: 104 est plus petit que 226 car 1 centaine, c'est plus petit que 2 centaines."
                 },
                 {
                   "n": "Pratique guidée",
                   "el": [
                     "Faire l'exercice du document élève D11-5."
                   ],
-                  "note": [
-                    "Range les nombres dans l'ordre croissant (du plus petit au plus grand): a) 219 124 291 142 ; d) 555 554 552 553 ; b) 138 140 141 139 ; e) 257 647 317 67 ; c) 205 207 206 204 ; f) 700 698 699 701"
-                  ]
+                  "note": "Range les nombres dans l'ordre croissant (du plus petit au plus grand): a) 219 124 291 142 ; d) 555 554 552 553 ; b) 138 140 141 139 ; e) 257 647 317 67 ; c) 205 207 206 204 ; f) 700 698 699 701"
                 },
                 {
                   "n": "Différenciation",
-                  "note": [
-                    "DIFFÉRENCIATION: Pour les élèves qui confondent l'ordre croissant et l'ordre décroissant, préciser: « Croissant est de la même famille que croissance. La croissance, c'est quand on grandit. L'ordre croissant, c'est donc du plus petit au plus grand. » « Décroissant commence par le préfixe dé utilisé pour exprimer le contraire. L'ordre décroissant, c'est donc du plus grand au plus petit. »",
-                    "Fournir le matériel de numération pour permettre aux élèves de vérifier si besoin certaines réponses en manipulant, comme sur la photo: 699 est plus petit que 700, 699 < 700, 600 est inférieur à 700.",
-                    "Regrouper les élèves les plus fragiles dans le même espace afin de pouvoir leur apporter une aide individualisée."
-                  ]
+                  "note": "DIFFÉRENCIATION: Pour les élèves qui confondent l'ordre croissant et l'ordre décroissant, préciser: « Croissant est de la même famille que croissance. La croissance, c'est quand on grandit. L'ordre croissant, c'est donc du plus petit au plus grand. » « Décroissant commence par le préfixe dé utilisé pour exprimer le contraire. L'ordre décroissant, c'est donc du plus grand au plus petit. »; Fournir le matériel de numération pour permettre aux élèves de vérifier si besoin certaines réponses en manipulant, comme sur la photo: 699 est plus petit que 700, 699 < 700, 600 est inférieur à 700.; Regrouper les élèves les plus fragiles dans le même espace afin de pouvoir leur apporter une aide individualisée."
                 },
                 {
                   "n": "Obstacles possibles",
-                  "note": [
-                    "Confond l'ordre croissant et l'ordre décroissant et ne connait pas/ne prend pas en compte le symbole <. (On constate qu'il range tous les nombres dans l'ordre décroissant.)",
-                    "Sait comparer deux nombres mais rencontre des difficultés d'ordre méthodologique à ordonner plus de 2 nombres. Réussit à ordonner le premier nombre ou/et le dernier nombre de chaque série. (Les erreurs se situent pour les nombres dans les positions intermédiaires, l'encourager à barrer les nombres au fur et à mesure de leur rangement.)",
-                    "Ne maitrise pas l'aspect décimal ou/et positionnel de la numération écrite. Par exemple, estime que 699 est plus grand que 700 car le chiffre des unités est 9.",
-                    "Ne maitrise pas les unités de numération (c, d, u). A compris la numération de position mais inverse les dizaines et les centaines ou les unités et les dizaines, c'est-à-dire pense que, par exemple, 698, c'est 6 centaines, 9 unités et 8 dizaines."
-                  ]
+                  "note": "Confond l'ordre croissant et l'ordre décroissant et ne connait pas/ne prend pas en compte le symbole <. (On constate qu'il range tous les nombres dans l'ordre décroissant.); Sait comparer deux nombres mais rencontre des difficultés d'ordre méthodologique à ordonner plus de 2 nombres. Réussit à ordonner le premier nombre ou/et le dernier nombre de chaque série. (Les erreurs se situent pour les nombres dans les positions intermédiaires, l'encourager à barrer les nombres au fur et à mesure de leur rangement.); Ne maitrise pas l'aspect décimal ou/et positionnel de la numération écrite. Par exemple, estime que 699 est plus grand que 700 car le chiffre des unités est 9.; Ne maitrise pas les unités de numération (c, d, u). A compris la numération de position mais inverse les dizaines et les centaines ou les unités et les dizaines, c'est-à-dire pense que, par exemple, 698, c'est 6 centaines, 9 unités et 8 dizaines."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P47 Ex4, 5, 6 et 7",
-                    "4 Range les nombres du plus petit au plus grand. 234 243 239 300 229",
-                    "5 Complète la bande numérique avec les nombres qui manquent. 791 792 793 ... 796 797 798 ...",
-                    "6 Écris le nombre indiqué par chaque flèche. (droites graduées avec repères 262-263 et 470-480)",
-                    "7 Complète le tableau. le nombre juste avant / le nombre / le nombre juste après: 355 356 357 ; ... 100 ... ; ... 863 ... ; ... 608 ... ; ... 980 ... ; ... 700 ... ; ... 801 ... ; ... 589 ... ; ... 369 ... ; ... 689 ... ; ... 910 ... ; ... 200 ..."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P47 Ex4, 5, 6 et 7; 4 Range les nombres du plus petit au plus grand. 234 243 239 300 229; 5 Complète la bande numérique avec les nombres qui manquent. 791 792 793 ... 796 797 798 ...; 6 Écris le nombre indiqué par chaque flèche. (droites graduées avec repères 262-263 et 470-480); 7 Complète le tableau. le nombre juste avant / le nombre / le nombre juste après: 355 356 357 ; ... 100 ... ; ... 863 ... ; ... 608 ... ; ... 980 ... ; ... 700 ... ; ... 801 ... ; ... 589 ... ; ... 369 ... ; ... 689 ... ; ... 910 ... ; ... 200 ..."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1263,19 +1204,17 @@
             },
             {
               "seance_number": 4,
-              "title": "Bilan de la séquence",
+              "title": "Bilan (calcul chrono : centaines)",
               "type": "rech",
               "duration": 30,
               "guidePage": 120,
-              "materials": [],
+              "materials": [
+                "Fichier élève (P48)"
+              ],
               "phases": [
                 {
                   "n": "Évaluation",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P48 Ex8 et 9",
-                    "8 Complète avec le symbole =, < ou >. 858 __ 957 ; 580 __ 850 ; 500+8 __ 580 ; 524 __ 530 ; 486 __ 487 ; 752 __ 50+3+700 ; 960 __ 906 ; 603 __ 598 ; 90+300 __ 390",
-                    "9 Range les nombres du plus petit au plus grand. 848 923 850 799 536"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P48 Ex8 et 9; 8 Complète avec le symbole =, < ou >. 858 __ 957 ; 580 __ 850 ; 500+8 __ 580 ; 524 __ 530 ; 486 __ 487 ; 752 __ 50+3+700 ; 960 __ 906 ; 603 __ 598 ; 90+300 __ 390; 9 Range les nombres du plus petit au plus grand. 848 923 850 799 536"
                 },
                 {
                   "n": "Pratique guidée (recherche du plus grand / plus petit nombre à 3 chiffres)",
@@ -1301,36 +1240,42 @@
                     "Chercher d'autres nombres de 3 chiffres qu'on peut écrire avec les chiffres des cartes.",
                     "Verbaliser: selon leur position, les chiffres n'ont pas la même valeur."
                   ],
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P48 Ex10",
-                    "10 Écris le nombre indiqué par chaque flèche. 487 ... 497 ; 630 ... 670 ; 300 ... 340 ; 0 ... 1000",
-                    "Le nombre 473 écrit au tableau, former avec les 3 cartes des nombres de trois chiffres plus grands que 473 et les noter sur l'ardoise."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P48 Ex10; 10 Écris le nombre indiqué par chaque flèche. 487 ... 497 ; 630 ... 670 ; 300 ... 340 ; 0 ... 1000; Le nombre 473 écrit au tableau, former avec les 3 cartes des nombres de trois chiffres plus grands que 473 et les noter sur l'ardoise."
                 },
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence."
                   ],
-                  "note": [
-                    "Trace écrite D11-2 — Ordonner des nombres dans l'ordre croissant ou décroissant. Je sais ranger des noms dans l'ordre croissant et dans l'ordre décroissant. Ranger des nombres dans l'ordre croissant, c'est les écrire du plus petit au plus grand. Ranger des nombres dans l'ordre décroissant, c'est les écrire du plus grand au plus petit. Exemples: Dans l'ordre croissant: 52 < 85 < 108 < 547. Dans l'ordre décroissant: 547 > 108 > 85 > 52."
-                  ]
+                  "note": "Trace écrite D11-2 — Ordonner des nombres dans l'ordre croissant ou décroissant. Je sais ranger des noms dans l'ordre croissant et dans l'ordre décroissant. Ranger des nombres dans l'ordre croissant, c'est les écrire du plus petit au plus grand. Ranger des nombres dans l'ordre décroissant, c'est les écrire du plus grand au plus petit. Exemples: Dans l'ordre croissant: 52 < 85 < 108 < 547. Dans l'ordre décroissant: 547 > 108 > 85 > 52."
                 }
               ]
             },
             {
               "seance_number": 5,
-              "title": "Problèmes additifs de comparaison en une étape: recherche de l'une des deux quantités",
+              "title": "Comparaison : recherche de l'une des deux quantités",
               "type": "rit",
               "duration": 20,
               "guidePage": 121,
               "materials": [],
-              "phases": [],
-              "note": "[page 121 (Atelier problèmes du module 11) non fournie dans les captures — contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Mise en situation"
+                },
+                {
+                  "n": "Explicitation"
+                },
+                {
+                  "n": "Pratique guidée"
+                },
+                {
+                  "n": "Pratique autonome"
+                }
+              ]
             },
             {
               "seance_number": 6,
-              "title": "Ajouter ou soustraire un nombre entier de centaines à un nombre",
+              "title": "Ajouter ou soustraire un nombre entier de centaines",
               "type": "rit",
               "duration": 15,
               "guidePage": 122,
@@ -1338,9 +1283,7 @@
               "phases": [
                 {
                   "n": "Calcul mental — Séance 1 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET: Énoncer à tour de rôle un nombre de la suite orale des nombres à partir de 500 jusqu'à 530, en comptant en avant de 1 en 1."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET: Énoncer à tour de rôle un nombre de la suite orale des nombres à partir de 500 jusqu'à 530, en comptant en avant de 1 en 1."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Mise en situation",
@@ -1350,17 +1293,15 @@
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Explication",
-                  "cons": [
-                    "Ajouter ou soustraire 100, 200, 300, 400, 500, 600, 700, 800 ou 900 à un nombre, c'est ajouter ou soustraire 1, 2, 3, 4, 5, 6, 7, 8 ou 9 centaines à ce nombre."
-                  ],
                   "pe": [
                     "Demander à un élève d'utiliser le matériel de numération pour vérifier les calculs.",
                     "967 - 500 = ? — 967, c'est 9 centaines 6 dizaines et 7 unités. 500, c'est 5 centaines. 9 centaines - 5 centaines = 4 centaines. Donc 967 - 500 = 467.",
                     "409 + 300 = ? — 409, c'est 4 centaines et 9 unités. 300, c'est 3 centaines. 4 centaines + 3 centaines = 7 centaines. Donc 409 + 300 = 709."
                   ],
-                  "note": [
-                    "Trace écrite C11-1 — Ajouter ou soustraire un nombre entier de centaines à un nombre. Ajouter ou soustraire 100, 200, 300, 400, 500, 600, 700, 800 ou 900 à un nombre, c'est ajouter ou soustraire 1, 2, 3, 4, 5, 6, 7, 8 ou 9 centaines à ce nombre. Exemples: 967 - 500 = ? 967, c'est 9 centaines 6 dizaines et 7 unités. 500, c'est 5 centaines. 9 centaines - 5 centaines = 4 centaines. Donc 967 - 500 = 467. / 409 + 300 = ? 409, c'est 4 centaines et 9 unités. 300, c'est 3 centaines. 4 centaines + 3 centaines = 7 centaines. Donc 409 + 300 = 709."
-                  ]
+                  "cons": [
+                    "Ajouter ou soustraire 100, 200, 300, 400, 500, 600, 700, 800 ou 900 à un nombre, c'est ajouter ou soustraire 1, 2, 3, 4, 5, 6, 7, 8 ou 9 centaines à ce nombre."
+                  ],
+                  "note": "Trace écrite C11-1 — Ajouter ou soustraire un nombre entier de centaines à un nombre. Ajouter ou soustraire 100, 200, 300, 400, 500, 600, 700, 800 ou 900 à un nombre, c'est ajouter ou soustraire 1, 2, 3, 4, 5, 6, 7, 8 ou 9 centaines à ce nombre. Exemples: 967 - 500 = ? 967, c'est 9 centaines 6 dizaines et 7 unités. 500, c'est 5 centaines. 9 centaines - 5 centaines = 4 centaines. Donc 967 - 500 = 467. / 409 + 300 = ? 409, c'est 4 centaines et 9 unités. 300, c'est 3 centaines. 4 centaines + 3 centaines = 7 centaines. Donc 409 + 300 = 709."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Pratique guidée",
@@ -1377,9 +1318,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en avant de 1 en 1, de 480 à 510."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en avant de 1 en 1, de 480 à 510."
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique guidée",
@@ -1391,15 +1330,11 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique autonome",
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C11-3."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C11-3."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 1 en 1, de 1000 à 970."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 1 en 1, de 1000 à 970."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique guidée",
@@ -1416,21 +1351,15 @@
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique autonome",
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C11-3."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C11-3."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 1 en 1, de 700 à 680."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 1 en 1, de 700 à 680."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Évaluation",
-                  "note": [
-                    "CALCUL CHRONO P48 — Ajouter ou soustraire un nombre entier de centaines à un nombre."
-                  ]
+                  "note": "CALCUL CHRONO P48 — Ajouter ou soustraire un nombre entier de centaines à un nombre."
                 },
                 {
                   "n": "Calcul mental — Clôture de la séquence",
@@ -1443,7 +1372,7 @@
             },
             {
               "seance_number": 7,
-              "title": "Longueurs",
+              "title": "Longueurs (choisir la bonne unité)",
               "type": "rit",
               "duration": 10,
               "guidePage": 123,
@@ -1482,16 +1411,20 @@
           "title": "Fractions : moitié, quart et tiers",
           "domain": "nb",
           "guidePage": 124,
-          "objective": null,
-          "note": "Page 124 (objectifs d'apprentissage du programme 2025, matériel du module et contenu détaillé du début de la séance 1) absente des captures fournies. Contenu non transcrit pour respecter la consigne verbatim.",
+          "objective": "Interpréter et représenter des fractions simples (un demi, un quart, un tiers) par le partage en parts égales.",
           "seances": [
             {
               "seance_number": 1,
-              "title": "Comprendre et utiliser le terme un demi",
+              "title": "Partager en parts égales (moitié, quart)",
               "type": "rech",
               "duration": 45,
               "guidePage": 124,
-              "materials": [],
+              "materials": [
+                "Gâteaux (D12-1)",
+                "Bandes de papier",
+                "Ciseaux",
+                "Animation A12-1"
+              ],
               "phases": [
                 {
                   "n": "Explicitation (fin, visible sur la capture disponible p.125)",
@@ -1525,9 +1458,7 @@
                     "Formuler la réponse.",
                     "Reformuler le nombre de gâteaux reçus par chaque enfant."
                   ],
-                  "note": [
-                    "Les élèves essaient d'abord de distribuer un gâteau à chaque enfant mais se rendent rapidement compte que ce n'est pas possible. Ils s'autorisent alors à fractionner l'unité."
-                  ]
+                  "note": "Les élèves essaient d'abord de distribuer un gâteau à chaque enfant mais se rendent rapidement compte que ce n'est pas possible. Ils s'autorisent alors à fractionner l'unité."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1542,11 +1473,13 @@
             },
             {
               "seance_number": 2,
-              "title": "Comprendre et utiliser le terme un quart",
+              "title": "Comprendre et utiliser le terme un tiers",
               "type": "rech",
               "duration": 45,
-              "guidePage": 125,
-              "materials": [],
+              "guidePage": 127,
+              "materials": [
+                "Carrés pré-pointillés (D12-1)"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1559,11 +1492,7 @@
                   "el": [
                     "Résoudre le problème par groupes de deux en ayant la possibilité d'utiliser le matériel (D12-1 page 6)."
                   ],
-                  "note": [
-                    "Procédures visées: Simuler la situation avec le matériel mis à disposition. Distribuer les gâteaux un à un puis partager le gâteau restant en quatre parts égales. Anticiper le partage à l'aide d'un dessin ou d'un schéma. Écrire sur l'ardoise le nombre de gâteaux reçus par chaque enfant en utilisant le terme quart.",
-                    "Les élèves rencontrent le plus souvent des difficultés normales à cet âge à réaliser un pliage en quatre parties égales. Pour les aider, leur proposer différents carrés découpés en quatre parts égales (D12-1 page 5).",
-                    "La procédure la plus fréquente est la distribution d'un gâteau à chaque enfant suivie du partage du gâteau restant en quatre parts égales."
-                  ]
+                  "note": "Procédures visées: Simuler la situation avec le matériel mis à disposition. Distribuer les gâteaux un à un puis partager le gâteau restant en quatre parts égales. Anticiper le partage à l'aide d'un dessin ou d'un schéma. Écrire sur l'ardoise le nombre de gâteaux reçus par chaque enfant en utilisant le terme quart.; Les élèves rencontrent le plus souvent des difficultés normales à cet âge à réaliser un pliage en quatre parties égales. Pour les aider, leur proposer différents carrés découpés en quatre parts égales (D12-1 page 5).; La procédure la plus fréquente est la distribution d'un gâteau à chaque enfant suivie du partage du gâteau restant en quatre parts égales."
                 },
                 {
                   "n": "Explicitation",
@@ -1582,9 +1511,7 @@
                     "Il faut quatre quarts de gâteau pour faire un gâteau.",
                     "Un quart, c'est quand il en faut 4 pour faire 1."
                   ],
-                  "note": [
-                    "Les élèves remarquent souvent qu'un quart est égal à la moitié de la moitié."
-                  ]
+                  "note": "Les élèves remarquent souvent qu'un quart est égal à la moitié de la moitié."
                 },
                 {
                   "n": "Pratique guidée",
@@ -1605,17 +1532,11 @@
                   "el": [
                     "Proposer aux élèves d'effectuer sur l'ardoise les exercices de l'animation A12-1 (notion de demi) puis les exercices 2 et 3 (notion de quart) du cahier de l'élève MATHS EN CE1."
                   ],
-                  "note": [
-                    "ACTIVITÉ 1 A12-1 : Écris les lettres qui correspondent aux gâteaux qui sont partagés en deux parts égales. Quand la partie colorée en rouge représente un demi, recopie la lettre correspondante."
-                  ]
+                  "note": "ACTIVITÉ 1 A12-1 : Écris les lettres qui correspondent aux gâteaux qui sont partagés en deux parts égales. Quand la partie colorée en rouge représente un demi, recopie la lettre correspondante."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ 2 P51 Ex2 et 3",
-                    "2 Barre le gâteau s'il n'est pas partagé en quatre parts égales.",
-                    "3 Quand la partie colorée en rouge représente un quart du gâteau, entoure la lettre correspondante."
-                  ]
+                  "note": "ACTIVITÉ 2 P51 Ex2 et 3; 2 Barre le gâteau s'il n'est pas partagé en quatre parts égales.; 3 Quand la partie colorée en rouge représente un quart du gâteau, entoure la lettre correspondante."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1630,11 +1551,13 @@
             },
             {
               "seance_number": 3,
-              "title": "Comprendre et utiliser le terme un tiers",
+              "title": "Entraînement",
               "type": "rech",
               "duration": 30,
               "guidePage": 127,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1644,9 +1567,7 @@
                   "cons": [
                     "Trois enfants se partagent un gâteau. Chaque enfant doit recevoir le même nombre de gâteaux et il ne doit pas en rester. Combien de gâteaux va recevoir chaque enfant?"
                   ],
-                  "note": [
-                    "Procédures visées: Simuler la situation avec le matériel mis à disposition. Partager le gâteau en trois parts égales. Anticiper le partage à l'aide d'un dessin ou d'un schéma. Écrire sur l'ardoise le nombre de gâteaux reçus par chaque enfant en utilisant le terme tiers."
-                  ]
+                  "note": "Procédures visées: Simuler la situation avec le matériel mis à disposition. Partager le gâteau en trois parts égales. Anticiper le partage à l'aide d'un dessin ou d'un schéma. Écrire sur l'ardoise le nombre de gâteaux reçus par chaque enfant en utilisant le terme tiers."
                 },
                 {
                   "n": "Pratique guidée",
@@ -1672,8 +1593,7 @@
                     "Il faut trois tiers de gâteau pour faire un gâteau."
                   ]
                 }
-              ],
-              "note": "Suite de la séance 3 (pratique autonome, clôture) et bilan de la séquence (séance 4, page 128) non fournis dans les captures — contenu non transcrit."
+              ]
             },
             {
               "seance_number": 4,
@@ -1681,26 +1601,56 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 128,
-              "materials": [],
-              "phases": [],
-              "note": "[page 128 (bilan de la séquence : évaluation, consolidation, clôture) non fournie dans les captures — contenu non transcrit]"
+              "materials": [
+                "Fichier élève"
+              ],
+              "phases": [
+                {
+                  "n": "Pratique guidée",
+                  "note": "ACTIVITÉ ÉLÈVE A12-2 — Faire collectivement les exercices de l'animation A12-2.; Quand la partie colorée en rouge représente un tiers, recopie la lettre correspondante. (figures A à F : rectangles et cercles partagés en parts égales, certaines parts coloriées en rouge); Vrai ou faux ? La partie colorée en rouge représente deux quarts. (bande rectangulaire divisée en 4 parts égales, 2 parts coloriées en rouge non adjacentes)"
+                },
+                {
+                  "n": "Pratique autonome",
+                  "note": "ACTIVITÉ ÉLÈVE P50 Ex1; 1 Dans chaque cas, colorie la fraction demandée.; un quart ; un demi ; un tiers ; deux demis ; deux quarts ; quatre quarts (bandes rectangulaires à colorier selon la fraction demandée)"
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": [
+                    "Rappeler:"
+                  ],
+                  "cons": [
+                    "Un tiers, c'est quand il en faut 3 pour faire 1."
+                  ]
+                },
+                {
+                  "n": "Séance 4 — Évaluation",
+                  "note": "ACTIVITÉ ÉLÈVE P52 Ex4; 4 Quand la partie colorée en bleu représente un tiers du gâteau, entoure la lettre correspondante. (figures a à f : rectangles et cercles partagés en parts égales, certaines parts coloriées en bleu)"
+                },
+                {
+                  "n": "Séance 4 — Consolidation",
+                  "note": "ACTIVITÉ ÉLÈVE P52 Ex5; 5 Barre les figures où la partie colorée en vert ne représente pas un demi. (figures a à f : rectangles et triangles partagés en parts égales, certaines parts coloriées en vert)"
+                },
+                {
+                  "n": "Séance 4 — Clôture de la séance",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours de la séquence en s'appuyant sur la trace écrite D12-2."
+                  ],
+                  "note": "Trace écrite D12-2 — Les fractions: demi, tiers et quart. La bande de papier correspond à une unité, c'est-à-dire à 1. 1 = un demi + un demi = un tiers + un tiers + un tiers = un quart + un quart + un quart + un quart."
+                }
+              ]
             },
             {
               "seance_number": 5,
-              "title": "Problèmes additifs de comparaison en une étape (séance 1)",
+              "title": "Comparaison en une étape (recherche de l'écart) · S1",
               "type": "rit",
               "duration": 20,
               "guidePage": 129,
-              "materials": [],
+              "materials": [
+                "Schéma en barres"
+              ],
               "phases": [
                 {
                   "n": "Atelier problèmes — Séance 1 — Mise en situation",
-                  "el": [
-                    "Résoudre le problème P53 Pb1 pendant trois minutes dans le cahier de brouillon."
-                  ],
-                  "note": [
-                    "PROBLÈME 1: Iris a 86 cubes dans sa boite. Léon a 52 cubes dans sa boite. Combien de cubes Iris a-t-elle de plus que Léon?"
-                  ],
                   "pe": [
                     "Indiquer que les traces écrites des ateliers 10 et 11 P10-1 et P11-1 peuvent être consultées pendant la résolution du problème 1.",
                     "Circuler dans les rangs pour apporter une aide aux élèves les plus fragiles.",
@@ -1708,7 +1658,11 @@
                   ],
                   "cons": [
                     "Qui a le plus de cubes, le moins de cubes, que cherche-t-on? Dans les traces écrites, quel problème ressemble à celui-là?"
-                  ]
+                  ],
+                  "el": [
+                    "Résoudre le problème P53 Pb1 pendant trois minutes dans le cahier de brouillon."
+                  ],
+                  "note": "PROBLÈME 1: Iris a 86 cubes dans sa boite. Léon a 52 cubes dans sa boite. Combien de cubes Iris a-t-elle de plus que Léon?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Explicitation",
@@ -1722,56 +1676,50 @@
                     "Faire remarquer qu'on entend le mot moins alors que l'opération à effectuer est une addition.",
                     "Souligner l'importance de reformuler l'énoncé pour mieux le comprendre."
                   ],
-                  "note": [
-                    "Procédures de calcul observées: Représente les 86 cubes par huit barres de dix cubes et six cubes isolés puis simule le retrait de 52 cubes. Effectue des retraits successifs en décomposant le nombre à soustraire: 86 - 2 = 84 puis 84 - 50 = 34."
-                  ]
+                  "note": "Procédures de calcul observées: Représente les 86 cubes par huit barres de dix cubes et six cubes isolés puis simule le retrait de 52 cubes. Effectue des retraits successifs en décomposant le nombre à soustraire: 86 - 2 = 84 puis 84 - 50 = 34."
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Pratique guidée",
                   "el": [
                     "Résoudre le problème P53 Pb2 en prenant si besoin appui sur les traces écrites P10-1 et P11-1 ."
                   ],
-                  "note": [
-                    "PROBLÈME 2: Sacha a 34 cubes. Il a 25 cubes de moins que Zoé. Combien de cubes Zoé a-t-elle?"
-                  ]
+                  "note": "PROBLÈME 2: Sacha a 34 cubes. Il a 25 cubes de moins que Zoé. Combien de cubes Zoé a-t-elle?"
                 }
               ]
             },
             {
               "seance_number": 6,
-              "title": "Problèmes additifs de comparaison en une étape (séance 2)",
+              "title": "Comparaison en une étape · S2",
               "type": "rit",
               "duration": 20,
               "guidePage": 129,
-              "materials": [],
+              "materials": [
+                "Fichier P53"
+              ],
               "phases": [
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique guidée",
-                  "el": [
-                    "Résoudre le problème P53 Pb3 ."
-                  ],
-                  "note": [
-                    "PROBLÈME: J'ai 60 cubes, c'est 18 cubes de moins qu'Ugo. Combien de cubes Ugo a-t-il?"
-                  ],
                   "pe": [
                     "Faire verbaliser: si j'ai 18 cubes de moins qu'Ugo, cela signifie qu'Ugo a 18 cubes de plus que moi. C'est donc Ugo qui a la plus grande quantité de cubes.",
                     "Accompagner la traduction sous forme de schéma en barres sur l'ardoise.",
                     "Demander aux élèves d'écrire le calcul 60 + 18 = 78 et la phrase réponse: Ugo a 78 cubes."
-                  ]
+                  ],
+                  "el": [
+                    "Résoudre le problème P53 Pb3 ."
+                  ],
+                  "note": "PROBLÈME: J'ai 60 cubes, c'est 18 cubes de moins qu'Ugo. Combien de cubes Ugo a-t-il?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique autonome",
-                  "el": [
-                    "Résoudre le problème P53 Pb4 ."
-                  ],
-                  "note": [
-                    "PROBLÈME: Un brochet mesure 96 cm. Il mesure 10 cm de plus qu'un sandre. Combien le sandre mesure-t-il?"
-                  ],
                   "pe": [
                     "Lors de la synthèse, faire verbaliser: si le brochet mesure 10 cm de plus que le sandre, cela signifie que le sandre mesure 10 cm de moins que le brochet. Le brochet est donc plus grand que le sandre.",
                     "Accompagner la traduction sous forme de schéma en barres sur l'ardoise.",
                     "Demander aux élèves d'écrire le calcul 96 cm - 10 cm = 86 cm et la phrase réponse: Le sandre mesure 86 cm."
-                  ]
+                  ],
+                  "el": [
+                    "Résoudre le problème P53 Pb4 ."
+                  ],
+                  "note": "PROBLÈME: Un brochet mesure 96 cm. Il mesure 10 cm de plus qu'un sandre. Combien le sandre mesure-t-il?"
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séquence",
@@ -1791,9 +1739,7 @@
               "phases": [
                 {
                   "n": "Calcul mental — Séance 1 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET: Énoncer à tour de rôle un nombre de la suite orale des nombres à partir de 0 jusqu'à 200, en comptant en avant de 10 en 10."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET: Énoncer à tour de rôle un nombre de la suite orale des nombres à partir de 0 jusqu'à 200, en comptant en avant de 10 en 10."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Mise en situation",
@@ -1812,10 +1758,7 @@
                     "Utiliser un schéma avec un déplacement sur un axe pour aider les élèves à comprendre et mémoriser la procédure on ajoute 10 et on retranche 1.",
                     "Expliciter qu'il n'est pas utile d'avoir recours à cette procédure quand on peut ajouter directement 9, 19 ou 29 au nombre initial quand le chiffre des unités du nombre initial est 0 ou 1."
                   ],
-                  "note": [
-                    "Le contenu de l'ardoise pourra évoluer chronologiquement, comme indiqué ci-dessous: 17 → 17 27 → 17 27 26.",
-                    "Trace écrite C12-1 — Ajouter 9, 19 ou 29 à un nombre."
-                  ]
+                  "note": "Le contenu de l'ardoise pourra évoluer chronologiquement, comme indiqué ci-dessous: 17 → 17 27 → 17 27 26.; Trace écrite C12-1 — Ajouter 9, 19 ou 29 à un nombre."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Pratique guidée",
@@ -1832,9 +1775,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en avant de 10 en 10, de 453 à 653."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en avant de 10 en 10, de 453 à 653."
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique guidée",
@@ -1845,9 +1786,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique autonome",
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C12-3."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C12-3."
                 }
               ]
             },
@@ -1858,10 +1797,14 @@
               "duration": 20,
               "guidePage": 131,
               "materials": [],
-              "phases": [],
-              "note": "[page 131 (fin du calcul mental séances 3-4 et Flash Maths Formes planes du module 12) non fournie dans les captures — contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Atelier"
+                }
+              ]
             }
-          ]
+          ],
+          "note": "Page 124 (objectifs d'apprentissage du programme 2025, matériel du module et contenu détaillé du début de la séance 1) absente des captures fournies. Contenu non transcrit pour respecter la consigne verbatim."
         },
         {
           "number": 13,
@@ -1872,11 +1815,14 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Comprendre ce que signifie un cinquième et un huitième",
+              "title": "Comprendre et écrire des fractions simples (huitième, sixième, dixième)",
               "type": "rech",
               "duration": 45,
               "guidePage": 132,
-              "materials": [],
+              "materials": [
+                "Figures de gâteaux partagés",
+                "Animation A13-1"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1892,9 +1838,7 @@
                     "Reporter la part de gâteau sur l'unité pour trouver la réponse.",
                     "Verbaliser: il faut cinq parts pour faire un gâteau."
                   ],
-                  "note": [
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Cette séquence a pour objectif principal l'introduction des fractions unitaires (de numérateur égal à 1) d'un tout et de leur écriture fractionnaire. Le but est que chaque élève comprenne que la fraction 1/5 d'une ficelle, d'une bande de papier ou d'une figure correspond à une part du tout lors du partage de ce tout en cinq parts égales."
-                  ]
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Cette séquence a pour objectif principal l'introduction des fractions unitaires (de numérateur égal à 1) d'un tout et de leur écriture fractionnaire. Le but est que chaque élève comprenne que la fraction 1/5 d'une ficelle, d'une bande de papier ou d'une figure correspond à une part du tout lors du partage de ce tout en cinq parts égales."
                 },
                 {
                   "n": "Explicitation",
@@ -1907,9 +1851,7 @@
                     "Il en faut cinq pour faire un.",
                     "On écrit 5 en bas pour indiquer qu'il s'agit de cinquièmes. C'est-à-dire que c'est lui qui nous indique s'il s'agit de cinquièmes, de demis, de tiers, de quarts."
                   ],
-                  "note": [
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Parler du nombre du bas et du nombre du haut suffit amplement au début de l'apprentissage. Les mots numérateur et dénominateur seront introduits quand les élèves auront suffisamment utilisé des fractions."
-                  ]
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Parler du nombre du bas et du nombre du haut suffit amplement au début de l'apprentissage. Les mots numérateur et dénominateur seront introduits quand les élèves auront suffisamment utilisé des fractions."
                 },
                 {
                   "n": "Pratique guidée",
@@ -1924,9 +1866,7 @@
                     "Écrire la fraction représentée par la partie grisée de la figure.",
                     "Écrire cette fraction avec des lettres comme par exemple un sixième ou avec une écriture fractionnaire 1/6 ."
                   ],
-                  "note": [
-                    "Quelle fraction représente la partie grisée de la figure? (trois figures a, b, c à compléter)"
-                  ]
+                  "note": "Quelle fraction représente la partie grisée de la figure? (trois figures a, b, c à compléter)"
                 },
                 {
                   "n": "Explicitation (figure a)",
@@ -1946,9 +1886,7 @@
                   "el": [
                     "Répondre sur l'ardoise aux exercices de l'animation A13-1."
                   ],
-                  "note": [
-                    "Quand la partie colorée représente 1/2, recopie la lettre correspondante. (figures A à F)"
-                  ]
+                  "note": "Quand la partie colorée représente 1/2, recopie la lettre correspondante. (figures A à F)"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1965,11 +1903,13 @@
             },
             {
               "seance_number": 2,
-              "title": "Lire et écrire les fractions 1/2, 1/3, 1/4, 1/5, 1/6, 1/8, 1/10",
+              "title": "Lire et écrire les fractions (½, ⅓, ¼, ⅕, ⅙, ⅛, 1/10)",
               "type": "rech",
               "duration": 45,
               "guidePage": 133,
-              "materials": [],
+              "materials": [
+                "Document D13-2"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -2004,9 +1944,7 @@
                   "el": [
                     "Répondre sur l'ardoise aux exercices de l'animation A13-1 ."
                   ],
-                  "note": [
-                    "Quand la partie colorée représente 1/2, recopie la lettre correspondante. (figures A à F)"
-                  ]
+                  "note": "Quand la partie colorée représente 1/2, recopie la lettre correspondante. (figures A à F)"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -2023,11 +1961,15 @@
             },
             {
               "seance_number": 3,
-              "title": "Comprendre et utiliser la notation fractionnaire pour une fraction d'une quantité (masses)",
+              "title": "Réinvestir la lecture et l'écriture des fractions dans des contextes variés",
               "type": "rech",
               "duration": 45,
               "guidePage": 134,
-              "materials": [],
+              "materials": [
+                "Bouteille 1 L, verre 25 cL, entonnoir",
+                "Balances Roberval, masses 1 kg et ½ kg",
+                "Fichier P54"
+              ],
               "phases": [
                 {
                   "n": "Explicitation (verres d'eau)",
@@ -2051,19 +1993,14 @@
                     "Utiliser la balance et les masses marquées pour vérifier sa réponse.",
                     "Comprendre et verbaliser: il faut placer deux masses marquées 1/2 kg sur un plateau pour équilibrer une masse marquée 1 kg sur l'autre plateau."
                   ],
-                  "note": [
-                    "Au cours de la synthèse, expliciter que les élèves ont vérifié qu'en mettant ensemble deux masses de 1/2 kg, on obtient une masse totale équivalente à celle de 1 kg. Cela signifie que la masse marquée 1/2 kg représente la moitié de la masse de 1 kg. Écrire au tableau: 1/2 kg + 1/2 kg = 1 kg."
-                  ]
+                  "note": "Au cours de la synthèse, expliciter que les élèves ont vérifié qu'en mettant ensemble deux masses de 1/2 kg, on obtient une masse totale équivalente à celle de 1 kg. Cela signifie que la masse marquée 1/2 kg représente la moitié de la masse de 1 kg. Écrire au tableau: 1/2 kg + 1/2 kg = 1 kg."
                 },
                 {
                   "n": "Pratique autonome",
                   "el": [
                     "Entoure la ou les étiquettes correspondant à la fraction représentée par la partie coloriée en jaune."
                   ],
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P55 Ex2",
-                    "2 Entoure la ou les étiquettes correspondant à la fraction représentée par la partie coloriée en jaune. (bandes et figures avec 1/4, un tiers, 1/3, un quart, un dixième, 1/8, un huitième, un demi, 1/2, un sixième, 1/10, un dixième…)"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P55 Ex2; 2 Entoure la ou les étiquettes correspondant à la fraction représentée par la partie coloriée en jaune. (bandes et figures avec 1/4, un tiers, 1/3, un quart, un dixième, 1/8, un huitième, un demi, 1/2, un sixième, 1/10, un dixième…)"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -2078,50 +2015,53 @@
               "title": "Bilan de la séquence",
               "type": "rech",
               "duration": 30,
-              "guidePage": 136,
-              "materials": [],
+              "guidePage": 135,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Évaluation",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P56 Ex3",
-                    "3 Associe chaque figure à la fraction qu'elle représente. (figures) — 1/4 un quart, 1/3 un tiers, 1/6 un sixième, 1/2 un demi"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P56 Ex3; 3 Associe chaque figure à la fraction qu'elle représente. (figures) — 1/4 un quart, 1/3 un tiers, 1/6 un sixième, 1/2 un demi"
                 },
                 {
                   "n": "Consolidation",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P56 Ex4",
-                    "4 Pour chaque figure, écris en chiffres la fraction représentée par la partie coloriée en vert. (6 figures: triangle, rectangle, hexagone, cercle/étoile, triangle, grille)"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P56 Ex4; 4 Pour chaque figure, écris en chiffres la fraction représentée par la partie coloriée en vert. (6 figures: triangle, rectangle, hexagone, cercle/étoile, triangle, grille)"
                 },
                 {
                   "n": "Différenciation",
-                  "note": [
-                    "DIFFÉRENCIATION: Proposer aux élèves les plus fragiles d'utiliser la trace écrite proposée à la fin de cette séance afin de les aider à s'approprier l'écriture des fractions demandées."
-                  ]
+                  "note": "DIFFÉRENCIATION: Proposer aux élèves les plus fragiles d'utiliser la trace écrite proposée à la fin de cette séance afin de les aider à s'approprier l'écriture des fractions demandées."
                 },
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence en s'appuyant sur les traces écrites D13-3."
                   ],
-                  "note": [
-                    "Trace écrite D13-3 (partie 1) — Les fractions: demi, tiers et quart. La bande de papier correspond à une unité, c'est-à-dire à 1. (bandes 1/2, 1/3, 1/4) 1/2 se lit un demi ; 1/3 se lit un tiers ; 1/4 se lit un quart.",
-                    "Trace écrite D13-3 (partie 2) — Les fractions: cinquième, sixième, huitième et dixième. La bande de papier correspond à une unité, c'est-à-dire à 1. (bandes graduées en 5, 6, 8, 10) 1/5 se lit un cinquième ; 1/6 se lit un sixième ; 1/8 se lit un huitième ; 1/10 se lit un dixième."
-                  ]
+                  "note": "Trace écrite D13-3 (partie 1) — Les fractions: demi, tiers et quart. La bande de papier correspond à une unité, c'est-à-dire à 1. (bandes 1/2, 1/3, 1/4) 1/2 se lit un demi ; 1/3 se lit un tiers ; 1/4 se lit un quart.; Trace écrite D13-3 (partie 2) — Les fractions: cinquième, sixième, huitième et dixième. La bande de papier correspond à une unité, c'est-à-dire à 1. (bandes graduées en 5, 6, 8, 10) 1/5 se lit un cinquième ; 1/6 se lit un sixième ; 1/8 se lit un huitième ; 1/10 se lit un dixième."
                 }
               ]
             },
             {
               "seance_number": 5,
-              "title": "Problèmes additifs de comparaison en une étape",
+              "title": "Comparaison en une étape",
               "type": "rit",
               "duration": 20,
               "guidePage": 137,
               "materials": [],
-              "phases": [],
-              "note": "[page 137 (Atelier problèmes du module 13) non fournie dans les captures — contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Mise en situation"
+                },
+                {
+                  "n": "Explicitation"
+                },
+                {
+                  "n": "Pratique guidée"
+                },
+                {
+                  "n": "Pratique autonome"
+                }
+              ]
             },
             {
               "seance_number": 6,
@@ -2133,9 +2073,7 @@
               "phases": [
                 {
                   "n": "Calcul mental — Séance 3 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 100 en 100, à partir de 1000 jusqu'à 0."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 100 en 100, à partir de 1000 jusqu'à 0."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique guidée",
@@ -2151,21 +2089,15 @@
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique autonome",
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C13-3."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C13-3."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 100 en 100, à partir de 903 jusqu'à 3."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 100 en 100, à partir de 903 jusqu'à 3."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Évaluation",
-                  "note": [
-                    "CALCUL CHRONO P56 — Soustraire 9 à un nombre."
-                  ]
+                  "note": "CALCUL CHRONO P56 — Soustraire 9 à un nombre."
                 },
                 {
                   "n": "Calcul mental — Clôture de la séquence",
@@ -2174,8 +2106,7 @@
                     "Récapituler les procédures travaillées lors de la séquence."
                   ]
                 }
-              ],
-              "note": "Le contenu des séances 1 et 2 du calcul mental du module 13 (page 138, en amont de la séance 3 visible sur la capture) n'a pas été retrouvé dans les captures fournies."
+              ]
             },
             {
               "seance_number": 7,
@@ -2249,9 +2180,7 @@
                   "el": [
                     "Identifier les pièces et les billets distribués par l'enseignant."
                   ],
-                  "note": [
-                    "Prix affiché de la tarte: 17€."
-                  ]
+                  "note": "Prix affiché de la tarte: 17€."
                 },
                 {
                   "n": "Explicitation",
@@ -2263,14 +2192,14 @@
                 },
                 {
                   "n": "Pratique guidée — Activité 1",
-                  "el": [
-                    "Par groupes de deux, trouver trois manières différentes d'obtenir la somme de 10€ en n'utilisant que des pièces en euros et des billets du matériel mis à disposition."
-                  ],
                   "pe": [
                     "Inventorier et vérifier les différentes solutions trouvées par les élèves, sans rechercher l'exhaustivité des possibles, comme: 1 billet de 10€, 2 billets de 5€, 5 pièces de 2€, 1 billet de 5€ + 2 pièces de 2€ + 1 pièce de 1€, 10 pièces de 1€.",
                     "Synthétiser qu'on peut obtenir la même somme d'argent avec un nombre de pièces ou de billets différents:",
                     "- 1 billet de 10€ a la même valeur que 2 billets de 5€.",
                     "- 1 billet de 10€ a la même valeur que 5 pièces de 2€."
+                  ],
+                  "el": [
+                    "Par groupes de deux, trouver trois manières différentes d'obtenir la somme de 10€ en n'utilisant que des pièces en euros et des billets du matériel mis à disposition."
                   ]
                 },
                 {
@@ -2283,20 +2212,21 @@
             },
             {
               "seance_number": 2,
-              "title": "Déterminer la valeur en euro et centime d'euro d'un ensemble constitué de pièces et de billets",
+              "title": "Déterminer la valeur d'une somme (1 € = 100 c)",
               "type": "rech",
               "duration": 45,
               "guidePage": 141,
-              "materials": [],
+              "materials": [
+                "Pièces et billets",
+                "P58"
+              ],
               "phases": [
                 {
                   "n": "Pratique guidée / Explicitation (visible sur la capture disponible p.142)",
                   "el": [
                     "Résoudre le problème de D14-3 en prenant appui si besoin sur la manipulation des pièces du matériel ou l'animation A14-2 ."
                   ],
-                  "note": [
-                    "Document élève — Détermine la valeur en euro et centime d'euro des pièces et des billets de chaque enfant. Ugo: 1 pièce de 1€. Louise: pièces de 50c, 20c, 20c, 5c, 2c, 1c. Qui a le plus de pièces? Qui a le plus d'argent?"
-                  ]
+                  "note": "Document élève — Détermine la valeur en euro et centime d'euro des pièces et des billets de chaque enfant. Ugo: 1 pièce de 1€. Louise: pièces de 50c, 20c, 20c, 5c, 2c, 1c. Qui a le plus de pièces? Qui a le plus d'argent?"
                 },
                 {
                   "n": "Explicitation",
@@ -2317,25 +2247,19 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "el": [
-                    "Déterminer la valeur de la somme d'argent que chaque enfant a dans son portemonnaie."
-                  ],
-                  "note": [
-                    "P58 Cherchons ensemble — Détermine la valeur de la somme d'argent que chaque enfant a dans son portemonnaie (Sacha: billets et pièces ; Louise: pièces). Qui a le plus de billets et de pièces? Qui a le plus d'argent?"
-                  ],
                   "pe": [
                     "Comparer des sommes contenues dans deux portemonnaies en faisant bien la différence entre le nombre de pièces et de billets et la valeur en euro et en centime d'euro de ces pièces et de ces billets.",
                     "Comprendre ainsi qu'une pièce de 2€ vaut plus qu'1 pièce de 50 centimes + 7 pièces de 10 centimes + 2 pièces de 20 centimes.",
                     "Comprendre également que 12€, c'est plus que 50 centimes bien que 12 soit plus petit que 50 car 50c, c'est plus petit que 100 centimes donc que 1€ et que 12€."
-                  ]
+                  ],
+                  "el": [
+                    "Déterminer la valeur de la somme d'argent que chaque enfant a dans son portemonnaie."
+                  ],
+                  "note": "P58 Cherchons ensemble — Détermine la valeur de la somme d'argent que chaque enfant a dans son portemonnaie (Sacha: billets et pièces ; Louise: pièces). Qui a le plus de billets et de pièces? Qui a le plus d'argent?"
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P58 Ex1 et 2",
-                    "1 Il doit y avoir exactement 16€ dans chaque portemonnaie. Barre les pièces qui sont en trop.",
-                    "2 Détermine la valeur de chaque somme d'argent. ... € et ... c"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P58 Ex1 et 2; 1 Il doit y avoir exactement 16€ dans chaque portemonnaie. Barre les pièces qui sont en trop.; 2 Détermine la valeur de chaque somme d'argent. ... € et ... c"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -2354,15 +2278,13 @@
                     "Demander aux élèves de chercher comment écrire 2€40c en centime.",
                     "Rappeler que 1€ = 100c donc 2€ = 200c et 2€40c = 240c."
                   ],
-                  "note": [
-                    "Trace écrite D14-2 — Monnaie. On peut échanger une pièce de 1€ contre 100 pièces de 1 centime d'euro. On peut aussi échanger une pièce de 1€ contre 2 pièces de 50c. On peut aussi échanger une pièce de 1€ contre 10 pièces de 10 centimes d'euro."
-                  ]
+                  "note": "Trace écrite D14-2 — Monnaie. On peut échanger une pièce de 1€ contre 100 pièces de 1 centime d'euro. On peut aussi échanger une pièce de 1€ contre 2 pièces de 50c. On peut aussi échanger une pièce de 1€ contre 10 pièces de 10 centimes d'euro."
                 }
               ]
             },
             {
               "seance_number": 3,
-              "title": "Rendre la monnaie",
+              "title": "Entraînement",
               "type": "rech",
               "duration": 30,
               "guidePage": 142,
@@ -2380,10 +2302,7 @@
                   "el": [
                     "Résoudre le problème en prenant appui, si besoin, sur la manipulation des pièces et des billets."
                   ],
-                  "note": [
-                    "P59 Cherchons ensemble : Éva achète une trottinette à 26€. Elle paie avec deux billets de 20€. Combien le vendeur va-t-il rendre à Éva?",
-                    "Procédure visée: Rendre la monnaie en procédant par ajouts successifs: le complément à 30 de 26 est 4, donc je rends 4€ pour arriver à 30€, plus 10€ pour arriver à 40€."
-                  ]
+                  "note": "P59 Cherchons ensemble : Éva achète une trottinette à 26€. Elle paie avec deux billets de 20€. Combien le vendeur va-t-il rendre à Éva?; Procédure visée: Rendre la monnaie en procédant par ajouts successifs: le complément à 30 de 26 est 4, donc je rends 4€ pour arriver à 30€, plus 10€ pour arriver à 40€."
                 },
                 {
                   "n": "Explicitation",
@@ -2402,24 +2321,46 @@
                     "On cherche la monnaie qu'Éva va recevoir.",
                     "Éva n'a pas la somme d'argent qui correspond exactement au prix de la trottinette. Elle est donc obligée de donner au vendeur plus que 26€ et il doit donc lui rendre ce qu'elle a payé en trop."
                   ],
-                  "note": [
-                    "Schéma avec déplacement sur un axe: 26€ → (+4€) → 30€ → (+10€) → 40€. Total +14€."
-                  ]
+                  "note": "Schéma avec déplacement sur un axe: 26€ → (+4€) → 30€ → (+10€) → 40€. Total +14€."
                 },
                 {
                   "n": "Pratique guidée — Activité 1",
-                  "el": [
-                    "Réinvestir les procédures visées en étant guidé par l'enseignant."
-                  ],
-                  "note": [
-                    "P59 Ex3 : Lina achète une montre à 31€. Elle paie avec un billet de 50€. Combien le vendeur va-t-il rendre à Lina?",
-                    "Schéma avec déplacement sur un axe: 31€ → (+9€) → 40€ → (+10€) → 50€. Total +19€."
-                  ],
                   "pe": [
                     "Demander à deux élèves de venir au tableau pour jouer la scène; un élève joue le rôle de Lina et un autre élève joue le rôle du vendeur.",
                     "Relire l'énoncé phrase par phrase pour accompagner la simulation de la situation avec le matériel par les deux élèves.",
                     "Mettre en évidence les analogies avec le problème précédent: comme Éva, Lina a donné plus que le prix demandé et il faut trouver ce qu'elle a donné en plus, c'est-à-dire en trop.",
                     "Prendre appui sur un schéma en barres et un schéma avec déplacement sur un axe pour modéliser la situation et expliciter les procédures de calcul mental à mobiliser (voir A14-3)."
+                  ],
+                  "el": [
+                    "Réinvestir les procédures visées en étant guidé par l'enseignant."
+                  ],
+                  "note": "P59 Ex3 : Lina achète une montre à 31€. Elle paie avec un billet de 50€. Combien le vendeur va-t-il rendre à Lina?; Schéma avec déplacement sur un axe: 31€ → (+9€) → 40€ → (+10€) → 50€. Total +19€."
+                },
+                {
+                  "n": "Pratique guidée — Activité 2",
+                  "pe": [
+                    "Résoudre les problèmes en prenant appui si besoin sur la manipulation des pièces et des billets."
+                  ],
+                  "el": [
+                    "Résoudre les problèmes en prenant appui si besoin sur la manipulation des pièces et des billets."
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P59 Ex4; 4 Dans chaque cas, détermine la monnaie que le boulanger doit rendre si Ugo achète: un croissant à 80c avec 1€ (20c); un pain long à 1€30c avec 2€; un pain aux raisins à 85c avec 1€; une brioche à 90c avec 1€; une baguette à 90c avec 5€."
+                },
+                {
+                  "n": "Explicitation — Procédures visées",
+                  "pe": [
+                    "Expliciter les procédures visées en prenant appui sur la manipulation des pièces de monnaie.",
+                    "Valider les réponses avec le matériel en verbalisant chaque étape utilisée pour rendre la monnaie et sur un schéma avec déplacement sur un axe."
+                  ],
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Cet exercice respecte les attendus du programme 2025, il est plus complexe et nécessite un accompagnement plus important de la part de l'enseignant. Exemple: Pour rendre la monnaie dans le cas d'un achat d'un gâteau à 4€20c en payant avec un billet de 5€, il faut comprendre que 5€ est égal à 4€ + 100c pour calculer ce qu'il faut pour aller de 20c à 100c ou pour calculer 100c − 20c. Procédures visées — Par exemple: Achat de la baguette à 90c avec un billet de 5€. 1ère étape: Chercher combien de centimes il faut rendre pour aller à l'euro supérieur: combien faut-il de centimes pour aller de 90c à 1€? (10c). 2e étape: Chercher combien d'euros il faut rendre pour aller de 1€ à 5€. (4€). 3e étape: Chercher combien il faut rendre en tout: 10c + 4€ = 4€10c. Schéma avec déplacement sur un axe: 90c → (+10c) → 1€ → (+4€) → 5€."
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours de la séance en prenant appui sur un exemple de problème résolu précédemment:"
+                  ],
+                  "cons": [
+                    "Pour rendre la monnaie, il faut calculer à partir du prix de l'article qu'on veut acheter jusqu'à la somme donnée au vendeur."
                   ]
                 }
               ]
@@ -2430,9 +2371,26 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 143,
-              "materials": [],
-              "phases": [],
-              "note": "[page 144 (bilan de la séquence : évaluation, consolidation, clôture) non fournie dans les captures — contenu non transcrit]"
+              "materials": [
+                "Fichier élève"
+              ],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "note": "ACTIVITÉ ÉLÈVE P60 Ex5; 5 Détermine la valeur de chaque somme d'argent. ... € et ... c (sommes d'argent représentées par des pièces et des billets à additionner)"
+                },
+                {
+                  "n": "Consolidation",
+                  "note": "ACTIVITÉ ÉLÈVE P60 Ex6; 6 Détermine le prix de chaque article. Entoure l'article le moins cher. ... € ... c (deux t-shirts, chacun accompagné de pièces et billets représentant son prix à déterminer)"
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours de la séquence en s'appuyant sur la trace écrite D14-2 page 3."
+                  ],
+                  "note": "Trace écrite D14-2 page 3 — Monnaie. Je sais rendre la monnaie. Éva achète une trottinette à 26€. Elle paie avec deux billets de 20€. Combien le vendeur va-t-il rendre à Éva? Calcule l'argent qu'il doit rendre à Éva en cherchant combien d'euros il faut pour aller de 26€ à 40€. Le vendeur doit rendre 14€ à Éva."
+                }
+              ]
             },
             {
               "seance_number": 5,
@@ -2462,9 +2420,7 @@
                     "Essayer de trouver toutes les autres ordres d'arrivée possibles.",
                     "Essayer d'en trouver le plus possible en veillant à ne pas écrire deux fois le même ordre."
                   ],
-                  "note": [
-                    "PROBLÈME 1: Une course va se dérouler entre trois chevaux sachant qu'il n'y a pas d'ex aequo. Trouve quel ordre d'arrivée ils peuvent avoir et compare tes réponses avec celles d'un camarade."
-                  ]
+                  "note": "PROBLÈME 1: Une course va se dérouler entre trois chevaux sachant qu'il n'y a pas d'ex aequo. Trouve quel ordre d'arrivée ils peuvent avoir et compare tes réponses avec celles d'un camarade."
                 },
                 {
                   "n": "Atelier Défis — Séance 1 — Explicitation",
@@ -2491,9 +2447,7 @@
                     "Chercher tous les ordres d'arrivée où B est premier puis tous ceux où C est premier.",
                     "Compter le nombre de solutions trouvées."
                   ],
-                  "note": [
-                    "Qui peut arriver deuxième si A est premier? (B ou C) Si A est 1er et B est 2e, alors C est 3e. Si A est 1er et C est 2e, alors B est 3e."
-                  ]
+                  "note": "Qui peut arriver deuxième si A est premier? (B ou C) Si A est 1er et B est 2e, alors C est 3e. Si A est 1er et C est 2e, alors B est 3e."
                 },
                 {
                   "n": "Atelier Défis — Clôture de la séance 1",
@@ -2525,9 +2479,7 @@
                   "pe": [
                     "Mobiliser les procédures découvertes au cours de la séance 1 en commençant par exemple à chercher toutes les maisons qu'on peut construire avec un toit rouge puis avec un toit jaune puis avec un toit vert."
                   ],
-                  "note": [
-                    "PROBLÈME 2 P61 Pb2 : Iris veut construire le plus possible de maisons différentes qu'elle peut construire avec un triangle et un carré, en les triangles et les carrés qui sont de couleur jaune, rouge ou verte. Trouve le plus possible de maisons différentes qu'Iris peut construire. Colorie tes réponses au fur et à mesure que tu les trouves."
-                  ]
+                  "note": "PROBLÈME 2 P61 Pb2 : Iris veut construire le plus possible de maisons différentes qu'elle peut construire avec un triangle et un carré, en les triangles et les carrés qui sont de couleur jaune, rouge ou verte. Trouve le plus possible de maisons différentes qu'Iris peut construire. Colorie tes réponses au fur et à mesure que tu les trouves."
                 },
                 {
                   "n": "Atelier Défis — Clôture de la séance 2",
@@ -2550,9 +2502,7 @@
               "phases": [
                 {
                   "n": "Calcul mental — Séance 3 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 100 en 100, à partir de 835 jusqu'à 35."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 100 en 100, à partir de 835 jusqu'à 35."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique guidée",
@@ -2569,21 +2519,15 @@
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique autonome",
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C14-3."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C14-3."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Échauffement",
-                  "note": [
-                    "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 100 en 100, à partir de 921 jusqu'à 21."
-                  ]
+                  "note": "Connaitre la suite orale des nombres jusqu'à 1000. JEU DU FURET en comptant en arrière de 100 en 100, à partir de 921 jusqu'à 21."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Évaluation",
-                  "note": [
-                    "CALCUL CHRONO P60 — Soustraire un nombre inférieur à 9 à un nombre inférieur à 100."
-                  ]
+                  "note": "CALCUL CHRONO P60 — Soustraire un nombre inférieur à 9 à un nombre inférieur à 100."
                 },
                 {
                   "n": "Calcul mental — Clôture de la séquence",
@@ -2592,8 +2536,7 @@
                     "Récapituler les procédures travaillées lors de la séquence."
                   ]
                 }
-              ],
-              "note": "Le contenu des séances 1 et 2 du calcul mental du module 14 (page 146, en amont de la séance 3 visible sur la capture) n'a pas été retrouvé dans les captures fournies."
+              ]
             },
             {
               "seance_number": 7,
@@ -2608,27 +2551,19 @@
                   "el": [
                     "Écrire le nombre qui correspond à ce portrait."
                   ],
-                  "note": [
-                    "Je suis un nombre. Si on m'ajoute 300, on trouve 400. Qui suis-je?"
-                  ]
+                  "note": "Je suis un nombre. Si on m'ajoute 300, on trouve 400. Qui suis-je?"
                 },
                 {
                   "n": "Flash Maths B",
-                  "note": [
-                    "Consigne identique. Je suis un nombre. Si on m'enlève 200, on trouve 300. Qui suis-je?"
-                  ]
+                  "note": "Consigne identique. Je suis un nombre. Si on m'enlève 200, on trouve 300. Qui suis-je?"
                 },
                 {
                   "n": "Flash Maths C",
-                  "note": [
-                    "Consigne identique. Je suis un nombre. Si on m'enlève 100, on trouve 700. Qui suis-je?"
-                  ]
+                  "note": "Consigne identique. Je suis un nombre. Si on m'enlève 100, on trouve 700. Qui suis-je?"
                 },
                 {
                   "n": "Flash Maths D",
-                  "note": [
-                    "Consigne identique. Je suis un nombre compris entre 242 et 252. Mon chiffre des unités est 7. Qui suis-je?"
-                  ]
+                  "note": "Consigne identique. Je suis un nombre compris entre 242 et 252. Mon chiffre des unités est 7. Qui suis-je?"
                 }
               ]
             }

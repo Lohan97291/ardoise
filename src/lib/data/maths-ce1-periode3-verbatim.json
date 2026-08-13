@@ -10,14 +10,14 @@
       "modules": [
         {
           "number": 15,
-          "title": "Multiplication",
+          "title": "Multiplication (sens, commutativité)",
           "domain": "calc",
           "guidePage": 150,
           "objective": "Comprendre et utiliser le symbole x\nComprendre et savoir que la multiplication est commutative",
           "seances": [
             {
               "seance_number": 1,
-              "title": "Introduire la multiplication comme moyen efficace de dénombrer des collections organisées en configurations rectangulaires (lignes et colonnes)",
+              "title": "Introduire la multiplication (configurations rectangulaires, commutativité)",
               "type": "rech",
               "duration": 45,
               "guidePage": 150,
@@ -62,9 +62,7 @@
                     "On calcule 4 x 3 car il y a 4 fois trois carrés.",
                     "4 fois 3 et 3 fois 4 donnent le même résultat."
                   ],
-                  "note": [
-                    "CE QUE DOIT SAVOIR L'ENSEIGNANT: À titre exceptionnel, la calculatrice est utilisée afin d'éviter que les élèves utilisent uniquement l'addition itérée qui constitue une compréhension spécifique de la multiplication mais qui peut également faire obstacle dans de nombreuses situations (cf. note du CSEN en 2022 à ce sujet). En effet, la conception intuitive de la multiplication comme addition itérée laisse penser que multiplier un nombre b par un nombre quelconque donnera toujours un résultat supérieur à b (alors que, par exemple, 0,5 x 3 = 1,5 et 1,5 < 3, et qu'on voit mal comment donner du sens à l'idée de itérer une demi-fois)."
-                  ]
+                  "note": "CE QUE DOIT SAVOIR L'ENSEIGNANT: À titre exceptionnel, la calculatrice est utilisée afin d'éviter que les élèves utilisent uniquement l'addition itérée qui constitue une compréhension spécifique de la multiplication mais qui peut également faire obstacle dans de nombreuses situations (cf. note du CSEN en 2022 à ce sujet). En effet, la conception intuitive de la multiplication comme addition itérée laisse penser que multiplier un nombre b par un nombre quelconque donnera toujours un résultat supérieur à b (alors que, par exemple, 0,5 x 3 = 1,5 et 1,5 < 3, et qu'on voit mal comment donner du sens à l'idée de itérer une demi-fois)."
                 },
                 {
                   "n": "Pratique guidée",
@@ -75,33 +73,139 @@
                   "el": [
                     "Écrire les deux multiplications possibles (4 x 5 et 5 x 4) et calculer avec la calculatrice le nombre de carrés de cette tablette."
                   ],
-                  "note": [
-                    "Procédures visées: - Chercher le nombre de carrés (5) sur une ligne puis le nombre de lignes (4) pour pouvoir ensuite calculer le produit de ces deux nombres 4 x 5: 4 fois 5 carrés. - Chercher le nombre de carrés (4) par colonne puis le nombre de colonnes (5) pour pouvoir ensuite calculer le produit de ces deux nombres 5 x 4: 5 fois 4 carrés. - Utiliser la calculatrice pour trouver les mêmes résultats.",
-                    "[page 151 non fournie dans les captures — la suite de la séance (Pratique autonome, Clôture de la séance) n'est pas transcrite]"
+                  "note": "Procédures visées: - Chercher le nombre de carrés (5) sur une ligne puis le nombre de lignes (4) pour pouvoir ensuite calculer le produit de ces deux nombres 4 x 5: 4 fois 5 carrés. - Chercher le nombre de carrés (4) par colonne puis le nombre de colonnes (5) pour pouvoir ensuite calculer le produit de ces deux nombres 5 x 4: 5 fois 4 carrés. - Utiliser la calculatrice pour trouver les mêmes résultats."
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": [
+                    "Faire l'exercice du document élève D15-1.",
+                    "Écrire dans chaque cas les deux multiplications possibles (4 x 5 et 5 x 4) et calculer le nombre de jetons avec la calculatrice."
+                  ],
+                  "note": "D15-1 — Complète en utilisant une calculatrice pour trouver le nombre de jetons. (jetons organisés en rectangle, comme les carrés des tablettes de chocolat)"
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": [
+                    "Récapituler:",
+                    "Prendre appui sur un exemple rencontré au cours de la séance."
+                  ],
+                  "cons": [
+                    "Lorsque des objets sont disposés en rectangle comme dans une tablette de chocolat, on peut calculer le nombre d'objets avec une multiplication."
                   ]
                 }
-              ],
-              "note": "[page 151 (fin de la séance 1: Pratique autonome, Clôture de la séance) non fournie dans les captures]"
+              ]
             },
             {
               "seance_number": 2,
-              "title": null,
+              "title": "Calculer le tout dans une situation de groupements identiques",
               "type": "rech",
               "duration": 45,
               "guidePage": 151,
-              "materials": [],
-              "phases": [],
-              "note": "[page 151 non fournie dans les captures — contenu de la séance 2 non transcrit]"
+              "materials": [
+                "Stylos (rouge, vert, bleu)",
+                "Jetons",
+                "Doc D15-1",
+                "Fichier P62"
+              ],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Rappeler que les élèves ont appris à utiliser la multiplication pour résoudre des problèmes où les objets sont disposés en rectangle.",
+                    "Annoncer l'objectif de la séance: apprendre à utiliser la multiplication pour résoudre d'autres problèmes.",
+                    "Demander un temps de lecture silencieuse puis de lecture collective de l'énoncé de problème P62 Cherchons ensemble.",
+                    "Reformuler l'énoncé du problème en prenant appui sur la manipulation d'une collection de stylos qui servira lors de la validation."
+                  ],
+                  "el": [
+                    "Formuler ce qu'on cherche: le nombre de stylos que Madame Lepic achète en tout pour que chaque enfant ait un stylo rouge, un stylo vert et un stylo bleu.",
+                    "Résoudre le problème par groupe de deux en utilisant si besoin une calculatrice et les jetons proposés par l'enseignant."
+                  ],
+                  "note": "P62 Cherchons ensemble — Pour chacun de ses 5 enfants, Madame Lepic achète 3 stylos: 1 rouge, 1 bleu et 1 vert. Combien de stylos achète-t-elle en tout? Procédures observées: - Dessine les 5 enfants et 3 stylos pour chacun. - Utilise des jetons pour faire 5 paquets de 3 jetons. - Dénombre les jetons ou les stylos qu'il a dessinés. - Compte de 3 en 3: 3 - 6 - 9 - 12 - 15. - Calcule une addition: 3 + 3 + 3 + 3 + 3 = 15. - Calcule le nombre de stylos avec une multiplication effectuée à l'aide de la calculatrice: 5 x 3 = 15."
+                },
+                {
+                  "n": "Explicitation — 1re explicitation (en partant des enfants de Mme Lepic)",
+                  "pe": [
+                    "Mener le questionnement oral collectif:",
+                    "Écrire au tableau 5 x 3 = 15 et verbaliser: 5 fois 3 égale 15."
+                  ],
+                  "cons": [
+                    "Est-ce que le problème des stylos ressemble un peu au problème de la tablette de chocolat?",
+                    "Y a-t-il des paquets identiques? Combien de paquets y a-t-il? 5 paquets, 1 paquet de stylos par enfant. Combien y a-t-il de stylos dans chaque paquet? 3 stylos.",
+                    "Comment peut-on écrire qu'il y a 5 groupes de 3 stylos avec la multiplication?",
+                    "Combien cela fait-il de stylos en tout?"
+                  ]
+                },
+                {
+                  "n": "Explicitation — 2e explicitation (en partant de la couleur des stylos)",
+                  "pe": [
+                    "Écrire au tableau 3 x 5 = 15 et verbaliser: 3 fois 5 égale 15."
+                  ],
+                  "cons": [
+                    "Regardons les couleurs des stylos maintenant.",
+                    "Combien de stylos rouges Madame Lepic a-t-elle achetés en tout? 1 pour chaque enfant, soit 5 stylos rouges. Et des bleus? 5 bleus. Et des verts? 5 verts.",
+                    "Nous avons un groupe de stylos rouges, un groupe de bleus et un groupe de verts. On peut donc aussi voir le problème selon la couleur des stylos.",
+                    "Comment peut-on écrire qu'il y a 3 groupes de 5 stylos avec la multiplication? Combien cela fait-il de stylos en tout?"
+                  ]
+                },
+                {
+                  "n": "Synthèse",
+                  "cons": [
+                    "Mettre en évidence que les deux multiplications donnent le même résultat: 5 x 3 = 15 et 3 x 5 = 15.",
+                    "Nous avons raconté la même histoire de deux façons différentes avec la multiplication. Une fois en regardant les enfants (5 groupes de 3 stylos), une fois en regardant les couleurs (3 groupes de 5 stylos). Les deux calculs donnent le même résultat total de 15 stylos.",
+                    "L'ordre des nombres (appelés facteurs) n'a pas d'importance dans une multiplication."
+                  ]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": [
+                    "Résoudre P62 Ex1 avec la possibilité d'utiliser des jetons, le dessin et une calculatrice."
+                  ],
+                  "note": "P62 Ex1 — Pour chacun de ses 3 enfants, Monsieur Bouley achète 4 stylos: 1 bleu, 1 rouge, 1 vert et 1 noir. Combien de stylos achète-t-il en tout?"
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours des deux premières séances:"
+                  ],
+                  "cons": [
+                    "Nous avons appris à utiliser la multiplication pour résoudre deux types de problème: - trouver le nombre d'objets qu'il y a en tout lorsque ces objets sont disposés comme dans une tablette de chocolat, - trouver le nombre d'objets qu'il y a en tout lorsqu'ils sont organisés en plusieurs groupes identiques comme pour les stylos."
+                  ]
+                }
+              ]
             },
             {
               "seance_number": 3,
-              "title": null,
+              "title": "Réinvestir la multiplication dans des situations variées",
               "type": "rech",
               "duration": 45,
               "guidePage": 152,
-              "materials": [],
-              "phases": [],
-              "note": "[page 152 non fournie dans les captures — contenu de la séance 3 non transcrit]"
+              "materials": [
+                "Fichier P67",
+                "Animation A16"
+              ],
+              "phases": [
+                {
+                  "n": "Pratique guidée",
+                  "el": [
+                    "Résoudre P62 Ex2."
+                  ],
+                  "note": "P62 Ex2 — À chacun de ses 10 amis, Zoé a donné 2 images: 1 image de chien et 1 image de chat. Combien Zoé a-t-elle donné d'images à ses amis?"
+                },
+                {
+                  "n": "Activité enseignant",
+                  "pe": [
+                    "Modéliser par la multiplication en expliquant que, dans cette situation (10 paquets de 2 images), le nombre d'images peut se calculer avec une multiplication: 10 x 2 = 20.",
+                    "Expliciter qu'on peut aussi comprendre que, dans ce problème, Zoé donne 10 images de chien et 10 images de chat à ses amis et calculer le nombre d'images avec une multiplication: 2 x 10 = 20. Faire remarquer que 2 x 10, c'est plus facile à calculer que 10 x 2: il suffit de changer l'ordre des nombres dans une multiplication et cela donne le même résultat."
+                  ]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": [
+                    "Résoudre P63 Ex3 et 4."
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P63 Ex3 et 4; 3 Entoure toutes les écritures qui correspondent au nombre de jetons. (jetons organisés en rectangles, à associer aux écritures proposées: 3+5, 8x2, 2x4, 3x5, 8=4x2, 5x3, 15=5x3, 6=2+4, 10x4, 4x8, 18=6x3, 40=4x10, 3x6, 6x3, 6x4, 4+10, 3+6=9); 4 Écris le nombre de poissons en utilisant le symbole x et calcule. (deux groupes de poissons organisés en lignes et colonnes)"
+                }
+              ]
             },
             {
               "seance_number": 4,
@@ -109,19 +213,48 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 152,
-              "materials": [],
-              "phases": [],
-              "note": "[page 152 non fournie dans les captures — contenu du bilan non transcrit]"
+              "materials": [
+                "Fichier P64"
+              ],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "note": "ACTIVITÉ ÉLÈVE P64 Ex5; 5 Écris le nombre de jetons en utilisant le symbole x et calcule. (deux groupes de jetons colorés organisés en lignes et colonnes)"
+                },
+                {
+                  "n": "Consolidation",
+                  "note": "ACTIVITÉ ÉLÈVE P64 Ex6; 6 Écris le nombre de poissons en utilisant le symbole x et calcule. (groupes de poissons colorés organisés en lignes et colonnes)"
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours de la séquence à l'aide de la trace écrite D15-2."
+                  ],
+                  "note": "Trace écrite D15-2."
+                }
+              ]
             },
             {
               "seance_number": 5,
-              "title": "Problèmes multiplicatifs en une étape: recherche du tout",
+              "title": "Problèmes multiplicatifs en une étape : recherche du tout",
               "type": "rit",
               "duration": 20,
               "guidePage": 153,
               "materials": [],
-              "phases": [],
-              "note": "[page 153 (Atelier problèmes du module 15) non fournie dans les captures — contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Mise en situation"
+                },
+                {
+                  "n": "Explicitation"
+                },
+                {
+                  "n": "Pratique guidée"
+                },
+                {
+                  "n": "Pratique autonome"
+                }
+              ]
             },
             {
               "seance_number": 6,
@@ -129,13 +262,13 @@
               "type": "rit",
               "duration": 30,
               "guidePage": 154,
-              "materials": [],
+              "materials": [
+                "Ardoises"
+              ],
               "phases": [
                 {
                   "n": "Calcul mental — Séance 1 — Échauffement",
-                  "note": [
-                    "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DE NOMBRES: Écrire en chiffres sur l'ardoise trois-cent-cinquante-sept, neuf-cent-vingt-huit puis sept-cent-cinq."
-                  ]
+                  "note": "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DE NOMBRES: Écrire en chiffres sur l'ardoise trois-cent-cinquante-sept, neuf-cent-vingt-huit puis sept-cent-cinq."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Mise en situation",
@@ -156,9 +289,7 @@
                     "Je pars de 523 et je veux soustraire 7. La dizaine inférieure est 520, il faut donc retirer 3 pour passer de 523 à 520.",
                     "Je dois soustraire 7 et j'ai déjà soustrait 3, il faut donc soustraire encore 4 car 7 = 3 + 4. 523 - 7 = 516"
                   ],
-                  "note": [
-                    "Trace écrite C15-1"
-                  ]
+                  "note": "Trace écrite C15-1"
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Pratique guidée",
@@ -175,9 +306,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Échauffement",
-                  "note": [
-                    "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: cent-quarante, cinq-cents puis mille."
-                  ]
+                  "note": "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: cent-quarante, cinq-cents puis mille."
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique guidée",
@@ -189,41 +318,111 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique autonome",
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C15-3."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C15-3."
                 }
               ]
             },
             {
               "seance_number": 7,
-              "title": "Nombres entiers: le jeu de la bataille",
+              "title": "Nombres entiers : le jeu de la bataille",
               "type": "rit",
               "duration": 20,
               "guidePage": 155,
               "materials": [],
-              "phases": [],
-              "note": "[page 155 (Flash Maths / Atelier Nombres entiers du module 15) non fournie dans les captures — contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Atelier"
+                }
+              ]
             }
           ]
         },
         {
           "number": 16,
-          "title": "Multiplication",
+          "title": "Multiplication (structure rectangulaire)",
           "domain": "calc",
           "guidePage": 156,
-          "objective": null,
-          "note": "Page 156 (objectifs d'apprentissage du programme 2025, matériel du module et contenu détaillé de la séance 1) absente des captures fournies. Contenu non transcrit pour respecter la consigne verbatim (interdiction d'inventer).",
+          "objective": "Associer une configuration en lignes et colonnes aux écritures multiplicatives (a × b, b × a) ; distinguer multiplication et addition.",
           "seances": [
             {
               "seance_number": 1,
-              "title": null,
+              "title": "Calculer une multiplication avec des bonds sur une demi-droite graduée",
               "type": "rech",
               "duration": 45,
               "guidePage": 156,
-              "materials": [],
-              "phases": [],
-              "note": "[page 156 non fournie dans les captures — contenu de la séance 1 non transcrit]"
+              "materials": [
+                "Animation A16-1",
+                "Doc D16-1, D16-2"
+              ],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Réactiver les acquis des séances précédentes.",
+                    "Rappeler une situation multiplicative simple déjà rencontrée comme calculer le nombre de carrés d'une tablette de chocolat composée de 3 lignes de 5 carrés.",
+                    "Annoncer l'objectif de la séance: apprendre une nouvelle façon de calculer une multiplication en faisant des sauts sur une demi-droite graduée.",
+                    "Vidéoprojeter au tableau la demi-droite graduée numérique de l'animation A16-1."
+                  ],
+                  "cons": [
+                    "Comment avions-nous fait pour trouver le résultat de la multiplication? (calculatrice, dénombrement, addition itérée, comptage de 5 en 5...)",
+                    "Comment pouvez-vous utiliser la demi-droite graduée pour calculer 4 x 5?"
+                  ],
+                  "el": [
+                    "Chercher au crayon de papier pendant 3 minutes maximum (utiliser un minuteur) comment calculer 4 x 5 en utilisant la première demi-droite graduée du document élève D16-1."
+                  ]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": [
+                    "Expliciter:",
+                    "Compter de 5 en 5 en écrivant les nombres 5 - 10 - 15 - 20 sur la demi-droite graduée du tableau (ou A16-1).",
+                    "Conclure:",
+                    "Donner un deuxième exemple avec le calcul 8 x 2.",
+                    "Demander aux élèves de procéder au marquage sur la 2e demi-droite graduée de D16-1.",
+                    "Compter de 2 en 2 en écrivant les nombres 2 - 4 - 6 - 8 - 10 - 12 - 14 - 16 sur la demi-droite graduée du tableau (ou A16-1).",
+                    "Conclure:",
+                    "Expliciter qu'on aurait pu faire ce calcul plus rapidement en changeant l'ordre des nombres: calculer 2 x 8 sur la demi-droite et faire constater qu'on obtient le même résultat (ou A16-1)."
+                  ],
+                  "cons": [
+                    "Calculer 4 fois 5 sur la demi-droite graduée se traduit par 4 sauts de 5 unités: on fait 4 sauts; à chaque saut, on avance de 5. Et on commence toujours à 0.",
+                    "J'ai fait mes 4 sauts de 5. Je suis arrivé sur le nombre 20. Donc 4 x 5 = 20.",
+                    "J'ai fait mes 8 sauts de 2. Je suis arrivé sur le nombre 16. Donc 8 x 2 = 16."
+                  ]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": [
+                    "Guider les élèves à l'aide d'un questionnement:",
+                    "Rappeler qu'on peut changer l'ordre des nombres pour calculer 3 x 10 au lieu 10 x 3."
+                  ],
+                  "cons": [
+                    "Combien de sauts dois-tu faire? De combien?"
+                  ],
+                  "el": [
+                    "Calculer 2 x 6 et 10 x 3 sur les dernières demi-droites du document élève D16-1."
+                  ]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": [
+                    "Faire les exercices 1 et 2 du document élève D16-2."
+                  ],
+                  "note": "D16-2; 1 Calcule en utilisant la demi-droite graduée. 6 x 5 = ... ; 8 x 5 = ... ; 2 Résous le problème. Tom fait 7 bouquets de 5 fleurs. Combien de fleurs a-t-il utilisées en tout? Je calcule en utilisant la demi-droite graduée. ... x ... = ... fleurs en tout."
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours de la séance."
+                  ],
+                  "cons": [
+                    "Pour calculer une multiplication comme 4 x 3, on peut faire 4 sauts de 3 sur la demi-droite, en partant de 0."
+                  ]
+                },
+                {
+                  "n": "Ce que doit savoir l'enseignant",
+                  "note": "À titre exceptionnel, la calculatrice est utilisée afin d'éviter que les élèves utilisent uniquement l'addition itérée qui constitue une compréhension spécifique de la multiplication mais qui peut également faire obstacle dans de nombreuses situations (cf. note du CSEN en 2022 à ce sujet). En effet, la conception intuitive de la multiplication comme addition itérée laisse penser que multiplier un nombre b par un nombre quelconque donnera toujours un résultat supérieur à b (alors que, par exemple, 0,5 x 3 = 1,5 et 1,5 < 3, et qu'on voit mal comment donner du sens à l'idée de itérer une demi-fois)."
+                }
+              ]
             },
             {
               "seance_number": 2,
@@ -231,7 +430,10 @@
               "type": "rech",
               "duration": 45,
               "guidePage": 157,
-              "materials": [],
+              "materials": [
+                "Fichier P66",
+                "Calculatrice"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -262,9 +464,7 @@
                   "el": [
                     "Résoudre le problème P66 Ex2 en utilisant si besoin une calculatrice."
                   ],
-                  "note": [
-                    "Ex1: Cette tablette de chocolat a été grignotée. Combien y avait-il de carrés de chocolat dans la tablette entière? Ex2: Cette tablette de chocolat a été grignotée. Combien y avait-il de carrés de chocolat dans la tablette entière?"
-                  ]
+                  "note": "Ex1: Cette tablette de chocolat a été grignotée. Combien y avait-il de carrés de chocolat dans la tablette entière? Ex2: Cette tablette de chocolat a été grignotée. Combien y avait-il de carrés de chocolat dans la tablette entière?"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -281,11 +481,14 @@
             },
             {
               "seance_number": 3,
-              "title": "Réinvestir la multiplication dans des situations variées",
+              "title": "Réinvestir la multiplication (structure rectangulaire)",
               "type": "rech",
               "duration": 45,
               "guidePage": 158,
-              "materials": [],
+              "materials": [
+                "Animation A16-2",
+                "Fichier P67"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -319,7 +522,9 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 158,
-              "materials": [],
+              "materials": [
+                "Fichier P68"
+              ],
               "phases": [
                 {
                   "n": "Évaluation",
@@ -329,15 +534,13 @@
                 },
                 {
                   "n": "Consolidation",
+                  "pe": [
+                    "Amener les élèves à analyser chaque structure (Combien de paquets? Combien d'objets dans chaque paquet?) lorsque l'indice spatial ligne/colonne n'est plus disponible (pommes, billes), afin de les rendre moins dépendants de la disposition prototypique du rectangle."
+                  ],
                   "el": [
                     "Écris le nombre d'objets en utilisant le symbole x et calcule (P68 Ex6): étoiles, pommes dans des cercles, sachets de billes."
                   ],
-                  "note": [
-                    "Cet exercice permet de consolider le passage de la lecture lignes/colonnes (étoiles) à l'identification nombre de groupes x taille du groupe pour des collections non spatialement organisées (pommes, billes). C'est un objectif de flexibilité représentationnelle important."
-                  ],
-                  "pe": [
-                    "Amener les élèves à analyser chaque structure (Combien de paquets? Combien d'objets dans chaque paquet?) lorsque l'indice spatial ligne/colonne n'est plus disponible (pommes, billes), afin de les rendre moins dépendants de la disposition prototypique du rectangle."
-                  ]
+                  "note": "Cet exercice permet de consolider le passage de la lecture lignes/colonnes (étoiles) à l'identification nombre de groupes x taille du groupe pour des collections non spatialement organisées (pommes, billes). C'est un objectif de flexibilité représentationnelle important."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -365,10 +568,7 @@
                   "el": [
                     "Résoudre le problème pendant trois minutes dans le cahier de brouillon, sans avoir accès au matériel, mais avec la possibilité d'utiliser une calculatrice."
                   ],
-                  "note": [
-                    "PROBLÈME 1: Combien de carrés de chocolat y a-t-il dans une tablette où il y a 6 rangées et 4 carrés dans chaque rangée?",
-                    "Procédures observées: - Dessine une tablette de 6 x 4 carrés de chocolat puis dénombre les carrés. - Calcule avec l'addition 4 + 4 + 4 + 4 + 4 + 4. - Utilise la calculatrice pour calculer 6 x 4."
-                  ]
+                  "note": "PROBLÈME 1: Combien de carrés de chocolat y a-t-il dans une tablette où il y a 6 rangées et 4 carrés dans chaque rangée?; Procédures observées: - Dessine une tablette de 6 x 4 carrés de chocolat puis dénombre les carrés. - Calcule avec l'addition 4 + 4 + 4 + 4 + 4 + 4. - Utilise la calculatrice pour calculer 6 x 4."
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Explicitation",
@@ -395,9 +595,7 @@
                     "Résoudre le problème P69 Pb2 avec la possibilité d'utiliser une calculatrice.",
                     "Écrire sur l'ardoise l'addition répétée qui correspond, puis écrire la multiplication qui correspond et vérifier la réponse en calculant la multiplication avec la calculatrice."
                   ],
-                  "note": [
-                    "PROBLÈME 2: Combien de carrés de chocolat y a-t-il dans une tablette où il y a 5 rangées et 3 carrés dans chaque rangée?"
-                  ]
+                  "note": "PROBLÈME 2: Combien de carrés de chocolat y a-t-il dans une tablette où il y a 5 rangées et 3 carrés dans chaque rangée?"
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 1",
@@ -407,12 +605,12 @@
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique guidée",
-                  "el": [
-                    "Résoudre le problème P69 Pb3 avec la possibilité d'utiliser une calculatrice."
-                  ],
                   "pe": [
                     "Récapituler les étapes de la résolution: - trouver le nombre de lignes, - trouver le nombre de chocolats par ligne, - écrire le calcul à effectuer 4 x 5 ou 5 x 4.",
                     "Verbaliser le lien entre addition répétée et multiplication pendant la mise en commun."
+                  ],
+                  "el": [
+                    "Résoudre le problème P69 Pb3 avec la possibilité d'utiliser une calculatrice."
                   ]
                 },
                 {
@@ -433,7 +631,7 @@
             },
             {
               "seance_number": 6,
-              "title": "Connaitre dans les deux sens la table de multiplication de 2",
+              "title": "Connaître dans les deux sens la table de multiplication de 2",
               "type": "rit",
               "duration": 15,
               "guidePage": 160,
@@ -441,9 +639,7 @@
               "phases": [
                 {
                   "n": "Calcul mental — Séance 1 — Échauffement",
-                  "note": [
-                    "Compter de 2 en 2 d'un nombre pair jusqu'à 100. JEU DU FURET en récitant la suite orale des nombres en avant de 2 en 2 de 0 à 40."
-                  ]
+                  "note": "Compter de 2 en 2 d'un nombre pair jusqu'à 100. JEU DU FURET en récitant la suite orale des nombres en avant de 2 en 2 de 0 à 40."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Révision",
@@ -501,9 +697,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Échauffement",
-                  "note": [
-                    "Compter de 2 en 2 d'un nombre pair jusqu'à 100. JEU DU FURET en récitant la suite orale des nombres en arrière de 2 en 2 de 40 à 0."
-                  ]
+                  "note": "Compter de 2 en 2 d'un nombre pair jusqu'à 100. JEU DU FURET en récitant la suite orale des nombres en arrière de 2 en 2 de 40 à 0."
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Mise en situation",
@@ -528,15 +722,11 @@
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent par groupes de 2 les résultats appris au cours de la séance et affichés au tableau."
                   ],
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C16-2."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C16-2."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Échauffement",
-                  "note": [
-                    "Compter de 2 en 2 d'un nombre pair jusqu'à 100. JEU DU FURET en récitant la suite orale des nombres en avant de 2 en 2 de 40 à 80."
-                  ]
+                  "note": "Compter de 2 en 2 d'un nombre pair jusqu'à 100. JEU DU FURET en récitant la suite orale des nombres en avant de 2 en 2 de 40 à 80."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Mise en situation",
@@ -561,24 +751,18 @@
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent par groupes de 2 les résultats appris au cours de la séance et affichés au tableau."
                   ],
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C16-2."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C16-2."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Échauffement",
-                  "note": [
-                    "Compter de 2 en 2 d'un nombre pair jusqu'à 100. JEU DU FURET en récitant la suite orale des nombres en arrière de 2 en 2 de 80 à 40."
-                  ]
+                  "note": "Compter de 2 en 2 d'un nombre pair jusqu'à 100. JEU DU FURET en récitant la suite orale des nombres en arrière de 2 en 2 de 80 à 40."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Évaluation",
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent par groupes de 2 les résultats appris au cours de la séance et affichés au tableau."
                   ],
-                  "note": [
-                    "CALCUL CHRONO P68 — Connaitre dans les deux sens la table de multiplication de 2."
-                  ]
+                  "note": "CALCUL CHRONO P68 — Connaitre dans les deux sens la table de multiplication de 2."
                 },
                 {
                   "n": "Calcul mental — Clôture de la séquence",
@@ -591,7 +775,7 @@
             },
             {
               "seance_number": 7,
-              "title": "Nombres entiers: le jeu de la bataille",
+              "title": "Nombres entiers : le jeu de la bataille",
               "type": "rit",
               "duration": 20,
               "guidePage": 161,
@@ -623,7 +807,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "note": "Page 156 (objectifs d'apprentissage du programme 2025, matériel du module et contenu détaillé de la séance 1) absente des captures fournies. Contenu non transcrit pour respecter la consigne verbatim (interdiction d'inventer)."
         },
         {
           "number": 17,
@@ -634,7 +819,7 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Calculer des différences de deux nombres à trois chiffres à l'aide du matériel de numération",
+              "title": "Calculer des différences (à 3 chiffres) avec le matériel de numération",
               "type": "rech",
               "duration": 45,
               "guidePage": 162,
@@ -653,9 +838,7 @@
                     "Constituer une collection de 75 cubes avec 7 barres dizaine et 5 unités isolées ou une collection de carrés (PP1 et PP2).",
                     "Effectuer l'opération 75 - 32 avec le matériel de numération et écrire le résultat sur l'ardoise."
                   ],
-                  "note": [
-                    "Procédure visée: - Commencer par un calcul sur les chiffres des unités: 5 unités - 2 unités = 3 unités. - Poursuivre par un calcul sur les chiffres des dizaines: 7 dizaines - 3 dizaines = 4 dizaines."
-                  ]
+                  "note": "Procédure visée: - Commencer par un calcul sur les chiffres des unités: 5 unités - 2 unités = 3 unités. - Poursuivre par un calcul sur les chiffres des dizaines: 7 dizaines - 3 dizaines = 4 dizaines."
                 },
                 {
                   "n": "Mise en situation — Activité 2",
@@ -667,9 +850,7 @@
                     "Constituer une collection de 52 cubes avec 5 barres dizaine et 2 unités isolées.",
                     "Effectuer l'opération 52 - 37 avec le matériel de numération et écrire le résultat sur l'ardoise."
                   ],
-                  "note": [
-                    "Procédure visée: - Constater qu'on ne peut pas enlever 7 unités car il n'y a que 2 unités dans le nombre 52. - Pour pouvoir enlever 7 cubes, il faut casser une des 5 barres dizaine de la collection de 52 cubes pour obtenir 10 cubes non groupés et ainsi pouvoir retirer 7 unités."
-                  ]
+                  "note": "Procédure visée: - Constater qu'on ne peut pas enlever 7 unités car il n'y a que 2 unités dans le nombre 52. - Pour pouvoir enlever 7 cubes, il faut casser une des 5 barres dizaine de la collection de 52 cubes pour obtenir 10 cubes non groupés et ainsi pouvoir retirer 7 unités."
                 },
                 {
                   "n": "Explicitation — Activité 1",
@@ -695,9 +876,7 @@
                   "el": [
                     "Effectuer les opérations 85 - 55, 73 - 26 et 54 - 36 en manipulant les cubes."
                   ],
-                  "note": [
-                    "Le calcul 85 - 55 amène à écrire un zéro dans le résultat. Les autres calculs permettent de consolider le calcul d'une différence de deux nombres de deux chiffres avec retenue."
-                  ]
+                  "note": "Le calcul 85 - 55 amène à écrire un zéro dans le résultat. Les autres calculs permettent de consolider le calcul d'une différence de deux nombres de deux chiffres avec retenue."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -711,7 +890,7 @@
             },
             {
               "seance_number": 2,
-              "title": "Poser et effectuer des soustractions en colonnes avec des nombres à deux chiffres",
+              "title": "Poser et effectuer une soustraction en colonnes (avec retenue)",
               "type": "rech",
               "duration": 45,
               "guidePage": 163,
@@ -748,20 +927,14 @@
                     "Expliciter la procédure visée en prenant appui sur l'animation A17-2.",
                     "Expliquer au tableau comment poser et calculer la soustraction 64 - 23 en colonnes en faisant le parallèle avec la manipulation des cubes."
                   ],
-                  "note": [
-                    "Les étapes du calcul: 1. J'écris d'abord le nombre le plus grand en haut, ici 64, car je dois pouvoir retirer 23 à 64. 2. Je pose l'opération en alignant les chiffres des unités dans la colonne des unités et les chiffres des dizaines dans la colonne des dizaines. 3. Je calcule en commençant par les chiffres des unités. 4 unités - 3 unités, c'est possible car 3 est plus petit que 4. 4 unités moins 3 unités égale 1 unité. J'écris 1 comme résultat dans la colonne des unités. 4. Je continue avec les chiffres des dizaines. 6 dizaines - 2 dizaines, c'est possible car 6 est plus grand que 2. 6 dizaines moins 2 dizaines égale 4 dizaines. J'écris 4 comme résultat dans la colonne des dizaines. 5. J'écris le calcul en ligne 64 - 23 = 41.",
-                    "Trace écrite D17-1"
-                  ]
+                  "note": "Les étapes du calcul: 1. J'écris d'abord le nombre le plus grand en haut, ici 64, car je dois pouvoir retirer 23 à 64. 2. Je pose l'opération en alignant les chiffres des unités dans la colonne des unités et les chiffres des dizaines dans la colonne des dizaines. 3. Je calcule en commençant par les chiffres des unités. 4 unités - 3 unités, c'est possible car 3 est plus petit que 4. 4 unités moins 3 unités égale 1 unité. J'écris 1 comme résultat dans la colonne des unités. 4. Je continue avec les chiffres des dizaines. 6 dizaines - 2 dizaines, c'est possible car 6 est plus grand que 2. 6 dizaines moins 2 dizaines égale 4 dizaines. J'écris 4 comme résultat dans la colonne des dizaines. 5. J'écris le calcul en ligne 64 - 23 = 41.; Trace écrite D17-1"
                 },
                 {
                   "n": "Explicitation — Activité 2",
                   "pe": [
                     "Expliciter la procédure visée pour 61 - 34 en prenant appui sur l'animation A17-2."
                   ],
-                  "note": [
-                    "Les étapes du calcul: 1. Je pose l'opération en alignant les chiffres des unités dans la colonne des unités et les chiffres des dizaines dans la colonne des dizaines. 2. Je calcule en commençant par les chiffres des unités. Retirer 4u à 1u est impossible car 4 est plus grand que 1. Je casse une dizaine de 61 pour avoir 10u supplémentaires. J'ai maintenant 10u + 1u = 11u (et il reste 5d). 11u - 4u, c'est possible: 11u - 4u = 7u. J'écris 7 comme chiffre des unités au résultat. 3. Je continue avec les chiffres des dizaines. 5d - 3d = 2d. J'écris 2 comme chiffre des dizaines au résultat.",
-                    "CE QUE DOIT SAVOIR L'ENSEIGNANT: Au début de l'apprentissage, on écrit la retenue sous la forme 10 + pour montrer qu'on a 10 unités supplémentaires. Puis progressivement, on écrit 1 à gauche du chiffre des unités."
-                  ]
+                  "note": "Les étapes du calcul: 1. Je pose l'opération en alignant les chiffres des unités dans la colonne des unités et les chiffres des dizaines dans la colonne des dizaines. 2. Je calcule en commençant par les chiffres des unités. Retirer 4u à 1u est impossible car 4 est plus grand que 1. Je casse une dizaine de 61 pour avoir 10u supplémentaires. J'ai maintenant 10u + 1u = 11u (et il reste 5d). 11u - 4u, c'est possible: 11u - 4u = 7u. J'écris 7 comme chiffre des unités au résultat. 3. Je continue avec les chiffres des dizaines. 5d - 3d = 2d. J'écris 2 comme chiffre des dizaines au résultat.; CE QUE DOIT SAVOIR L'ENSEIGNANT: Au début de l'apprentissage, on écrit la retenue sous la forme 10 + pour montrer qu'on a 10 unités supplémentaires. Puis progressivement, on écrit 1 à gauche du chiffre des unités."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -774,11 +947,13 @@
             },
             {
               "seance_number": 3,
-              "title": "Réinvestir le calcul posé de la soustraction avec des nombres à deux chiffres",
+              "title": "Réinvestir le calcul posé de la soustraction",
               "type": "rech",
               "duration": 30,
               "guidePage": 164,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -792,9 +967,7 @@
                     "Recopier sur l'ardoise les soustractions de P70 Cherchons ensemble.",
                     "Vérifier les résultats à l'aide du matériel de numération."
                   ],
-                  "note": [
-                    "Exemple travaillé: 61 - 34, posé en colonnes: je commence par les unités, retirer 4 unités à 1 unité est impossible, je casse une dizaine de 61 pour avoir 10 unités supplémentaires, 6d 1u devient 5d 11u, 11 unités - 4 unités = 7, j'écris 7 comme résultat dans la colonne des unités; je continue avec les dizaines, 5 dizaines - 3 dizaines = 2, j'écris 2 comme résultat dans la colonne des dizaines. 61 - 34 = 27."
-                  ]
+                  "note": "Exemple travaillé: 61 - 34, posé en colonnes: je commence par les unités, retirer 4 unités à 1 unité est impossible, je casse une dizaine de 61 pour avoir 10 unités supplémentaires, 6d 1u devient 5d 11u, 11 unités - 4 unités = 7, j'écris 7 comme résultat dans la colonne des unités; je continue avec les dizaines, 5 dizaines - 3 dizaines = 2, j'écris 2 comme résultat dans la colonne des dizaines. 61 - 34 = 27."
                 },
                 {
                   "n": "Pratique guidée",
@@ -808,9 +981,7 @@
                     "Effectue les opérations, il y a des additions et des soustractions (P71 Ex2: 54-27, 95-36, 547+366, 812-4-6... variantes).",
                     "Résoudre les problèmes 3 et 4 (score du match de football France - Japon; score du match de basketball équipe du Brésil - équipe du Canada)."
                   ],
-                  "note": [
-                    "DIFFÉRENCIATION: Les problèmes 3 et 4 sont proposés dans le cadre de la différenciation aux élèves les plus rapides. Pendant ce temps, l'enseignant peut regrouper les élèves les plus fragiles pour retravailler la technique opératoire de la soustraction dans le cadre du problème 3 par exemple."
-                  ]
+                  "note": "DIFFÉRENCIATION: Les problèmes 3 et 4 sont proposés dans le cadre de la différenciation aux élèves les plus rapides. Pendant ce temps, l'enseignant peut regrouper les élèves les plus fragiles pour retravailler la technique opératoire de la soustraction dans le cadre du problème 3 par exemple."
                 }
               ]
             },
@@ -820,7 +991,9 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 164,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Évaluation",
@@ -833,9 +1006,7 @@
                   "el": [
                     "Calcule mentalement, s'il est plus rapide que de poser l'opération, c'est plus rapide (P72 Ex6): 89 - 50, 82 - 37, 96 - 7."
                   ],
-                  "note": [
-                    "Cet exercice a pour objectif de confronter chaque élève à un choix stratégique: calcul mental ou posé? L'objectif est de développer sa flexibilité en incitant à analyser les nombres pour sélectionner la procédure la plus rapide. C'est un levier fondamental pour construire une véritable aisance et une compréhension profonde du calcul."
-                  ]
+                  "note": "Cet exercice a pour objectif de confronter chaque élève à un choix stratégique: calcul mental ou posé? L'objectif est de développer sa flexibilité en incitant à analyser les nombres pour sélectionner la procédure la plus rapide. C'est un levier fondamental pour construire une véritable aisance et une compréhension profonde du calcul."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -865,10 +1036,7 @@
                   "el": [
                     "Résoudre le problème pendant cinq minutes dans le cahier de brouillon avec la possibilité d'utiliser une calculatrice."
                   ],
-                  "note": [
-                    "PROBLÈME 1: J'ai 3 boites de 6 œufs. J'utilise 8 œufs pour préparer des crêpes. Combien d'œufs me reste-t-il?",
-                    "Procédures observées: - Dessine 3 boites de 6 œufs puis barre 8 œufs. - Calcule avec l'addition 6 + 6 + 6 = 18 puis avec la soustraction 18 - 8 = 10. - Utilise la calculatrice pour calculer 3 x 6 = 18 puis calcule mentalement 18 - 8 = 10."
-                  ]
+                  "note": "PROBLÈME 1: J'ai 3 boites de 6 œufs. J'utilise 8 œufs pour préparer des crêpes. Combien d'œufs me reste-t-il?; Procédures observées: - Dessine 3 boites de 6 œufs puis barre 8 œufs. - Calcule avec l'addition 6 + 6 + 6 = 18 puis avec la soustraction 18 - 8 = 10. - Utilise la calculatrice pour calculer 3 x 6 = 18 puis calcule mentalement 18 - 8 = 10."
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Explicitation",
@@ -889,9 +1057,7 @@
                     "Résoudre le problème P73 Pb2 en organisant les étapes nécessaires pour le résoudre.",
                     "Utiliser si besoin la calculatrice pour les multiplications."
                   ],
-                  "note": [
-                    "PROBLÈME 2: J'ai 2 boites de 6 œufs et 3 boites de 10 œufs. Combien d'œufs ai-je en tout?"
-                  ]
+                  "note": "PROBLÈME 2: J'ai 2 boites de 6 œufs et 3 boites de 10 œufs. Combien d'œufs ai-je en tout?"
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 1",
@@ -907,9 +1073,7 @@
                   "el": [
                     "Résoudre le problème P73 Pb3."
                   ],
-                  "note": [
-                    "PROBLÈME 3: J'achète 4 litres d'orange à 3 euros le litre. Je donne 20 euros au vendeur. Combien le vendeur doit-il me rendre?"
-                  ]
+                  "note": "PROBLÈME 3: J'achète 4 litres d'orange à 3 euros le litre. Je donne 20 euros au vendeur. Combien le vendeur doit-il me rendre?"
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Explicitation",
@@ -925,11 +1089,11 @@
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique guidée",
-                  "el": [
-                    "Résoudre le plus possible de problèmes parmi les problèmes 4 à 7 page 73."
-                  ],
                   "pe": [
                     "Regrouper les élèves les plus fragiles pour les aider à résoudre le problème 4."
+                  ],
+                  "el": [
+                    "Résoudre le plus possible de problèmes parmi les problèmes 4 à 7 page 73."
                   ]
                 },
                 {
@@ -942,7 +1106,7 @@
             },
             {
               "seance_number": 6,
-              "title": "Connaitre dans les deux sens la table de multiplication de 2 et de 10",
+              "title": "Connaître dans les deux sens les tables de 2 et de 10",
               "type": "rit",
               "duration": 15,
               "guidePage": 166,
@@ -950,9 +1114,7 @@
               "phases": [
                 {
                   "n": "Calcul mental — Séance 1 — Échauffement",
-                  "note": [
-                    "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en avant de 5 en 5 de 0 à 50."
-                  ]
+                  "note": "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en avant de 5 en 5 de 0 à 50."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Mise en situation",
@@ -969,9 +1131,7 @@
                   "cons": [
                     "4 x 10 est égal à 4 fois une dizaine. On obtient 4 dizaines donc 40."
                   ],
-                  "note": [
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Éviter de dire qu'on ajoute un zéro à 4 pour trouver le résultat de 4 x 10 car cette règle ne fonctionnera pas au cycle 3 pour les calculs avec les décimaux comme 3,7 x 10 = 37 et non 3,70."
-                  ]
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Éviter de dire qu'on ajoute un zéro à 4 pour trouver le résultat de 4 x 10 car cette règle ne fonctionnera pas au cycle 3 pour les calculs avec les décimaux comme 3,7 x 10 = 37 et non 3,70."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Pratique guidée",
@@ -993,9 +1153,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Échauffement",
-                  "note": [
-                    "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en arrière de 5 en 5 de 50 à 0."
-                  ]
+                  "note": "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en arrière de 5 en 5 de 50 à 0."
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Pratique guidée",
@@ -1015,9 +1173,7 @@
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent par groupes de 2 les résultats appris au cours de la séance et affichés au tableau."
                   ],
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C17-2."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C17-2."
                 }
               ]
             },
@@ -1028,14 +1184,17 @@
               "duration": 20,
               "guidePage": 167,
               "materials": [],
-              "phases": [],
-              "note": "[page 167 (Atelier Fractions du module 17) non fournie dans les captures — la capture correspondante (_q22) est un rendu vide/incomplet de la page. Contenu non transcrit]"
+              "phases": [
+                {
+                  "n": "Atelier"
+                }
+              ]
             }
           ]
         },
         {
           "number": 18,
-          "title": "Fractions",
+          "title": "Fractions (interpréter, écrire, lire ≤ 1)",
           "domain": "nb",
           "guidePage": 168,
           "objective": "Savoir interpréter, représenter, écrire et lire des fractions inférieures ou égales à 1\nConnaitre et utiliser les mots dénominateur et numérateur",
@@ -1046,7 +1205,11 @@
               "type": "rech",
               "duration": 45,
               "guidePage": 168,
-              "materials": [],
+              "materials": [
+                "Disque-pizza (D18-1)",
+                "Ciseaux",
+                "Feutre"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1065,10 +1228,7 @@
                     "Écrire la fraction 1/4 dans chaque part.",
                     "Résoudre le problème en découpant une portion représentant 3/4 de la pizza."
                   ],
-                  "note": [
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Au cours de cette séquence, les élèves apprennent que trois huitièmes s'écrit mathématiquement 3/8. Ils sont amenés à verbaliser que 3/8 d'un tout correspond à trois parts de ce tout partagé en huit parts égales. L'objectif est qu'ils sachent que 3/8 est égal à 1/8 + 1/8 + 1/8, qu'ils lisent trois huitièmes est égal à un huitième plus un huitième plus un huitième ou encore trois huitièmes est égal à trois fois un huitième.",
-                    "Procédures visées: - Découper trois parts de 1/4 de pizza puis les assembler pour obtenir 3/4 de pizza. - Découper trois quarts de pizza en un seul morceau. - Découper une demi-pizza et encore un quart de pizza."
-                  ]
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Au cours de cette séquence, les élèves apprennent que trois huitièmes s'écrit mathématiquement 3/8. Ils sont amenés à verbaliser que 3/8 d'un tout correspond à trois parts de ce tout partagé en huit parts égales. L'objectif est qu'ils sachent que 3/8 est égal à 1/8 + 1/8 + 1/8, qu'ils lisent trois huitièmes est égal à un huitième plus un huitième plus un huitième ou encore trois huitièmes est égal à trois fois un huitième.; Procédures visées: - Découper trois parts de 1/4 de pizza puis les assembler pour obtenir 3/4 de pizza. - Découper trois quarts de pizza en un seul morceau. - Découper une demi-pizza et encore un quart de pizza."
                 },
                 {
                   "n": "Explicitation",
@@ -1089,9 +1249,6 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "el": [
-                    "Faire les exercices du document élève D18-2."
-                  ],
                   "pe": [
                     "Rappeler que, pour lire la fraction 5/8, il faut commencer par lire le nombre du bas pour comprendre que la pizza (l'unité) est partagée en 8 parts égales; le nombre du haut indique combien de parts d'un huitième il faut colorier.",
                     "Écrire au tableau et verbaliser: 5/8 est égal à 1/8 + 1/8 + 1/8 + 1/8 + 1/8",
@@ -1100,6 +1257,9 @@
                   "cons": [
                     "Cinq huitièmes est égal à un huitième plus un huitième plus un huitième plus un huitième plus un huitième.",
                     "Cinq huitièmes est égal à cinq fois un huitième."
+                  ],
+                  "el": [
+                    "Faire les exercices du document élève D18-2."
                   ]
                 },
                 {
@@ -1107,29 +1267,27 @@
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séance."
                   ],
-                  "note": [
-                    "Que signifient le 3 et le 4 dans la fraction 3/4? - 3/4 est égal à 1/4 + 1/4 + 1/4 (un quart plus un quart plus un quart). - 3/4 est égal à 3 x 1/4 (trois fois un quart). - le 4 indique que l'unité est partagée en 4 parts égales, on a donc des quarts. 4 s'appelle le dénominateur (étymologiquement celui qui dénomme): c'est lui qui donne le nom de la fraction (ce sont des quarts). - le 3 indique combien de quarts de la pizza (l'unité) on doit colorier. 3 s'appelle le numérateur (celui qui compte). 3 est le numérateur, 4 est le dénominateur, c'est 3 x 1/4.",
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Pour les élèves de CE1, la priorité est de construire le sens de la fraction. La maitrise du vocabulaire technique numérateur et dénominateur est secondaire par rapport à cette compréhension. Le vocabulaire ne sera pas exigé au CE1 et viendra une fois que le sens de la fraction sera construit."
-                  ]
+                  "note": "Que signifient le 3 et le 4 dans la fraction 3/4? - 3/4 est égal à 1/4 + 1/4 + 1/4 (un quart plus un quart plus un quart). - 3/4 est égal à 3 x 1/4 (trois fois un quart). - le 4 indique que l'unité est partagée en 4 parts égales, on a donc des quarts. 4 s'appelle le dénominateur (étymologiquement celui qui dénomme): c'est lui qui donne le nom de la fraction (ce sont des quarts). - le 3 indique combien de quarts de la pizza (l'unité) on doit colorier. 3 s'appelle le numérateur (celui qui compte). 3 est le numérateur, 4 est le dénominateur, c'est 3 x 1/4.; CE QUE L'ENSEIGNANT DOIT SAVOIR: Pour les élèves de CE1, la priorité est de construire le sens de la fraction. La maitrise du vocabulaire technique numérateur et dénominateur est secondaire par rapport à cette compréhension. Le vocabulaire ne sera pas exigé au CE1 et viendra une fois que le sens de la fraction sera construit."
                 }
               ]
             },
             {
               "seance_number": 2,
-              "title": "Savoir interpréter, représenter, écrire et lire des fractions inférieures ou égales à 1",
+              "title": "Interpréter, représenter, écrire et lire une fraction",
               "type": "rech",
               "duration": 45,
               "guidePage": 169,
-              "materials": [],
+              "materials": [
+                "D18-2",
+                "Fichier P74"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
                   "el": [
                     "Faire l'exercice du document élève D18-2."
                   ],
-                  "note": [
-                    "Procédures visées: - Reconnaitre que l'unité est partagée en parts présentées comme égales. - Déterminer le nombre total de parts égales (le dénominateur). - Déterminer le nombre de parts considérées (ici, colorées en gris - le numérateur). - Écrire la fraction en utilisant la notation conventionnelle."
-                  ]
+                  "note": "Procédures visées: - Reconnaitre que l'unité est partagée en parts présentées comme égales. - Déterminer le nombre total de parts égales (le dénominateur). - Déterminer le nombre de parts considérées (ici, colorées en gris - le numérateur). - Écrire la fraction en utilisant la notation conventionnelle."
                 },
                 {
                   "n": "Explicitation",
@@ -1163,20 +1321,22 @@
             },
             {
               "seance_number": 3,
-              "title": "Réinvestir la lecture et l'écriture des fractions inférieures ou égales à 1",
+              "title": "Entraînement",
               "type": "rech",
               "duration": 30,
               "guidePage": 170,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Pratique guidée",
-                  "el": [
-                    "Dans chaque cas, colorie la fraction demandée (P74 Ex1): 3/4, 3/5, 2/3, 4/4."
-                  ],
                   "pe": [
                     "S'assurer que l'élève comprend que le dénominateur indique en combien de parts égales l'unité est partagée et le numérateur combien de ces parts il faut colorier.",
                     "Pour la fraction 4/4, faire verbaliser que l'unité est déjà partagée en 4 parts égales et qu'on doit colorier 4 parts ce qui revient donc à colorier l'unité entière, ce qui signifie que 4/4 = 1."
+                  ],
+                  "el": [
+                    "Dans chaque cas, colorie la fraction demandée (P74 Ex1): 3/4, 3/5, 2/3, 4/4."
                   ]
                 },
                 {
@@ -1193,7 +1353,9 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 170,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Évaluation",
@@ -1203,9 +1365,6 @@
                 },
                 {
                   "n": "Consolidation",
-                  "el": [
-                    "Dans chaque cas, écris la fraction représentée par la partie colorée en orange (P76 Ex4)."
-                  ],
                   "pe": [
                     "Regrouper les élèves les plus fragiles pour les guider lors de cet exercice.",
                     "Les faire d'abord compter toutes les parts égales de la figure pour identifier le dénominateur (nombre du bas).",
@@ -1214,6 +1373,9 @@
                   ],
                   "cons": [
                     "Il y a 6 parts égales donc ce sont des sixièmes. 2 parts sont colorées en orange donc il y a 2/6 de la figure qui est colorée en orange."
+                  ],
+                  "el": [
+                    "Dans chaque cas, écris la fraction représentée par la partie colorée en orange (P76 Ex4)."
                   ]
                 },
                 {
@@ -1249,10 +1411,7 @@
                   "el": [
                     "Résoudre le problème sur l'ardoise avec la possibilité d'utiliser le matériel PP5 et PP6."
                   ],
-                  "note": [
-                    "PROBLÈME 1: À la boulangerie, j'achète une baguette à 80 centimes. Je paie avec un billet de 5 euros. Combien la vendeuse va-t-elle me rendre?",
-                    "Procédure visée: Rendre la monnaie en procédant par ajouts successifs: le complément à 100 de 80 est 20, donc je rends 20 centimes pour arriver à 1€, plus 4€ pour arriver à 5€."
-                  ]
+                  "note": "PROBLÈME 1: À la boulangerie, j'achète une baguette à 80 centimes. Je paie avec un billet de 5 euros. Combien la vendeuse va-t-elle me rendre?; Procédure visée: Rendre la monnaie en procédant par ajouts successifs: le complément à 100 de 80 est 20, donc je rends 20 centimes pour arriver à 1€, plus 4€ pour arriver à 5€."
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Explicitation",
@@ -1267,17 +1426,15 @@
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Pratique guidée",
-                  "el": [
-                    "Résoudre le problème P77 Pb2."
-                  ],
                   "pe": [
                     "Expliciter que ce problème se résout en deux étapes:",
                     "ÉTAPE 1 Calculer le montant total des achats: 17€ + 26€ = 43€. Je dois payer 43€.",
                     "ÉTAPE 2 Calculer combien le vendeur doit me rendre: 43€ + 7€ = 50€. Le vendeur va me rendre 7€."
                   ],
-                  "note": [
-                    "PROBLÈME 2: À la pâtisserie, j'achète une tarte à 17€ et un gâteau à 26€. Je donne un billet de 50€ au vendeur. Combien le vendeur va-t-il me rendre?"
-                  ]
+                  "el": [
+                    "Résoudre le problème P77 Pb2."
+                  ],
+                  "note": "PROBLÈME 2: À la pâtisserie, j'achète une tarte à 17€ et un gâteau à 26€. Je donne un billet de 50€ au vendeur. Combien le vendeur va-t-il me rendre?"
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 1",
@@ -1287,16 +1444,13 @@
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique guidée",
-                  "el": [
-                    "Résoudre les problèmes P77 Pb3 et 4 en ayant la possibilité de manipuler le matériel."
-                  ],
                   "pe": [
                     "Regrouper les élèves les plus fragiles pour les aider à résoudre les problèmes 3 et 4 en prenant appui sur la manipulation des pièces factices."
                   ],
-                  "note": [
-                    "CORRIGÉ DU PROBLÈME 3: 50c + 60c = 110c et 110c = 1€10c. On sait aussi que 2€ = 200c. 110c + 90c = 200c ou 1€10c + 90c = 2€. On doit me rendre 90c.",
-                    "CORRIGÉ DU PROBLÈME 4: 80c + 90c = 170c et 170c = 1€70c. On sait aussi que 2€ = 200c. 170c + 30c = 200c ou 1€70c + 30c = 2€. On doit me rendre 30c."
-                  ]
+                  "el": [
+                    "Résoudre les problèmes P77 Pb3 et 4 en ayant la possibilité de manipuler le matériel."
+                  ],
+                  "note": "CORRIGÉ DU PROBLÈME 3: 50c + 60c = 110c et 110c = 1€10c. On sait aussi que 2€ = 200c. 110c + 90c = 200c ou 1€10c + 90c = 2€. On doit me rendre 90c.; CORRIGÉ DU PROBLÈME 4: 80c + 90c = 170c et 170c = 1€70c. On sait aussi que 2€ = 200c. 170c + 30c = 200c ou 1€70c + 30c = 2€. On doit me rendre 30c."
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 2",
@@ -1308,7 +1462,7 @@
             },
             {
               "seance_number": 6,
-              "title": "Connaitre dans les deux sens la table de multiplication de 5",
+              "title": "Connaître dans les deux sens la table de multiplication de 5",
               "type": "rit",
               "duration": 15,
               "guidePage": 172,
@@ -1316,9 +1470,7 @@
               "phases": [
                 {
                   "n": "Calcul mental — Séance 1 — Échauffement",
-                  "note": [
-                    "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en avant de 5 en 5 de 15 à 50."
-                  ]
+                  "note": "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en avant de 5 en 5 de 15 à 50."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Mise en situation",
@@ -1360,9 +1512,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Échauffement",
-                  "note": [
-                    "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en arrière de 5 en 5 de 50 à 20."
-                  ]
+                  "note": "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en arrière de 5 en 5 de 50 à 20."
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Mise en situation",
@@ -1387,15 +1537,11 @@
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent par groupes de 2 les résultats appris au cours de la séance et affichés au tableau."
                   ],
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C18-2."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C18-2."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Échauffement",
-                  "note": [
-                    "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en avant de 5 en 5 de 165 à 200."
-                  ]
+                  "note": "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en avant de 5 en 5 de 165 à 200."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique guidée",
@@ -1415,24 +1561,18 @@
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils consultent la trace écrite C18-3 afin de mémoriser les résultats."
                   ],
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C18-2."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C18-2."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Échauffement",
-                  "note": [
-                    "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en arrière de 5 en 5 de 310 à 270."
-                  ]
+                  "note": "Compter de 5 en 5. JEU DU FURET en récitant la suite orale des nombres en arrière de 5 en 5 de 310 à 270."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Évaluation",
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent les résultats de la table x5."
                   ],
-                  "note": [
-                    "CALCUL CHRONO P76 — Connaitre dans les deux sens la table de multiplication de 5."
-                  ]
+                  "note": "CALCUL CHRONO P76 — Connaitre dans les deux sens la table de multiplication de 5."
                 },
                 {
                   "n": "Calcul mental — Clôture de la séquence",
@@ -1456,36 +1596,28 @@
                   "el": [
                     "Comparer et ranger des longueurs."
                   ],
-                  "note": [
-                    "Sacha 137 cm, Louise 1 m 40, Zoé 1 m 19."
-                  ]
+                  "note": "Sacha 137 cm, Louise 1 m 40, Zoé 1 m 19."
                 },
                 {
                   "n": "Flash Maths — B",
                   "el": [
                     "Consigne identique."
                   ],
-                  "note": [
-                    "98 cm, 1 m 03, 101 cm."
-                  ]
+                  "note": "98 cm, 1 m 03, 101 cm."
                 },
                 {
                   "n": "Flash Maths — C",
                   "el": [
                     "Consigne identique."
                   ],
-                  "note": [
-                    "4 m, 365 cm, 2 m 04."
-                  ]
+                  "note": "4 m, 365 cm, 2 m 04."
                 },
                 {
                   "n": "Flash Maths — D",
                   "el": [
                     "Consigne identique."
                   ],
-                  "note": [
-                    "100 cm, 4 m, 207 cm."
-                  ]
+                  "note": "100 cm, 4 m, 207 cm."
                 }
               ]
             }
@@ -1500,7 +1632,7 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Connaitre le sens de l'écriture à virgule d'une somme d'argent",
+              "title": "Connaître le sens de l'écriture à virgule d'une somme d'argent",
               "type": "rech",
               "duration": 45,
               "guidePage": 174,
@@ -1577,7 +1709,6 @@
                 },
                 {
                   "n": "Explicitation (suite)",
-                  "pe": [],
                   "cons": [
                     "Un magazine coute 10,00€. Comment lit-on ce prix? On lit 10 euros.",
                     "Montrez-moi avec vos pièces comment on peut faire cette somme.",
@@ -1602,11 +1733,14 @@
             },
             {
               "seance_number": 2,
-              "title": "Constituer avec des euros et des centimes d'euro une somme d'argent d'une valeur donnée",
+              "title": "Constituer une somme d'une valeur donnée (écriture à virgule)",
               "type": "rech",
               "duration": 45,
               "guidePage": 175,
-              "materials": [],
+              "materials": [
+                "Pièces et billets",
+                "Animation A19-2"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1642,19 +1776,19 @@
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séance."
                   ],
-                  "note": [
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Le programme 2025 précise les points suivants: - L'introduction des centimes d'euro au CE1 a un double objectif: connaitre les pièces en usage et permettre une fréquentation de l'écriture à virgule des nombres décimaux dès le cycle 2. - L'utilisation de l'écriture à virgule pour la monnaie se fait de façon pratique et concrète, sans introduire le nom des unités de numération (dixième, centième ou millième) qui seront présentées au cycle 3 en s'appuyant sur les fractions décimales. Toutefois, la virgule est ici présentée comme le signe qui permet de repérer le chiffre des unités d'euro. Les différents rangs pourront être désignés de la manière suivante: centime, dizaine de centime, centaine de centime égale à un euro, dizaine d'euro, centaine d'euro… - Une attention particulière est portée à l'écriture à virgule d'expressions du type deux euros et cinq centimes, en la distinguant de celle de deux euros et cinquante centimes."
-                  ]
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Le programme 2025 précise les points suivants: - L'introduction des centimes d'euro au CE1 a un double objectif: connaitre les pièces en usage et permettre une fréquentation de l'écriture à virgule des nombres décimaux dès le cycle 2. - L'utilisation de l'écriture à virgule pour la monnaie se fait de façon pratique et concrète, sans introduire le nom des unités de numération (dixième, centième ou millième) qui seront présentées au cycle 3 en s'appuyant sur les fractions décimales. Toutefois, la virgule est ici présentée comme le signe qui permet de repérer le chiffre des unités d'euro. Les différents rangs pourront être désignés de la manière suivante: centime, dizaine de centime, centaine de centime égale à un euro, dizaine d'euro, centaine d'euro… - Une attention particulière est portée à l'écriture à virgule d'expressions du type deux euros et cinq centimes, en la distinguant de celle de deux euros et cinquante centimes."
                 }
               ]
             },
             {
               "seance_number": 3,
-              "title": "Comparer des prix indiqués avec une écriture à virgule",
+              "title": "Entraînement",
               "type": "rech",
               "duration": 30,
               "guidePage": 176,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1700,7 +1834,9 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 176,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Évaluation",
@@ -1720,9 +1856,7 @@
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence en s'appuyant sur la trace écrite D19-1."
                   ],
-                  "note": [
-                    "Trace écrite D19-1 — Monnaie. Je sais ce que signifie l'écriture à virgule d'une somme d'argent. 1,40€ = 1€ + 40 centimes. 3€ = 3,00€. 0,25€ = 25 centimes. 1,05€ = 1€ + 5 centimes. 1,50€ = 1€ + 50 centimes."
-                  ]
+                  "note": "Trace écrite D19-1 — Monnaie. Je sais ce que signifie l'écriture à virgule d'une somme d'argent. 1,40€ = 1€ + 40 centimes. 3€ = 3,00€. 0,25€ = 25 centimes. 1,05€ = 1€ + 5 centimes. 1,50€ = 1€ + 50 centimes."
                 }
               ]
             },
@@ -1762,18 +1896,14 @@
                 },
                 {
                   "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Faire expliciter le raisonnement pour chaque problème:"
+                  ],
                   "el": [
                     "Résoudre les problèmes P81 Pb1, 2 et 3 en binômes.",
                     "Repérer les schémas où on cherche la grande quantité, la petite quantité et l'écart entre les deux quantités."
                   ],
-                  "pe": [
-                    "Faire expliciter le raisonnement pour chaque problème:"
-                  ],
-                  "note": [
-                    "PROBLÈME 1: Louise a 30 cubes. C'est 10 de plus que Mehdi. Donc, Mehdi 10 cubes de moins que Louise. Sur le 3e schéma, on voit une barre longue de 30 cubes (Louise) et une barre plus courte (?) pour Mehdi. L'écart entre les deux est de 10. Le schéma montre bien que Mehdi a moins de cubes que Louise. — Écrire au tableau le calcul 30 - 10 = 20 et la phrase réponse: Mehdi a 20 cubes.",
-                    "PROBLÈME 2: Louise a 30 cubes. C'est 10 de moins que Mehdi. Donc, Mehdi a 10 cubes de plus que Louise. Sur le schéma, on voit une barre de 30 cubes (Louise) et une barre plus longue (?) pour Mehdi. L'écart est de 10. Le 1er schéma montre bien que Mehdi a plus que Louise. — Écrire au tableau le calcul 30 + 10 = 40 et la phrase réponse: Mehdi a 40 cubes.",
-                    "PROBLÈME 3: On connait les deux longueurs: 30 cm (bande rouge) et 20 cm (bande verte). On cherche la différence. Le 2e schéma montre les deux barres et le point d'interrogation est sur l'écart, la différence entre les deux. Pour trouver l'écart on fait une soustraction. — Écrire au tableau le calcul 30 cm - 20 cm = 10 cm et la phrase réponse: La différence de longueur est 10 cm."
-                  ]
+                  "note": "PROBLÈME 1: Louise a 30 cubes. C'est 10 de plus que Mehdi. Donc, Mehdi 10 cubes de moins que Louise. Sur le 3e schéma, on voit une barre longue de 30 cubes (Louise) et une barre plus courte (?) pour Mehdi. L'écart entre les deux est de 10. Le schéma montre bien que Mehdi a moins de cubes que Louise. — Écrire au tableau le calcul 30 - 10 = 20 et la phrase réponse: Mehdi a 20 cubes.; PROBLÈME 2: Louise a 30 cubes. C'est 10 de moins que Mehdi. Donc, Mehdi a 10 cubes de plus que Louise. Sur le schéma, on voit une barre de 30 cubes (Louise) et une barre plus longue (?) pour Mehdi. L'écart est de 10. Le 1er schéma montre bien que Mehdi a plus que Louise. — Écrire au tableau le calcul 30 + 10 = 40 et la phrase réponse: Mehdi a 40 cubes.; PROBLÈME 3: On connait les deux longueurs: 30 cm (bande rouge) et 20 cm (bande verte). On cherche la différence. Le 2e schéma montre les deux barres et le point d'interrogation est sur l'écart, la différence entre les deux. Pour trouver l'écart on fait une soustraction. — Écrire au tableau le calcul 30 cm - 20 cm = 10 cm et la phrase réponse: La différence de longueur est 10 cm."
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 1",
@@ -1783,19 +1913,13 @@
                 },
                 {
                   "n": "Atelier problèmes — Séance 2 — Pratique autonome",
-                  "el": [
-                    "Résoudre le plus possible de problèmes parmi les problèmes P81 Pb4, 5, 6, 7 et 8 en commençant par le problème 7."
-                  ],
                   "pe": [
                     "Regrouper les élèves les plus fragiles pour les aider à résoudre les problèmes."
                   ],
-                  "note": [
-                    "PROBLÈME 4: Zoé a 188 billes. Elle a 15 billes de plus que Léon. Combien de billes Léon a-t-il?",
-                    "PROBLÈME 5: Au jeu de l'oie, Iris est sur la case 29. Elle a parcouru 16 cases de moins que Timéo. Sur quelle case Timéo se trouve-t-il?",
-                    "PROBLÈME 6: Mehdi a 15€ dans sa tirelire. Il a 6€ de plus que son frère Sacha. Quelle somme d'argent Sacha possède-t-il?",
-                    "PROBLÈME 7: Le livre de Louise a 330 pages. Le livre de Lino a 280 pages. Combien de pages le livre de Louise a-t-il de plus que celui de Lino?",
-                    "PROBLÈME 8: Éva mesure 1m 46cm. Son amie Zoé mesure 1m 37cm. Quelle est la différence de taille entre les deux amies?"
-                  ]
+                  "el": [
+                    "Résoudre le plus possible de problèmes parmi les problèmes P81 Pb4, 5, 6, 7 et 8 en commençant par le problème 7."
+                  ],
+                  "note": "PROBLÈME 4: Zoé a 188 billes. Elle a 15 billes de plus que Léon. Combien de billes Léon a-t-il?; PROBLÈME 5: Au jeu de l'oie, Iris est sur la case 29. Elle a parcouru 16 cases de moins que Timéo. Sur quelle case Timéo se trouve-t-il?; PROBLÈME 6: Mehdi a 15€ dans sa tirelire. Il a 6€ de plus que son frère Sacha. Quelle somme d'argent Sacha possède-t-il?; PROBLÈME 7: Le livre de Louise a 330 pages. Le livre de Lino a 280 pages. Combien de pages le livre de Louise a-t-il de plus que celui de Lino?; PROBLÈME 8: Éva mesure 1m 46cm. Son amie Zoé mesure 1m 37cm. Quelle est la différence de taille entre les deux amies?"
                 },
                 {
                   "n": "Atelier problèmes — Clôture de la séance 2",
@@ -1807,17 +1931,17 @@
             },
             {
               "seance_number": 6,
-              "title": "Connaitre dans les deux sens la table de multiplication de 4",
+              "title": "Connaître dans les deux sens la table de multiplication de 4",
               "type": "rit",
               "duration": 15,
               "guidePage": 178,
-              "materials": [],
+              "materials": [
+                "Calcul chrono"
+              ],
               "phases": [
                 {
                   "n": "Calcul mental — Séance 1 — Échauffement",
-                  "note": [
-                    "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: deux-cent-cinquante-quatre, six-cent-soixante-huit puis huit-cent-deux en chiffres sur l'ardoise."
-                  ]
+                  "note": "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: deux-cent-cinquante-quatre, six-cent-soixante-huit puis huit-cent-deux en chiffres sur l'ardoise."
                 },
                 {
                   "n": "Calcul mental — Séance 1 — Mise en situation",
@@ -1861,9 +1985,7 @@
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Échauffement",
-                  "note": [
-                    "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: cinq-cent-treize, huit-cents puis mille."
-                  ]
+                  "note": "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: cinq-cent-treize, huit-cents puis mille."
                 },
                 {
                   "n": "Calcul mental — Séance 2 — Mise en situation",
@@ -1888,15 +2010,11 @@
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent par groupes de 2 les résultats appris au cours de la séance et affichés au tableau."
                   ],
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C19-2."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C19-2."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Échauffement",
-                  "note": [
-                    "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: neuf-cent-quatre-vingts, cent-quatre-vingt-seize puis six-cent-un."
-                  ]
+                  "note": "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: neuf-cent-quatre-vingts, cent-quatre-vingt-seize puis six-cent-un."
                 },
                 {
                   "n": "Calcul mental — Séance 3 — Pratique guidée",
@@ -1916,24 +2034,18 @@
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent les résultats de la table de x4 par groupes de 2."
                   ],
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C19-2."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C19-2."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Échauffement",
-                  "note": [
-                    "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: huit-cent-quarante, trois-cent-dix-neuf puis sept-cent-huit."
-                  ]
+                  "note": "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: huit-cent-quarante, trois-cent-dix-neuf puis sept-cent-huit."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Évaluation",
                   "pe": [
                     "Donner cinq minutes aux élèves pour mémoriser les résultats appris au cours de la séance et affichés au tableau."
                   ],
-                  "note": [
-                    "CALCUL CHRONO P80 — Connaitre dans les deux sens les tables de multiplication de 2 et de 4."
-                  ]
+                  "note": "CALCUL CHRONO P80 — Connaitre dans les deux sens les tables de multiplication de 2 et de 4."
                 },
                 {
                   "n": "Calcul mental — Clôture de la séquence",
@@ -1946,7 +2058,7 @@
             },
             {
               "seance_number": 7,
-              "title": "Fractions",
+              "title": "Fractions (identifier la figure)",
               "type": "rit",
               "duration": 10,
               "guidePage": 179,
@@ -1986,15 +2098,17 @@
           "domain": "geo",
           "guidePage": 180,
           "objective": "Connaitre les propriétés des angles et des égalités de longueur pour les carrés et les rectangles",
-          "note": "ATTENTION: dans le guide papier, l'ordre des pages de la semaine 20 est inhabituel. Ordre réel des contenus: séances 1 à 4 pages 180-183, Calcul mental page 184, Flash Maths page 185, PUIS Atelier défis page 186 (après les autres, et non avant).",
           "seances": [
             {
               "seance_number": 1,
-              "title": "Reconnaitre et décrire un polygone",
+              "title": "Reconnaître et décrire un polygone",
               "type": "rech",
               "duration": 45,
               "guidePage": 180,
-              "materials": [],
+              "materials": [
+                "Planche PP4 (21 figures)",
+                "Doc D20-1, D20-2"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -2043,9 +2157,7 @@
                   "el": [
                     "Compléter le tableau de D20-2 pour vérifier l'affirmation de Fatou concernant le nombre de côtés et le nombre de sommets."
                   ],
-                  "note": [
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Pour provoquer une nouvelle question mathématique, on peut d'ailleurs ensuite proposer une étoile à 5 branches qui va créer un conflit sur la notion de sommet. Si un sommet était juste une pointe, il y aurait 10 côtés pour 5 pointes! D'où le sens mathématique de sommet: ça peut être un creux ou une bosse, en haut ou en bas; mais, grâce à ça, on va bien retrouver 10 côtés et 10 sommets dans une étoile à 5 branches. Le nombre de côtés et le nombre de sommets sont toujours les mêmes."
-                  ]
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Pour provoquer une nouvelle question mathématique, on peut d'ailleurs ensuite proposer une étoile à 5 branches qui va créer un conflit sur la notion de sommet. Si un sommet était juste une pointe, il y aurait 10 côtés pour 5 pointes! D'où le sens mathématique de sommet: ça peut être un creux ou une bosse, en haut ou en bas; mais, grâce à ça, on va bien retrouver 10 côtés et 10 sommets dans une étoile à 5 branches. Le nombre de côtés et le nombre de sommets sont toujours les mêmes."
                 },
                 {
                   "n": "Pratique autonome",
@@ -2069,7 +2181,7 @@
             },
             {
               "seance_number": 2,
-              "title": "Connaitre les propriétés des égalités de longueur pour les carrés",
+              "title": "Connaître les propriétés des égalités de longueur pour les carrés",
               "type": "rech",
               "duration": 45,
               "guidePage": 181,
@@ -2129,11 +2241,13 @@
             },
             {
               "seance_number": 3,
-              "title": "Connaitre les propriétés des angles pour les carrés",
+              "title": "Entraînement",
               "type": "rech",
               "duration": 30,
               "guidePage": 182,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -2158,9 +2272,7 @@
                   "pe": [
                     "Expliciter comment utiliser un carré pour vérifier un angle droit."
                   ],
-                  "note": [
-                    "Procédures visées: - Placer le carré sur chaque coin de la figure. - Marquer l'angle droit en traçant un petit carré."
-                  ]
+                  "note": "Procédures visées: - Placer le carré sur chaque coin de la figure. - Marquer l'angle droit en traçant un petit carré."
                 },
                 {
                   "n": "Pratique guidée",
@@ -2187,7 +2299,9 @@
               "type": "rech",
               "duration": 30,
               "guidePage": 183,
-              "materials": [],
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Pratique autonome",
@@ -2201,9 +2315,7 @@
                     "Utilise une bande de papier et un gabarit d'angle droit pour trouver tous les carrés parmi ces figures. Quelles figures sont des carrés? (P83 Cherchons ensemble)",
                     "Explique pourquoi cette figure n'est pas un carré (P83 Ex3 et Ex4)."
                   ],
-                  "note": [
-                    "Ces deux exercices sont placés en fin de séquence car ils mobilisent la définition du carré non pas pour identifier, mais pour justifier une non-appartenance à la catégorie. C'est une étape conceptuelle importante qui demande aux élèves de passer de la reconnaissance globale à l'analyse par les propriétés."
-                  ]
+                  "note": "Ces deux exercices sont placés en fin de séquence car ils mobilisent la définition du carré non pas pour identifier, mais pour justifier une non-appartenance à la catégorie. C'est une étape conceptuelle importante qui demande aux élèves de passer de la reconnaissance globale à l'analyse par les propriétés."
                 },
                 {
                   "n": "Explicitation",
@@ -2225,9 +2337,7 @@
                     "Faites expliciter quelle propriété fait défaut, en utilisant le vocabulaire géométrique précis: dans l'exercice 3, les côtés ne sont pas de la même longueur et les angles ne sont pas tous droits et dans l'exercice 4, bien que les 4 angles soient droits, les 4 côtés ne sont pas tous de même longueur.",
                     "Donner la définition provisoire suivante de l'angle droit: un angle droit, c'est comme les coins d'un carré."
                   ],
-                  "note": [
-                    "CE QUE L'ENSEIGNANT DOIT SAVOIR: Au CP, les élèves ont appris à reconnaitre le carré de façon perceptive comme le disque. Les élèves disent: on voit bien que c'est un carré. La notion d'angle droit apparait au CE1. La réponse Le carré a les quatre côtés de même longueur, sachant qu'elle correspond à la définition du losange et non à celle du carré, n'est donc pas suffisante. Un carré à quatre côtés de même longueur est quatre angles droits. Il ne faut surtout pas dire qu'elle est inexacte: la connaissance que le carré n'est pas un rectangle car c'est un rectangle particulier ne relève pas du CE1. La connaissance des priorités des angles sera abordée à partir du CE2. Au CE1, on peut donner une définition provisoire de l'angle droit: c'est comme les coins d'un carré. Les plus grands mathématiciens continuent à s'appuyer sur cette idée. Comment font-ils pour indiquer un angle droit? En mettant un petit carré! Encore faut-il que tout élève sache, au CE1, reconnaitre un carré, c'est fondamental pour la suite."
-                  ]
+                  "note": "CE QUE L'ENSEIGNANT DOIT SAVOIR: Au CP, les élèves ont appris à reconnaitre le carré de façon perceptive comme le disque. Les élèves disent: on voit bien que c'est un carré. La notion d'angle droit apparait au CE1. La réponse Le carré a les quatre côtés de même longueur, sachant qu'elle correspond à la définition du losange et non à celle du carré, n'est donc pas suffisante. Un carré à quatre côtés de même longueur est quatre angles droits. Il ne faut surtout pas dire qu'elle est inexacte: la connaissance que le carré n'est pas un rectangle car c'est un rectangle particulier ne relève pas du CE1. La connaissance des priorités des angles sera abordée à partir du CE2. Au CE1, on peut donner une définition provisoire de l'angle droit: c'est comme les coins d'un carré. Les plus grands mathématiciens continuent à s'appuyer sur cette idée. Comment font-ils pour indiquer un angle droit? En mettant un petit carré! Encore faut-il que tout élève sache, au CE1, reconnaitre un carré, c'est fondamental pour la suite."
                 },
                 {
                   "n": "Évaluation",
@@ -2238,9 +2348,6 @@
                 },
                 {
                   "n": "Consolidation",
-                  "el": [
-                    "Reproduis le carré avec la règle (P84 Ex6)."
-                  ],
                   "pe": [
                     "Mettre en commun les procédures utilisées:",
                     "Valoriser les procédures qui utilisent le quadrillage pour les angles droits et le comptage des carreaux pour les longueurs égales.",
@@ -2248,6 +2355,9 @@
                   ],
                   "cons": [
                     "Comment avez-vous fait pour placer les autres sommets du carré? Qu'avez-vous compté? Comment avez-vous utilisé les lignes du quadrillage?"
+                  ],
+                  "el": [
+                    "Reproduis le carré avec la règle (P84 Ex6)."
                   ]
                 },
                 {
@@ -2280,10 +2390,7 @@
                   "el": [
                     "Effectuer la recherche individuellement dans le cahier de brouillon puis confronter ses réponses à celles d'un camarade."
                   ],
-                  "note": [
-                    "Procédures utilisées: - Place les nombres au hasard et vérifie ensuite. - Essaie de calculer ce qui manque.",
-                    "Grille 1 (la somme fait 80): disque du haut 20 (barré: 10,20,30,40,50 avec 20 conservé), ligne du milieu 40 - 10 - (case vide), case du bas (case vide)."
-                  ]
+                  "note": "Procédures utilisées: - Place les nombres au hasard et vérifie ensuite. - Essaie de calculer ce qui manque.; Grille 1 (la somme fait 80): disque du haut 20 (barré: 10,20,30,40,50 avec 20 conservé), ligne du milieu 40 - 10 - (case vide), case du bas (case vide)."
                 },
                 {
                   "n": "Atelier défis — Séance 1 — Explicitation",
@@ -2301,9 +2408,7 @@
                   "el": [
                     "Résoudre le deuxième problème (P85 Pb1)."
                   ],
-                  "note": [
-                    "Grille 2 (la somme fait 90): 10 - 30 (barrés), ligne du milieu 10 - 30 - (case vide), case du bas (case vide)."
-                  ]
+                  "note": "Grille 2 (la somme fait 90): 10 - 30 (barrés), ligne du milieu 10 - 30 - (case vide), case du bas (case vide)."
                 },
                 {
                   "n": "Atelier défis — Clôture de la séance 1",
@@ -2313,9 +2418,6 @@
                 },
                 {
                   "n": "Atelier défis — Séance 2 — Pratique guidée",
-                  "el": [
-                    "Résoudre le premier problème de l'exercice P85 Pb2."
-                  ],
                   "pe": [
                     "Expliciter:",
                     "Rappeler les étapes à suivre:"
@@ -2324,18 +2426,17 @@
                     "La procédure la plus rapide est de commencer par compléter la ligne horizontale. On connait le tout (130) et deux parties (60 et 40), on cherche une partie.",
                     "Calculer la somme des nombres déjà placés 60 + 40 = 100 puis utiliser une addition à trou 100 + ? = 130 ou une soustraction 130 - 100 = ? pour trouver mentalement ce qui manque. Le calcul se fait mentalement en prenant appui sur sa connaissance de la numération. Ensuite, il suffit de placer les deux nombres restant dans la ligne verticale."
                   ],
-                  "note": [
-                    "Grille 3 (la somme fait 130): disque du haut vide, ligne du milieu 60 - 40 avec un disque vide à droite, case du bas vide."
-                  ]
+                  "el": [
+                    "Résoudre le premier problème de l'exercice P85 Pb2."
+                  ],
+                  "note": "Grille 3 (la somme fait 130): disque du haut vide, ligne du milieu 60 - 40 avec un disque vide à droite, case du bas vide."
                 },
                 {
                   "n": "Atelier défis — Séance 2 — Pratique autonome",
                   "el": [
                     "Réinvestir les procédures mobilisées pour résoudre le problème précédent en résolvant le 2e problème de l'exercice P85 Pb2."
                   ],
-                  "note": [
-                    "Grille 4 (la somme fait 140): 20, 40, 50, 60, 70 (20 et 70 barrés), ligne du milieu 70 - 30 - (case vide), case du bas (case vide)."
-                  ]
+                  "note": "Grille 4 (la somme fait 140): 20, 40, 50, 60, 70 (20 et 70 barrés), ligne du milieu 70 - 30 - (case vide), case du bas (case vide)."
                 },
                 {
                   "n": "Atelier défis — Clôture de la séance 2",
@@ -2347,11 +2448,13 @@
             },
             {
               "seance_number": 6,
-              "title": "Connaitre dans les deux sens les tables de multiplication de 2, de 4, de 5 et de 10",
+              "title": "Connaître dans les deux sens les tables de 2, 4, 5 et 10",
               "type": "rit",
               "duration": 15,
               "guidePage": 184,
-              "materials": [],
+              "materials": [
+                "Calcul chrono"
+              ],
               "phases": [
                 {
                   "n": "Calcul mental — Pratique guidée (suite, début de page non capturé)",
@@ -2360,33 +2463,25 @@
                     "Le boulanger a préparé 10 plaques de cuisson. Sur chaque plaque, il a mis 10 croissants. Combien de croissants le boulanger a-t-il préparés en tout?",
                     "Dans le couloir de la classe, il y a 9 paires de chaussures qui sont rangées. Combien y a-t-il de chaussures en tout?"
                   ],
-                  "note": [
-                    "[Le début de la page 184 (Séances 1 à 3 du calcul mental: échauffements, mises en situation et explicitations sur les tables de 2, 4, 5 et 10) n'est pas fourni dans les captures. Seule la fin de la page (à partir de la Pratique guidée ci-dessus) a été capturée.]"
-                  ]
+                  "note": "[Le début de la page 184 (Séances 1 à 3 du calcul mental: échauffements, mises en situation et explicitations sur les tables de 2, 4, 5 et 10) n'est pas fourni dans les captures. Seule la fin de la page (à partir de la Pratique guidée ci-dessus) a été capturée.]"
                 },
                 {
                   "n": "Calcul mental — Pratique autonome",
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent par groupes de 2 les résultats des tables étudiées."
                   ],
-                  "note": [
-                    "CALCUL CHRONO — Test en temps limité C20-1."
-                  ]
+                  "note": "CALCUL CHRONO — Test en temps limité C20-1."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Échauffement",
-                  "note": [
-                    "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: quatre-vingt-dix-sept, sept-cent-cinquante-sept puis neuf-cent-quatre-vingt-dix-neuf."
-                  ]
+                  "note": "Connaitre la suite écrite et la suite orale des nombres jusqu'à 1000. DICTÉE DES NOMBRES: quatre-vingt-dix-sept, sept-cent-cinquante-sept puis neuf-cent-quatre-vingt-dix-neuf."
                 },
                 {
                   "n": "Calcul mental — Séance 4 — Évaluation",
                   "pe": [
                     "Donner cinq minutes aux élèves pour qu'ils mémorisent par groupe de 2 les résultats des tables étudiées."
                   ],
-                  "note": [
-                    "CALCUL CHRONO P84 — Connaitre dans les deux sens les tables de multiplication de 2, 5, 4 et 10."
-                  ]
+                  "note": "CALCUL CHRONO P84 — Connaitre dans les deux sens les tables de multiplication de 2, 5, 4 et 10."
                 },
                 {
                   "n": "Calcul mental — Clôture de la séquence",
@@ -2395,12 +2490,11 @@
                     "Récapituler les procédures travaillées lors de la séquence."
                   ]
                 }
-              ],
-              "note": "[Le début de la page 184 (Séances 1 à 3 du calcul mental) n'est pas fourni dans les captures — seule la fin de la page a été transcrite]"
+              ]
             },
             {
               "seance_number": 7,
-              "title": "Monnaie",
+              "title": "Monnaie (valeur en euro et centime)",
               "type": "rit",
               "duration": 10,
               "guidePage": 185,
@@ -2411,40 +2505,33 @@
                   "el": [
                     "Déterminer la valeur en euro et centime d'euro d'un ensemble de pièces."
                   ],
-                  "note": [
-                    "Pièces représentées: 50c, 50c, 20c, 50c, 2€."
-                  ]
+                  "note": "Pièces représentées: 50c, 50c, 20c, 50c, 2€."
                 },
                 {
                   "n": "Flash Maths — B",
                   "el": [
                     "Consigne identique."
                   ],
-                  "note": [
-                    "Pièces représentées: 20c, 20c, 10c, 50c, 5c."
-                  ]
+                  "note": "Pièces représentées: 20c, 20c, 10c, 50c, 5c."
                 },
                 {
                   "n": "Flash Maths — C",
                   "el": [
                     "Consigne identique."
                   ],
-                  "note": [
-                    "Pièces représentées: 50c, 20c, 10c, 1c."
-                  ]
+                  "note": "Pièces représentées: 50c, 20c, 10c, 1c."
                 },
                 {
                   "n": "Flash Maths — D",
                   "el": [
                     "Consigne identique."
                   ],
-                  "note": [
-                    "Pièces représentées: 2€, 5c, 5c."
-                  ]
+                  "note": "Pièces représentées: 2€, 5c, 5c."
                 }
               ]
             }
-          ]
+          ],
+          "note": "ATTENTION: dans le guide papier, l'ordre des pages de la semaine 20 est inhabituel. Ordre réel des contenus: séances 1 à 4 pages 180-183, Calcul mental page 184, Flash Maths page 185, PUIS Atelier défis page 186 (après les autres, et non avant)."
         }
       ]
     }

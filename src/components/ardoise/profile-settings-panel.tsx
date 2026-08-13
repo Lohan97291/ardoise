@@ -1,10 +1,15 @@
-import { KeyRound, RotateCcw, Save, UserRound } from "lucide-react";
+import { CloudDownload, CloudUpload, KeyRound, RotateCcw, Save, UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  getCloudSyncState,
+  pullCloudStateToLocal,
+  pushLocalStateToCloud,
+} from "@/lib/cloud-sync";
 import {
   DEFAULT_PROFILE_SETTINGS,
   readProfileSettings,
@@ -26,9 +31,13 @@ export function ProfileSettingsPanel() {
   const [passwordForm, setPasswordForm] = useState(emptyPasswordForm);
   const [savingProfile, setSavingProfile] = useState(false);
   const [savingPassword, setSavingPassword] = useState(false);
+  const [syncState, setSyncState] = useState(getCloudSyncState());
+  const [uploadingCloud, setUploadingCloud] = useState(false);
+  const [downloadingCloud, setDownloadingCloud] = useState(false);
 
   useEffect(() => {
     setProfile(readProfileSettings());
+    setSyncState(getCloudSyncState());
   }, []);
 
   function updateProfile<K extends keyof ProfileSettings>(key: K, value: ProfileSettings[K]) {
@@ -50,6 +59,36 @@ export function ProfileSettingsPanel() {
     const next = resetProfileSettings();
     setProfile(next);
     toast.success("Profil réinitialisé.");
+  }
+
+  async function handleUploadCloud() {
+    setUploadingCloud(true);
+    try {
+      const result = await pushLocalStateToCloud();
+      setSyncState(getCloudSyncState());
+      toast.success(`${result.count} blocs de données envoyés dans le cloud.`);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Impossible d'envoyer la sauvegarde cloud.");
+    } finally {
+      setUploadingCloud(false);
+    }
+  }
+
+  async function handleDownloadCloud() {
+    setDownloadingCloud(true);
+    try {
+      const result = await pullCloudStateToLocal();
+      setSyncState(getCloudSyncState());
+      toast.success(
+        `${result.count} blocs récupérés depuis ${result.source}. Recharge la page pour tout retrouver.`,
+      );
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Impossible de récupérer la sauvegarde cloud.",
+      );
+    } finally {
+      setDownloadingCloud(false);
+    }
   }
 
   async function handleChangePassword(event: React.FormEvent) {
@@ -185,6 +224,64 @@ export function ProfileSettingsPanel() {
             <Button type="button" variant="outline" size="sm" onClick={handleResetProfile}>
               <RotateCcw className="mr-1.5 h-4 w-4" />
               Réinitialiser
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden rounded-2xl border border-border/80 bg-card shadow-sm">
+        <div className="border-b border-border/70 bg-secondary/25 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-primary/10 text-primary">
+              <CloudUpload className="h-4 w-4" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-foreground">Sauvegarde cloud</p>
+              <p className="text-xs text-muted-foreground">
+                Pour retrouver Ardoise sur un autre ordi ou sur le téléphone.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4 p-4">
+          <div className="rounded-2xl border border-primary/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] px-3 py-3">
+            <p className="text-xs font-medium text-muted-foreground">
+              {syncState.configured
+                ? "Supabase est prêt. Tu peux envoyer ton état actuel dans le cloud, puis le récupérer sur un autre appareil."
+                : "Supabase n'est pas encore prêt dans l'application."}
+            </p>
+            {syncState.lastUploadedAt ? (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Dernier envoi : {new Date(syncState.lastUploadedAt).toLocaleString("fr-FR")}
+              </p>
+            ) : null}
+            {syncState.lastDownloadedAt ? (
+              <p className="mt-1 text-xs text-muted-foreground">
+                Dernière récupération : {new Date(syncState.lastDownloadedAt).toLocaleString("fr-FR")}
+              </p>
+            ) : null}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => void handleUploadCloud()}
+              disabled={!syncState.configured || uploadingCloud}
+            >
+              <CloudUpload className="mr-1.5 h-4 w-4" />
+              {uploadingCloud ? "Envoi…" : "Envoyer mes données"}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => void handleDownloadCloud()}
+              disabled={!syncState.configured || downloadingCloud}
+            >
+              <CloudDownload className="mr-1.5 h-4 w-4" />
+              {downloadingCloud ? "Récupération…" : "Récupérer mes données"}
             </Button>
           </div>
         </div>

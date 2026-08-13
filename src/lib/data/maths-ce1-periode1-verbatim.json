@@ -17,7 +17,10 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Dénombrer des collections en utilisant des groupes de dix",
+              "title": "Dénombrer avec des groupes de dix",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 48,
               "materials": [
                 "par binôme, un bac contenant des cubes emboitables. La quantité varie d’un binôme à l’autre: 72 cubes, 47 cubes, 68 cubes, 85 cubes…",
                 "de grandes collections de petits objets de la classe (trombones, feutres, crayons, jetons…): quantités jusqu’à 100."
@@ -48,10 +51,6 @@
                 },
                 {
                   "n": "Explicitation",
-                  "el": [
-                    "Élève A : Justifier son organisation de la collection.",
-                    "Élève B : Expliquer comment il a procédé pour dénombrer rapidement et évoquer les difficultés rencontrées lors du dénombrement des collections partiellement ou non organisées."
-                  ],
                   "pe": [
                     "Présenter 2 ou 3 organisations différentes: - une organisation en ligne, - une organisation avec des groupements non décimaux (paquets de 5, de 8…) - une organisation utilisant des groupes de dix (exemple ci-dessous pour une collection de 72 cubes).",
                     "Pour chaque organisation présentée, discuter collectivement:",
@@ -65,13 +64,14 @@
                     "Regardez, j’ai fait des dizaines. Pour faire une dizaine, on assemble 10 cubes pour obtenir une barre ou on les organise par groupes de dix sans les assembler mais en rendant bien visible la dizaine. 2E ÉTAPE Compter les dizaines une à une puis les unités restantes",
                     "Maintenant, pour compter, c’est plus facile et plus rapide. Je compte les dizaines une à une 1,2,3,4,5 dizaines (en pointant chaque dizaine). Il me reste aussi quelques cubes tout seuls, ce sont les unités isolées: 1,2,3 unités. J’ai donc 5 dizaines et 3 unités. 3E ÉTAPE Écrire le nombre de cubes en chiffres",
                     "J’écris 53. Le chiffre de gauche indique le nombre de dizaines et le chiffre de droite indique le nombre d’unités isolées."
+                  ],
+                  "el": [
+                    "Élève A : Justifier son organisation de la collection.",
+                    "Élève B : Expliquer comment il a procédé pour dénombrer rapidement et évoquer les difficultés rencontrées lors du dénombrement des collections partiellement ou non organisées."
                   ]
                 },
                 {
                   "n": "Pratique guidée",
-                  "el": [
-                    "Dénombrer une collection d’objets (quantités jusqu’à 100) issus d’un autre matériel (jetons, feutres…) en l’organisant en dizaines et unités."
-                  ],
                   "pe": [
                     "Circuler dans la classe pendant que les binômes organisent et dénombrent leur collection.",
                     "Observer les stratégies.",
@@ -81,6 +81,9 @@
                     "Combien de feutres mets-tu dans chaque paquet?",
                     "As-tu bien utilisé tous les feutres?",
                     "Comment peux-tu être sûr que tes groupes sont des dizaines?"
+                  ],
+                  "el": [
+                    "Dénombrer une collection d’objets (quantités jusqu’à 100) issus d’un autre matériel (jetons, feutres…) en l’organisant en dizaines et unités."
                   ]
                 },
                 {
@@ -103,8 +106,15 @@
             },
             {
               "seance_number": 2,
-              "title": "Comparer des collections en les organisant en groupes de dix",
-              "materials": [],
+              "title": "Comparer des collections en groupes de dix",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 50,
+              "materials": [
+                "Collections rouges/bleues (D1-2)",
+                "Tableau des nombres jusqu'à 99 (D1-3)",
+                "Ardoises"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -154,36 +164,18 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "el": [
-                    "Effectuer l’exercice P6 Cherchons ensemble . DIFFÉRENCIATION Selon les besoins des élèves, il est possible de proposer de vérifier la réponse par correspondance terme à terme avec le matériel de numération."
-                  ],
                   "pe": [
                     "Regrouper les élèves les plus fragiles pour les guider lors de la réalisation de l’exercice.",
                     "Expliciter que les deux enfants ont le même nombre de dizaines (cinq dizaines de carrés). Par contre, Louise a deux unités isolées et Mehdi a quatre unités isolées.",
                     "Comparer les deux nombres, écrire au tableau et verbaliser que 52 < 54 et 54 > 52."
+                  ],
+                  "el": [
+                    "Effectuer l’exercice P6 Cherchons ensemble . DIFFÉRENCIATION Selon les besoins des élèves, il est possible de proposer de vérifier la réponse par correspondance terme à terme avec le matériel de numération."
                   ]
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P6 Ex1",
-                    "D1",
-                    "2",
-                    "A1",
-                    "1",
-                    "D1",
-                    "3",
-                    "50",
-                    "Obstacles possibles",
-                    "- Se trompe lors de l’écriture du nombre en inversant l’ordre",
-                    "des chiffres.",
-                    "- Rencontre des difficultés lors de l’énumération",
-                    "des collections: se trompe lors du comptage, compte",
-                    "deux fois la même dizaine ou deux fois la même unité",
-                    "ou oublie de compter une dizaine ou une unité",
-                    "(demander aux élèves de cocher les dizaines et les unités",
-                    "au fur et à mesure du comptage)."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P6 Ex1; D1; 2; A1; 1; D1; 3; 50; Obstacles possibles; - Se trompe lors de l’écriture du nombre en inversant l’ordre; des chiffres.; - Rencontre des difficultés lors de l’énumération; des collections: se trompe lors du comptage, compte; deux fois la même dizaine ou deux fois la même unité; ou oublie de compter une dizaine ou une unité; (demander aux élèves de cocher les dizaines et les unités; au fur et à mesure du comptage)."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -200,8 +192,13 @@
             },
             {
               "seance_number": 3,
-              "title": "Réinvestir le dénombrement de collections dans des contextes variés",
-              "materials": [],
+              "title": "Réinvestir le dénombrement (écrire en chiffres)",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 51,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -229,16 +226,7 @@
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P7 Ex3",
-                    "Obstacles possibles",
-                    "- A une compréhension fragile des aspects décimal",
-                    "(base 10) et positionnel (la valeur d’un chiffre dépend",
-                    "de sa position).",
-                    "- Ne mobilise pas les différentes représentations possibles",
-                    "d’un nombre, par exemple, le fait que l’écriture 38 unités",
-                    "est équivalente à 3 dizaines et 8 unités."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P7 Ex3; Obstacles possibles; - A une compréhension fragile des aspects décimal; (base 10) et positionnel (la valeur d’un chiffre dépend; de sa position).; - Ne mobilise pas les différentes représentations possibles; d’un nombre, par exemple, le fait que l’écriture 38 unités; est équivalente à 3 dizaines et 8 unités."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -253,13 +241,298 @@
             },
             {
               "seance_number": 4,
-              "title": "Bilan de la séquence Évaluation ACTIVITÉ ÉLÈVE P8 Ex4 Consolidation ACTIVITÉ ENSEIGNANT ੉ Annoncer que vous allez faire des commandes de cubes aux élèves. Ils devront préparer sur leur table le matériel commandé. ੉ Écrire successivement au tableau les nombres 37, 85, 63, 60, 87 puis demander aux élèves de réaliser, à l’aide du matériel, la collection correspondante en faisant bien apparaitre les dizaines. Les commandes sont réalisées avec des Cubes base 10 encastrables. ACTIVITÉ ÉLÈVE ੉ Construire la collection de cardinal donné par écrit au tableau ou sur une petite feuille. Les élèves organisent leur collection de cubes pour qu’un autre élève puisse vérifier que la collection réalisée comporte le nombre de cubes demandé. ੉ Effectuer P8 Ex5 . Obstacles possibles - Se trompe lors de l’écriture du nombre en inversant l’ordre des chiffres (rappeler que le chiffre de gauche indique le nombre de dizaines et que le chiffre de droite indique le nombre d’unités isolées). - Rencontre des difficultés lors de l’énumération des collections (demander aux élèves de cocher les dizaines et les unités au fur et à mesure du comptage).",
-              "materials": [],
+              "title": "Bilan de la séquence (construire une collection donnée)",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 52,
+              "materials": [
+                "Cubes base 10"
+              ],
               "phases": [
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence en s’appuyant sur les deux traces écrites D1-4. D1 4 52"
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Parties-tout : recherche du tout",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 53,
+              "materials": [
+                "une boite et des cubes rouges, jaunes, bleus et verts"
+              ],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Lire l’énoncé du problème P9 Pb1 à haute voix en simulant l’action avec des cubes rouges et jaunes.",
+                    "Placer 10 cubes rouges dans une boite et 14 cubes jaunes dans une autre boite.",
+                    "Circuler dans les rangs pour prendre connaissance des productions des élèves.",
+                    "Encourager toute tentative de recherche et valoriser les réussites."
+                  ],
+                  "el": [
+                    "Résoudre le problème pendant trois minutes dans le cahier de brouillon sans avoir accès au matériel de manipulation."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Vérifier la compréhension de l’énoncé du problème:",
+                    "Demander aux élèves de représenter la situation par un schéma.",
+                    "Mettre en commun les schémas réalisés et inventorier les éléments essentiels à représenter.",
+                    "Amener les élèves à comprendre que les détails importent peu et que ce sont les deux parties et le tout qu’il faut faire apparaitre.",
+                    "Expliciter qu’il n’est pas utile de représenter tous les cubes et que ce sont les quantités qui nous intéressent.",
+                    "Expliciter comment résoudre le problème en s’appuyant sur le schéma en barres (à vidéoprojeter à l’aide d’un zoom sur le cahier).",
+                    "Faire repérer les deux parties sur le schéma en encadrant chaque partie des deux mains puis le tout.",
+                    "Expliquer que ce schéma servira de référence pour tous les problèmes où il y a des parties et où on recherche le tout."
+                  ],
+                  "cons": [
+                    "Combien y a-t-il de collections de cubes? Combien de cubes rouges? jaunes? Que cherche-t-on?",
+                    "Pour faciliter la représentation, on représente chaque collection de cubes par une barre (assembler les cubes rouges pour former une barre rouge et les cubes jaunes pour former une barre jaune puis assembler les deux barres pour reproduire le schéma en barres) et le tout par une accolade.",
+                    "Le point d’interrogation indique ce qu’on cherche."
+                  ],
+                  "el": [
+                    "Relire l’énoncé et formuler ce qu’on cherche: on cherche le nombre de cubes qu’il y a en tout dans la boite.",
+                    "Représenter les quantités avec le matériel de numération.",
+                    "Comprendre qu’on cherche la valeur totale en faisant une addition.",
+                    "Écrire le calcul 10 + 14 = 24 en verbalisant: c’est une addition.",
+                    "Formuler la réponse: il y a 24 cubes en tout.",
+                    "Valider la réponse en manipulant le matériel."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Lire l’énoncé du problème P9 Pb2 à haute voix en simulant l’action avec des cubes jaunes, bleus et verts.",
+                    "Demander aux élèves de représenter la situation par un schéma.",
+                    "Expliciter, en prenant appui sur le matériel et le schéma en barres (à vidéoprojeter à l’aide d’un zoom sur le cahier), qu’il y a 3 parties et qu’on recherche le tout."
+                  ],
+                  "el": [
+                    "Résoudre le problème sans avoir accès au matériel de manipulation.",
+                    "Repérer les analogies avec le problème 1: contexte identique, problème de parties-tout avec recherche du tout.",
+                    "Constater que, dans ce problème, il y a 3 parties.",
+                    "Calculer plus facilement la valeur totale en modifiant l’ordre des nombres (5 + 5 + 10).",
+                    "Valider la réponse en manipulant le matériel."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "el": [
+                    "Résoudre le problème sans avoir accès au matériel de manipulation."
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P9 Pb3"
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique autonome",
+                  "el": [
+                    "Résoudre ensuite au choix le plus possible de problèmes parmi les problèmes P9 Pb4, 5, 6 ou 7."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séquence",
+                  "pe": [
+                    "Élaborer la trace écrite P1-1 en prenant appui sur la résolution du premier problème qui servira de référence lors de la résolution de problèmes similaires."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Tables d'addition : les doubles",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 54,
+              "materials": [
+                "Ardoises",
+                "Cartes constellations du dé (C1-1)",
+                "Bande numérique"
+              ],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "note": "30 min. JEU DU FURET — Connaitre la suite orale des nombres jusqu’à 100 : énoncer à tour de rôle un nombre de la suite orale des nombres jusqu’à 100 en comptant en avant, de un en un, à partir de 78."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Réactivation",
+                  "pe": [
+                    "Écrire au tableau: double de 4 = 8."
+                  ],
+                  "cons": [
+                    "Calculez le double de 4. C’est quatre plus quatre mais aussi deux fois quatre."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Écrire au tableau: double de 8 =?"
+                  ],
+                  "cons": [
+                    "Calculez le double de 8. C’est huit plus huit mais aussi deux fois huit."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": [
+                    "Vérifier les réponses avec les cartes constellations du dé au tableau (C1-1) en représentant deux fois 5 + 3 avec les cartes.",
+                    "Faire constater que le double de 8 est égal au double de 5 plus le double de 3.",
+                    "Demander également aux élèves de se mettre par deux pour représenter deux fois 5 + 3 avec leurs doigts."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Reprendre la situation avec les calculs suivants. Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ],
+                  "cons": [
+                    "double de 6?",
+                    "double de 9?",
+                    "double de 3?",
+                    "double de 5?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": [
+                    "Proposer par écrit au tableau les calculs suivants. Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ],
+                  "cons": [
+                    "double de 7?",
+                    "double de 10?",
+                    "double de 2?",
+                    "double de 8?",
+                    "double de 4?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "note": "10 min. JEU DU FURET — Connaitre la suite orale des nombres jusqu’à 100, en récitant la comptine en arrière, de un en un, de 90 jusqu’à 65."
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Mise en situation",
+                  "pe": [
+                    "Écrire au tableau: double de 9 =?"
+                  ],
+                  "cons": [
+                    "Calculez le double de 9. C’est neuf plus neuf mais aussi deux fois neuf."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": [
+                    "Demander aux élèves de lister les doubles qu’ils ont revus lors la séance précédente, repris dans la trace écrite C1-2."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs à l’oral. Laisser au moins 5 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ],
+                  "cons": [
+                    "le double de 5?",
+                    "le double de 7?",
+                    "le double de 10?",
+                    "le double de 4?",
+                    "le double de 6?",
+                    "le double de 9?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C1-3: effectuer le plus grand nombre possible de calculs en moins de trois minutes. Entourer sur la bande numérique le nombre de réponses justes obtenues."
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Suite orale et écrite jusqu'à 100",
+              "type": "rit",
+              "duration": 10,
+              "guidePage": 55,
+              "materials": [
+                "Cartes Flash Maths A à D — Suites répétitives"
+              ],
+              "phases": [
+                {
+                  "n": "Flash Maths A",
+                  "el": [
+                    "Observer le motif pendant 30 secondes pour pouvoir le reproduire sur l’ardoise quand il sera caché."
+                  ],
+                  "note": "Au cours de la synthèse, comprendre que la mémorisation du motif de base prend moins de place en mémoire que celle du motif complet."
+                },
+                {
+                  "n": "Flash Maths B",
+                  "el": [
+                    "Observer le motif pendant 30 secondes pour pouvoir le reproduire sur l’ardoise quand il sera caché."
+                  ],
+                  "note": "Au cours de la synthèse, comprendre que la mémorisation du motif de base prend moins de place en mémoire que celle du motif complet."
+                },
+                {
+                  "n": "Flash Maths C",
+                  "el": [
+                    "Observer le motif pendant 30 secondes pour pouvoir le reproduire sur l’ardoise quand il sera caché."
+                  ],
+                  "note": "Au cours de la synthèse, comprendre que la mémorisation du motif de base prend moins de place en mémoire que celle du motif complet."
+                },
+                {
+                  "n": "Flash Maths D",
+                  "el": [
+                    "Observer le motif pendant 30 secondes pour pouvoir le reproduire sur l’ardoise quand il sera caché."
+                  ],
+                  "note": "Au cours de la synthèse, comprendre que la mémorisation du motif de base prend moins de place en mémoire que celle du motif complet."
+                }
+              ]
+            },
+            {
+              "seance_number": 8,
+              "title": "Suites répétitives",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 55,
+              "materials": [
+                "Bande numérique",
+                "Ardoises"
+              ],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "note": "10 min. Connaitre la suite écrite des nombres jusqu’à 100 — DICTÉE DES NOMBRES: cinquante-sept et soixante-neuf à écrire en chiffres sur l’ardoise."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs par écrit au tableau. Laisser au moins 5 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ],
+                  "cons": [
+                    "double de 5 =?",
+                    "double de 7 =?",
+                    "9 + 9 =?",
+                    "6 + 6 =?",
+                    "double de? = 8",
+                    "double de? = 16"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C1-3."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "note": "10 min. Connaitre la suite écrite des nombres jusqu’à 100 — DICTÉE DES NOMBRES: quarante-deux et soixante-quatorze à écrire en chiffres sur l’ardoise."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "note": "CALCUL CHRONO P8 — Connaitre les tables d’addition (les doubles)."
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": [
+                    "Corriger collectivement les calculs les moins réussis par les élèves.",
+                    "Rappeler la procédure travaillée au cours de la séquence."
                   ]
                 }
               ]
@@ -368,7 +641,10 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Connaitre et utiliser diverses représentations d’un nombre",
+              "title": "Utiliser diverses représentations d'un nombre",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 56,
               "materials": [
                 "par binôme, 9 barres de 10 cubes encastrables et 9 cubes ou matériel équivalent en carrés de la planche prédécoupée PP1 accompagnant le cahier de l’élève MATHS EN CE1"
               ],
@@ -396,23 +672,16 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P10 Cherchons ensemble",
-                    "Associer les différentes représentations du nombre 47.",
-                    "Justifier ses réponses."
-                  ],
                   "pe": [
                     "Circuler dans la classe pour apporter une aide aux élèves les plus fragiles qui peuvent être regroupés dans un espace de la classe pour faciliter les échanges.",
                     "Utiliser le matériel de numération pour expliciter, par exemple, que 17u, c’est aussi 1d 7u et que donc 3d 17u peut aussi s’écrire 4d 7u et 47.",
                     "Rappeler que, dès qu’on a 10 unités, on peut former 1 dizaine et rappeler que, dans l’écriture d’un nombre, la valeur d’un chiffre dépend de sa position."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P10 Cherchons ensemble; Associer les différentes représentations du nombre 47.; Justifier ses réponses."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P10 Ex1",
-                    "Justifier pourquoi 63 n’est pas le même nombre que 36 bien que les écritures des deux nombres soient composées des mêmes chiffres."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P10 Ex1; Justifier pourquoi 63 n’est pas le même nombre que 36 bien que les écritures des deux nombres soient composées des mêmes chiffres."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -424,8 +693,14 @@
             },
             {
               "seance_number": 2,
-              "title": "Associer différentes représentations d’un nombre",
-              "materials": [],
+              "title": "Associer différentes représentations d'un nombre",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 57,
+              "materials": [
+                "Jeu de cartes de représentations",
+                "Document D2-2"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -461,17 +736,12 @@
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "LE JEU DES PAIRES (D2-1) se joue à deux. Le but du jeu",
-                    "est de former des paires de cartes représentant le même",
-                    "nombre pour se débarrasser de toutes ses cartes. Le joueur",
-                    "qui termine la partie avec la carte 88 en main a perdu."
-                  ],
                   "el": [
                     "Distribuer toutes les cartes, une par une, entre les deux joueurs.",
                     "Regarder son jeu et chercher les paires qui peuvent être formées.",
                     "Poser ses paires, faces visibles, devant soi: ces cartes sont retirées du jeu. D2 1 D2 2 D2 1 2 Nombres entiers jusqu’à 100 Une fois que toutes les paires initiales ont été écartées, le premier joueur pioche une carte au hasard dans la main de son adversaire. S’il peut former une nouvelle paire avec une des cartes qu’il a déjà en main, il pose cette paire devant lui. S’il ne peut pas former de paire avec la carte piochée, il l’ajoute simplement à sa main. C’est ensuite au tour de l’autre joueur de piocher dans la main de son adversaire, et ainsi de suite. Comme il n’y a qu’une carte 88, inévitablement, un joueur finira par se retrouver avec seulement la carte 88 en main, tandis que l’autre n’aura plus de carte et sera déclaré gagnant."
-                  ]
+                  ],
+                  "note": "LE JEU DES PAIRES (D2-1) se joue à deux. Le but du jeu; est de former des paires de cartes représentant le même; nombre pour se débarrasser de toutes ses cartes. Le joueur; qui termine la partie avec la carte 88 en main a perdu."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -484,14 +754,16 @@
             {
               "seance_number": 3,
               "title": "Réinvestir la signification des écritures chiffrées",
-              "materials": [],
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 57,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P11 Ex2",
-                    "Mobiliser les apprentissages réalisés au cours des séances 1 et 2."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P11 Ex2; Mobiliser les apprentissages réalisés au cours des séances 1 et 2."
                 },
                 {
                   "n": "Pratique autonome",
@@ -512,14 +784,248 @@
             },
             {
               "seance_number": 4,
-              "title": "Bilan de la séquence Évaluation ACTIVITÉ ÉLÈVE P12 Ex5 Consolidation ACTIVITÉ ENSEIGNANT P12 Ex6 ੉ Aider les élèves les plus fragiles. ACTIVITÉ ÉLÈVE ੉ Utiliser le matériel de numération pour vérifier certaines réponses. ੉ Comprendre que 10 dizaines, c’est 10 dizaines et 0 unité et peut donc s’écrire 100.",
-              "materials": [],
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 58,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence en s’appuyant sur la trace écrite D2-3. D2 3 58"
                   ]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Parties-tout : recherche d'une partie",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 59,
+              "materials": [
+                "20 jetons symbolisant les billes"
+              ],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Lire l’énoncé du problème P13 Pb1 à haute voix en simulant l’action avec des jetons symbolisant les billes."
+                  ],
+                  "el": [
+                    "Résoudre le problème pendant trois minutes dans le cahier de brouillon sans avoir accès au matériel."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Vérifier la compréhension de l’énoncé du problème:",
+                    "Demander aux élèves de représenter la situation par un schéma.",
+                    "Mettre en commun les schémas réalisés et inventorier les éléments essentiels à représenter.",
+                    "Expliciter comment résoudre le problème en s’appuyant sur le schéma en barres (à vidéoprojeter à l’aide d’un zoom sur le cahier).",
+                    "Repérer le tout et les deux parties sur le schéma en les encadrant avec les deux mains. Le point d’interrogation indique que l’on cherche la valeur d’une partie.",
+                    "Expliciter:",
+                    "Manipuler une collection de 20 jetons symbolisant les billes pour montrer que, si on retire les 9 billes de la poche droite, il reste 11 billes qui sont dans la poche gauche. Ce qui peut s’écrire avec une soustraction: 20 - 9 = 11.",
+                    "En désignant les parties correspondantes sur le schéma en barres, expliciter:",
+                    "Annoncer que ce schéma servira de référence pour tous les problèmes où il y a deux parties, où on connait le tout et où on cherche la valeur d’une partie."
+                  ],
+                  "cons": [
+                    "Combien y a-t-il de billes en tout? Combien y a-t-il de billes dans la poche droite? Que cherche-t-on?",
+                    "Pour trouver combien de billes sont cachées dans la poche gauche, on peut imaginer qu’on enlève les 9 billes qui sont dans la poche droite.",
+                    "Si on soustrait le nombre de billes de la poche droite (9) du nombre total de billes (20), on trouve le nombre de billes de la poche gauche (11)."
+                  ],
+                  "note": "CE QUE L’ENSEIGNANT DOIT SAVOIR — Le plus souvent, les élèves préfèrent chercher ce qui manque à 9 pour avoir 20, c’est-à-dire ce qu’il faut ajouter à 9 pour avoir 20, ce qui conduit à calculer 9 +? = 20. Pour les élèves de cet âge, la soustraction évoque d’abord l’idée de retirer, d’enlever une quantité. Or, la soustraction permet aussi de calculer un complément. Ce sens de recherche de complément ou de calcul de l’écart n’est pas spontané chez les élèves. Il est donc essentiel de construire explicitement cet usage de la soustraction par un apprentissage dédié."
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Lire l’énoncé du problème P13 Pb2 à haute voix en simulant l’action avec des jetons.",
+                    "Expliciter, en prenant appui sur le schéma en barres (à vidéoprojeter à l’aide d’un zoom sur le cahier), qu’il y a deux parties, qu’on connait la valeur du tout (24 billes) et d’une partie (10 billes) et qu’on cherche la valeur d’une partie.",
+                    "Demander aux élèves s’il est possible d’avoir 34 billes dans la boite jaune en justifiant leur réponse."
+                  ],
+                  "el": [
+                    "Résoudre le problème sans avoir accès au matériel de manipulation.",
+                    "Repérer les analogies avec le problème 1: contexte identique, problème de parties-tout avec recherche d’une partie.",
+                    "Valider la réponse en manipulant le matériel."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "el": [
+                    "Résoudre le problème P13 Pb3 sans avoir accès au matériel de manipulation."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique autonome",
+                  "el": [
+                    "Résoudre ensuite le plus possible de problèmes au choix parmi les problèmes P13 Pb4, 5, 6 ou 7."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séquence",
+                  "pe": [
+                    "Élaborer la trace écrite P2-1 en prenant appui sur la résolution du premier problème qui servira de référence lors de la résolution de problèmes similaires."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Tables d'addition : les presque doubles",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 60,
+              "materials": [
+                "Ardoises",
+                "Deux dés",
+                "Trace écrite C2-1"
+              ],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "note": "30 min. JEU DU FURET — Connaitre la suite orale des nombres jusqu’à 100 : énoncer à tour de rôle un nombre de la suite orale des nombres en comptant en avant, de un en un, à partir de 54 jusqu’à 80."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Annoncer aux élèves que vous avez lancé deux dés dans une boite et que vous avez obtenu ce résultat: 6 et 7.",
+                    "Demander aux élèves de trouver combien de points vous avez obtenus en tout.",
+                    "Écrire au tableau 6 + 7 =?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": [
+                    "Expliciter la procédure du double + 1 (trace écrite C2-1):"
+                  ],
+                  "cons": [
+                    "6 + 7 peut se décomposer en 6 + 6 + 1. On calcule le double de 6 puis on ajoute 1."
+                  ],
+                  "note": "D’autres procédures sont possibles: double moins 1, ou surcomptage à partir du nombre le plus grand, mais notre choix est de cibler une seule procédure à mémoriser pour favoriser la réussite des élèves fragiles."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Reprendre la situation avec les calculs donnés oralement en limitant à 10 secondes par calcul. Les élèves répondent sur l’ardoise."
+                  ],
+                  "cons": [
+                    "4 + 3 =?",
+                    "5 + 4 =?",
+                    "5 + 6 =?",
+                    "8 + 9 =?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": [
+                    "Faire écrire aux élèves dans un cahier les quatre lettres a, b, c et d.",
+                    "Proposer les calculs tous en même temps au tableau: a) 4 + 5 = … b) 7 + 6 = … c) 9 + 10 = … d) 6 + 5 = …"
+                  ],
+                  "cons": [
+                    "Vous avez 30 secondes pour écrire les 4 résultats dans le cahier."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "note": "10 min. JEU DU FURET — Connaitre la suite orale des nombres jusqu’à 100, en récitant la comptine en arrière, de un en un, de 95 jusqu’à 70."
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Mise en situation",
+                  "pe": [
+                    "Écrire au tableau 7 + 8 =?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": [
+                    "Rappeler la procédure du double + 1:"
+                  ],
+                  "cons": [
+                    "7 + 8 peut se décomposer en 7 + 7 + 1. On calcule le double de 7 puis on ajoute 1."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs à l’oral. Limiter le temps à 5 secondes par calcul. Les élèves écrivent le résultat sur l’ardoise."
+                  ],
+                  "cons": [
+                    "10 + 11 =?",
+                    "6 + 5 =?",
+                    "9 + 10 =?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C2-2."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "note": "10 min. Connaitre la suite écrite des nombres jusqu’à 100 — DICTÉE DES NOMBRES: trente-huit et quatre-vingt-trois à écrire en chiffres sur l’ardoise."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": [
+                    "Proposer les petits problèmes oraux avec un temps limité à 10 secondes par calcul:"
+                  ],
+                  "cons": [
+                    "J’ai 7 billes dans ma poche gauche et 8 billes dans ma poche droite. Combien de billes ai-je en tout?",
+                    "Dans un vase, il y a 9 tulipes rouges et 8 tulipes jaunes. Combien de tulipes y a-t-il en tout dans le vase?",
+                    "Louise a 5 images de chiens et 6 images de chats. Combien d’images a-t-elle en tout?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C2-2."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "note": "10 min. Connaitre la suite écrite des nombres jusqu’à 100 — DICTÉE DES NOMBRES: soixante-dix et quatre-vingt-dix-sept à écrire en chiffres sur l’ardoise."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "note": "CALCUL CHRONO P12 — Connaitre les tables d’addition (les presque doubles)."
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": [
+                    "Corriger collectivement les calculs les moins réussis par les élèves.",
+                    "Récapituler les procédures travaillées lors de la séquence."
+                  ],
+                  "note": "Trace écrite C2-1: 1+2=3, 2+3=5, 3+4=7, 4+5=9, 5+6=11, 6+7=13, 7+8=15, 8+9=17, 9+10=19, 10+11=21."
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Nombres entiers : le jeu du portrait",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 61,
+              "materials": [
+                "Cartes Flash Maths F2 A à D"
+              ],
+              "phases": [
+                {
+                  "n": "Flash Maths A",
+                  "el": [
+                    "Écrire le nombre qui répond à la devinette."
+                  ]
+                },
+                {
+                  "n": "Flash Maths B",
+                  "note": "Consigne identique."
+                },
+                {
+                  "n": "Flash Maths C",
+                  "note": "Consigne identique."
+                },
+                {
+                  "n": "Flash Maths D",
+                  "note": "Consigne identique."
                 }
               ]
             }
@@ -598,8 +1104,14 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Connaitre la suite écrite et la suite orale des nombres jusqu’à jusqu’à 60",
-              "materials": [],
+              "title": "Connaître la suite écrite et orale (lire/écrire les nombres)",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 62,
+              "materials": [
+                "Tableau des nombres (A3)",
+                "Ardoises"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -616,33 +1128,27 @@
                 },
                 {
                   "n": "Explicitation",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "pe": [
                     "Rappeler la signification des chiffres 4 et 8 dans 48: 4 dizaines et 8 unités.",
                     "Expliciter que, comme il y a 4 dizaines, il faut réciter la comptine des dizaines jusqu’à quarante (dix, vingt, trente, quarante) en montrant un doigt pour chaque dizaine.",
                     "Expliquer c’est la famille des quarante.",
                     "Surcompter ensuite de quarante jusqu’à quarante-huit en montrant un doigt pour chaque unité. ACTIVITÉ 2",
                     "Faire repérer la famille des cinquante et surcompter à partir de cinquante jusqu’à cinquante-trois dans le tableau."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "el": [
                     "Écrire sur l’ardoise les nombres dictés par enseignant: vingt-sept , seize, trente-neuf, cinquante-huit, quarante-et-un. ACTIVITÉ 2",
                     "Lire les nombres jusqu’à 59 montrés par l’enseignant dans le tableau des nombres (D1-3): 47, 18, 56, 33, 29... ACTIVITÉ 3",
                     "Trouver le nombre caché par le carré noir dans le tableau des nombres jusqu’à 99 vidéoprojeté (A3-1) et l’écrire sur l’ardoise."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P14 Ex1"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P14 Ex1"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -661,8 +1167,15 @@
             },
             {
               "seance_number": 2,
-              "title": "Connaitre la suite écrite et la suite orale des nombres jusqu’à 80",
-              "materials": [],
+              "title": "Connaître la suite jusqu'à 80 puis 100 (soixante, quatre-vingts)",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 63,
+              "materials": [
+                "Tableau des nombres (A3-2, A3-3)",
+                "D1-3",
+                "Fichier P15"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -672,19 +1185,14 @@
                     "Écrire 75 au tableau et demander de donner son nom à l’oral (soixante-quinze) en explicitant la procédure utilisée. ACTIVITÉ 2",
                     "Demander aux élèves de repérer les dizaines entières dans le tableau puis de trouver le nombre soixante-quatre dans le tableau. A3 1 D1 3 A3 2 3"
                   ],
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "el": [
                     "Trouver le nombre 75 dans le tableau et donner son nom à l’oral. ACTIVITÉ 2",
                     "Trouver le nombre soixante-quatre dans le tableau et l’écrire en chiffres sur l’ardoise."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Explicitation",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "pe": [
                     "Rappeler la signification des chiffres 7 et 5 dans 75: 7 dizaines et 5 unités.",
                     "Expliciter que, comme il y a 7 dizaines, il faut réciter la comptine des dizaines jusqu’à soixante (dix, vingt, ...soixante) en montrant un doigt pour chaque dizaine.",
@@ -696,24 +1204,21 @@
                   ],
                   "cons": [
                     "Dans soixante-dix et soixante-dix-neuf, il y a 7 dizaines. ACTIVITÉ 2"
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "el": [
                     "Écrire sur l’ardoise les nombres dictés par enseignant: soixante-sept, soixante-seize, soixante-neuf, soixante-dix-huit, soixante-et-un. ACTIVITÉ 2",
                     "Lire les nombres jusqu’à 79 montrés par l’enseignant dans le tableau des nombres (D1-3): 63, 77, 66, 73, 79… ACTIVITÉ 3",
                     "Trouver le nombre caché par le carré noir dans le tableau des nombres jusqu’à 99 (A3-2) et l’écrire sur l’ardoise."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P15 Ex2 et 3"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P15 Ex2 et 3"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -728,8 +1233,13 @@
             },
             {
               "seance_number": 3,
-              "title": "Connaitre la suite écrite et la suite orale des nombres jusqu’à jusqu’à 100",
-              "materials": [],
+              "title": "Entraînement",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 64,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -739,19 +1249,14 @@
                     "Écrire 93 au tableau et demander de donner son nom à l’oral (quatre-vingt-treize) en explicitant la procédure utilisée. ACTIVITÉ 2",
                     "Demander aux élèves de repérer les dizaines entières dans le tableau puis de trouver le nombre quatre-vingt-neuf dans le tableau."
                   ],
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "el": [
                     "Trouver le nombre 93 dans le tableau et donner son nom à l’oral. ACTIVITÉ 2",
                     "Trouver le nombre quatre-vingt-neuf dans le tableau et l’écrire en chiffres sur l’ardoise."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Explicitation",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "pe": [
                     "Rappeler la signification des chiffres 9 et 3 dans 93: 9 dizaines et 3 unités.",
                     "Expliciter que, comme il y a 9 dizaines, il faut réciter la comptine des dizaines jusqu’à quatre-vingts (dix, vingt…) en montrant un doigt pour chaque dizaine.",
@@ -763,24 +1268,21 @@
                   ],
                   "cons": [
                     "Dans quatre-vingts-dix et quatre-vingts-dix-neuf, il y a 9 dizaines. ACTIVITÉ 2"
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "el": [
                     "Écrire sur l’ardoise les nombres dictés par enseignant: quatre-vingt-six, quatre-vingt-seize, quatre-vingt-dix-neuf, quatre-vingt-huit, quatre-vingt-onze. ACTIVITÉ 2",
                     "Lire les nombres jusqu’à 99 montrés par l’enseignant dans le tableau des nombres (D1-3): 95, 87, 96, 83, 90… D1 3 A3 2 A3 3 D1 3 A3 3 3 Lecture et écritures des nombres jusqu’à 100 ACTIVITÉ 3",
                     "Trouver le nombre caché par le carré noir dans le tableau des nombres jusqu’à 99 (A3-3) et l’écrire sur l’ardoise. ACTIVITÉ 4 P14 Cherchons ensemble"
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P15 Ex4 et 5"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P15 Ex4 et 5"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -795,14 +1297,250 @@
             },
             {
               "seance_number": 4,
-              "title": "Bilan de la séquence Évaluation ACTIVITÉ ÉLÈVE P16 Ex6 Consolidation ACTIVITÉ ÉLÈVE P16 Ex7 et 8",
-              "materials": [],
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 64,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence en s’appuyant sur la trace écrite D3-1. D3 1 64"
                   ]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Parties-tout en une étape : partie ou tout",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 65,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Rappeler que les élèves ont déjà résolu des problèmes où il y a des parties et un tout.",
+                    "Écrire au tableau l’énoncé du Problème A (Chercher le tout) avant d’interroger: Dans une classe, il y a 12 filles et 10 garçons.",
+                    "Écrire au tableau l’énoncé du Problème B (Chercher une partie) avant d’interroger: Dans une classe, il y a 22 élèves en tout. On sait aussi qu’il y a 12 filles."
+                  ],
+                  "cons": [
+                    "Quelle question peut-on se poser? Combien y a-t-il d’élèves en tout?",
+                    "Comment trouve-t-on la réponse? À l’aide d’une addition: 12 + 10 = 22.",
+                    "On a cherché le tout.",
+                    "Quelle question peut-on se poser? Combien y a-t-il de garçons?",
+                    "Comment trouve-t-on la réponse? À l’aide d’une soustraction: 22 - 12 = 10.",
+                    "On a cherché une partie."
+                  ],
+                  "el": [
+                    "Résoudre les problèmes sur l’ardoise.",
+                    "Représenter chaque situation par un schéma en barres.",
+                    "Utiliser le vocabulaire partie et tout lors de la mise en commun."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Structurer les apprentissages réalisés:",
+                    "Dessiner le schéma en barres au tableau (Problème A: ? / 12 et 10).",
+                    "Dessiner le schéma en barres au tableau (Problème B: 22 / 12 et ?)."
+                  ],
+                  "cons": [
+                    "Qu’est-ce qu’on connait dans le problème A? Une partie: 12 filles, une autre partie: 10 garçons.",
+                    "Qu’est-ce qu’on cherche? Le nombre total d’élèves.",
+                    "Quel calcul doit-on effectuer pour trouver le tout quand on connait les parties? Une addition: 12 + 10 = 22.",
+                    "Qu’est-ce qu’on connait dans le problème B? Le tout: 22 élèves, une partie: 12 filles.",
+                    "Qu’est-ce qu’on cherche? L’autre partie: le nombre de garçons.",
+                    "Quel calcul doit-on effectuer pour trouver une partie quand on connait le tout et une partie? Une soustraction: 22 – 10 = 12.",
+                    "Avec les mêmes nombres (10, 12, 22) et la même situation (filles et garçons), on peut avoir deux problèmes différents: ce qui change, c’est ce qu’on cherche, parfois c’est le tout, parfois c’est une partie. Le schéma en barres nous aide à bien voir ce qu’on connait et ce qu’on cherche."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Circuler, observer, aider les élèves en les questionnant (Qu’est-ce que tu connais? Qu’est-ce que tu cherches? Quel schéma montre ça?) sans donner la solution."
+                  ],
+                  "el": [
+                    "Lire attentivement chaque problème.",
+                    "Pour chaque problème, trouver le schéma qui correspond parmi les quatre proposés à droite.",
+                    "Dans un cahier, résoudre chaque problème en écrivant le numéro du problème, le calcul et la phrase réponse."
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P17 Pb1, 2, 3 et 4. DIFFÉRENCIATION: apporter une aide personnalisée aux élèves les plus fragiles qui peuvent être regroupés dans un espace de la classe pour faciliter les échanges."
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séquence",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours de la séance."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Tables d'addition : compléments à 10",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 66,
+              "materials": [
+                "Ardoises",
+                "Boite et balles de golf (œufs)",
+                "Bande numérique",
+                "Trace écrite C3-1"
+              ],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "pe": [
+                    "Énoncer à tour de rôle un nombre de la suite orale des nombres en comptant en avant, de un en un, à partir de 60 jusqu’à 79.",
+                    "Expliciter qu’on utilise la grande comptine de 1 à 19 entre 60 et 79."
+                  ],
+                  "note": "30 min. JEU DU FURET — Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Présenter une boite et annoncer qu’elle peut contenir 10 œufs. Annoncer que vous placez 8 balles de golf (symbolisant les œufs) dans la boite et fermer la boite:",
+                    "Écrire au tableau: 8 +? = 10."
+                  ],
+                  "cons": [
+                    "J’ai 8 œufs. Combien d’œufs me manque-t-il pour remplir la boite, c’est-à-dire pour avoir 10 œufs?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": [
+                    "Expliciter:",
+                    "Expliciter la procédure de comptage sur les doigts:",
+                    "Rappeler la procédure de surcomptage sur la bande numérique:"
+                  ],
+                  "cons": [
+                    "Chercher combien il faut ajouter à 8 pour aller jusqu’à 10, c’est calculer le complément de 8 à 10.",
+                    "J’ai 10 doigts. Si je fais 8 avec mes doigts, il reste 2 doigts pliés. Donc 8 + 2 = 10.",
+                    "Je place mon doigt sur la case du 8 et je compte de combien de cases il faut avancer pour aller jusqu’à 10."
+                  ],
+                  "note": "Trace écrite C3-1."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs oralement. Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ],
+                  "cons": [
+                    "Combien faut-il pour aller de 6 jusqu’à 10?",
+                    "Combien faut-il ajouter à 9 pour avoir 10?",
+                    "Combien manque-t-il à 7 pour avoir 10?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": [
+                    "Proposer les calculs par écrit au tableau: 5 +? = 10, 2 +? = 10, ? + 6 = 10, ? + 1 = 10. Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "note": "10 min. JEU DU FURET — Connaitre la suite orale des nombres jusqu’à 100, en récitant la comptine en arrière, de un en un, de 79 jusqu’à 57."
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Mise en situation",
+                  "pe": [
+                    "Écrire au tableau: 10 =? + 3."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": [
+                    "Rappeler les procédures:",
+                    "Expliciter qu’on peut prendre appui sur un résultat mémorisé 7 + 3 = 10."
+                  ],
+                  "cons": [
+                    "Trouver combien il faut ajouter à 3 pour aller jusqu’à 10, c’est calculer le complément de 3 à 10."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs à l’oral. Limiter le temps à 5 secondes par calcul. Les élèves répondent sur l’ardoise."
+                  ],
+                  "cons": [
+                    "3 +? = 10",
+                    "10 = 6 +?",
+                    "10 = 8 +?",
+                    "de 1 pour aller à 10?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C3-2."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "note": "10 min. Connaitre la suite écrite des nombres jusqu’à 100 — DICTÉE DES NOMBRES: vingt-quatre et quatre-vingt-seize à écrire en chiffres sur l’ardoise."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": [
+                    "Proposer les petits problèmes oraux avec un temps limité à 10 secondes par calcul:"
+                  ],
+                  "cons": [
+                    "J’ai 8 œufs. Combien d’œufs me manque-t-il pour avoir 10 œufs?",
+                    "Dans mon jardin, il y a 10 rosiers. 4 sont déjà fleuris. Combien de rosiers ne sont pas encore fleuris?",
+                    "Dans mes poches, j’ai 10 billes. J’en ai 3 dans ma poche gauche. Combien en ai-je dans ma poche droite?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C3-2."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "note": "10 min. Connaitre la suite écrite des nombres jusqu’à 100 — DICTÉE DES NOMBRES: soixante-cinq et quatre-vingt-deux à écrire en chiffres sur l’ardoise."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "note": "CALCUL CHRONO P16 — Connaitre les tables d’addition (les compléments à 10)."
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": [
+                    "Corriger collectivement les calculs les moins réussis par les élèves.",
+                    "Récapituler les procédures travaillées lors de la séquence."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Suites évolutives",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 67,
+              "materials": [
+                "Cartes Flash Maths F3 A à D — Suites évolutives"
+              ],
+              "phases": [
+                {
+                  "n": "Flash Maths A",
+                  "el": [
+                    "Observer le motif pendant 30 secondes pour pouvoir le reproduire sur l’ardoise quand il sera caché."
+                  ],
+                  "note": "Au cours de la synthèse, comprendre que la mémorisation du motif de base et de la règle qui le fait évoluer prend moins de place en mémoire que celle du motif complet. Ici le motif de base est un trait, un triangle et on recommence en ajoutant un triangle à chaque fois."
+                },
+                {
+                  "n": "Flash Maths B",
+                  "note": "Consigne identique. Au cours de la synthèse, comprendre que la mémorisation du motif de base et de la règle qui le fait évoluer prend moins de place en mémoire que celle du motif complet. Ici le motif de base est un disque, un triangle et on recommence en ajoutant un disque et un triangle à chaque fois."
+                },
+                {
+                  "n": "Flash Maths C",
+                  "note": "Consigne identique. Au cours de la synthèse, comprendre que la mémorisation du motif de base et de la règle qui le fait évoluer prend moins de place en mémoire que celle du motif complet. Ici le motif de base est un disque, une croix et un trait et on recommence en ajoutant un disque à chaque fois."
+                },
+                {
+                  "n": "Flash Maths D",
+                  "note": "Consigne identique. Au cours de la synthèse, comprendre qu’on ajoute deux disques à chaque fois, un en haut et un en bas."
                 }
               ]
             }
@@ -902,7 +1640,10 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Comparer deux nombres entiers en utilisant les symboles =, < et >",
+              "title": "Comparer deux nombres avec les dizaines et les unités",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 68,
               "materials": [
                 "une boite A ouverte contenant une collection de 96 cubes (8 dizaines et 16 cubes) et une boite fermée B contenant 94 cubes (7 dizaines et 24 unités) avec écrit sur le couvercle 7d 24u"
               ],
@@ -946,9 +1687,7 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P18 Cherchons ensemble"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P18 Cherchons ensemble"
                 },
                 {
                   "n": "Pratique autonome",
@@ -969,8 +1708,14 @@
             },
             {
               "seance_number": 2,
-              "title": "Ordonner des nombres dans l’ordre croissant ou décroissant",
-              "materials": [],
+              "title": "Placer et lire des nombres sur une demi-droite graduée",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 70,
+              "materials": [
+                "Animation A4-2",
+                "Fichier P19"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1006,17 +1751,11 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P19 Ex3",
-                    "Cet exercice a pour objectif de consolider les apprentissages",
-                    "de la séance 1 et notamment l’utilisation des symboles =, < et >."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P19 Ex3; Cet exercice a pour objectif de consolider les apprentissages; de la séance 1 et notamment l’utilisation des symboles =, < et >."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P19 Ex4"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P19 Ex4"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1028,7 +1767,10 @@
             },
             {
               "seance_number": 3,
-              "title": "Réinvestir",
+              "title": "Entraînement",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 70,
               "materials": [
                 "une corde à linge, des pinces à linge et des étiquettes pour écrire les nombres proposés par les élèves"
               ],
@@ -1061,21 +1803,19 @@
                 },
                 {
                   "n": "Pratique guidée",
+                  "pe": [
+                    "Expliciter les procédures à acquérir. Procédures visées - Déterminer la valeur de l’intervalle entre deux graduations successives (pas de 1 en 1, de 5 en 5 ou de 10 en 10?) en faisant des essais et des réajustements et en calculant. - Avancer du nombre de pas nécessaire depuis le nombre repère choisi."
+                  ],
                   "el": [
                     "Écrire sur l’ardoise le nombre indiqué par l’étiquette rouge sur la corde à linge (animation A4-2).",
                     "Demi-droite graduée de un en un (le pas est de un.)",
                     "Demi-droite graduée de dix en dix (le pas est de dix.)",
                     "Demi-droite graduée de cinq en cinq (le pas est de cinq.)"
-                  ],
-                  "pe": [
-                    "Expliciter les procédures à acquérir. Procédures visées - Déterminer la valeur de l’intervalle entre deux graduations successives (pas de 1 en 1, de 5 en 5 ou de 10 en 10?) en faisant des essais et des réajustements et en calculant. - Avancer du nombre de pas nécessaire depuis le nombre repère choisi."
                   ]
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P19 Ex5"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P19 Ex5"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1087,14 +1827,238 @@
             },
             {
               "seance_number": 4,
-              "title": "Bilan de la séquence Évaluation ACTIVITÉ ÉLÈVE P20 Ex6 Consolidation ACTIVITÉ ÉLÈVE P20 Ex7, 8 et 9",
-              "materials": [],
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 70,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés autour de la notion de demi-droite graduée en s’appuyant sur la trace écrite D4-4. A4 2 D4 4 70"
                   ]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Transformation : recherche de l'état final",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 71,
+              "materials": [
+                "matériel de numération: cubes emboitables qu’on peut organiser en dizaines et unités"
+              ],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Lire l’énoncé du problème P21 Pb1 à haute voix."
+                  ],
+                  "el": [
+                    "Résoudre le problème pendant trois minutes dans le cahier de brouillon sans avoir accès au matériel de manipulation."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Vérifier la compréhension de l’énoncé en demandant de raconter ce qu’il se passe dans cette histoire.",
+                    "Mettre à disposition des élèves le matériel de numération pour jouer la scène.",
+                    "Relire l’énoncé phrase par phrase pour accompagner la simulation de la situation (30 billes à la fin = 23 billes au début + 7 billes gagnées).",
+                    "Prendre appui sur le schéma en barres pour modéliser la situation avec une addition: 23 + 7 = 30.",
+                    "Repérer le tout et les deux parties sur le schéma en les encadrant avec les deux mains. Le point d’interrogation indique que l’on cherche le tout.",
+                    "Construire également un schéma avec un déplacement sur un axe. Ce type de schéma n’est pas chronologique: on va vers la droite quand les quantités augmentent et vers la gauche quand elles diminuent, quel que soit l’ordre des événements."
+                  ],
+                  "cons": [
+                    "Que cherche-t-on?",
+                    "Medhi a-t-il gagné ou perdu des billes? Combien?",
+                    "Combien de billes avait-il avant la récréation?",
+                    "On cherche le nombre total de billes que Mehdi possède à la fin. Ce nombre total, c’est le tout. Ce tout est composé de deux parties: une partie avec les 23 billes qu’il avait avant la récréation et une autre partie avec les 7 billes qu’il a gagnées.",
+                    "La quantité de billes augmente et donc, il n’est pas possible qu’il y ait moins de 23 billes à la fin de la récréation."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "note": "ACTIVITÉ ÉLÈVE P21 Pb3"
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique autonome",
+                  "note": "ACTIVITÉ ÉLÈVE P21 Pb4 et 7"
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Mise en situation",
+                  "pe": [
+                    "Lire l’énoncé du problème P21 Pb2 à haute voix."
+                  ],
+                  "el": [
+                    "Résoudre le problème pendant trois minutes dans le cahier de brouillon sans avoir accès au matériel de manipulation."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Explicitation",
+                  "pe": [
+                    "Mettre à disposition des élèves le matériel de numération pour jouer la scène.",
+                    "Relire l’énoncé phrase par phrase pour accompagner la simulation de la situation.",
+                    "Prendre appui sur le schéma en barres pour modéliser la situation avec une soustraction: 23 - 7 = 16 (23 billes au début, 7 billes perdues).",
+                    "Questionner les élèves en manipulant le matériel:",
+                    "Expliciter également la construction d’un schéma avec un déplacement sur un axe."
+                  ],
+                  "cons": [
+                    "Dans cette histoire, quelle est la plus grande quantité de billes dont on parle, celle qui contient les autres? C’est la quantité au début (23 billes) avant que Louise ne perde des billes, c’est le tout. Ce tout (23 billes) est composé de deux parties: la partie des 7 billes perdues et la partie des billes qui restent."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "note": "ACTIVITÉ ÉLÈVE P21 Pb5 et 6"
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance",
+                  "pe": [
+                    "Élaborer la trace écrite P4-1 en prenant appui sur la résolution des problèmes 1 et 2 qui servira de référence lors de la résolution de problèmes similaires."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Ajouter ou soustraire un nombre entier de dizaines",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 72,
+              "materials": [
+                "Ardoises",
+                "Matériel de numération",
+                "Trace écrite C14-1",
+                "Document élève C4-2"
+              ],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "pe": [
+                    "Écrire 35 au tableau, demander aux élèves d’écrire en chiffres sur l’ardoise le nombre qui suit ce nombre.",
+                    "Puis proposer les nombres 79 et 90."
+                  ],
+                  "note": "30 min. JEU DU SUIVANT — Connaitre la suite écrite des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Demander aux élèves de calculer 38 + 40 puis 96 – 50."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": [
+                    "Utiliser le matériel de numération pour expliciter les procédures à acquérir: 38 est égal à 3 dizaines et 8 unités ; 40 est égal à 4 dizaines ; 3 dizaines 8 unités + 4 dizaines = 7 dizaines + 8 unités, donc 38 + 40 = 78. 96 est égal à 9 dizaines et 6 unités ; 40 est égal à 4 dizaines ; 9 dizaines 6 unités – 4 dizaines = 5 dizaines 6 unités, donc 96 – 40 = 56.",
+                    "Expliciter l’équivalence entre le calcul de 96 – 40 et celui de 40 +? = 96."
+                  ],
+                  "cons": [
+                    "Ajouter ou soustraire 20, 30, 40, 50, 60, 70, 80 ou 90 à un nombre, c’est ajouter ou soustraire 2, 3, 4, 5, 6, 7, 8 ou 9 dizaines à ce nombre."
+                  ],
+                  "note": "Trace écrite C14-1."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs oralement et par écrit au tableau. Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l’ardoise: 72 – 30 =? ; 30 + 68 =? ; 85 – 20 =? ; 70 – 10 =?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": [
+                    "Proposer les calculs dans le document élève C4-2."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "pe": [
+                    "JEU DU SUIVANT avec les nombres 97, 99 et 69."
+                  ],
+                  "note": "10 min. Connaitre la suite écrite des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs à l’oral. Limiter le temps à 5 secondes par calcul. Les élèves répondent sur l’ardoise: 48 + 30 =? ; 91 – 50 =? ; 60 + 24 =? ; 100 – 70 =?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C4-3."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "pe": [
+                    "Écrire 50 au tableau, demander aux élèves d’écrire en chiffres sur l’ardoise le nombre qui précède ce nombre.",
+                    "Puis proposer les nombres 90 et 76."
+                  ],
+                  "note": "10 min. JEU DU PRÉCÉDENT — Connaitre la suite écrite des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": [
+                    "Proposer les petits problèmes oraux avec un temps limité à 10 secondes par calcul:"
+                  ],
+                  "cons": [
+                    "Éva a 64 autocollants. On lui en donne 30. Combien en a-t-elle maintenant?",
+                    "Ugo avait 53 billes. Il en perd 10 à la récréation. Combien en a-t-il maintenant?",
+                    "Mardi midi, Sacha était à la page 28 de son livre. Cet après-midi, il décide de lire 70 pages. À quelle page sera-t-il en fin d’après-midi?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C4-3."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": [
+                    "JEU DU PRÉCÉDENT avec les nombres 100, 80 et 91."
+                  ],
+                  "note": "10 min. Connaitre la suite écrite des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "note": "CALCUL CHRONO P20 — Ajouter ou soustraire un nombre entier de dizaines à un nombre."
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": [
+                    "Corriger collectivement les calculs les moins réussis par les élèves.",
+                    "Récapituler les procédures travaillées lors de la séquence."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Monnaie",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 73,
+              "materials": [
+                "Cartes Flash Maths F4 A à D — Monnaie (pièces et billets factices)"
+              ],
+              "phases": [
+                {
+                  "n": "Flash Maths A",
+                  "el": [
+                    "Déterminer la valeur en euro des pièces et des billets contenus dans le portemonnaie."
+                  ]
+                },
+                {
+                  "n": "Flash Maths B",
+                  "note": "Consigne identique."
+                },
+                {
+                  "n": "Flash Maths C",
+                  "note": "Consigne identique."
+                },
+                {
+                  "n": "Flash Maths D",
+                  "note": "Consigne identique."
                 }
               ]
             }
@@ -1171,7 +2135,10 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Connaitre la valeur des chiffres en fonction de leur position dans un nombre",
+              "title": "Connaître la valeur des chiffres (groupements par 10 et 100)",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 74,
               "materials": [
                 "par binôme, une collection de 126 cubes emboitables (11 barres de dix cubes et 16 cubes isolés) ou les carrés de la planche prédécoupée PP1 du cahier de l’élève MATHS EN CE1"
               ],
@@ -1239,8 +2206,14 @@
             },
             {
               "seance_number": 2,
-              "title": "Comparer des collections en les organisant en groupes de dix ou de cent",
-              "materials": [],
+              "title": "Construire des collections d'un cardinal donné",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 76,
+              "materials": [
+                "Matériel de numération / PP1",
+                "Fichier P22"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1271,9 +2244,6 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "el": [
                     "Faire l’exercice de D5-1. D5 2 D5 3 A5 1 D5 1",
                     "Organiser la collection de Sacha en groupes de 10 et de 100.",
@@ -1284,21 +2254,19 @@
                     "Comparer les deux nombres en utilisant le symbole qui convient (=,<,>): 153 < 157.",
                     "Verbaliser: 157 est plus grand que 153 et 153 est plus petit que 157. ACTIVITÉ 2",
                     "Faire l’exercice P22 Cherchons ensemble"
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P22 Ex1",
-                    "Cet exercice a pour objectif de consolider la capacité à écrire en chiffres le nombre de carrés d’une collection."
-                  ],
                   "pe": [
                     "Lors de la mise en commun, rappeler:"
                   ],
                   "cons": [
                     "Une centaine, c’est aussi 10 dizaines mais aussi 100 unités.",
                     "Le mot centaine signifie donc à la fois 1 centaine, 10 dizaines, 100 unités."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P22 Ex1; Cet exercice a pour objectif de consolider la capacité à écrire en chiffres le nombre de carrés d’une collection."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1314,7 +2282,10 @@
             },
             {
               "seance_number": 3,
-              "title": "Construire des collections de cardinal donné",
+              "title": "Entraînement",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 77,
               "materials": [
                 "par binôme, matériel de numération ou PP1"
               ],
@@ -1349,17 +2320,7 @@
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P23 Ex2 et 3",
-                    "Obstacles possibles",
-                    "- Compréhension fragile des aspects décimal (base 10)",
-                    "et positionnel",
-                    "- Erreur lors de l’énumération de la collection car compte",
-                    "deux fois le même élément ou oublie un élément",
-                    "lors du comptage.",
-                    "- Relations 10 unités = 1 dizaine et 10 dizaines = 1 centaine",
-                    "pas automatisées."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P23 Ex2 et 3; Obstacles possibles; - Compréhension fragile des aspects décimal (base 10); et positionnel; - Erreur lors de l’énumération de la collection car compte; deux fois le même élément ou oublie un élément; lors du comptage.; - Relations 10 unités = 1 dizaine et 10 dizaines = 1 centaine; pas automatisées."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1372,6 +2333,9 @@
             {
               "seance_number": 4,
               "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 78,
               "materials": [
                 "le matériel de numération pour chaque élève ou PP1 Évaluation ACTIVITÉ ÉLÈVE P24 Ex4 Consolidation ੉ Écrire 100 au tableau et présenter une plaque centaine. ੉ Écrire au tableau 1 centaine. ACTIVITÉ 1 ੉ Écrire sur l’ardoise le nombre de barres dizaine nécessaire pour obtenir 1 plaque centaine. ੉ Valider collectivement en manipulant les barres dizaine. ੉ Écrire dans un cahier: 1 centaine = 10 dizaines. ACTIVITÉ 2 ੉ Écrire sur l’ardoise le nombre de cubes unité nécessaire pour obtenir 1 plaque centaine. ੉ Valider collectivement en manipulant les cubes unité. ੉ Écrire dans un cahier: 1 centaine = 100 unités. ੉ Comprendre qu’on peut aussi écrire: 10 dizaines = 100 unités."
               ],
@@ -1387,9 +2351,7 @@
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P24 Ex5"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P24 Ex5"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1400,6 +2362,227 @@
                     "Une centaine, c’est dix dizaines.",
                     "Une centaine, c’est aussi cent unités.",
                     "Cent est un nombre de trois chiffres qui s’écrit 100. A5 2 D5 2 78"
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Parties-tout en une ou deux étapes",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 79,
+              "materials": [
+                "par binôme, 20 jetons ou cubes symbolisant les billes"
+              ],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Rappeler que les élèves ont déjà résolu des problèmes où il y a des parties et un tout.",
+                    "Écrire au tableau l’énoncé du problème A (Chercher le tout) avant d’interroger: J’ai 10 billes. Je gagne 4 billes.",
+                    "Écrire de même l’énoncé du problème B (Chercher une partie): J’ai 10 billes. Je perds 4 billes."
+                  ],
+                  "cons": [
+                    "Que connait-on? Les deux parties: 10 billes et 4 billes.",
+                    "Quelle question peut-on se poser? Combien y a-t-il de billes en tout?",
+                    "Comment trouve-t-on la réponse? À l’aide d’une addition: 10 + 4 = 14.",
+                    "On a cherché le tout.",
+                    "Que connait-on? Le tout, 10 billes et une partie, 4 billes.",
+                    "Quelle question peut-on se poser? Combien de billes te reste-t-il?",
+                    "Comment trouve-t-on la réponse? À l’aide d’une soustraction: 10 - 4 = 6.",
+                    "On a cherché une partie."
+                  ],
+                  "el": [
+                    "Résoudre les problèmes sur l’ardoise.",
+                    "Représenter chaque situation par un schéma en barres.",
+                    "Utiliser le vocabulaire partie et tout lors de la mise en commun."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Structurer les apprentissages réalisés:",
+                    "Dessiner le schéma en barres au tableau (Problème A: ? / 10 et 4).",
+                    "Dessiner le schéma en barres au tableau (Problème B: 10 / 4 et ?)."
+                  ],
+                  "cons": [
+                    "Qu’est-ce qu’on connait dans le problème A? Une partie: 10 billes et une autre partie: 4 billes.",
+                    "Qu’est-ce qu’on cherche? On cherche le tout.",
+                    "Quel calcul doit-on effectuer pour trouver le tout quand on connait les parties? Une addition: 10 + 4 = 14.",
+                    "Qu’est-ce qu’on connait dans le problème B? Le tout: 10 billes et une partie: les 4 billes perdues.",
+                    "Qu’est-ce qu’on cherche? L’autre partie: le nombre de billes qui restent.",
+                    "Quel calcul doit-on effectuer pour trouver une partie quand on connait le tout et une partie? Une soustraction: 10 – 4 = 6."
+                  ],
+                  "note": "Expliciter qu’avec les mêmes nombres (10, 4, 14) et la même situation, on peut avoir deux problèmes différents. Ce qui change, c’est ce qu’on cherche: parfois le tout, parfois une partie. Le schéma nous aide à bien voir ce qu’on connait et ce qu’on cherche."
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Circuler, observer, aider les élèves en les questionnant (Qu’est-ce que tu connais? Qu’est-ce que tu cherches? Quel schéma montre ça?), sans donner la solution.",
+                    "Encourager l’utilisation du schéma comme outil de réflexion."
+                  ],
+                  "el": [
+                    "Lire attentivement chaque problème.",
+                    "Pour chaque problème, trouver le schéma qui correspond parmi les quatre proposés à droite.",
+                    "Dans un cahier, résoudre chaque problème en écrivant le numéro du problème, le calcul et la phrase réponse."
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P25 Pb1, 2, 3 et 4. DIFFÉRENCIATION: apporter une aide personnalisée aux élèves les plus fragiles qui peuvent être regroupés dans un espace de la classe pour faciliter les échanges."
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique autonome",
+                  "el": [
+                    "Résoudre ensuite le plus possible de problèmes parmi les problèmes P25 Pb5, 6, 7 et 8."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séquence",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours de la séance."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Tables d'addition : sommes inférieures à 10",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 80,
+              "materials": [
+                "Ardoises",
+                "Trace écrite C5-1",
+                "Document élève C5-2"
+              ],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "pe": [
+                    "Énoncer à tour de rôle un nombre de la suite orale des nombres en comptant en avant, de deux en deux, à partir de 0 jusqu’à 50."
+                  ],
+                  "note": "30 min. JEU DU FURET — Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Proposer les calculs oralement. Les élèves répondent sur l’ardoise: 5 + 3, 2 + 7, 3 + 3, 5 + 4."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": [
+                    "Pour 5 + 3 et 2 + 7, rappeler les procédures de surcomptage:",
+                    "Rappeler que, pour calculer 2 + 7, il est plus facile de mettre le plus grand nombre devant pour calculer 7 + 2."
+                  ],
+                  "cons": [
+                    "Je mets 5 dans ma tête et j’ajoute 3 en comptant sur mes doigts 6, 7, 8.",
+                    "Dans une addition, l’ordre des termes n’a pas d’importance."
+                  ],
+                  "note": "Les procédures à acquérir pour calculer 3 + 3 et 5 + 4 (doubles et presque doubles) ont été travaillées dans les séquences précédentes. Les rappeler uniquement si les élèves rencontrent des difficultés pour ces calculs. Trace écrite C5-1."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Présenter les calculs donnés oralement et à l’écrit au tableau: 3 + 6 =? ; ? + 4 = 8 ; 1 +? = 8 ; 9 =? + 5. Limiter le temps à 10 secondes par calcul. Les élèves répondent sur l’ardoise."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": [
+                    "Proposer les calculs du document élève C5-2."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en avant, de deux en deux, de 1 jusqu’à 49."
+                  ],
+                  "note": "10 min. Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs à l’écrit au tableau: 5 + 4 =? ; 6 = 4 +? ; 6 +? = 8 ; 4 + 5 =? Limiter le temps à 5 secondes par calcul. Les élèves répondent sur l’ardoise."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C5-3. L’objectif est les sommes inférieures à 10."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en arrière, de deux en deux, de 50 jusqu’à 0."
+                  ],
+                  "note": "10 min. Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": [
+                    "Proposer les petits problèmes oraux avec un temps limité à 10 secondes par calcul:"
+                  ],
+                  "cons": [
+                    "Léon a 5 billes et Zoé a 4 billes. Combien de billes ont-ils en tout?",
+                    "J’ai trois euros dans mon portemonnaie. On me donne quatre euros. Combien d’argent ai-je dans mon portemonnaie maintenant?",
+                    "Lina a 4 billes. Iris en a le double. Combien de billes Iris a-t-elle?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C5-3. L’objectif est les sommes inférieures à 10."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en arrière, de deux en deux, de 49 jusqu’à 1."
+                  ],
+                  "note": "10 min. Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "note": "CALCUL CHRONO P24 — Connaitre les tables d’addition (les sommes inférieures à 10)."
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": [
+                    "Corriger collectivement les calculs les moins réussis par les élèves.",
+                    "Récapituler les procédures travaillées lors de la séquence."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Rendre la monnaie",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 81,
+              "materials": [
+                "Cartes Flash Maths F5 A à D — Rendre la monnaie"
+              ],
+              "phases": [
+                {
+                  "n": "Flash Maths A",
+                  "el": [
+                    "Résoudre le problème proposé."
+                  ]
+                },
+                {
+                  "n": "Flash Maths B",
+                  "el": [
+                    "Résoudre le problème proposé."
+                  ]
+                },
+                {
+                  "n": "Flash Maths C",
+                  "el": [
+                    "Résoudre le problème proposé."
+                  ]
+                },
+                {
+                  "n": "Flash Maths D",
+                  "el": [
+                    "Résoudre le problème proposé."
                   ]
                 }
               ]
@@ -1482,7 +2665,10 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Réactiver la technique de l’addition en colonnes avec retenue",
+              "title": "Réactiver la technique de l'addition en colonnes",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 82,
               "materials": [
                 "46 cubes jaunes et 38 cubes rouges, une boite et deux bacs"
               ],
@@ -1524,20 +2710,18 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "el": [
-                    "Effectuer les additions de l’exercice de D6-1."
-                  ],
                   "pe": [
                     "Circuler dans les rangs afin d’apporter une aide personnalisée aux élèves les plus fragiles.",
                     "Rappeler certaines procédures de calcul mental à mobiliser: - Lors du calcul posé de 27 + 68, utiliser la procédure du passage par 10 pour calculer mentalement 7 + 8 (7 + 8 = 7 + 3 + 5). - Lors du calcul posé de 15 + 64 + 6, utiliser la connaissance des compléments à 10 pour calculer mentalement 5 + 4 + 6 (je sais que 6 + 4 = 10 donc je calcule 5 + 10 = 15).",
                     "Faire remarquer que, pour le calcul posé de 834 + 52, on additionne un nombre de deux chiffres avec un nombre de trois chiffres: on aligne les unités avec les unités et les dizaines avec les dizaines. D6 1 6 Calcul posé: addition OBJECTIF D’APPRENTISSAGE DU PROGRAMME 2025 Poser et effectuer des additions en colonnes"
+                  ],
+                  "el": [
+                    "Effectuer les additions de l’exercice de D6-1."
                   ]
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P26 Cherchons ensemble et Ex1"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P26 Cherchons ensemble et Ex1"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1549,7 +2733,10 @@
             },
             {
               "seance_number": 2,
-              "title": "Additionner en colonnes deux nombres de deux ou trois chiffres",
+              "title": "Additionner en colonnes deux puis trois nombres",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 83,
               "materials": [
                 "353 cubes et 274 cubes, une boite et deux bacs"
               ],
@@ -1595,9 +2782,7 @@
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P27 Ex2"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P27 Ex2"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1609,8 +2794,13 @@
             },
             {
               "seance_number": 3,
-              "title": "Réinvestir le calcul posé de l’addition",
-              "materials": [],
+              "title": "Réinvestir le calcul posé de l'addition",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 84,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Mise en situation",
@@ -1618,16 +2808,16 @@
                     "Annoncer l’objectif de la séance: renforcer l’apprentissage du calcul posé de l’addition.",
                     "Laisser aux élèves un temps de lecture silencieuse du problème P27 Ex4 puis lire l’énoncé à haute voix."
                   ],
+                  "cons": [
+                    "Combien d’adultes sont allés au cinéma samedi?",
+                    "Combien d’enfants sont allés au cinéma samedi?"
+                  ],
                   "el": [
                     "Formuler ce qu’on cherche: le nombre d’entrée vendues par la caissière.",
                     "Répondre aux questions de l’enseignant:",
                     "Résoudre le problème sans avoir la possibilité de prendre appui sur des manipulations.",
                     "Arrondir le calcul pour trouver l’ordre de grandeur du résultat et contrôler sa vraisemblance: 58 + 36 ≈ 60 + 40.",
                     "Formuler la réponse: la caissière a vendu 94 entrées."
-                  ],
-                  "cons": [
-                    "Combien d’adultes sont allés au cinéma samedi?",
-                    "Combien d’enfants sont allés au cinéma samedi?"
                   ]
                 },
                 {
@@ -1638,18 +2828,11 @@
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P27 Ex5",
-                    "Effectuer et poser l’addition en colonnes 135 + 24 + 28 = 187.",
-                    "Formuler la réponse: il a vendu 187 roses.",
-                    "Arrondir le calcul pour trouver l’ordre de grandeur du résultat et contrôler sa vraisemblance: 135 + 24 + 28 ≈ 130 + 20 + 30."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P27 Ex5; Effectuer et poser l’addition en colonnes 135 + 24 + 28 = 187.; Formuler la réponse: il a vendu 187 roses.; Arrondir le calcul pour trouver l’ordre de grandeur du résultat et contrôler sa vraisemblance: 135 + 24 + 28 ≈ 130 + 20 + 30."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P27 Ex3"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P27 Ex3"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1661,14 +2844,241 @@
             },
             {
               "seance_number": 4,
-              "title": "Bilan de la séquence Évaluation ACTIVITÉ ÉLÈVE P28 Ex6 Consolidation ACTIVITÉ ENSEIGNANT ੉ Rappeler l’intérêt de savoir estimer l’ordre de grandeur du résultat pour en vérifier la vraisemblance. ACTIVITÉ ÉLÈVE P28 Ex7 et 8",
-              "materials": [],
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 84,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence en prenant appui sur la trace écrite D6-2. D6 2 84"
                   ]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Problèmes additifs en deux étapes",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 85,
+              "materials": [
+                "une boite symbolisant un bus et des cubes symbolisant les passagers"
+              ],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Lire l’énoncé P29 Pb1 à haute voix en simulant l’action avec des jetons (les passagers) et une boite (le bus)."
+                  ],
+                  "el": [
+                    "Résoudre le problème pendant trois minutes dans le cahier de brouillon sans avoir accès au matériel."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Vérifier la compréhension de l’énoncé du problème:",
+                    "Mettre à disposition des élèves le matériel de numération pour jouer la scène.",
+                    "Relire l’énoncé phrase par phrase pour accompagner la simulation de la situation.",
+                    "Expliciter les étapes de la résolution du problème.",
+                    "ÉTAPE 1: construire un schéma avec un déplacement sur un axe (16 personnes dans le bus, 9 personnes montent).",
+                    "Écrire le calcul au tableau: 16 + 9 = 25.",
+                    "Expliquer qu’il est important de prendre l’habitude d’écrire une phrase après chacune des étapes, pour ne pas se perdre dans les calculs. Après le 1er arrêt, il y a 25 personnes dans le bus.",
+                    "ÉTAPE 2: construire un schéma avec un déplacement sur un axe (25 personnes dans le bus, 5 personnes descendent).",
+                    "Écrire le calcul et la phrase réponse au tableau: 25 - 5 = 20. Il y a 20 personnes dans le bus maintenant.",
+                    "Lors de la synthèse, insister sur le fait qu’il fallait résoudre le problème en deux étapes."
+                  ],
+                  "cons": [
+                    "Combien y a-t-il de personnes dans le bus au début?",
+                    "Que se passe-t-il au premier arrêt?",
+                    "Que se passe-t-il au deuxième arrêt?",
+                    "Qu’est-ce qu’on cherche?",
+                    "Combien y a-t-il de personnes après le 1er arrêt?",
+                    "Après le 1er arrêt, on sait qu’il y a 25 personnes dans le bus, que se passe-t-il au 2e arrêt?",
+                    "Combien de passagers reste-t-il après le 2e arrêt?"
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Circuler, observer, aider les élèves en les questionnant sans donner la solution.",
+                    "Lors de la synthèse, mettre en évidence les étapes de résolution: ÉTAPE 1 — Calculer le nombre de personnes dans le bus après le 1er arrêt: 38 - 13 = 25, il y a 25 personnes dans le bus après le 1er arrêt. ÉTAPE 2 — Calculer le nombre de personnes dans le bus après le 2e arrêt: 25 + 5 = 30, il y a 30 personnes dans le bus maintenant.",
+                    "Valider la réponse en simulant les actions avec le matériel de numération PP1."
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P29 Pb2"
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Lors de la synthèse, expliciter les étapes de résolution: ÉTAPE 1 — Calculer le montant total des achats: 5 € + 4 € = 9 €, Lina a dépensé 9 €. ÉTAPE 2 — Calculer la somme d’argent qu’il reste à Lina: 23 € - 9 € = 14 €, il reste 14 € dans le portemonnaie de Lina.",
+                    "Valider la réponse en simulant les actions avec les billets et les pièces factices du matériel PP5."
+                  ],
+                  "note": "ACTIVITÉ ÉLÈVE P29 Pb3"
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique autonome",
+                  "el": [
+                    "Résoudre ensuite le plus possible de problèmes parmi les problèmes P29 Pb4, 5, 6 et 7."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés au cours de la séquence en prenant appui sur la trace écrite P6-1."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Tables d'addition : le passage par 10",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 86,
+              "materials": [
+                "Ardoises",
+                "Cubes bleus et rouges",
+                "Trace écrite C6-2",
+                "Document élève C6-1"
+              ],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "pe": [
+                    "Énoncer à tour de rôle un nombre de la suite orale des nombres en comptant en avant, de deux en deux, à partir de 50 jusqu’à 80."
+                  ],
+                  "note": "30 min. JEU DU FURET — Compter de deux en deux."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Placer 7 cubes bleus dans une boite avant de la refermer.",
+                    "Ajouter 5 cubes rouges puis demander:"
+                  ],
+                  "cons": [
+                    "Trouvez le nombre de cubes qu’il y a maintenant dans la boite."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": [
+                    "Expliciter la procédure de passage par 10 qui s’appuie sur la connaissance des compléments à 10, la décomposition additive des nombres inférieurs ou égaux à 10 et les calculs en + 10: 7 + 5 =? Le calcul de 7 + 5 s’appuie sur 7 + 3 = 10 et sur 5 = 3 + 2, pour finalement conduire à 10 + 2 = 12. Cette explicitation s’accompagne de la manipulation du matériel de numération et d’un travail sur un axe."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Reprendre la situation avec les calculs écrits successivement au tableau: 2 + 9 =? ; 6 + 9 =? ; 9 + 8 =? ; 7 + 8 =? Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": [
+                    "Proposer les calculs du document élève C6-1."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en avant de 2 en 2, à partir de 49 jusqu’à 79."
+                  ],
+                  "note": "10 min. Compter de deux en deux."
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": [
+                    "Demander aux élèves de reformuler ce qu’ils ont appris au cours de la séance précédente.",
+                    "Rappeler la procédure à mobiliser pour calculer 7 + 5."
+                  ],
+                  "note": "Trace écrite C6-2."
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs à l’oral: 9 + 5? ; 9 + 6? ; 8 + 7? ; 9 + 7? Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C6-3."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en arrière de 2 en 2, à partir de 80 jusqu’à 50."
+                  ],
+                  "note": "10 min. Compter de deux en deux."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": [
+                    "Proposer les petits problèmes posés à l’oral. Les élèves répondent sur l’ardoise."
+                  ],
+                  "cons": [
+                    "Sur une branche, il y a 8 oiseaux. 3 autres oiseaux arrivent. Combien d’oiseaux y a-t-il sur la branche maintenant?",
+                    "Dans ma trousse, j’ai 7 crayons. J’en ajoute 6 nouveaux. Combien de crayons ai-je dans ma trousse maintenant?",
+                    "Maman a cueilli 9 marguerites et 8 coquelicots. Combien de fleurs a-t-elle dans son bouquet?",
+                    "Il y a 8 parts de gâteau au chocolat et 5 parts de gâteau au yaourt. Combien de parts de gâteau y a-t-il en tout?",
+                    "J’ai marqué 9 points au jeu de fléchettes. Au tour suivant, je marque encore 8 points. Combien de points ai-je en tout?",
+                    "J’ai 8 pommes rouges dans mon panier. J’ajoute 7 pommes vertes. Combien de pommes ai-je en tout?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C6-3."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en arrière de 2 en 2, à partir de 81 jusqu’à 49."
+                  ],
+                  "note": "10 min. Compter de deux en deux."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "note": "CALCUL CHRONO P28 — Connaitre les tables d’addition (le passage par 10)."
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": [
+                    "Corriger collectivement les calculs les moins réussis par les élèves.",
+                    "Récapituler les procédures travaillées lors de la séquence."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Monnaie",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 87,
+              "materials": [
+                "Cartes Flash Maths F6 A à D — Monnaie (pièces et billets factices)"
+              ],
+              "phases": [
+                {
+                  "n": "Flash Maths A",
+                  "el": [
+                    "Déterminer la valeur en euro des pièces et des billets contenus dans le portemonnaie."
+                  ]
+                },
+                {
+                  "n": "Flash Maths B",
+                  "note": "Consigne identique."
+                },
+                {
+                  "n": "Flash Maths C",
+                  "note": "Consigne identique."
+                },
+                {
+                  "n": "Flash Maths D",
+                  "note": "Consigne identique."
                 }
               ]
             }
@@ -1748,7 +3158,10 @@
           "seances": [
             {
               "seance_number": 1,
-              "title": "Réaliser et vérifier un alignement de 5 objets",
+              "title": "Vérifier un alignement (perception puis règle)",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 88,
               "materials": [
                 "des objets de la classe: tubes de colle, taille-crayons, trousses, dictionnaires, gommes, règles, stylos, cubes",
                 "des plots, des ficelles ou des cordelettes assez longues (5 à 6 mètres), la règle du tableau, des règles de différentes tailles, des objets longs pouvant faire office de règle (tasseaux de bois)"
@@ -1800,7 +3213,10 @@
             },
             {
               "seance_number": 2,
-              "title": "Utiliser la règle pour repérer ou vérifier des alignements",
+              "title": "Utiliser la règle pour repérer / vérifier un alignement",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 89,
               "materials": [
                 "une feuille de papier, une règle par élève"
               ],
@@ -1846,9 +3262,7 @@
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P30 Ex1 ET P31 Ex2 et 3"
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P30 Ex1 ET P31 Ex2 et 3"
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1860,7 +3274,10 @@
             },
             {
               "seance_number": 3,
-              "title": "Comprendre la notion de milieu d’un segment",
+              "title": "Comprendre la notion de milieu d'un segment",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 90,
               "materials": [
                 "par binôme, un morceau de ficelle d’environ 12-20 cm: la longueur exacte n’a pas besoin d’être connue des élèves à priori, mais elle doit être paire pour permettre le calcul de la moitié de la longueur de cette ficelle.",
                 "par binôme, une bande de papier plus longue que la ficelle"
@@ -1868,9 +3285,6 @@
               "phases": [
                 {
                   "n": "Mise en situation",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "pe": [
                     "Expliquer la tâche:",
                     "Préciser la procédure de validation:",
@@ -1892,13 +3306,11 @@
                   ],
                   "el": [
                     "Chercher comment obtenir deux morceaux de ficelle de même longueur. La juxtaposition (ou la superposition) est la validation attendue ici. D7 2 90 ESPACE ET GÉOMÉTRIE ACTIVITÉ 2"
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Explicitation",
-                  "note": [
-                    "ACTIVITÉ 1"
-                  ],
                   "pe": [
                     "Demander aux groupes d’expliquer comment ils ont procédé.",
                     "Valoriser explicitement le pliage:",
@@ -1911,21 +3323,16 @@
                     "Je calcule la moitié de 18 cm: 9 cm. 3E ÉTAPE Placer le point M",
                     "Je place ma règle le long du segment [AB], je place le point M à 9 cm du point A et du point B. Le point M est le milieu du segment [AB]. 4E ÉTAPE: Vérifier",
                     "Je mesure la longueur de [AM], elle doit faire 9 cm. Je mesure la longueur de [MB], elle doit faire aussi 9 cm. Cette vérification est essentielle pour renforcer la définition du milieu (égalité des longueurs AM et MB)."
-                  ]
+                  ],
+                  "note": "ACTIVITÉ 1"
                 },
                 {
                   "n": "Pratique guidée",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P31 Ex4",
-                    "Utiliser la règle graduée ou une bande de papier pour résoudre le problème."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P31 Ex4; Utiliser la règle graduée ou une bande de papier pour résoudre le problème."
                 },
                 {
                   "n": "Pratique autonome",
-                  "note": [
-                    "ACTIVITÉ ÉLÈVE P31 Ex5",
-                    "Utiliser la règle graduée ou une bande de papier pour résoudre le problème."
-                  ]
+                  "note": "ACTIVITÉ ÉLÈVE P31 Ex5; Utiliser la règle graduée ou une bande de papier pour résoudre le problème."
                 },
                 {
                   "n": "Clôture de la séance",
@@ -1937,14 +3344,237 @@
             },
             {
               "seance_number": 4,
-              "title": "Bilan de la séquence Évaluation ACTIVITÉ ÉLÈVE P32 Ex6 et 7 Consolidation ACTIVITÉ ENSEIGNANT ੉ Demander aux élèves de reproduire la figure en l’agrandissant en utilisant une règle non graduée. ੉ Au cours de la mise en commun, expliciter qu’il est utile repérer des alignements quand on veut reproduire une figure. ACTIVITÉ ÉLÈVE P32 Ex8 ੉ Repérer sur le modèle les points qui sont alignés et qui permettent de restaurer la figure.",
-              "materials": [],
+              "title": "Évaluation",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 91,
+              "materials": [
+                "Fichier élève"
+              ],
               "phases": [
                 {
                   "n": "Clôture de la séance",
                   "pe": [
                     "Récapituler les apprentissages réalisés au cours de la séquence sur la notion de points alignés à l’aide de la trace écrite D7-3. D7 3 D7 3 Alignement et milieu 7 92"
                   ]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Problèmes ouverts",
+              "type": "rit",
+              "duration": 25,
+              "guidePage": 93,
+              "materials": [
+                "un jeu de 7 cartes grand format pour l’affichage au tableau (séance 1) : 10, 9, 8, 1, 1, 18, 4",
+                "un jeu de cartes grand format pour l’affichage au tableau (séance 2) : 35, 30, 20, 16, 10, 6, 5, 4"
+              ],
+              "phases": [
+                {
+                  "n": "Atelier Défis — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Présenter les 7 cartes au tableau:",
+                    "Proposer un premier défi pour que les élèves s’approprient la contrainte d’utiliser le moins possible de cartes:"
+                  ],
+                  "cons": [
+                    "Voici des cartes avec lesquelles nous allons jouer aujourd’hui. Vous pouvez utiliser ces cartes pour calculer des additions ou des soustractions. Par exemple, vous pouvez utiliser les cartes pour effectuer les calculs suivants: 4 + 1 = 5 ou 8 – 1 = 7.",
+                    "Comment peut-on obtenir exactement 2 points en utilisant le moins possible de cartes?"
+                  ],
+                  "el": [
+                    "Résoudre le défi en binôme: Comment peut-on obtenir exactement 12 points en utilisant le moins possible de cartes?"
+                  ],
+                  "note": "Cartes: 10, 9, 8, 1, 1, 18, 4. Exemples d’essais possibles: 1 + 1 = 2 ; 10 – 8 = 2 ; 10 – 9 + 1 = 2. La solution optimale est d’utiliser 2 cartes: 1 + 1 ou 10 – 8. Procédures observées: prend des cartes au hasard et additionne ; essaie de partir d’une carte proche (10) et cherche le complément (besoin de 2, possible avec 1 + 1) ; part d’une carte plus grande (18) et essaie de soustraire (18 -? = 12, possible avec 18 - 4 - 1 - 1) ; mobilise sa connaissance des tables d’addition: 8 + 4 = 12."
+                },
+                {
+                  "n": "Atelier Défis — Séance 1 — Explicitation",
+                  "pe": [
+                    "Demander aux binômes de proposer leurs solutions pour obtenir 12 points.",
+                    "Faire verbaliser les stratégies.",
+                    "Guider la discussion pour faire émerger la notion d’essai-erreur."
+                  ],
+                  "note": "Exemples d’essais possibles: 10 + 1 + 1 = 12 ; 9 + 4 – 1 = 12. La solution optimale est d’utiliser 2 cartes: 8 + 4 = 12."
+                },
+                {
+                  "n": "Atelier Défis — Séance 1 — Pratique guidée",
+                  "el": [
+                    "Résoudre le défi en binôme: Comment peut-on obtenir exactement 15 points en utilisant le moins possible de cartes?"
+                  ],
+                  "note": "La solution optimale est d’utiliser 3 cartes: 10 + 9 – 4 = 15 ou 18 – 4 + 1 = 15."
+                },
+                {
+                  "n": "Atelier Défis — Séance 1 — Pratique autonome",
+                  "note": "ACTIVITÉ ÉLÈVE P33 Ex1 — Trouver comment obtenir 21 points avec les cartes. La solution optimale est d’utiliser 3 cartes: 8 + 9 + 4 = 21 ou 18 + 4 - 1 = 21."
+                },
+                {
+                  "n": "Atelier Défis — Clôture de la séance 1",
+                  "pe": [
+                    "Récapituler que, pour résoudre certains problèmes, on peut faire des essais, vérifier et recommencer jusqu’à trouver la bonne réponse ou la meilleure solution."
+                  ]
+                },
+                {
+                  "n": "Atelier Défis — Séance 2 — Pratique guidée",
+                  "el": [
+                    "Avec les cartes de l’exercice 2 page 33 affichées au tableau, trouver comment obtenir exactement 85 points en utilisant le moins possible de cartes.",
+                    "Trouver comment obtenir exactement 40 points en utilisant le moins possible de cartes."
+                  ],
+                  "note": "Cartes: 35, 30, 20, 16, 10, 6, 5, 4. La solution optimale pour 85 est d’utiliser 3 cartes: 35 + 30 + 20 = 85. La solution optimale pour 40 est d’utiliser 2 cartes: 35 + 5 = 40 ou 30 + 10 = 40."
+                },
+                {
+                  "n": "Atelier Défis — Séance 2 — Pratique autonome",
+                  "note": "ACTIVITÉ ÉLÈVE P33 Ex2 — Trouver comment obtenir exactement 70 points en utilisant le moins possible de cartes. La solution optimale est d’utiliser 3 cartes: 35 + 5 + 30 = 70."
+                },
+                {
+                  "n": "Atelier Défis — Clôture de la séance 2",
+                  "pe": [
+                    "Récapituler les apprentissages réalisés:"
+                  ],
+                  "cons": [
+                    "Pour résoudre ce genre de problème, on n’a pas toujours la réponse tout de suite. C’est normal! Ce qui est important, c’est d’essayer de combiner des nombres, de vérifier en calculant, d’ajuster ou d’essayer encore."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Soustraire un nombre inférieur à 10",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 94,
+              "materials": [
+                "Ardoises",
+                "Boite à œufs et balles de golf (gommettes rouges/bleues)",
+                "Trace écrite C7-1",
+                "Document élève C7-2"
+              ],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "pe": [
+                    "Énoncer à tour de rôle un nombre de la suite orale des nombres en comptant en avant, de 10 en 10, à partir de 5 jusqu’à 105."
+                  ],
+                  "note": "30 min. JEU DU FURET — Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Présenter une boite et annoncer qu’elle est remplie et contient 10 œufs.",
+                    "Retirer 3 balles de golf (les œufs).",
+                    "Écrire au tableau 10 – 3 =?"
+                  ],
+                  "cons": [
+                    "J’ai 10 œufs. J’en ai utilisé 3 pour préparer un gâteau. Combien d’œufs me reste-t-il dans la boite?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": [
+                    "Expliciter qu’on peut prendre appui sur la connaissance des compléments à 10 pour trouver le résultat de ce calcul.",
+                    "On sait que 7 + 3 = 10 donc on sait aussi que, si on enlève 3, il reste 7.",
+                    "Effectuer la manipulation avec une boite à œufs et des balles de golf (ou de tennis de table) sur lesquelles des gommettes rouges et bleues sont collées, par exemple, 7 rouges et 3 bleues (7 + 3 = 10, 10 − 3 = 7)."
+                  ],
+                  "note": "La procédure de comptage sur les doigts peut aussi être utilisée pour les élèves les plus fragiles: j’ai 10 doigts, si j’en plie 3, il en reste 7. Trace écrite C7-1."
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs par écrit au tableau: 10 – 5 =? ; 10 - 7 =? ; 10 – 2 =? ; 10 – 4 =? Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l’ardoise."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": [
+                    "Proposer les calculs du document élève C7-2."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en avant, de 10 en 10, de 18 jusqu’à 98 puis à partir de 11 jusqu’à 91."
+                  ],
+                  "note": "10 min. Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": [
+                    "Proposer les calculs à l’oral: 10 – 8 =? ; 10 - 1 =? ; 10 - 7 =? ; 10 - 4 =? Limiter le temps à 5 secondes par calcul. Les élèves écrivent le résultat sur l’ardoise."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C7-3."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en arrière, de 10 en 10, de 97 jusqu’à 7 puis à partir de 93 jusqu’à 3."
+                  ],
+                  "note": "10 min. Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": [
+                    "Proposer les petits problèmes oraux avec un temps limité à 10 secondes par calcul:"
+                  ],
+                  "cons": [
+                    "Louise joue au jeu de l’oie. Son pion est sur la case 10. Elle doit reculer de 4 cases. Sur quelle case son pion va-t-il arriver?",
+                    "Ugo joue au jeu de l’oie. Son pion est sur la case 10. Il doit reculer de 7 cases. Sur quelle case son pion va-t-il arriver?",
+                    "Zoé a 10 ans. Son frère a 8 ans de moins qu’elle. Quel âge a le frère de Zoé?",
+                    "Mehdi a 10 ans. Sa sœur a 5 ans de moins que lui. Quel âge a la sœur de Mehdi?"
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "note": "CALCUL CHRONO — Test en temps limité C7-3."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": [
+                    "JEU DU FURET en comptant en arrière, de 10 en 10, de 94 jusqu’à 4 puis à partir de 76 jusqu’à 6."
+                  ],
+                  "note": "10 min. Connaitre la suite orale des nombres jusqu’à 100."
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "note": "CALCUL CHRONO P32 — Soustraire un nombre à 10."
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": [
+                    "Corriger collectivement les calculs les moins réussis par les élèves.",
+                    "Récapituler les procédures travaillées lors de la séquence."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Solides",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 95,
+              "materials": [
+                "Cartes Flash Maths F7 A à D — Solides",
+                "Collection de solides (cube, pavé droit, boule, cylindre…)"
+              ],
+              "phases": [
+                {
+                  "n": "Flash Maths A",
+                  "el": [
+                    "Reconnaitre le solide nommé par l’enseignant."
+                  ]
+                },
+                {
+                  "n": "Flash Maths B",
+                  "note": "Consigne identique."
+                },
+                {
+                  "n": "Flash Maths C",
+                  "note": "Consigne identique."
+                },
+                {
+                  "n": "Flash Maths D",
+                  "note": "Consigne identique."
                 }
               ]
             }

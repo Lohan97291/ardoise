@@ -80,6 +80,16 @@ type GuideTone =
   | "reference"
   | "procedure";
 
+type PhaseTone =
+  | "neutral"
+  | "setup"
+  | "teacher"
+  | "guided"
+  | "autonomous"
+  | "evaluation"
+  | "consolidation"
+  | "closing";
+
 const GUIDE_TONE_STYLES: Record<
   GuideTone,
   {
@@ -154,6 +164,65 @@ const GUIDE_TONE_STYLES: Record<
     block: "border-orange-200/80 bg-orange-50/95",
     dot: "bg-orange-500",
     text: "text-orange-950",
+  },
+};
+
+const PHASE_TONE_STYLES: Record<
+  PhaseTone,
+  {
+    shell: string;
+    rail: string;
+    badge: string;
+    ring: string;
+  }
+> = {
+  neutral: {
+    shell: "border-border bg-white",
+    rail: "bg-secondary",
+    badge: "border-slate-200 bg-slate-100 text-slate-700",
+    ring: "bg-white",
+  },
+  setup: {
+    shell: "border-cyan-200 bg-cyan-50/55",
+    rail: "bg-cyan-500",
+    badge: "border-cyan-200 bg-cyan-100 text-cyan-900",
+    ring: "bg-cyan-50",
+  },
+  teacher: {
+    shell: "border-sky-200 bg-sky-50/55",
+    rail: "bg-sky-500",
+    badge: "border-sky-200 bg-sky-100 text-sky-900",
+    ring: "bg-sky-50",
+  },
+  guided: {
+    shell: "border-indigo-200 bg-indigo-50/55",
+    rail: "bg-indigo-500",
+    badge: "border-indigo-200 bg-indigo-100 text-indigo-900",
+    ring: "bg-indigo-50",
+  },
+  autonomous: {
+    shell: "border-emerald-200 bg-emerald-50/55",
+    rail: "bg-emerald-500",
+    badge: "border-emerald-200 bg-emerald-100 text-emerald-900",
+    ring: "bg-emerald-50",
+  },
+  evaluation: {
+    shell: "border-rose-200 bg-rose-50/55",
+    rail: "bg-rose-500",
+    badge: "border-rose-200 bg-rose-100 text-rose-900",
+    ring: "bg-rose-50",
+  },
+  consolidation: {
+    shell: "border-amber-200 bg-amber-50/55",
+    rail: "bg-amber-500",
+    badge: "border-amber-200 bg-amber-100 text-amber-900",
+    ring: "bg-amber-50",
+  },
+  closing: {
+    shell: "border-violet-200 bg-violet-50/55",
+    rail: "bg-violet-500",
+    badge: "border-violet-200 bg-violet-100 text-violet-900",
+    ring: "bg-violet-50",
   },
 };
 
@@ -381,11 +450,13 @@ export function PrepSheetView({
           {sheet.phases.map((phase, i) => {
             const status = statuses[i] ?? "not_started";
             const done = status === "completed";
+            const phaseTone = getPhaseTone(phase.title);
             return (
               <li
                 key={phase.title}
                 className={cn(
-                  "relative rounded-[20px] border bg-white p-4 shadow-sm transition-all duration-200",
+                  "relative rounded-[22px] border p-4 shadow-sm transition-all duration-200",
+                  PHASE_TONE_STYLES[phaseTone].shell,
                   status === "completed" && "border-sage/50",
                   status === "in_progress" && "border-ochre/50",
                   status === "not_started" && "border-border",
@@ -396,25 +467,40 @@ export function PrepSheetView({
                     "absolute bottom-4 left-0 top-4 w-1 rounded-r-full",
                     status === "completed" && "bg-sage",
                     status === "in_progress" && "bg-ochre",
-                    status === "not_started" && "bg-secondary",
+                    status === "not_started" && PHASE_TONE_STYLES[phaseTone].rail,
                   )}
                 />
                 <div className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto] items-center gap-3 pl-2">
                   <span
                     className={cn(
-                      "grid h-8 w-8 shrink-0 place-items-center rounded-full text-xs font-semibold transition-colors",
-                      done ? "bg-sage text-foreground" : "bg-primary text-primary-foreground",
+                      "grid h-9 w-9 shrink-0 place-items-center rounded-xl border text-xs font-semibold shadow-sm transition-colors",
+                      done
+                        ? "border-sage/40 bg-sage text-foreground"
+                        : cn(
+                            "border-border/70 text-foreground",
+                            PHASE_TONE_STYLES[phaseTone].ring,
+                          ),
                     )}
                   >
                     {done ? <Check className="h-4 w-4" /> : i + 1}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">
-                      Phase {i + 1}
-                    </p>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground/80">
+                        Phase {i + 1}
+                      </p>
+                      <span
+                        className={cn(
+                          "rounded-lg border px-2 py-0.5 text-[0.62rem] font-bold uppercase tracking-[0.1em] shadow-sm",
+                          PHASE_TONE_STYLES[phaseTone].badge,
+                        )}
+                      >
+                        {getPhaseCategoryLabel(phase.title)}
+                      </span>
+                    </div>
                     <p
                       className={cn(
-                        "min-w-0 text-sm font-semibold leading-snug transition-colors",
+                        "min-w-0 text-sm font-semibold leading-snug transition-colors sm:text-[0.96rem]",
                         done && "text-muted-foreground line-through",
                       )}
                     >
@@ -442,7 +528,7 @@ export function PrepSheetView({
                 {phase.detail ? (
                   <div
                     className={cn(
-                      "mt-3 rounded-2xl border border-border/70 bg-[linear-gradient(180deg,rgba(249,250,252,1),rgba(255,255,255,1))] px-3 py-3 text-sm leading-relaxed transition-colors sm:ml-[2.6rem]",
+                      "mt-3 rounded-2xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(249,250,252,0.92))] px-3 py-3 text-sm leading-relaxed transition-colors sm:ml-[2.85rem]",
                       done ? "text-muted-foreground/70" : "text-foreground/85",
                     )}
                   >
@@ -624,11 +710,15 @@ function PhaseDetailContent({ text }: { text: string }) {
   const displaySteps = buildPhaseDisplaySteps(blocks);
 
   if (displaySteps.length === 0) {
-    return <p className="text-[0.82rem] leading-relaxed text-foreground/85">{text}</p>;
+    return (
+      <div className="rounded-xl border border-border/70 bg-white/80 px-3.5 py-3">
+        <p className="text-[0.82rem] leading-relaxed text-foreground/85">{text}</p>
+      </div>
+    );
   }
 
   return (
-    <ol className="relative space-y-3">
+    <ol className="space-y-3.5">
       {displaySteps.map((step, index) => {
         const tone = getGuideHeadingTone(step.heading);
         const label = getPhaseBlockLabel(step.heading);
@@ -636,46 +726,50 @@ function PhaseDetailContent({ text }: { text: string }) {
         return (
           <li
             key={`${step.heading}-${index}-${step.entries[0]?.slice(0, 24) ?? "step"}`}
-            className="grid grid-cols-[auto_minmax(0,1fr)] gap-2.5"
+            className="rounded-[18px] border border-border/70 bg-white/75 p-3 shadow-sm"
           >
-            <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-[0.68rem] font-semibold text-muted-foreground shadow-sm ring-1 ring-border">
-              {index + 1}
-            </span>
-            <div className="space-y-1">
-              <span
-                className={cn(
-                  "inline-flex rounded-full border px-2.5 py-1 text-[0.66rem] font-bold uppercase tracking-[0.1em] shadow-sm",
-                  GUIDE_TONE_STYLES[tone].badge,
-                )}
-              >
-                {label}
-              </span>
-              <div
-                className={cn(
-                  "rounded-2xl border px-3.5 py-3",
-                  tone === "instruction" && "border-l-4 border-l-violet-500 bg-violet-50/95",
-                  tone !== "instruction" && GUIDE_TONE_STYLES[tone].block,
-                )}
-              >
-                <div className="space-y-3">
-                  <GuideEntryGroup entries={step.entries} tone={tone} label={label} />
-                  {step.instructions.length ? (
-                    <div className="space-y-2 rounded-xl border border-violet-200/90 bg-violet-100/45 p-3">
-                      <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-violet-700">
-                        Formulation ou consigne
-                      </p>
-                      {step.instructions.map((instruction, instructionIndex) => (
-                        <div
-                          key={`${label}-instruction-${instructionIndex}`}
-                          className="rounded-xl border border-violet-200 bg-white/90 px-3 py-2.5 shadow-sm"
-                        >
-                          <p className="text-[0.82rem] font-semibold italic leading-relaxed text-violet-950">
-                            {instruction}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
+            <div className="grid gap-3 sm:grid-cols-[auto_minmax(0,1fr)]">
+              <div className="flex items-start gap-3 sm:block">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-border/70 bg-white text-[0.68rem] font-semibold text-muted-foreground shadow-sm">
+                  {index + 1}
+                </span>
+              </div>
+              <div className="space-y-2">
+                <span
+                  className={cn(
+                    "inline-flex rounded-lg border px-2.5 py-1 text-[0.66rem] font-bold uppercase tracking-[0.1em] shadow-sm",
+                    GUIDE_TONE_STYLES[tone].badge,
+                  )}
+                >
+                  {label}
+                </span>
+                <div
+                  className={cn(
+                    "rounded-xl border px-3.5 py-3.5",
+                    tone === "instruction" && "border-l-4 border-l-violet-500 bg-violet-50/95",
+                    tone !== "instruction" && GUIDE_TONE_STYLES[tone].block,
+                  )}
+                >
+                  <div className="space-y-3">
+                    <GuideEntryGroup entries={step.entries} tone={tone} label={label} />
+                    {step.instructions.length ? (
+                      <div className="space-y-2 rounded-lg border border-violet-200/90 bg-violet-100/45 p-3">
+                        <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-violet-700">
+                          Formulation ou consigne
+                        </p>
+                        {step.instructions.map((instruction, instructionIndex) => (
+                          <div
+                            key={`${label}-instruction-${instructionIndex}`}
+                            className="rounded-lg border border-violet-200 bg-white/90 px-3 py-2.5 shadow-sm"
+                          >
+                            <p className="text-[0.82rem] font-semibold italic leading-relaxed text-violet-950">
+                              {instruction}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </div>
@@ -711,6 +805,51 @@ function getGuideHeadingTone(line: string): GuideTone {
   if (normalizedLine.startsWith("procedures visees")) return "procedure";
 
   return "neutral";
+}
+
+function getPhaseTone(title: string): PhaseTone {
+  const normalizedTitle = normalizeGuideHeadingValue(title);
+
+  if (
+    normalizedTitle.includes("mise en situation") ||
+    normalizedTitle.includes("recherche") ||
+    normalizedTitle.includes("decouverte")
+  ) {
+    return "setup";
+  }
+  if (normalizedTitle.includes("explicitation") || normalizedTitle.includes("modelisation")) {
+    return "teacher";
+  }
+  if (normalizedTitle.includes("pratique guidee")) return "guided";
+  if (normalizedTitle.includes("pratique autonome")) return "autonomous";
+  if (normalizedTitle.includes("evaluation")) return "evaluation";
+  if (normalizedTitle.includes("consolidation")) return "consolidation";
+  if (normalizedTitle.includes("cloture")) return "closing";
+
+  return "neutral";
+}
+
+function getPhaseCategoryLabel(title: string): string {
+  const tone = getPhaseTone(title);
+
+  switch (tone) {
+    case "setup":
+      return "Lancement";
+    case "teacher":
+      return "Explication";
+    case "guided":
+      return "Accompagnement";
+    case "autonomous":
+      return "Entraînement";
+    case "evaluation":
+      return "Vérification";
+    case "consolidation":
+      return "Réinvestissement";
+    case "closing":
+      return "Bilan";
+    default:
+      return "Étape";
+  }
 }
 
 function parseGuideBlocks(text: string): ParsedGuideBlock[] {
@@ -814,30 +953,35 @@ function GuideEntryGroup({
           isGuideSubstep(entry) ? (
             <div
               key={`${label}-entry-${entryIndex}`}
-              className="rounded-xl border border-border/70 bg-white/70 px-3 py-2"
+              className="rounded-lg border border-border/70 bg-white/85 px-3 py-2.5 shadow-sm"
             >
               <p className="text-[0.72rem] font-bold uppercase tracking-[0.12em] text-foreground/70">
                 {entry}
               </p>
             </div>
           ) : (
-            <div key={`${label}-entry-${entryIndex}`} className="flex gap-2.5">
-              <span
-                className={cn(
-                  "mt-2 h-1.5 w-1.5 shrink-0 rounded-full",
-                  GUIDE_TONE_STYLES[tone].dot,
-                )}
-              />
-              <p
-                className={cn(
-                  "text-[0.84rem] leading-relaxed",
-                  tone === "instruction"
-                    ? "font-semibold italic text-violet-950"
-                    : GUIDE_TONE_STYLES[tone].text,
-                )}
-              >
-                {entry}
-              </p>
+            <div
+              key={`${label}-entry-${entryIndex}`}
+              className="rounded-lg border border-border/60 bg-white/80 px-3 py-2.5 shadow-sm"
+            >
+              <div className="flex gap-2.5">
+                <span
+                  className={cn(
+                    "mt-2 h-1.5 w-1.5 shrink-0 rounded-full",
+                    GUIDE_TONE_STYLES[tone].dot,
+                  )}
+                />
+                <p
+                  className={cn(
+                    "text-[0.84rem] leading-relaxed",
+                    tone === "instruction"
+                      ? "font-semibold italic text-violet-950"
+                      : GUIDE_TONE_STYLES[tone].text,
+                  )}
+                >
+                  {entry}
+                </p>
+              </div>
             </div>
           ),
         )}
