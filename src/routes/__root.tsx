@@ -7,7 +7,7 @@ import {
   createRootRouteWithContext,
   useRouter,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 
 import { ThemePaletteProvider } from "@/lib/theme-palette";
 import { Toaster } from "@/components/ui/sonner";
@@ -42,37 +42,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
 
-function RootShell({ children }: { children: ReactNode }) {
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+
   return (
     <html lang="fr">
       <head>
         <HeadContent />
       </head>
       <body>
-        {children}
+        <ThemePaletteProvider>
+          <QueryClientProvider client={queryClient}>
+            {/* Required: nested routes render here. */}
+            <Outlet />
+            <Toaster richColors position="bottom-right" />
+          </QueryClientProvider>
+        </ThemePaletteProvider>
         <Scripts />
       </body>
     </html>
-  );
-}
-
-function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-
-  return (
-    <ThemePaletteProvider>
-      <QueryClientProvider client={queryClient}>
-        {/* Required: nested routes render here. */}
-        <Outlet />
-        <Toaster richColors position="bottom-right" />
-      </QueryClientProvider>
-    </ThemePaletteProvider>
   );
 }
 
