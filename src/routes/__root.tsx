@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import { ThemePaletteProvider } from "@/lib/theme-palette";
 import { Toaster } from "@/components/ui/sonner";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import appCss from "../styles.css?url";
+import "../styles.css";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -30,7 +30,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#f7f3eb" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/assets/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
       { rel: "icon", href: "/assets/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
       { rel: "apple-touch-icon", href: "/assets/icons/apple-touch-icon.png", sizes: "180x180" },
