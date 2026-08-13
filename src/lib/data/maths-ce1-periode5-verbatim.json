@@ -1,0 +1,1704 @@
+{
+  "method": "Accès",
+  "subject": "Mathématiques",
+  "level": "CE1",
+  "source": "Extraction verbatim des captures d'écran de l'application Maths en CE1 (Éditions ACCÈS) — Période 5 uniquement",
+  "periods": [
+    {
+      "id": "P5",
+      "label": "Période 5",
+      "modules": [
+        {
+          "number": 28,
+          "title": "Tableaux et diagrammes en barres",
+          "domain": "don",
+          "guidePage": 234,
+          "objective": "Produire un tableau ou un diagramme en barres pour présenter des données recueillies\nLire et interpréter les données d'un diagramme en barres\nLire et interpréter les données d'un tableau à double entrée",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Produire un tableau à double entrée pour présenter des données recueillies",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 234,
+              "materials": [
+                "pour la classe, 4 boites et une étiquette fixée sur chaque boite (indiquant, pour le sondage choisi en exemple, un moyen de transport utilisé par les élèves pour venir à l'école: à pied, à vélo, en voiture, en bus)",
+                "pour chaque élève, un post-it jaune"
+              ],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Annoncer aux élèves qu'ils vont apprendre à réaliser des petites enquêtes concernant leur classe et leur école.",
+                    "Proposer quelques questions simples, avec des réponses qualitatives, peu nombreuses et qui ont du sens pour les élèves. Exemples:",
+                    "VARIANTE Laisser les élèves proposer des enquêtes et en choisir une collectivement parmi celles qui sont adaptées (qualitatif, peu de choix).",
+                    "Afficher la question choisie par la classe et les options de réponse, à adapter en fonction de la situation de l'école.",
+                    "Nous avons choisi en exemple le sondage sur les moyens de transport:",
+                    "Expliquer le processus de collecte des données en présentant les boites étiquetées avec les différents moyens de transport:"
+                  ],
+                  "el": [
+                    "Choisir le thème de l'enquête que va effectuer la classe.",
+                    "Répondre à l'enquête choisie par la classe. Par exemple, recenser tous les moyens de transport différents utilisés ce jour par les élèves."
+                  ],
+                  "cons": [
+                    "Quel est ton fruit préféré: pomme, banane, orange, raisin ?",
+                    "Comment es-tu venu(e) à l'école aujourd'hui (à pied, en voiture, en bus, à vélo) ?",
+                    "Quel est ton animal préféré: chat, chien, poisson, cochon d'Inde, aucun ?",
+                    "Comment êtes-vous venus à l'école ce matin ? À pied, à vélo, en voiture, en bus ?",
+                    "Chaque élève va recevoir un post-it. Voici les boites étiquetées des différents moyens de transport. Chaque élève, à tour de rôle, est invité à déposer son post-it dans la boite correspondante."
+                  ]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": [
+                    "Rassembler les boites et montrer le contenu aux élèves.",
+                    "Constater avec les élèves la difficulté à lire rapidement les résultats exacts de l'enquête.",
+                    "Proposer d'organiser ces informations pour mieux les lire et les comprendre.",
+                    "Présenter au tableau le tableau vierge adapté à l'enquête retenue.",
+                    "Dénombrer les post-it dans chaque boite et écrire le nombre trouvé en face du moyen de transport correspondant dans le tableau."
+                  ],
+                  "el": [
+                    "Observer les post-it collectés dans les boites et constater la difficulté à interpréter les données brutes.",
+                    "Comprendre l'intérêt d'organiser les informations.",
+                    "Compléter le tableau avec les données recueillies."
+                  ]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": [
+                    "Demander aux élèves de trouver comment ajouter à ce tableau les résultats de la même enquête menée au CE2: on ajoute une colonne.",
+                    "Agrandir et remplir le tableau avec les résultats du CE2.",
+                    "Poser oralement des questions dont la réponse se trouve directement dans le tableau. Exemples:",
+                    "Expliciter comment repérer dans le tableau la donnée précise demandée par la question: ici, au croisement du mode de transport et du niveau de classe."
+                  ],
+                  "el": [
+                    "Chercher comment compléter le tableau avec les résultats de l'enquête au CE2.",
+                    "Répondre sur l'ardoise aux questions de l'enseignant en utilisant les informations du tableau.",
+                    "Expliquer comment il a procédé pour trouver la réponse."
+                  ],
+                  "cons": [
+                    "Combien d'élèves de CE2 sont venus en bus ? Quel moyen de transport a été utilisé par 5 élèves de CE1 ? Quel est le même moyen de transport utilisé par 7 élèves ?"
+                  ]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés et annoncer que la séance suivante sera consacrée à des exercices d'entrainement."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 235,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 235 (module 28, séance 2) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": "",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 236,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Pratique guidée",
+                  "pe": [
+                    "ACTIVITÉ 1 — Présenter le document élève D28-1 et expliquer le rôle des axes.",
+                    "Montrer comment utiliser les cases pour colorier les barres.",
+                    "Repérer qu'il y a un axe horizontal avec le nom des sports et un axe vertical avec des nombres, de 0 jusqu'au nombre maximal d'élèves ayant choisi ce sport, et des cases pré-dessinées pour faciliter le coloriage des barres.",
+                    "Répondre sur l'ardoise aux questions de l'enseignant en utilisant les informations du diagramme en barres:",
+                    "Expliciter comment repérer la donnée précise demandée par la question."
+                  ],
+                  "el": [
+                    "Compléter le diagramme du document élève D28-1 avec les données de l'enquête réalisées par la classe."
+                  ],
+                  "cons": ["Combien d'élèves préfèrent la danse ? Quel est le sport préféré des élèves de la classe ?"],
+                  "note": ["ACTIVITÉ 2 (P115 Cherchons ensemble): Une enseignante a enquêté auprès de ses élèves pour savoir quels sports ils pratiquent. Diagramme en barres avec questions: Combien d'élèves pratiquent la natation ? Combien d'élèves pratiquent le judo ? Quel est le sport le plus pratiqué ? Quel est le sport le moins pratiqué ?"]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P115 Ex2: Observe le diagramme et réponds aux questions. Combien d'élèves fêtent leur anniversaire au mois d'avril ? Combien d'élèves fêtent leur anniversaire en octobre ? Combien d'élèves y a-t-il dans cette classe ? Combien d'élèves sont nés en juillet ? Quel mois y a-t-il le plus de naissances ? Combien d'élèves sont nés en novembre ?"],
+                  "pe": ["Expliciter les procédures à mobiliser pour répondre à chacune des questions."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "cons": ["Le diagramme donne une vision globale des données et permet des comparaisons rapides."]
+                }
+              ],
+              "note": "Le début de la séance 3 (Mise en situation / Explicitation) n'a pas été capturé — page 235 manquante. Le contenu ci-dessus correspond à ce qui est visible en page 236, à partir de la Pratique guidée."
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 236,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P116 Ex3: Des élèves d'une école ont répondu à la question suivante: Parmi ces quatre fruits, quel est ton fruit préféré: orange, fraise, banane ou kiwi ? Voici les résultats de cette enquête. Combien d'élèves préfèrent la banane ? Quel est le fruit préféré de ces élèves ? Combien d'élèves ont répondu à cette enquête ?"]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P116 Ex4: Réponds aux questions et complète le tableau. Quel est le nombre de filles au CE1 ? Quel est le nombre d'élèves au CE1 ? Quel est le nombre de filles au CM2 ? Quel est le nombre de garçons dans l'école ? Quel est le nombre d'élèves dans l'école ?"],
+                  "pe": [
+                    "S'assurer que chaque élève comprend la structure du tableau et la signification du mot TOTAL dans ses différentes acceptions (lignes et colonnes).",
+                    "Aider les élèves à faire le lien entre chaque question posée et les données à utiliser dans le tableau."
+                  ]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Demander aux élèves de récapituler ce qu'ils ont appris au cours de la séquence en prenant appui sur la trace écrite D28-2."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes impliquant des prix",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 237,
+              "materials": ["Par élève, barquette contenant les pièces en euro et centime d'euro et les billets des planches PP5 et PP6 prédécoupées ou du matériel factice"],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Vidéoprojeter et lire à haute voix l'énoncé du problème P117 Pb1 en simulant la scène avec le matériel P18-1 et sans donner la réponse.",
+                    "Circuler dans les rangs pour repérer les procédures intéressantes pour la mise en commun."
+                  ],
+                  "el": ["Résoudre le problème sur l'ardoise en ayant la possibilité d'utiliser le matériel."],
+                  "cons": ["À la pâtisserie, Timéo achète une tarte à 17,50€ et un pain à 2,30€. Combien Timéo a-t-il dépensé ?"]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Après la mise en commun des procédures utilisées, demander aux élèves de chercher comment poser l'addition sur l'ardoise ou le cahier.",
+                    "Laisser un court temps de recherche individuelle ou à deux.",
+                    "Recueillir les propositions des élèves au tableau.",
+                    "Mettre en évidence la nécessité d'aligner les unités d'euros en explicitant que la virgule indique où se trouve l'unité.",
+                    "Poser l'opération correctement au tableau et effectuer le calcul colonne par colonne, en commençant par la droite (les centimes) et en verbalisant:"
+                  ],
+                  "cons": ["17,50€ (17 euros et 50 centimes) + 2,30€ (2 euros et 30 centimes) = 19,80€ (19 euros et 80 centimes)"]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "el": ["Résoudre P117 Pb2 en ayant la possibilité d'utiliser le matériel."],
+                  "pe": [
+                    "Faire remarquer que les prix ne sont pas tous écrits de la même façon et qu'on ne peut donc pas les additionner directement.",
+                    "Guider la conversion:",
+                    "Rappeler que 90 centimes, c'est 0 euro et 90 centimes.",
+                    "Rappeler également que 12 euros, c'est 12 euros et 0 centime.",
+                    "Demander aux élèves de poser l'addition sur l'ardoise en utilisant les nombres convertis et en alignant bien les unités (indiquées par les virgules)."
+                  ],
+                  "cons": [
+                    "Iris a acheté un pain à 1,20€, un croissant à 90 centimes et un gâteau à 12€. Combien Iris a-t-elle dépensé ?",
+                    "Comment écrit-on 90 centimes en euros, avec une écriture à virgule ?",
+                    "Comment écrit-on 12€ avec une écriture à virgule pour pouvoir l'additionner facilement ?"
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance 1",
+                  "pe": ["Récapituler les procédures à mobiliser pour poser et effectuer des additions de montants en euros."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "el": ["Résoudre les problèmes P117 Pb3 et 4 en ayant la possibilité de manipuler le matériel PP5 et PP6."],
+                  "cons": [
+                    "J'achète une gomme à 0,40€ et un crayon à 1,35€. Combien ai-je dépensé ?",
+                    "À la boulangerie, Sacha achète une baguette à 1,05€ et un croissant à 0,90€. Combien Sacha a-t-il dépensé ?"
+                  ],
+                  "pe": ["Regrouper les élèves les plus fragiles pour les aider à résoudre les problèmes en prenant appui sur la manipulation des pièces factices."]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance 2",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Connaitre des faits multiplicatifs usuels",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 238,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "note": ["Décompositions additives. Écrire en chiffres sur l'ardoise le nombre 600 + 30 + 5 écrit au tableau (635) puis le lire. Même consigne avec 50 + 3 + 800 (853)."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": ["Proposer les calculs à l'oral: 1 x 25 = ? 3 x 25 = ? 2 x 25 = ? 4 x 25 = ?", "Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": ["Expliciter les procédures à mobiliser en utilisant le matériel de numération et des arbres de calcul."],
+                  "cons": [
+                    "1 x 25, c'est une fois vingt-cinq.",
+                    "2 x 25, c'est le double de 20 + le double de 5 donc c'est le résultat de 40 + 10 à savoir 50.",
+                    "3 x 25, c'est (2 x 25) + (1 x 25) c'est-à-dire 50 + 25.",
+                    "4 x 25, c'est le double du double de 25."
+                  ],
+                  "note": ["2 x 25 = 50 est un résultat clé à retenir pour construire les autres résultats."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": ["Proposer les calculs à l'oral: 3 x 25 = ? 2 x 25 = ? 4 x 25 = ?", "Laisser au moins 5 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": ["Proposer les calculs du document élève C28-1."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "note": ["Décompositions additives. Écrire en chiffres sur l'ardoise le nombre 900 + 8 + 40 écrit au tableau (948) puis le lire. Même consigne avec 7 + 20 + 500 (527)."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Mise en situation",
+                  "pe": ["Proposer les calculs à l'oral: 2 x 16 = ? 2 x 12 = ? 2 x 35 = ?", "Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": ["Expliciter les procédures à mobiliser en utilisant le matériel de numération et des arbres de calcul."],
+                  "cons": [
+                    "2 x 16, c'est le double de 10 + le double de 6 donc c'est le résultat de 20 + 12 à savoir 32.",
+                    "2 x 12, c'est le double de 10 + le double de 2 donc c'est le résultat de 20 + 4 à savoir 24.",
+                    "2 x 35, c'est le double de 30 + le double de 5 donc c'est le résultat de 60 + 10 à savoir 70."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "pe": ["Proposer les calculs du document élève C28-1."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "note": ["Décompositions additives. Écrire en chiffres sur l'ardoise le nombre 300 + 8 écrit au tableau (308) puis le lire. Même consigne avec 500 + 80 (580)."]
+                }
+              ],
+              "note": "La suite de la séance 3 ainsi que la séance 4 du calcul mental n'ont pas été capturées — page 239 manquante."
+            },
+            {
+              "seance_number": 7,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 239,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 239 (Atelier: Lecture de l'heure, module 28) non fournie dans les captures — contenu non transcrit.]"
+            }
+          ]
+        },
+        {
+          "number": 29,
+          "title": "Construction de carrés et de rectangles",
+          "domain": "geo",
+          "guidePage": 240,
+          "objective": "",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 240,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 240 (module 29, séance 1, avec l'encart des objectifs du module) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 2,
+              "title": "Construire un carré",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 241,
+              "materials": ["par élève, équerre et règle graduée"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Présenter l'objectif de la séance: apprendre à construire un carré.",
+                    "Effectuer un rappel oral collectif des propriétés du carré.",
+                    "Demander à chaque élève d'utiliser l'équerre et la règle graduée pour terminer la construction des carrés de l'exercice 1 du document élève D29-2.",
+                    "Organiser une petite pause méthodologique dès que tous les élèves ont construit le premier carré afin d'expliciter les étapes de la construction."
+                  ],
+                  "el": ["Terminer la construction des carrés: deux côtés sont déjà terminés et le tracé d'un troisième côté est commencé."],
+                  "note": [
+                    "Procédure visée: Mesurer avec la règle graduée la longueur d'un côté qui est déjà tracé. Utiliser l'équerre pour tracer deux angles droits à partir des extrémités du côté déjà tracé. Utiliser la règle graduée pour reporter les mesures afin d'obtenir quatre côtés de même longueur."
+                  ]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Expliciter les procédures à utiliser pour terminer la construction d'un carré."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": [
+                    "Terminer la construction d'un carré dont un seul côté est déjà tracé (D29-2 Ex2).",
+                    "Tracer un carré dont les côtés mesurent 6 cm (D29-2 Ex3)."
+                  ]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P119 Ex2: Termine le tracé des carrés. Deux côtés sont déjà tracés et un autre côté est déjà commencé."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Rappeler les procédures à utiliser pour terminer la construction d'un carré dont deux côtés sont déjà tracés."]
+                }
+              ]
+            },
+            {
+              "seance_number": 3,
+              "title": "Construire un rectangle",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 242,
+              "materials": ["par élève, équerre et règle graduée"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Présenter l'objectif de la séance: apprendre à construire un rectangle.",
+                    "Effectuer un rappel oral collectif des propriétés du rectangle.",
+                    "Demander à chaque élève d'utiliser l'équerre et la règle graduée pour terminer la construction des rectangles de l'exercice 1 du document élève D29-2.",
+                    "Organiser une petite pause méthodologique dès que tous les élèves ont construit le premier rectangle afin d'expliciter les étapes de la construction."
+                  ],
+                  "el": ["Terminer la construction des rectangles: deux côtés sont déjà terminés et le tracé d'un troisième côté est commencé."],
+                  "note": [
+                    "Procédure visée: Mesurer avec la règle graduée les côtés qui sont déjà tracés. Utiliser l'équerre pour tracer un angle droit à l'extrémité d'un côté déjà tracé. Utiliser la règle graduée pour reporter les longueurs afin d'obtenir des côtés opposés de même longueur."
+                  ]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Expliciter les procédures à utiliser pour terminer la construction d'un rectangle."]
+                }
+              ],
+              "note": "La séance 3 est interrompue après le début de l'Explicitation — la suite (page 242: fin de l'Explicitation, Pratique guidée, Pratique autonome, Clôture) n'a pas été capturée."
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 242,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 242 (Bilan de la séquence, module 29) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes impliquant des prix",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 243,
+              "materials": ["par élève, barquette contenant les pièces en euro et centime d'euro et les billets des planches PP5 et PP6 prédécoupées ou du matériel factice"],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Vidéoprojeter et lire à haute voix l'énoncé du problème P121 Pb1 en simulant la scène avec le matériel P18-1 et sans donner la réponse.",
+                    "Circuler dans les rangs pour repérer les procédures intéressantes pour la mise en commun."
+                  ],
+                  "el": ["Résoudre le problème sur l'ardoise en ayant la possibilité d'utiliser le matériel."],
+                  "cons": ["J'achète une baguette à 1,15€ et un pain aux raisins à 95 centimes. Combien le vendeur va-t-il me rendre ?"]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Expliciter que ce problème se résout en deux étapes.",
+                    "ÉTAPE 1 Calculer le montant total des achats — Demander aux élèves d'expliquer comment trouver le montant dépensé en utilisant le matériel PP5 et PP6 puis structurer les apprentissages à l'aide de l'animation AP29-1.",
+                    "Constituer la somme d'argent de chaque valeur donnée dans le problème.",
+                    "Utiliser le matériel pour trouver le montant total.",
+                    "ÉTAPE 2 Calculer ce que doit rendre le vendeur — Rappeler la procédure de comptage en avant en prenant appui sur un schéma avec un déplacement sur un axe:"
+                  ],
+                  "cons": [
+                    "1€15c + 95c = 2€10c",
+                    "Combien manque-t-il à 2€10 pour aller à 3€ ? Puis combien manque-t-il à 3€ pour aller à 5€ ?"
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "el": ["Résoudre P121 Pb2 en ayant la possibilité d'utiliser le matériel."],
+                  "cons": ["Ugo veut partager 9,60€ avec ses deux sœurs de sorte que chacun des trois enfants dispose du même montant. Combien doit-il donner à chacune de ses sœurs ?"],
+                  "pe": [
+                    "Mettre en évidence la procédure la plus accessible en prenant appui sur la manipulation du matériel: partager les euros (9€ partagés en 3 soit 3€ pour chacun), partager les centimes (60 centimes partagés en 3 soit 20 centimes pour chacun).",
+                    "Synthétiser que chaque enfant doit avoir 3€ et 20 centimes, soit 3,20€:"
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance 1",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance."],
+                  "cons": ["Ugo a déjà sa part. Il doit donc donner 3,20€ à sa première sœur et 3,20€ à sa deuxième sœur."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "el": ["Résoudre P121 Pb3 en ayant la possibilité de manipuler le matériel."],
+                  "cons": ["Zoé a 15,30€ dans sa tirelire. Elle a 6€ de plus que son frère Mehdi. Quelle somme d'argent Mehdi a-t-il dans sa tirelire ?"],
+                  "pe": [
+                    "Expliciter que, si Zoé a six euros de plus que son frère, cela signifie que son frère a six euros de moins qu'elle.",
+                    "Constituer 15,30€ avec les pièces et les billets factices PP5 et PP6 de façon à pouvoir retirer 6€ en expliquant qu'on retire 6€ aux 15€ et 0 centime aux 30 centimes."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique autonome",
+                  "el": ["Résoudre P121 Pb4 en ayant la possibilité de manipuler le matériel."],
+                  "cons": ["Louise achète 4 litres de jus d'orange à 2€ le litre. Elle donne 20 euros au vendeur. Combien le vendeur va-t-il lui rendre ?"],
+                  "pe": [
+                    "Expliciter qu'il y a deux étapes pour résoudre ce problème.",
+                    "ÉTAPE 1 Calcul du montant total des achats: 4 x 2€ = 8€ • Louise dépense 8€.",
+                    "ÉTAPE 2 Calcul de ce que doit rendre le vendeur: 8€ + 12€ = 20€ ou 20€ – 8€ = 12€ • Le vendeur doit rendre 12€."
+                  ]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance 2",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Déterminer la moitié d'un nombre pair",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 244,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "pe": ["Connaitre la table de multiplication par 8. Proposer au tableau le calcul 2 x 8 = 16 et rappeler:"],
+                  "cons": ["2 x 8, c'est le double de 8."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Dans les deux activités, laisser la possibilité aux élèves d'écrire sur l'ardoise les calculs intermédiaires.",
+                    "Laisser au moins 10 secondes pour chaque calcul.",
+                    "ACTIVITÉ 1: écrire au tableau: moitié de 240 = ?",
+                    "ACTIVITÉ 2: écrire au tableau: moitié de 470 = ?"
+                  ],
+                  "cons": ["Calculez la moitié de 240.", "Calculez la moitié de 470."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": [
+                    "Expliciter que, pour déterminer la moitié de 240, on peut le décomposer en centaines, en dizaines et en unités pour faire apparaitre des nombres dont on a mémorisé les moitiés.",
+                    "Pour déterminer la moitié de 470, l'élève peut noter les éléments suivants sur l'ardoise: 470 = 400 + 70 ; 200 + 35 = 235.",
+                    "Demander aux élèves de vérifier ce résultat en utilisant le matériel de numération PP1."
+                  ],
+                  "cons": [
+                    "240 = 200 + 40. La moitié de 240 est égal à la moitié de 200 + la moitié de 40 donc c'est le résultat de 100 + 20 à savoir 120.",
+                    "470 = 400 + 70. La moitié de 470 est égal à la moitié de 400 + la moitié de 70 donc c'est le résultat de 200 + 35 à savoir 235."
+                  ]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": ["Reprendre la situation avec les calculs écrits au tableau: moitié de 260 ? moitié de 300 ? moitié de 800 ? moitié de 348 ? moitié de 450 ? moitié de 520 ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": ["Proposer les calculs du document élève C29-1."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "pe": ["Connaitre la table de multiplication par 8. Proposer au tableau le calcul 4 x 8 = 32 et rappeler:"],
+                  "cons": ["4 x 8, c'est le double de 2 fois 8 donc le double de 16."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": ["Proposer les calculs oralement: moitié de 1000 ? moitié de 570 ? moitié de 500 ? moitié de 700 ?", "Laisser au moins 5 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test en temps limité C29-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "pe": ["Connaitre la table de multiplication par 8. Proposer au tableau le calcul 10 x 8 = 80 et rappeler:"],
+                  "cons": ["10 x 8 = 8 x 10 = 80, c'est 8 fois une dizaine."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": ["Proposer les petits problèmes oraux avec un temps limité à 5 secondes par calcul:"],
+                  "cons": [
+                    "Un ruban mesure 140 cm. Si je le coupe en son milieu, quelle sera la longueur de chaque morceau ?",
+                    "J'ai 248 images. Je veux en coller la moitié dans un cahier. Combien d'images vais-je coller dans le cahier ?",
+                    "Un trajet en voiture fait 620 km. Si nous sommes à la moitié du trajet, combien de kilomètres avons-nous déjà parcourus ?"
+                  ]
+                }
+              ],
+              "note": "La suite de la séance 3 ainsi que la séance 4 du calcul mental n'ont pas été capturées — page 245 manquante."
+            },
+            {
+              "seance_number": 7,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 245,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 245 (Atelier: Lecture de l'heure, module 29) non fournie dans les captures — contenu non transcrit.]"
+            }
+          ]
+        },
+        {
+          "number": 30,
+          "title": "Triangles rectangles",
+          "domain": "geo",
+          "guidePage": 246,
+          "objective": "Reconnaitre, nommer et décrire un cercle, un carré, un rectangle, un triangle, un triangle rectangle en utilisant le vocabulaire approprié\nReproduire ou construire un carré, un rectangle, un triangle, un triangle rectangle et un cercle ou un assemblage de ces figures",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Reconnaitre un triangle rectangle",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 246,
+              "materials": ["par élève, équerre, feuille rectangulaire et paire de ciseaux"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Distribuer aux élèves une feuille de papier rectangulaire."],
+                  "cons": [
+                    "Vérifiez avec une équerre que les quatre angles de la feuille sont bien des angles droits.",
+                    "Tracez une diagonale puis coupez le rectangle en suivant cette diagonale.",
+                    "Indiquez où se trouve l'angle droit à l'aide d'un petit carré rouge.",
+                    "On obtient deux triangles. Quelle est la propriété commune à toutes les formes obtenues après le découpage ? Ce sont des triangles et ils ont tous un angle droit."
+                  ],
+                  "el": ["Réaliser l'activité de pliage et de découpage décrite par l'enseignant (photographiée dans le guide)."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": [
+                    "Expliciter:",
+                    "Afficher tous les triangles marqués avec un petit carré rouge pour situer l'angle droit.",
+                    "Annoncer l'objectif de la séance: apprendre à reconnaitre un triangle rectangle."
+                  ],
+                  "cons": ["Chacun de ces triangles possède un angle droit, hérité du rectangle de départ. On appelle cette figure un triangle rectangle car sa caractéristique principale est de posséder un angle droit."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": [
+                    "Distribuer le document élève D30-1 à chaque binôme.",
+                    "Vidéoprojeter le document élève pour faciliter la correction collective.",
+                    "Faire remarquer que les triangles ont tous trois angles.",
+                    "Rappeler:"
+                  ],
+                  "cons": [
+                    "Marquez chaque angle droit avec un petit carré rouge. Trouvez et entourez tous les triangles qui ont un angle droit.",
+                    "Un triangle rectangle est un triangle qui a un angle droit."
+                  ],
+                  "el": ["Reconnaitre un triangle rectangle et marquer son angle droit."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["Faire l'exercice du document élève D30-2."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance en prenant appui sur la trace écrite D30-3."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 247,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 247 (module 30, séance 2) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": "",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 248,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 248 (module 30, séance 3) non fournie dans les captures — contenu non transcrit. La page 248 disponible dans les captures ne contient que la séance 4 (Bilan).]"
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 248,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P124 Ex3: Entoure les triangles rectangles. Marque l'angle droit de chaque triangle rectangle en dessinant un petit carré rouge."]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P124 Ex4: Voici une figure obtenue à partir d'un rectangle. Reproduis cette figure en plus grand. On a déjà tracé le rectangle. Termine le tracé de cette figure."],
+                  "pe": ["À l'aide de l'animation A30-1, amener les élèves à comprendre qu'il faut débuter la reproduction par le tracé de la diagonale du rectangle."],
+                  "note": ["L'agrandissement de la figure en plus grand oblige l'élève à passer d'une stratégie de copie basée sur la mesure ou le report de longueurs à une stratégie d'analyse et de reconstruction basée sur les propriétés géométriques de la figure."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 249,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 249 (Atelier problèmes, module 30) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 6,
+              "title": "Connaitre dans les deux sens la table de multiplication de 9",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 250,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": ["Demander aux élèves d'écrire sur l'ardoise le résultat indiqué par la flèche.", "Faire retrouver les autres résultats en suivant l'ordre proposé par l'animation.", "Demander aux élèves de justifier leurs réponses."],
+                  "cons": ["5 x 9, c'est la moitié de 10 x 9: on se sert du résultat de 10 x 9."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test en temps limité C30-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": ["Décompositions du type (6 x 100) + (5 x 10) + (3 x 1). Écrire en chiffres sur l'ardoise le nombre (4 x 10) + (8 x 100) écrit au tableau (840) puis le lire."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["CALCUL CHRONO P124 Connaitre dans les deux sens les tables de multiplication de 8 et de 9."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence. Trace écrite C30-3."]
+                }
+              ],
+              "note": "La page 250 n'a été capturée que très partiellement (en-têtes des séances 1 et 2 visibles mais sans contenu). La Mise en situation de la séance 1, ainsi que les séances 2 et 3 dans leur intégralité, sont manquantes. Seule la fin de la séance 1 (Explicitation, Pratique autonome) et la séance 4 (page 251) ont pu être transcrites."
+            },
+            {
+              "seance_number": 7,
+              "title": "Lecture de l'heure",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 251,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Lire l'heure sur une horloge à aiguilles. (horloge du matin)"] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A. (horloge du soir)"] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A. (horloge du soir)"] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A. (horloge de l'après-midi)"] }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 31,
+          "title": "Masses",
+          "domain": "gm",
+          "guidePage": 252,
+          "objective": "Savoir identifier l'objet le plus léger (ou le plus lourd) parmi deux ou trois objets de volumes proches en les soupesant ou en utilisant une balance pour les peser\nConnaitre et utiliser les unités gramme et kilogramme et les symboles associés g et kg\nSavoir que 1kg est égal à 1000 g\nComparer des masses\nDisposer de quelques masses de référence\nEstimer la masse d'objets du quotidien en gramme ou en kilogramme",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Savoir identifier l'objet le plus léger (ou le plus lourd) parmi deux ou trois objets de volumes proches en les soupesant ou en utilisant une balance pour les peser",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 252,
+              "materials": [
+                "Par groupe de 4 élèves",
+                "3 sachets marqués A, B et C contenant respectivement 310 g de riz, 290 g de grosses pâtes et 300 g de haricots secs",
+                "balance Roberval",
+                "collection de petits cubes identiques",
+                "2 objets à peser: un cahier, une boite de punaises"
+              ],
+              "phases": [
+                {
+                  "n": "Réactivation",
+                  "pe": [
+                    "Présenter l'objectif de la séance: réactiver les apprentissages réalisés au CP concernant les masses et l'utilisation d'une balance Roberval.",
+                    "Distribuer les sachets A, B et C à chaque groupe et présenter le problème à résoudre:",
+                    "Effectuer un rappel du fonctionnement d'une balance de type Roberval:",
+                    "Expliciter que deux pesées peuvent suffire, le résultat de la troisième pesée s'obtenant par déduction."
+                  ],
+                  "el": [
+                    "Ranger les trois sachets A, B et C du moins lourd au plus lourd d'abord en les soupesant.",
+                    "Noter ses hypothèses dans un cahier.",
+                    "Les vérifier ensuite à l'aide d'une balance Roberval.",
+                    "Écrire les résultats de la recherche dans un cahier: B < C < A."
+                  ],
+                  "cons": [
+                    "Comparez la masse de ces trois sachets en les soupesant puis en utilisant une balance de type Roberval.",
+                    "Une balance Roberval permet de comparer les masses de deux objets. L'aiguille ou une flèche s'incline vers l'objet le plus lourd. L'objet le plus lourd est sur le plateau le plus bas. L'objet le plus léger est sur le plateau le plus haut.",
+                    "Si le sachet C est moins lourd que le sachet A et que le sachet B est moins lourd que le sachet C, alors le sachet B est aussi moins lourd que le sachet A."
+                  ]
+                },
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Expliquer aux élèves qu'ils vont maintenant comparer deux objets selon leur masse mais que, cette fois, ils n'auront pas les deux objets en même temps.",
+                    "Présenter les objets à peser: un cahier et une boite de punaises."
+                  ],
+                  "cons": ["Comment faire pour trouver l'objet le plus lourd sans poser les deux objets en même temps sur la balance ? Chaque groupe disposera d'une boite de petits cubes tous identiques."],
+                  "el": ["Proposer et tester des solutions pour comparer la masse des deux objets sans pouvoir les placer en même temps sur les plateaux de la balance."],
+                  "note": [
+                    "Procédure visée: Placer le cahier sur un plateau puis placer le nombre de cubes nécessaires sur l'autre plateau pour que la balance soit à l'équilibre, dénombrer les cubes et noter le résultat de la pesée. Utiliser la même procédure pour mesurer la masse de la boite de punaises. Comparer les deux nombres de cubes obtenus et en déduire quel objet est le plus lourd."
+                  ]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Organiser la mise en commun des procédures à utiliser.", "Expliciter:"],
+                  "cons": ["On peut mesurer la masse de chaque objet avec des cubes. La masse d'un cube est l'unité de mesure. Par exemple, le cahier pèse 17 cubes et la boite de punaises pèse 23 cubes. La boite de punaises est donc plus lourde que le cahier."]
+                }
+              ],
+              "note": "La fin de la séance 1 (Pratique guidée, Pratique autonome, Clôture) n'a pas été capturée — page 253 manquante."
+            },
+            {
+              "seance_number": 2,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 253,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Explicitation (suite, contenu de fin de page 254)",
+                  "pe": [
+                    "Écrire au tableau la valeur des masses utilisées: 100 g, 100 g, 50 g, 20 g, 10 g, 10 g.",
+                    "Demander aux élèves combien pèse le sachet de pâtes.",
+                    "Les amener à comprendre qu'il faut additionner les valeurs des masses utilisées: 100 g + 100 g + 50 g + 20 g + 10 g + 10 g = 290 g. Le sachet de pâtes pèse 290 g.",
+                    "Verbaliser: pour trouver la masse d'un objet, on ajoute les valeurs des masses marquées qui ont permis d'équilibrer la balance.",
+                    "Utiliser deux nouvelles balances: une balance de cuisine électronique et une balance mécanique.",
+                    "Peser à nouveau le paquet de pâtes, observer la manière dont chaque balance fonctionne et verbaliser."
+                  ],
+                  "cons": ["Sur la balance électronique, la masse de l'objet pesé s'affiche directement: 290 g. Sur la balance mécanique, l'aiguille indique la masse de l'objet pesé sur un cadran gradué. Pour lire la masse indiquée, il faut se repérer dans les graduations."],
+                  "note": ["Procédure visée: Placer l'objet dont on veut connaitre la masse sur un plateau. Sur l'autre plateau, déposer progressivement des masses marquées. Ajuster ensuite ces masses pour que les deux plateaux soient à la même hauteur, en équilibre: la masse de l'objet est alors égale à la somme des masses marquées utilisées pour atteindre cet équilibre."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["Peser les sachets A et C en utilisant une balance Roberval.", "Noter les résultats dans un cahier.", "Vérifier les pesées en utilisant les deux autres balances."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Rappeler la procédure à mobiliser pour peser un objet en utilisant une balance Roberval et des masses marquées."]
+                }
+              ],
+              "note": "Le début de la séance 2 (Mise en situation, début de l'Explicitation) n'a pas été capturé — page 253 manquante. Le contenu ci-dessus provient de la fin de cette séance visible en page 254."
+            },
+            {
+              "seance_number": 3,
+              "title": "Connaitre et utiliser l'unité kilogramme et le symbole associé kg",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 254,
+              "materials": ["objets pesant un kilogramme apportés par les élèves", "balance Roberval et balance électronique ou balance mécanique"],
+              "phases": [
+                {
+                  "n": "Mise en situation — Activité 1",
+                  "pe": [
+                    "Présenter l'objectif de la séance: connaitre et utiliser l'unité kilogramme et apprendre à peser des objets pour déterminer leur masse en gramme ou en kilogramme.",
+                    "À la demande de l'enseignant, les élèves ont apporté un objet pesant un kilogramme.",
+                    "Demander aux élèves s'ils savent ce qu'est un kilogramme.",
+                    "Faire remarquer le point commun avec le mot kilomètre en rappelant le sens du préfixe kilo-.",
+                    "Faire l'inventaire des objets apportés par les élèves.",
+                    "Leur demander comment ils savent que cet objet pèse un kilogramme."
+                  ],
+                  "cons": [
+                    "Kilo, placé en début de mot, signifie mille.",
+                    "Un kilomètre, c'est 1000 mètres. Un kilogramme, c'est 1000 grammes."
+                  ],
+                  "note": ["La plupart du temps, s'il s'agit d'un produit alimentaire, la masse est indiquée sur l'emballage. D'autres élèves auront peut-être pesé l'objet à la maison à l'aide d'une balance de ménage. D'autres encore auront peut-être estimé la masse de l'objet en le soupesant."],
+                  "el": ["Vérifier la masse des objets non marqués en utilisant différents types de balance.", "Vérifier également les objets où la masse est indiquée sur l'emballage."]
+                },
+                {
+                  "n": "Mise en situation — Activité 2",
+                  "pe": [
+                    "Choisir un objet marqué 1kg.",
+                    "Le placer sur la balance mécanique ou électronique: l'affichage indique 1000 g.",
+                    "Expliquer que l'unité est le gramme et que 1000 g est égal à 1 kg.",
+                    "Écrire au tableau 1 kg = 1000 g.",
+                    "Placer le même objet sur la balance Roberval et poser aux élèves le problème suivant:",
+                    "Rappeler le contenu d'une boite de masses marquées.",
+                    "Afficher le référent D31-1 utilisé lors de la séance précédente."
+                  ],
+                  "cons": ["Quelles masses marquées faudra-t-il placer sur le deuxième plateau pour équilibrer la balance ?"],
+                  "el": ["Effectuer la recherche par deux et noter les résultats dans un cahier."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": [
+                    "Recenser et vérifier les réponses des élèves en plaçant les masses marquées correspondantes sur le deuxième plateau.",
+                    "Constater que, pour obtenir 1000 g (1kg), il faut utiliser l'intégralité des masses marquées de la boite.",
+                    "Expliciter qu'1 kilogramme est égal à 10 fois 100 grammes en plaçant sur la balance 10 objets de 100 g chacun (10 masses marquées de 100 g).",
+                    "Faire émerger les points suivants:"
+                  ],
+                  "cons": [
+                    "1kg, c'est 1000g. Il faut chercher à obtenir 1000g en additionnant les valeurs des masses marquées utilisées.",
+                    "500g + 200g + 100g + 100g + 50g + 20g + 10g + 10g + 5g + 2g + 2g + 1g = 1000g",
+                    "1kg est la masse d'un litre d'eau.",
+                    "1kg = 1000g.",
+                    "Deux objets dans des matières très différentes, de volumes très différents peuvent avoir la même masse."
+                  ]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["Peser avec la balance Roberval d'autres objets de la classe dont la masse ne dépasse pas 3kg."],
+                  "note": ["Pour pouvoir poser des objets jusqu'à 3 kg, on utilise deux masses de 1kg et une boite de masses marquées."],
+                  "pe": ["Réinvestir la procédure de pesée découverte au cours de la séance 2."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P127 Ex2: Complète avec l'unité qui convient: g ou kg.", "P127 Ex3: Indique la masse de chaque objet."],
+                  "pe": [
+                    "Doter les élèves d'un panel d'objets auxquels ils pourront se référer pour estimer des masses: 1 trombone pèse 1g. 1L d'eau pèse 1kg, une bouteille d'un litre et demi pèse 1kg et 500g et un pack de six bouteilles d'eau pèse 9kg. 200 feuilles de papier pèsent à peu près 1kg 200g, donc une ramette de 500 feuilles pèse à peu près 2kg et 500g. 5 pommes pèsent à peu près 1kg, donc une pomme pèse à peu près 200g.",
+                    "Pour l'exercice 3, donner au préalable deux exemples au tableau: 500g + 20g + 100g = 620g ; 1kg + 1kg + 1kg + 100g + 50g = 3kg 150g"
+                  ]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance en prenant appui sur la trace écrite D31-2."]
+                }
+              ]
+            },
+            {
+              "seance_number": 4,
+              "title": "",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 254,
+              "materials": [],
+              "phases": [],
+              "note": "[Bilan de la séquence (module 31) non identifié dans les pages capturées (234–285). La page 256 n'a pas été fournie et pourrait contenir cette séance — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes mixtes en deux étapes",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 257,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Présenter l'objectif de la séance: s'entrainer à résoudre les problèmes à étapes.",
+                    "Laisser aux élèves un temps de lecture silencieuse du problème P129 Pb1, puis lire le texte à haute voix.",
+                    "Circuler dans les rangs pendant la recherche des élèves pour observer leurs stratégies et valoriser les réussites."
+                  ],
+                  "cons": ["Pour les élèves de sa classe, Madame Kiberlain achète 16 livres de mathématiques à 10€ l'un et 3 calculatrices à 5€ l'unité. Combien a-t-elle dépensé ?"],
+                  "el": ["Résoudre P129 Pb1 individuellement dans son cahier pendant trois minutes, matérialisées par un minuteur."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Relire l'énoncé et demander à un élève de raconter l'histoire de ce problème.",
+                    "Faire émerger les étapes nécessaires.",
+                    "Rappeler les procédures de calcul mental mobilisables:",
+                    "Rappeler:",
+                    "Élaborer la trace écrite P31-1 pour ce problème qui servira de référence pour les problèmes à étapes."
+                  ],
+                  "cons": [
+                    "16 x 10, c'est 16 fois 1 dizaine donc 16 dizaines.",
+                    "3 x 5 = 15 est un résultat connu des tables multiplication.",
+                    "Dans un problème à étapes, il est recommandé de prendre l'habitude d'écrire une phrase après chacune des étapes, pour ne pas se perdre dans les calculs."
+                  ],
+                  "note": ["Trace écrite P31-1: Étape 1 Calculer le prix total des livres — 16 x 10€ = 160€. Elle a dépensé 160€ pour les livres. Étape 2 Calculer le prix total des calculatrices — 3 x 5€ = 15€. Elle a dépensé 15€ pour les calculatrices. Étape 3 Calculer le prix total des achats — 160€ + 15€ = 175€. Madame Kiberlain a dépensé 175€ au total."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "el": ["Résoudre P129 Pb2."],
+                  "cons": ["Pour les élèves de sa classe, Monsieur Groseille achète 3 cahiers à 5€ l'un et 7 protège-cahiers à 2€ l'unité. Il paie avec un billet de 50€. Combien la vendeuse doit-elle lui rendre ?"],
+                  "note": ["CORRIGÉ: Calculer le prix total des cahiers — 3 x 5€ = 15€, il a dépensé 15€ pour les cahiers. Calculer le prix total des protège-cahiers — 7 x 2€ = 14€, il a dépensé 14€ pour les protège-cahiers. Calculer le prix total des achats — 15€ + 14€ = 29€, Monsieur Groseille a dépensé 29€ en tout. Calculer ce que la vendeuse doit lui rendre — 29€ + 21€ = 50€ ou 50€ – 29€ = 21€. La vendeuse doit lui rendre 21€."]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance 1",
+                  "pe": ["Mettre en évidence l'analogie entre les deux problèmes."],
+                  "cons": ["Il y a une succession d'étapes: étape additive et étape multiplicative."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "pe": ["Comprendre qu'il y a 5 appartements par étage.", "Mobiliser les résultats des tables de multiplication pour effectuer le calcul."],
+                  "el": ["Résoudre P129 Pb3."],
+                  "cons": ["Un immeuble comprend 4 étages. À chaque étage, il y a 3 appartements avec un balcon et 2 appartements sans balcon. Combien d'appartements y a-t-il dans cet immeuble ?"],
+                  "note": ["CORRIGÉ: Étape 1 — 3 + 2 = 5, il y a 5 appartements par étage. Étape 2 — 4 x 5 = 20, il y a 20 appartements dans cet immeuble."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique autonome",
+                  "el": ["Résoudre P129 Pb4 avec possibilité d'utiliser la calculatrice."],
+                  "cons": ["Un cahier coute 4€ et un protège-cahier 2€. Pour ses élèves, Madame Poirot doit acheter 20 cahiers et autant de protège-cahiers. Quel sera le montant de la facture ?"],
+                  "note": ["CORRIGÉ: Étape 1 — 4€ + 2€ = 6€, un cahier et un protège-cahier coutent 6€. Étape 2 — 20 x 6€ = 120€, le montant de la facture sera 120€."]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance 2",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 258,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": ["CALCUL EN LIGNE Test en temps limité C31-1."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": ["Unités de numération. Calculer sur l'ardoise: 6 centaines – 3 unités."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["CALCUL EN LIGNE P128 Connaitre dans les deux sens les tables de multiplication de 1 à 10."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence."]
+                }
+              ],
+              "note": "Le titre exact de cette séquence de calcul mental (probablement en lien avec les tables de multiplication de 1 à 10) et le contenu des séances 1 (mise en situation/explicitation), 2 et 3 n'ont pas été capturés — le haut de la page 258 est manquant."
+            },
+            {
+              "seance_number": 7,
+              "title": "Multiplication",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 259,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Écrire le nombre de disques en utilisant le signe x."] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A."] },
+                { "n": "Flash Maths C", "el": ["Écrire le nombre de poissons en utilisant le signe x."] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A."] }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 32,
+          "title": "Cercles et disques",
+          "domain": "geo",
+          "guidePage": 260,
+          "objective": "",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 260,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 260 (module 32, séance 1, avec l'encart des objectifs du module) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 2,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 261,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 261 (module 32, séance 2) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": "Réinvestir la reproduction d'un cercle",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 262,
+              "materials": ["un compas par élève"],
+              "phases": [
+                {
+                  "n": "Pratique guidée",
+                  "el": ["P131 Ex2: Repasse avec le compas sur les cercles en pointillés. Reproduis la figure."],
+                  "note": [
+                    "Procédures visées — 1ère étape Repasser sur la figure: Identifier le centre donné, y piquer la pointe du compas, ajuster l'écartement pour faire coïncider la mine avec un cercle pointillé, puis tracer le cercle en maintenant l'écartement et le centre fixes. Répéter l'opération pour les autres cercles. 2e étape Reproduire la figure: Piquer la pointe sur le nouveau centre. Reporter les rayons des cercles du modèle, soit en réajustant le compas sur chaque cercle modèle, soit en conservant l'écartement utilisé lors du repassage, puis tracer les nouveaux cercles: cette étape met l'accent sur l'utilisation du compas comme outil de report de longueur (le rayon)."
+                  ]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P131 Ex3: Trace le cercle de centre D qui passe par le point C."],
+                  "note": ["Procédure visée: Identifier D comme le centre, là où piquer la pointe du compas. Comprendre que passer par C signifie que C doit appartenir au cercle: C détermine donc l'écartement nécessaire du compas. Ajuster l'ouverture du compas pour que la mine du crayon se positionne précisément sur le point C, la pointe étant fixée en D. Maintenir cet écartement (qui correspond au rayon, même si le mot n'est pas requis) et le point fixe en D pendant la rotation du compas pour tracer le cercle."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance."]
+                }
+              ]
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 262,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P132 Ex4: Coche les affirmations qui sont vraies. Le cercle a pour centre le point A. Le cercle a pour centre le point B. Le cercle passe par le point A. Le cercle passe par le point B."]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P132 Ex5: Avec ton compas, termine le tracé des cercles."],
+                  "pe": ["Expliciter les procédures à mobiliser: placer la pointe du compas sur le centre, puis ouvrir le compas exactement jusqu'à l'arc de cercle déjà dessiné.", "Insister sur le rôle du centre et de l'écartement constant (écartement qui correspond au rayon et qui sera étudié au CE2)."],
+                  "cons": ["C'est cet écartement qui permet de tracer le reste du cercle."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence en prenant appui sur la trace écrite D32-1."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 263,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 263 (Atelier problèmes, module 32) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 6,
+              "title": "",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 264,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 264 (Calcul mental, module 32 — produit de 11 à 19 par un nombre inférieur à 10) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 7,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 265,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 265 (Atelier: Demi-droite graduée, module 32) non fournie dans les captures — contenu non transcrit.]"
+            }
+          ]
+        },
+        {
+          "number": 33,
+          "title": "Nombres ordinaux",
+          "domain": "nb",
+          "guidePage": 266,
+          "objective": "Utiliser les nombres ordinaux dans le cadre de l'étude de suites de symboles, de formes, de lettres ou de nombres",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Utiliser les nombres ordinaux dans le cadre de suites répétitives",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 266,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Réactivation",
+                  "pe": [
+                    "Présenter l'objectif de la séance: résoudre des problèmes avec des suites de symboles ou de nombres; le premier exercice a pour objectif de permettre aux élèves de s'approprier la situation et de réactiver les procédures acquises au CP.",
+                    "Au cours de la mise en commun, expliciter que la mémorisation du morceau qui se répète (le motif de base) et du nombre de fois qu'il est répété suffit pour reproduire le motif complet."
+                  ],
+                  "el": [
+                    "Mémoriser la suite de symboles de l'exercice 1 du document élève D33-1 pendant 30 secondes puis la reproduire.",
+                    "Repérer, décrire oralement la structure de la suite répétitive (appelé aussi motif répétitif).",
+                    "Verbaliser la règle de prolongement utilisée.",
+                    "Identifier le motif de base (le morceau qui se répète): x O.",
+                    "Verbaliser: le motif de base est composé de deux symboles et se répète quatre fois."
+                  ],
+                  "note": ["Procédures observées: Observe attentivement la suite et identifie que c'est un motif répétitif. Repère la règle de prolongement utilisée. Continue la suite en dessinant ce motif jusqu'à atteindre la position demandée (le 15e symbole). Remarque que le motif de base est composé de deux symboles qui se répètent toujours dans le même ordre. Cherche combien de paquets de deux symboles il faut pour avoir 15 symboles. Cherche dans la table de multiplication par 2: 2 x 7 = 14. Le 14e symbole est la fin du 7e motif de base (x O). C'est le disque O. Le 15e symbole est juste après le 14e. C'est le 1er symbole du motif de base donc la croix x."]
+                },
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Présenter l'exercice 2 du document élève D33-1 en expliquant que, dans une suite de nombres, il faut repérer la règle qui permet de passer d'un nombre au suivant.",
+                    "L'objectif est de passer de la simple reproduction à la compréhension de la structure de la suite pour pouvoir anticiper n'importe quel terme de la suite, même très éloigné, en utilisant le calcul.",
+                    "Prolonger la suite jusqu'au 12e nombre."
+                  ],
+                  "el": ["Mémoriser et reproduire la suite de nombres de l'exercice 2 (5, 10, 15, 20, 15, 30, 35)."],
+                  "cons": ["Si on continue la suite, quel est le 12e nombre ?"]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Expliciter les procédures visées pour cet exercice."],
+                  "note": ["Procédures observées: Observe que les nombres augmentent de 5 à chaque rang: 5, 10, 15, 20… Identifie la règle utilisée: on ajoute toujours 5 pour passer d'un nombre au suivant; on compte de 5 en 5; c'est la table de multiplication par 5. Reproduis puis prolonge la suite jusqu'au douzième nombre (60) en comptant de 5 en 5 de 35 à 60. Utilise le calcul: je sais que 10 fois 5 égale 50 et j'ajoute encore 2 fois 5."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["Faire l'exercice 3 du document élève D33-1. L'objectif est de réinvestir les procédures utilisées au début de la séance (suite de symboles △××)."],
+                  "cons": ["Si on continue la suite, quel est le dix-huitième symbole ?"],
+                  "note": ["Procédures observées: Identifie le motif de base qui se répète et reproduit la suite en dessinant le motif de base (△××) jusqu'à atteindre la position demandée (la 18e). Repère que le motif de base est composé de trois symboles toujours placés dans le même ordre (△××). Cherche combien de fois il faut répéter ce groupe de trois symboles pour obtenir une suite de 18 symboles. Cherche dans la table de multiplication par 3: 6 x 3 = 18. Il faut répéter 6 fois le motif de base (△××) pour obtenir le 18e symbole (×)."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 267,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 267 (module 33, séance 2) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": "",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 268,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 268 (module 33, séance 3) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 268,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 268 (Bilan de la séquence, module 33) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes impliquant des durées",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 269,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Atelier problèmes — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Présenter l'objectif de la séance: s'entrainer à résoudre des problèmes impliquant des durées.",
+                    "Réactiver les connaissances sur les unités de mesure de durées:",
+                    "Utiliser l'horloge PP6 pour visualiser ces durées.",
+                    "Faire manipuler les aiguilles:",
+                    "Lire à haute voix le problème P137 Pb1.",
+                    "Circuler dans les rangs, sans aider pour le moment, mais pour prendre connaissance des idées de chacun."
+                  ],
+                  "cons": [
+                    "Zoé a passé un quart d'heure à tailler ses rosiers et une demi-heure à bêcher son potager. Combien de temps est-elle restée dans le jardin ?",
+                    "Combien de minutes y a-t-il dans une heure ? dans une demi-heure ? dans un quart d'heure ? Combien font deux quarts d'heure ? deux demi-heures ? quatre quarts d'heure ?",
+                    "Montrez-moi 15 minutes qui passent.",
+                    "Montrez-moi 30 minutes."
+                  ],
+                  "el": ["Résoudre le problème P137 Pb1 sur l'ardoise en ayant la possibilité de manipuler l'horloge."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Explicitation",
+                  "pe": [
+                    "Expliciter les procédures visées pour ce problème.",
+                    "Mettre en évidence que, pour additionner des durées comme celles-ci, il est pratique de les convertir en minutes.",
+                    "Rédiger collectivement au tableau la phrase réponse: Zoé est restée 45 minutes dans le jardin.",
+                    "En manipulant un cadran de l'horloge, verbaliser:",
+                    "Faire remarquer que trois quarts d'heure = 45 minutes."
+                  ],
+                  "note": ["Procédures visées: Mobiliser les relations 1 demi-heure = 30 minutes et 1 quart d'heure = 15 minutes pour déterminer la durée totale: 30 min + 15 min = 45 min. Mobiliser la relation une demi-heure = deux quarts d'heure pour calculer un quart d'heure + une demi-heure = trois quarts d'heure."],
+                  "cons": ["Pour calculer un quart d'heure + une demi-heure, on convertit une demi-heure en deux quarts d'heure. On obtient: un quart d'heure + deux quarts d'heure = trois quarts d'heure."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 1 — Pratique guidée",
+                  "el": ["Résoudre P137 Pb2 en ayant la possibilité de manipuler l'horloge."],
+                  "cons": ["Sacha part à 13h de chez lui et met une demi-heure pour aller au cinéma. Le film dure 2h. À quelle heure Sacha sortira-t-il du cinéma ?"],
+                  "note": [
+                    "Procédure visée: Calculer l'heure d'arrivée au cinéma: 13h + 1 demi-heure (30 min) = 13h30. Calculer l'heure de sortie: heure d'arrivée (13h30) + durée du film (2h) = 15h30.",
+                    "Ce problème est plus complexe car il implique une heure de départ et plusieurs durées à ajouter successivement."
+                  ],
+                  "pe": ["Expliciter les procédures visées pour ce problème en manipulant un cadran de l'horloge et en utilisant un schéma représentant la ligne du temps (13h — une demi-heure — 13h30 — deux heures — 15h30)."]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance 1",
+                  "pe": ["Récapituler les procédures mobilisées pour résoudre les problèmes proposés au cours de la séance."]
+                },
+                {
+                  "n": "Atelier problèmes — Séance 2 — Pratique guidée",
+                  "el": ["Résoudre les problèmes P137 Pb3, 4, 5 et 6 en ayant la possibilité de manipuler l'horloge."],
+                  "cons": [
+                    "Monsieur Goya veut aller de Paris à Madrid. Son avion décollera à 17h30 et arrivera deux heures plus tard. À quelle heure l'avion va-t-il atterrir à Madrid ?",
+                    "Dans une heure, il y a 60 minutes. Combien de minutes y a-t-il dans 3 heures ?",
+                    "Ugo a marché pendant 2 heures. Louise a marché pendant 130 minutes. Qui a marché le plus longtemps ?",
+                    "Mehdi a marché de 8h30 à 8h45min. Éva a marché de 15h45min à 16h15min. Qui a marché le plus longtemps ?"
+                  ],
+                  "note": [
+                    "CORRIGÉ Pb3: 17h30 + 2h = 19h30 • Il arrivera à 19h30.",
+                    "CORRIGÉ Pb4: 3 x 60 min = 180 min • Il y a 180 minutes dans 3 heures.",
+                    "CORRIGÉ Pb5: 2h = 120min et 120min < 130min. Louise a marché plus longtemps qu'Ugo.",
+                    "CORRIGÉ Pb6: De 8h30 à 8h45min, il y a 15min (manipulation de l'horloge). De 15h45min à 16h15min, il y a 30min. Éva a marché plus longtemps que Mehdi."
+                  ],
+                  "pe": ["Regrouper les élèves les plus fragiles pour les guider pendant la résolution de ces problèmes."]
+                },
+                {
+                  "n": "Atelier problèmes — Clôture de la séance 2",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 270,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 270 (Calcul mental, module 33 — tables de multiplication de 1 à 10) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 7,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 271,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 271 (Atelier: Multiplication, module 33) non fournie dans les captures — contenu non transcrit.]"
+            }
+          ]
+        },
+        {
+          "number": 34,
+          "title": "Solides",
+          "domain": "geo",
+          "guidePage": 272,
+          "objective": "Reconnaitre les solides usuels suivants: cube, boule, cône, pyramide, cylindre, pavé\nDécrire un cube, un pavé ou une pyramide en utilisant les termes face, sommet et arête\nConnaitre le nombre et la nature des faces d'un cube ou d'un pavé\nConstruire un cube, un pavé droit ou une pyramide",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Reconnaitre un cube, une boule, un cône, une pyramide, un cylindre, un pavé",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 272,
+              "materials": ["solides de types variés récoltés dans l'école: cubes, boules, cônes, cylindres, pavés, pyramides et d'autres solides hors programme (prismes par exemple)"],
+              "phases": [
+                {
+                  "n": "Mise en situation — Activité 1",
+                  "pe": [
+                    "Présenter l'objectif de la séance: apprendre à reconnaitre les solides mentionnés dans le programme.",
+                    "Organiser la classe en groupes de 3 ou 4 élèves.",
+                    "Distribuer à chaque groupe une collection de solides comprenant au moins un cube, une boule, un cône, une pyramide, un cylindre et un pavé.",
+                    "Nommer le point commun de chaque collection: ce sont des solides.",
+                    "Rappeler qu'en mathématiques, on utilise le nom solide pour désigner les objets qui occupent un volume dans l'espace (objets en 3 dimensions, ils ne sont pas plats).",
+                    "Faire la différence avec le vocabulaire courant où l'adjectif solide est le contraire de fragile.",
+                    "Vidéoprojeter l'animation A34-1 en demandant aux élèves d'identifier les solides représentés.",
+                    "Demander aux groupes de placer devant eux un cube, une pyramide, un cylindre et un pavé."
+                  ],
+                  "el": [
+                    "Trouver l'intrus dans la collection des 4 solides.",
+                    "Écrire son nom sur l'ardoise.",
+                    "Expliquer pourquoi le cylindre est l'intrus (il roule):"
+                  ],
+                  "cons": ["les cylindres ont une surface courbe, ils roulent, on ne peut pas poser ce solide à plat sur cette surface."]
+                },
+                {
+                  "n": "Mise en situation — Activité 2",
+                  "cons": ["Classez les solides en deux groupes: le groupe des solides qui peuvent rouler et le groupe des solides qui ne peuvent pas rouler."],
+                  "el": ["Effectuer le classement demandé.", "Faire vérifier pour certains solides que toutes les faces peuvent tenir à plat sur une table."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": [
+                    "Certains solides comme le cylindre ou le cône, ont une surface courbe: ils roulent, on ne peut pas les poser à plat sur cette surface.",
+                    "D'autres solides, comme le cube, le pavé ou la pyramide n'ont que des surfaces planes, on les appelle des faces.",
+                    "Reprendre ensuite chaque solide pour vérifier le classement proposé par les élèves."
+                  ],
+                  "cons": [
+                    "La boule ne peut pas être posée à plat: aucune surface n'est plane.",
+                    "Le cylindre et le cône peuvent être posés à plat sur certaines de leurs surfaces, mais roulent si on les pose autrement. Par exemple, le cylindre a deux surfaces planes et une surface non plane."
+                  ]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": [
+                    "Présenter un cube, le nommer.",
+                    "Demander aux élèves de l'observer et de le décrire en s'intéressant à ses faces: 6 faces carrées.",
+                    "Poser un nouveau problème: trouver tous les cubes de la collection de solides.",
+                    "Puis demander de trier successivement les boules, les pyramides, les pavés, les cylindres et les cônes pour créer un musée des solides dans la classe."
+                  ],
+                  "el": ["Dans la collection de solides, identifier successivement lesquels sont des boules, des pyramides, des cubes, des cylindres et des cônes."],
+                  "note": ["CE QUE L'ENSEIGNANT DOIT SAVOIR: Le musée des solides sera complété avec des objets du quotidien apportés par les élèves, objets qu'on peut associer aux solides de la classe. L'élève sera ainsi amené à repérer des solides simples dans son environnement. Par exemple, savoir dire qu'une boite à chaussures a la forme d'un pavé, qu'une boite de conserve a la forme d'un cylindre et qu'une balle de tennis a la forme d'une boule."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 273,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Pratique guidée",
+                  "pe": [
+                    "Former des groupes de 4 à 5 élèves qui placent devant eux: un cube, une pyramide, un cylindre, un cône, une boule et un pavé.",
+                    "Annoncer aux élèves qu'ils vont jouer au jeu du portrait à l'aide de l'animation A34-2.",
+                    "Après chaque message, recenser des réponses et en discuter avant que la réponse apparaisse au clic."
+                  ],
+                  "cons": ["Il faudra à chaque fois identifier le solide qui est décrit dans le message vidéoprojeté."],
+                  "el": [
+                    "Manipuler les solides pour essayer d'identifier celui qui est décrit.",
+                    "Le reconnaitre, le décrire avec le vocabulaire approprié et le nommer.",
+                    "Vérifier la réponse en manipulant le matériel.",
+                    "Nommer le solide, décrire ses faces (carrés, rectangles, triangles), donner le nombre de ses arêtes et le nombre de ses sommets."
+                  ],
+                  "note": ["Exemples de messages: « Le solide a 6 faces. Les 6 faces sont des carrés. » (réponse: un cube) ; « Le solide a 5 faces. 4 faces sont des triangles. » (réponse: une pyramide)."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P139 Ex2: Complète avec les mots une arête, une face, un sommet."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Organiser une synthèse de ce qu'il faut retenir:"],
+                  "cons": ["On peut décrire un cube, un pavé ou une pyramide en utilisant les termes face, sommet et arête."]
+                }
+              ],
+              "note": "Le début de la séance 2 (Mise en situation, Explicitation) n'a pas été capturé — page 273 manquante. Le contenu ci-dessus provient de la fin de cette séance, visible en page 274."
+            },
+            {
+              "seance_number": 3,
+              "title": "Construire un cube, un pavé droit ou une pyramide",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 274,
+              "materials": ["par groupe, du matériel du type Polydron"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "note": ["Pendant la semaine qui précède cette séance, mettre à disposition le matériel Polydron pour que les élèves se l'approprient. Au départ, les élèves construisent des assemblages à plat. Les aider à réaliser des assemblages en 3D."],
+                  "pe": [
+                    "Présenter l'objectif de la séance: apprendre à construire un cube, un pavé droit ou une pyramide.",
+                    "Présenter un cube.",
+                    "Un groupe est chargé de construire un cube rouge, un autre groupe un cube bleu…"
+                  ],
+                  "cons": ["Vous devez reproduire ce cube avec les pièces du matériel Polydron. Toutes les faces du cube doivent être de la même couleur."],
+                  "el": ["Chercher comment assembler les différentes faces pour obtenir un cube.", "Comprendre qu'on peut fabriquer un objet en trois dimensions à partir de formes planes."]
+                }
+              ],
+              "note": "La suite de la séance 3 (Explicitation, Pratique) n'a pas été capturée — page 275 manquante."
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 274,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P140 Ex4: Écris le nom de chaque solide: un cube, un cylindre, un cône, un pavé, une pyramide, une boule."]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P140 Ex5: Complète. La pyramide a 5 faces, 5 sommets et 8 arêtes. Sur ce dessin de la pyramide, on ne voit que 2 faces, ___ sommets et ___ arêtes."],
+                  "pe": [
+                    "Lors de la synthèse, institutionnaliser le fait qu'un dessin en perspective ne montre pas tout: certaines faces, arêtes et parfois certains sommets sont cachés.",
+                    "Confronter le nombre d'éléments visibles (2 faces, 4 sommets, 5 arêtes sur ce dessin) au nombre total d'éléments de la pyramide réelle (5, 5, 8)."
+                  ]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence en s'appuyant sur les deux traces écrites D34-1."],
+                  "note": [
+                    "Trace écrite 1 — Les solides: Je sais décrire une pyramide en utilisant les termes face, sommet et arête. Une pyramide a cinq faces, 5 sommets et 8 arêtes.",
+                    "Trace écrite 2 — Les solides: Je sais décrire un cube ou un pavé en utilisant les termes face, sommet et arête. Le cube: un cube a 6 faces, toutes les faces sont des carrés. Le pavé droit: un pavé a 6 faces, toutes les faces sont des rectangles OU un pavé a 6 faces, 2 faces sont des carrés et 4 faces sont des rectangles."
+                  ]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 277,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 277 (Atelier problèmes, module 34) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 6,
+              "title": "Méli-Mélo de calculs",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 278,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "pe": ["Unités de numération. Calculer sur l'ardoise: 15 dizaines + 40 unités."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": [
+                    "Expliquer le déroulement des épreuves Destination CE2:",
+                    "Lire à haute voix les recommandations de haut de page C34-1.",
+                    "Distribuer et faire passer aux élèves l'entrainement 1."
+                  ],
+                  "cons": ["Vous allez participer à des épreuves de calcul mental sur les nombres entiers où il faut trouver le maximum de résultats en moins de 10 minutes. L'activité d'aujourd'hui est un entrainement. Un deuxième entrainement sera proposé dans la séance qui suit. L'épreuve finale aura lieu la semaine qui précède les vacances. Vous réaliserez d'abord les épreuves individuellement puis vous pourrez cumuler les points obtenus au sein d'équipes de 2 ou 3."],
+                  "note": ["Exemples de calculs de l'entrainement 1 (document C34-1): Combien y a-t-il de cubes ? Écris le nombre qui correspond à 3 dizaines et 27 unités. 3 x 5 = ? 480 – 2 = ? Combien de paquets de 10 gâteaux peut-on faire avec 494 gâteaux ? 109 - 10 = ? 6 x 5 = ? 2 x 12 = ? 2 x __ = 18"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": ["Organiser une synthèse uniquement pour les calculs où les élèves ont rencontré des difficultés."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "pe": ["Unités de numération. Calculer sur l'ardoise: 40 dizaines + 2 centaines."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": ["Rappeler les règles des épreuves Destination CE2.", "Proposer aux élèves l'épreuve d'entrainement 2 (C34-2)."],
+                  "note": ["Exemples de calculs de l'entrainement 2 (document C34-2): 7+5+3+5=? __x5=40 7x3=? 378-152=? 15x10=? 250+250=?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": ["Organiser une synthèse uniquement pour les calculs où les élèves ont rencontré des difficultés."]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 279,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 279 (Atelier: Masses, module 34) non fournie dans les captures — contenu non transcrit.]"
+            }
+          ]
+        },
+        {
+          "number": 35,
+          "title": "Codage du déplacement d'un robot",
+          "domain": "geo",
+          "guidePage": 280,
+          "objective": "",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 280,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Fin de séance (non identifiée précisément)",
+                  "el": ["Coder le déplacement du robot en utilisant les cartes-flèches.", "Recopier la ligne de code dans un cahier."],
+                  "note": ["Obstacles possibles: Se trompe en programmant les mouvements en fonction de leur orientation au lieu d'utiliser celles des robots. Confond la gauche et la droite. Ne comprend pas que le pivotement se limite à un quart de tour."],
+                  "pe": ["Observer la Bee-bot et effectuer des essais pour comprendre son fonctionnement.", "Vérifier le programme réalisé en manipulant le robot-abeille sur un quadrillage grand format."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Réaliser une synthèse de ce qu'il faut retenir de la séance."],
+                  "cons": ["Pour coder un déplacement avec les flèches, il faut se mettre à la place du robot."]
+                }
+              ],
+              "note": "La quasi-totalité de la séance 1 (titre, matériel, Mise en situation, Explicitation) n'a pas été capturée — la page 280 n'a pas pu être photographiée correctement (seul le bandeau de titre du module est visible). Seule la fin de la séance, en tête de la page 281, a été transcrite ci-dessus."
+            },
+            {
+              "seance_number": 2,
+              "title": "Comprendre et utiliser une suite d'instructions qui codent le déplacement d'un robot",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 281,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Pratique guidée",
+                  "pe": [
+                    "Rappeler ce qu'on a appris au cours de la séance précédente à propos de la manière de coder un déplacement sur un quadrillage.",
+                    "Présenter l'objectif de la séance: apprendre à comprendre et utiliser une suite d'instructions qui codent le déplacement d'un robot sur un quadrillage.",
+                    "Présenter l'exercice P142 Cherchons ensemble.",
+                    "Expliciter que l'abeille et les autres animaux sont vus de dessus et qu'en décodant le programme, on saura quel animal va rejoindre le robot.",
+                    "Lire le programme et tracer sur le quadrillage le chemin que va suivre le robot."
+                  ],
+                  "el": ["P142 Cherchons ensemble: Le robot-abeille décide d'aller voir son ami. Qui est-ce ? Lis le programme pour retrouver le bon insecte. Entoure-le. Trace le chemin que va suivre le robot sur le quadrillage."],
+                  "note": ["Procédures visées: Lire les symboles du programme un par un, dans l'ordre, de gauche à droite. Identifier la position et l'orientation du robot au départ sur le quadrillage. Exécuter correctement l'instruction AVANCER: déplacer le robot d'une case dans la direction où il est orienté et tracer le segment du chemin. Exécuter correctement l'instruction TOURNER: identifier la droite ou la gauche du robot en imaginant se mettre à sa place pour trouver le sens du pivotement, changer uniquement l'orientation du robot (d'un quart de tour à gauche ou à droite) sans changer de case. Savoir, après chaque instruction exécutée, où le robot en est dans le programme, cocher ou barrer les instructions déjà exécutées."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P142 Ex1 (même type d'exercice: décoder le programme du robot-abeille sur un quadrillage)."],
+                  "note": ["Obstacles possibles: Rencontre des difficultés à se décentrer de sa propre perspective pour adopter celle du robot. L'élève doit imaginer qu'il est à la place du robot: « Si j'étais le robot, dans quelle direction est ma gauche ? » Rencontre des difficultés à suivre une séquence d'instructions longues. L'élève a le besoin constant de cocher ou de barrer les instructions au fur et à mesure de leur réalisation."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Effectuer un bilan de la séance en récapitulant les procédures mobilisées pour décoder un programme."]
+                }
+              ]
+            },
+            {
+              "seance_number": 3,
+              "title": "Utiliser et produire une suite d'instructions qui codent un déplacement sur un quadrillage",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 282,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Pratique guidée",
+                  "pe": [
+                    "Rappeler ce qu'on a appris au cours de la séance précédente à propos de la manière de décoder un déplacement sur un quadrillage.",
+                    "Présenter l'exercice P143 Cherchons ensemble.",
+                    "Réinvestir les procédures utilisées au cours de la séance 2."
+                  ],
+                  "el": ["P143 Cherchons ensemble: Écrire la ligne de code qui permet de programmer le déplacement du robot-abeille. Le robot-abeille veut rentrer dans sa ruche en suivant le chemin vert. Écris la ligne de code qui permettra de programmer le robot-abeille."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P143 Ex2: Le robot-abeille veut rentrer dans sa ruche en suivant le chemin rose. Écris la ligne de code qui permettra de programmer le robot-abeille."],
+                  "note": ["DIFFÉRENCIATION: Fournir les cartes-flèches pour que les élèves puissent les utiliser pour produire la suite des instructions avant de la copier dans le cahier. Demander aux élèves d'anticiper et de verbaliser le déplacement. Proposer aux élèves de suivre du doigt le chemin (ou de cocher les cases) en codant chaque action au fur et à mesure."],
+                  "cons": ["d'abord, l'abeille doit avancer de trois cases. Ensuite, elle doit tourner à gauche…"]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Effectuer un bilan de la séance:"],
+                  "cons": ["Pour coder un déplacement, il faut imaginer qu'on est à la place du robot."]
+                }
+              ]
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 282,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P144 Ex3: Colorie le chemin que veut suivre la tortue. Combien de salades va-t-elle manger ?"]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P144 Ex4: La tortue veut suivre le chemin jaune. Écris la ligne de code qui permettra de la programmer."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence en s'appuyant sur la trace écrite D35-2."],
+                  "note": ["Trace écrite D35-2 — Codage du déplacement d'un robot: Je sais utiliser et produire une suite d'instructions qui codent un déplacement en un vocabulaire spatial précis. Légende: Avancer d'une case / Tourner vers la droite / Tourner vers la gauche."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 283,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 283 (Atelier problèmes, module 35) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 6,
+              "title": "Méli-Mélo de calculs",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 284,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "pe": ["Unités de numération. Calculer sur l'ardoise: 6 dizaines + 20 unités."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": ["Présenter et faire passer aux élèves l'épreuve finale de Destination CE2 (C35-1)."],
+                  "note": ["Exemples de calculs de l'épreuve C35-1: 900 – 300 = ? Observe et écris le nombre qui manque: 43→46→49→? 6 x 3 = ? Quel nombre peut-on donner avec la flèche ? 6 centaines – 3 unités = ? Combien d'argent Léo possède-t-il ? Lili mesurait 1m 15cm au CP. Au CE1, elle a grandi de 5cm. Combien Lili mesure-t-elle maintenant ? 15, c'est 5 x __ Quelle est la moitié de 90 ? Avec ses perles, Lili a fabriqué 5 bracelets de 10 perles chacun. Il lui reste 18 perles. Combien de perles Lili possédait-elle ? 40 + __ = 90 324 + 7 = ? Après un trajet de 148km, Léo a encore 110km à parcourir. Quelle est la longueur totale de son trajet ? Quelle est la moitié de 160 ? Quel nombre correspond à 40 dizaines et 3 centaines ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": ["Organiser une synthèse uniquement pour les calculs où les élèves ont rencontré des difficultés."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "pe": ["Unités de numération. Calculer sur l'ardoise: 60 dizaines + 3 centaines."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO C35-2."],
+                  "note": ["Exemples de calculs: 43+1= 31+16= 78+5= 52+7= 26+60= 49+50= 26+__=30 7+__=48 2+__=68 48+9= P9+80= 41+10= 51+__=57 23+70= 60+29="]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": ["Organiser une synthèse uniquement pour les calculs où les élèves ont rencontré des difficultés."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "pe": ["Unités de numération. Calculer sur l'ardoise: 3 centaines – 14 unités."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO C35-2."],
+                  "note": ["Exemples de calculs: 34+2= 36+12= 27+4= 56+10= 41+20= 63+7= 18+__=19 3+__=47 9+__=69 47+9= 55+__=60 29+30= 71+__=78 57+30= 74+6="]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Explicitation",
+                  "pe": ["Organiser une synthèse uniquement pour les calculs où les élèves ont rencontré des difficultés."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": ["Unités de numération. Calculer sur l'ardoise: 10 centaines – 3 centaines."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["CALCUL CHRONO P144 Mobiliser des procédures de calcul mental."],
+                  "note": ["Exemples de calculs: 34+5= 46+32= 68+5= 98+1= 56+30= 46+50= 24+__=26 6+__=28 4+__=79 47+10= 64+6= 65+10= 58+9= __+1=63 80+17= 52+__=59 83+__=89 15+54="]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Cercles",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 285,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Vrai ou faux ? Répondre sur l'ardoise. Le cercle a pour centre le point B."] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A. Le cercle passe par le point B."] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A. Le cercle bleu a pour centre le point A et passe par le point B."] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A. Le cercle vert a pour centre le point B et passe par le point A."] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

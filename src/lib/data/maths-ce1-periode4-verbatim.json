@@ -1,0 +1,1489 @@
+{
+  "method": "Accès",
+  "subject": "Mathématiques",
+  "level": "CE1",
+  "source": "Extraction verbatim des captures d'écran de l'application Maths en CE1 (Éditions ACCÈS) — Période 4 uniquement",
+  "periods": [
+    {
+      "id": "P4",
+      "label": "Période 4",
+      "modules": [
+        {
+          "number": 21,
+          "title": "Calcul posé : soustraction",
+          "domain": "calc",
+          "guidePage": 188,
+          "objective": "Poser et effectuer des soustractions en colonnes",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Calculer des différences de deux nombres à trois chiffres à l'aide du matériel de numération",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 188,
+              "materials": ["des cubes emboitables pour chaque élève ou les carrés des planches prédécoupées PP1 et PP2"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": [
+                    "Présenter l'objectif de la séance: apprendre à calculer la différence de deux nombres à trois chiffres en utilisant le matériel de numération.",
+                    "Écrire au tableau le calcul 568 – 142.",
+                    "Demander aux élèves d'effectuer le calcul en s'aidant du matériel de numération.",
+                    "Écrire au tableau le calcul 574 – 256.",
+                    "Demander aux élèves d'effectuer le calcul en s'aidant du matériel de numération.",
+                    "Écrire au tableau le calcul 342 – 161.",
+                    "Demander aux élèves d'effectuer le calcul en s'aidant du matériel de numération."
+                  ],
+                  "el": [
+                    "Constituer une collection de 568 cubes avec 5 plaques centaine, 6 barres dizaine et 8 unités isolées.",
+                    "Effectuer l'opération avec le matériel de numération et écrire le résultat sur l'ardoise.",
+                    "Constituer une collection de 574 cubes avec 5 plaques centaine, 7 barres dizaine et 4 unités isolées.",
+                    "Effectuer l'opération avec le matériel de numération et écrire le résultat sur l'ardoise.",
+                    "Constituer une collection de 342 cubes avec 3 plaques centaine, 4 barres dizaine et 2 unités isolées.",
+                    "Effectuer l'opération avec le matériel de numération et écrire le résultat sur l'ardoise."
+                  ],
+                  "note": ["Trois activités successives: ACTIVITÉ 1 Soustraction sans cassage nécessaire (568-142), ACTIVITÉ 2 Soustraction avec cassage de la dizaine (574-256), ACTIVITÉ 3 Soustraction avec cassage de la centaine (342-161)."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": [
+                    "Expliciter la procédure visée en prenant appui sur l'animation A21-1 (Activité 1: soustraction sans cassage nécessaire).",
+                    "Demander aux élèves de vérifier le résultat de la soustraction avec une addition: 426 + 142 = 568.",
+                    "Expliciter la procédure en prenant appui sur l'animation A21-1 (Activité 2: soustraction avec cassage de la dizaine). Cette procédure concerne le cassage de la dizaine qui a été enseignée au cours de la séquence 17 pour la soustraction de deux nombres à deux chiffres.",
+                    "Expliciter la procédure en prenant appui sur l'animation A21-1 (Activité 3: soustraction avec cassage de la centaine). Cette procédure est nouvelle car elle concerne le cassage de la centaine.",
+                    "Récapituler les étapes du calcul à l'aide de l'animation A21-2."
+                  ],
+                  "cons": ["Je termine avec les chiffres des centaines. 6 centaines – 2 centaines, c'est possible car 6 est plus grand que 2. 6 centaines - 2 centaines égale 4 centaines. J'écris 4 comme résultat dans la colonne des centaines."],
+                  "note": [
+                    "Procédures visées (Activité 1): Commencer par un calcul sur les chiffres des unités: 8 unités – 2 unités = 6 unités. Poursuivre par un calcul sur les chiffres des dizaines: 6 dizaines – 4 dizaines = 2 dizaines. Finir par un calcul sur les chiffres des centaines: 5 centaines – 1 centaine = 4 centaines.",
+                    "Procédures visées (Activité 2): Constater qu'on ne peut pas enlever 6 unités car il n'y a que 4 unités dans le nombre 574. Pour pouvoir enlever 6 cubes, il faut casser une des 7 barres dizaine de la collection de 574 cubes pour obtenir 10 cubes non groupés et ainsi pouvoir en retirer 6.",
+                    "Procédures visées (Activité 3): Constater qu'on ne peut pas enlever 6 dizaines car il n'y a que 4 dizaines dans le nombre 342. Pour pouvoir enlever 6 dizaines, il faut casser une des plaques centaine de la collection de 342 cubes pour obtenir 10 dizaines non groupées et ainsi pouvoir retirer 6 dizaines."
+                  ]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance.", "Chercher ce qui était identique et différent dans chacun des calculs proposés."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": "Poser et effectuer des soustractions en colonnes avec des nombres à trois chiffres",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 189,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance: apprendre à effectuer des soustractions en colonnes en s'aidant de la manipulation du matériel.", "Écrire au tableau le calcul 698 – 235.", "Demander aux élèves d'effectuer le calcul en s'aidant du matériel de numération."],
+                  "el": ["Constituer une collection de 698 cubes avec 6 plaques centaine, 9 barres dizaine et 8 unités isolées.", "Effectuer l'opération avec le matériel de numération et écrire le résultat sur l'ardoise."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Expliciter la procédure visée en prenant appui sur l'animation A21-2.", "Expliquer au tableau comment poser et calculer la soustraction 698 – 235 en colonnes en faisant le parallèle avec la manipulation des cubes.", "Récapituler les étapes du calcul à l'aide de l'animation A21-2."],
+                  "cons": [
+                    "Je pose l'opération en alignant les chiffres des unités dans la colonne des unités, les chiffres des dizaines dans la colonne des dizaines, les chiffres des centaines dans la colonne des centaines.",
+                    "Je calcule en commençant par les chiffres des unités. 8 unités – 5 unités, c'est possible car 5 est plus petit que 8. 8 unités moins 5 unités égale 3 unités. J'écris 3 comme résultat dans la colonne des unités.",
+                    "Je continue avec les chiffres des dizaines. 9 dizaines – 3 dizaines, c'est possible car 9 dizaines est plus grand que 3. 9 dizaines moins 3 dizaines égale 6 dizaines. J'écris 6 comme résultat dans la colonne des dizaines.",
+                    "Je termine avec les chiffres des centaines. 6 centaines – 2 centaines, c'est possible car 6 est plus grand que 2. 6 centaines - 2 centaines égale 4 centaines. J'écris 4 comme résultat dans la colonne des centaines."
+                  ]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": ["Écrire au tableau le calcul 439 – 185.", "Demander aux élèves d'effectuer le calcul en s'aidant du matériel de numération.", "Expliciter la procédure visée en prenant appui sur l'animation A21-2 et sur la trace écrite D21-1.", "Expliquer au tableau comment poser et calculer la soustraction 439 – 185 en colonnes en faisant le parallèle avec la manipulation des cubes."],
+                  "el": ["Constituer une collection de 439 cubes avec 4 plaques centaine, 3 barres dizaine et 9 unités isolées.", "Effectuer l'opération avec le matériel de numération et écrire le résultat sur l'ardoise."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["Résoudre P86 Cherchons ensemble: Calcule. 579 – 246 = … ; 847 – 395 = …"]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance.", "Chercher ce qui était identique et différent dans chacun des calculs proposés."]
+                }
+              ]
+            },
+            {
+              "seance_number": 3,
+              "title": "Réinvestir le calcul posé de la soustraction avec des nombres à trois chiffres",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 190,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance: s'entrainer à poser et effectuer des soustractions en colonnes avec des nombres à trois chiffres ans et avec retenue.", "Écrire au tableau le calcul 372 – 129.", "Demander aux élèves d'effectuer le calcul en s'aidant du matériel de numération."],
+                  "el": ["Effectuer l'opération avec le matériel de numération et écrire le résultat sur l'ardoise."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Expliciter la procédure visée en prenant appui sur l'animation A21-3 en détaillant les étapes du calcul."],
+                  "cons": [
+                    "Je commence par les unités. 2 unités – 9 unités, c'est impossible. Je casse une dizaine de 372 pour avoir 10 unités supplémentaires.",
+                    "12 unités – 9 unités, c'est possible. 12 – 9 = 3. J'écris 3 au résultat dans la colonne des unités.",
+                    "Je continue avec les dizaines. 6 dizaines – 2 dizaines, c'est possible. 6 – 2 = 4. J'écris 4 au résultat dans la colonne des dizaines.",
+                    "Je continue avec les centaines. 3 centaines – 1 centaine, c'est possible. 3 – 1 = 2. J'écris 2 au résultat dans la colonne des centaines.",
+                    "J'écris le résultat de l'opération. 372 – 129 = 243",
+                    "Je vérifie le résultat. Je calcule 129 + 243 pour vérifier que j'obtiens 372."
+                  ]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["Vérifier le résultat à l'aide du matériel de numération.", "P87 Ex1: Pose et effectue: 784 – 279 ; 918 – 493", "P87 Ex2: Effectue les opérations: 853 – 418 ; 429 – 78 ; 548 – 264"]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P87 Ex3 et 4: Ex3. Monsieur Lima avait 837 €. Il a dépensé 514 € pour acheter un vélo. Combien d'argent lui reste-t-il ? Ex4. L'ordinateur de Mehdi a coûté 429 €. Celui de Léon a coûté 371 €. Quelle est la différence de prix entre ces deux ordinateurs ?"],
+                  "note": ["DIFFÉRENCIATION: Les problèmes 3 et 4 sont proposés aux élèves les plus rapides. Pendant ce temps, l'enseignant peut regrouper les élèves les plus fragiles pour retravailler la technique opératoire de la soustraction dans le cadre du problème 3 par exemple."]
+                }
+              ]
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 190,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P88 Ex5: Calcule. 875 – 359 = … ; 738 – 265 = … ; 752 – 87 = …"]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P88 Ex6: Calcule. Tu peux calculer mentalement, si c'est plus rapide ou poser l'opération, si c'est nécessaire. 789 – 300 = … ; 981 – 629 = … ; 594 – 70 = …"],
+                  "note": ["Cet exercice a pour objectif de confronter chaque élève à un choix stratégique: calcul mental ou posé ? L'objectif est de développer sa flexibilité en incitant les élèves à analyser les nombres pour sélectionner la procédure la plus rapide. C'est un levier fondamental pour construire une véritable aisance et une compréhension profonde du calcul."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Problèmes multiplicatifs en une étape: recherche du nombre de parts",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 191,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 191 (Atelier problèmes du module 21) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 6,
+              "title": "Connaitre dans les deux sens la table de multiplication de 3",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 192,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "note": ["Connaitre les nombres ordinaux jusqu'à 100. Il y a 53 personnes qui font la queue à l'entrée du cinéma. Je suis la trente-deuxième dans la file. Combien de personnes y a-t-il devant moi ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": ["Proposer les calculs oralement: 1 x 3 = ? 2 x 3 = ? 10 x 3 = ? 5 x 3 = ?", "Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": ["Ces trois résultats sont déjà connus car ils sont dans les tables de x 2, x 5 et x 10.", "Rappeler que, si l'on connait le résultat de 3 × 2, on connait aussi le résultat de 2 x 3.", "Ces résultats font partie de la table de x 3 qui est l'objectif de cette séquence.", "Rappeler également les procédures à mobiliser pour retrouver ces trois résultats:"],
+                  "cons": ["1 x 3, c'est une fois trois.", "2 x 3, c'est le double de 3.", "10 x 3, c'est 3 fois 1 dizaine donc 30.", "5 x 3, c'est la moitié de 10 x 3 donc la moitié de 30 ou c'est égal à 3 x 5."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": ["Proposer les calculs à l'oral: 3 x 3 = ? 6 x 3 = ? 4 x 3 = ?", "Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l'ardoise.", "Expliciter les procédures visées en prenant appui sur l'animation AC21-1."],
+                  "cons": ["3 x 3, c'est (2 x 3) + (1 x 3). On se sert du résultat de 2 x 3.", "6 x 3, c'est 2 x (3 x 3). On se sert du résultat de 3 x 3.", "On peut aussi prendre appui sur le résultat de 5 x 3: 6 x 3, c'est (5 x 3) + (1 x 3).", "4 x 3, c'est 2 x (2 x 3), c'est le double du double de 3. On se sert du résultat de 2 x 3."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": ["Donner cinq minutes aux élèves pour mémoriser en binôme les résultats de la séance affichés au tableau.", "Proposer les calculs du document élève C21-1."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "note": ["Connaitre les nombres ordinaux jusqu'à 100. Il y a 76 personnes qui font la queue à l'entrée du cinéma. Je suis la soixante-treizième dans la file. Combien de personnes y a-t-il devant moi ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Mise en situation",
+                  "pe": ["Proposer les calculs à l'oral: 8 x 3 = ? 9 x 3 = ? 7 x 3 = ?", "Laisser au moins 10 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": ["Expliciter les procédures visées en prenant appui sur l'animation AC21-2."],
+                  "cons": ["8 x 3, c'est 2 x (4 x 3). On se sert du résultat de 4 x 3.", "9 x 3, c'est (10 x 3) – (1 x 3). On se sert du résultat de 10 x 3.", "7 x 3, c'est (6 x 3) + (1 x 3) On se sert du résultat de 6 x 3. On peut aussi prendre appui sur le résultat de 8 × 3."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "pe": ["Donner cinq minutes aux élèves pour mémoriser en binôme les résultats affichés au tableau.", "CALCUL CHRONO Test en temps limité C21-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "note": ["Connaitre les nombres ordinaux jusqu'à 100. Il y a 200 personnes qui font la queue à l'entrée du stade. Je suis la quatre-vingt-douzième dans la file. Combien de personnes y a-t-il devant moi ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": ["Vidéoprojeter la droite graduée de l'animation AC21-3 en demandant aux élèves d'expliquer comment la droite graduée est construite.", "Demander aux élèves d'écrire le résultat indiqué par la flèche, l'objectif étant de les amener à se servir d'un résultat connu pour trouver un nouveau résultat.", "Reproduire le même exercice en essayant de retrouver les autres résultats en suivant l'ordre proposé par l'animation AC21-3.", "Demander aux élèves de justifier leurs réponses."],
+                  "cons": ["3 x 3, c'est (2 x 3) + (1 x 3). On se sert du résultat de 2 x 3.", "9 x 3, c'est (10 x 3) – (1 x 3). On se sert du résultat de 10 x 3."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "pe": ["Donner cinq minutes aux élèves pour qu'ils mémorisent en binôme les résultats de la multiplication x 3.", "CALCUL CHRONO Test en temps limité C21-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "note": ["Connaitre les nombres ordinaux jusqu'à 100. Il y a 150 personnes qui font la queue à l'entrée du stade. Je suis la centième dans la file. Combien de personnes y a-t-il devant moi ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["Donner un temps de cinq minutes aux élèves pour qu'ils mémorisent les résultats appris au cours de la séance et présentés dans la trace écrite C21-3.", "CALCUL CHRONO P88 Connaitre dans les deux sens la table de multiplication de 3."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Monnaie",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 193,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Déterminer la valeur en euro et centime d'euro d'un ensemble constitué de pièces et de billets."] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A."] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A."] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A."] }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 22,
+          "title": "Fractions",
+          "domain": "nb",
+          "guidePage": 194,
+          "objective": "Comparer des fractions ayant le même dénominateur\nComparer des fractions dont le numérateur est 1\nAdditionner et soustraire des fractions de même dénominateur",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Comparer des fractions",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 194,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance: apprendre à comparer des fractions.", "Lire à haute voix le texte P90 Cherchons ensemble à l'aide de l'animation A22-1: problème où on apprend à comparer des fractions ayant le même dénominateur.", "Reformuler l'histoire du problème:", "Distribuer deux bandes de papier identiques aux binômes qui le demandent (D22-1 A)."],
+                  "cons": ["Zoé et Louise ont chacune acheté le même gâteau. Zoé coupe son gâteau en 6 parts égales et mange 5 parts. Louise coupe aussi son gâteau en 6 parts égales et mange 3 morceaux. Qui a mangé le plus de gâteau ?"],
+                  "el": ["Résoudre le problème proposé en utilisant si besoin le matériel distribué par l'enseignant."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["L'enjeu principal est de faire comprendre aux élèves que, lorsqu'on compare des fractions qui représentent des parts d'une même unité (ici, le même gâteau) et que cette unité a été divisée en le même nombre de parts égales (ici, 6 sixièmes), alors on peut comparer directement le nombre de ces parts.", "Expliciter et écrire au tableau:"],
+                  "cons": [
+                    "Les deux amies ont acheté le même gâteau. Cela signifie que le tout (le gâteau entier) est de la même taille pour Zoé et pour Louise. Chacune coupe son gâteau en 6 parts égales.",
+                    "Comme les gâteaux sont de la même taille et coupés en 6 parts égales, la taille de chaque part est exactement la même pour Zoé et pour Louise. On appelle ces parts des sixièmes (on écrit 1/6).",
+                    "Zoé mange 5 parts de son gâteau. Puisque chaque part est un sixième, Zoé a mangé 5 sixièmes de gâteau. On peut écrire: 5/6. Louise mange 3 parts de son gâteau. Puisque chaque part est un sixième, Louise a mangé 3 sixièmes de gâteau. On peut écrire: 3/6.",
+                    "Maintenant, comparons ce qu'elles ont mangé. Elles ont toutes les deux des parts de la même taille (des sixièmes). Zoé en a 5 et Louise en a 3. Comme 5 parts de cette taille, c'est plus grand que 3 parts de cette même taille, Zoé a mangé plus de gâteau que Louise.",
+                    "5 fois un sixième, c'est plus grand que 3 fois un sixième."
+                  ],
+                  "note": ["5/6 > 3/6 (Zoé a mangé 5/6 du gâteau, Louise a mangé 3/6 du gâteau)."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": ["Lire à haute voix le texte P90 Ex2 à l'aide de l'animation A22-1: problème où on apprend à comparer des fractions dont le numérateur est 1.", "Reformuler l'histoire du problème:", "Distribuer deux bandes de papier de même taille par binôme à ceux qui le demandent (D22-1 B).", "Comparer au tableau les deux fractions en utilisant le symbole < ou >."],
+                  "cons": [
+                    "Ugo et Medhi ont chacun acheté le même gâteau. Ugo partage son gâteau en 3 parts égales et mange 1 part. Medhi partage son gâteau en 5 parts égales et mange 1 part. Qui a mangé le plus de gâteau ?",
+                    "Comme dans le problème précédent, Ugo et Medhi ont chacun un gâteau de la même taille. C'est le tout (l'unité de référence). Ugo coupe son gâteau en 3 parts égales. Chaque part représente un tiers du gâteau (on écrit 1/3). Medhi coupe son gâteau en 5 parts égales. Chaque part représente un cinquième du gâteau (on écrit 1/5).",
+                    "Regardez bien les parts sur les images. Si on coupe le même gâteau en seulement 3 parts, chaque part est plus grande que si on coupe en 5 parts. Plus on fait de parts, plus les parts sont petites ! Donc, une part du gâteau de Ugo (un tiers) est plus grande qu'une part du gâteau de Medhi (un cinquième).",
+                    "Maintenant, regardons combien de parts chacun a mangé. Ugo a mangé 1 part (un tiers). Medhi a mangé 1 part (un cinquième). Comme la part de Ugo (un tiers) est plus grande que la part de Medhi (un cinquième), même s'ils n'ont mangé qu'une seule part chacun, Ugo a mangé la plus grande quantité de gâteau."
+                  ],
+                  "el": ["Utilise si besoin le matériel qu'on t'a distribué. Ugo et Medhi ont reçu chacun le même gâteau. Ugo mange 1/3 de son gâteau. Medhi mange 1/5 de son gâteau. Qui a mangé le plus de gâteau ? Explique pourquoi.", "Résoudre le problème proposé en utilisant si besoin le matériel distribué par l'enseignant."],
+                  "note": ["L'enjeu de ce problème est de faire comprendre que, lorsqu'on prend une seule part d'un tout (d'une unité), la taille de cette part dépend du nombre total de divisions: plus il y a de divisions, plus les parts sont petites.", "1/3 > 1/5"]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": null,
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 195,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 195 non fournie dans les captures — contenu de la séance 2 non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": null,
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 196,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Explicitation (suite ; début de séance — mise en situation — non capturé, page 195 manquante)",
+                  "pe": ["Recueillir les réponses et les procédures au tableau.", "Mettre en évidence les représentations visuelles (le gâteau hexagonal avec 5 parts coloriées sur 6).", "Guider la verbalisation des élèves:", "Faire de même pour l'après-midi (3 parts, des sixièmes) (3/6).", "Formaliser l'addition:", "Guider vers l'écriture: 2/6 + 3/6 = 5/6 et l'écrire au tableau."],
+                  "cons": ["Combien de parts Léon a-t-il mangées le matin ? Deux.", "Quelle est la taille de ces parts ? Des sixièmes.", "Comment cela s'écrit ? 2/6.", "On avait 2 sixièmes, on ajoute 3 sixièmes. Combien de sixièmes cela fait-il en tout ? 5 sixièmes. Comment cela s'écrit-il avec les fractions ?"]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["P91 Ex4: Il reste 4/5 d'un gâteau. Iris en mange 2/5. Quelle fraction du gâteau reste-t-il maintenant ? Je cherche. Je réponds."],
+                  "pe": ["Circuler dans les rangs pour apporter une aide personnalisée aux élèves pendant la résolution du problème.", "Leur demander de raconter l'histoire de ce problème.", "Les questionner pour s'assurer de la compréhension du problème.", "Aider les élèves à modéliser le problème à l'aide d'un schéma.", "Encourager l'écriture de la soustraction 9/10 – 4/10 = ?"]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P91 Ex3: Ce matin, Timéo a mangé 2/8 de son gâteau. Cet après-midi, il en a mangé 3/8. Quelle fraction du gâteau a-t-il mangé en tout aujourd'hui ? Je réponds."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance."],
+                  "cons": ["On peut additionner des fractions qui ont le même nom (le dénominateur), par exemple, 2 sixièmes + 3 sixièmes = 5 sixièmes.", "On écrit 2/6 + 3/6 = 5/6.", "On peut soustraire des fractions qui ont le même nom (le dénominateur), par exemple, 3 quarts – 1 quart = 2 quarts", "On écrit 3/4 – 1/4 = 2/4."]
+                }
+              ]
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 196,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P92 Ex6: Zoé a mangé 3/8 d'un gâteau. Sacha en a mangé 2/8. Quelle fraction du gâteau reste-t-il maintenant ? Je réponds."]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P92 Ex7: Calcule. 1/5 + 2/5 = … ; 8/10 – 2/10 = … ; 3/5 + 2/5 = … ; 3/10 + 4/10 = … ; 2/3 – 1/3 = … ; 3/10 + 7/10 = …", "P92 Ex8: Ugo a colorié les 3/8 d'un rectangle en bleu et le reste en rouge. Quelle fraction du rectangle est coloriée en rouge ? Je cherche. Je réponds."],
+                  "pe": ["Donner des exemples de calculs similaires avant d'engager les élèves dans l'exercice 7."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence en s'appuyant sur la trace écrite D22-3."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes multiplicatifs en une étape: recherche du nombre de parts",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 197,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Séance 1 — Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance: s'entrainer à résoudre des problèmes qui ressemblent à celui des colliers.", "Lire à haute voix le problème A écrit au tableau.", "Préciser:", "Circuler dans les rangs, sans aider pour le moment, mais pour prendre connaissance des idées de chacun.", "Organiser une mise en commun après la résolution du problème.", "Suivre la même démarche pour le problème B."],
+                  "cons": ["Vous ne pouvez plus utiliser des jetons pour résoudre le problème.", "Louise range 34 balles de tennis dans des boites qui peuvent chacune contenir 5 balles. Combien de boites Louise peut-elle remplir ?", "Pour son gouter d'anniversaire, Éva a besoin de 45 ballons. Les ballons sont vendus par paquet de 5. Combien de paquets Éva doit-elle acheter ?"],
+                  "el": ["Résoudre les problèmes A et B sur l'ardoise pendant cinq minutes."],
+                  "note": ["Procédures visées (Problème A): Dessiner 34 perles et faire des paquets de 5 perles en les entourant, dénombrer les paquets et les perles qui restent. Compter de 5 en 5 jusqu'à 30 en comptant sur les doigts le nombre de colliers fabriqués. Mobiliser le résultat de la table de multiplication 6 x 5 = 30.", "Procédure visée (Problème B): Mobiliser le résultat de la table de multiplication 9 x 5 = 45."]
+                },
+                {
+                  "n": "Séance 1 — Explicitation",
+                  "pe": ["Verbaliser les solutions obtenues pour chaque problème.", "Mettre en évidence que la mobilisation des résultats des tables de multiplication est la procédure la plus rapide.", "Utiliser un schéma avec déplacement sur un axe pour mettre en évidence que, dans 34, il y a 6 fois 5 et qu'il reste 4.", "Utiliser un schéma avec déplacement sur un axe pour mettre en évidence que, dans 45, il y a 9 fois 5 et qu'il reste 0."],
+                  "cons": ["Louise peut remplir 6 boites de 5 balles chacune et il reste 4 balles.", "34 est égal à 6 fois 5 plus 4.", "Éva doit acheter 9 paquets de 5 ballons chacun.", "9 fois 5 égale 45."]
+                },
+                {
+                  "n": "Séance 1 — Pratique guidée",
+                  "el": ["P93 Pb1 et 2: Pb1. Louise range 28 balles de tennis dans des boites qui peuvent chacune contenir 5 balles. Combien de boites Louise peut-elle remplir ? Combien de balles reste-t-il ? Pb2. Pour son gouter d'anniversaire, Éva a besoin de 20 ballons. Les ballons sont vendus par paquet de 5. Combien de paquets Éva doit-elle acheter ?"],
+                  "pe": ["Regrouper les élèves les plus fragiles pour les guider au cours de la résolution de ces deux problèmes."],
+                  "note": ["Procédures visées (problème 2): Mobiliser les résultats de la table de multiplication de x 5. Utiliser un schéma avec déplacement sur un axe gradué de 5 en 5."]
+                },
+                {
+                  "n": "Séance 1 — Clôture de la séance",
+                  "pe": ["Récapituler les procédures mobilisées pour résoudre les problèmes proposés au cours de la séance."]
+                },
+                {
+                  "n": "Séance 2 — Pratique guidée",
+                  "el": ["Résoudre, sans avoir accès à la manipulation, le problème C écrit au tableau."],
+                  "cons": ["Je veux ranger 43 images dans un cahier. Je peux ranger 10 images par page. Combien de pages me faut-il pour ranger toutes les images ? Combien d'images y aura-t-il sur la dernière page ?"],
+                  "pe": ["Lors de la mise en commun, faire vérifier les réponses en manipulant les jetons."]
+                },
+                {
+                  "n": "Séance 2 — Pratique autonome",
+                  "el": ["Résoudre P93 Pb3 et 4 sans avoir accès à la manipulation. Pb3. Dans le gymnase, il y a 60 élèves. Les professeurs veulent constituer des équipes de 5 élèves. Combien d'équipes y aura-t-il ? Pb4. Je veux ranger 135 images dans un cahier. Je peux ranger 10 images par page. Combien de pages me faut-il pour ranger toutes les images ? Combien d'images y aura-t-il sur la dernière page ?"],
+                  "pe": ["Lors de la mise en commun, vérifier les réponses en manipulant les jetons."],
+                  "note": ["Le problème 4 amène les élèves à interpréter le reste dans le contexte pour comprendre qu'il faut 14 pages et qu'il y aura 5 images sur la dernière page."]
+                },
+                {
+                  "n": "Séance 2 — Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Multiplier par 10 un nombre inférieur à 100",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 198,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "note": ["Comprendre et utiliser les nombres ordinaux. Dans une étape du Tour de France parcourue par 167 cyclistes, combien de cyclistes sont arrivés avant le quarante-huitième coureur ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": ["Proposer le calcul au tableau: 10 x 72 = ?", "Laisser au moins 10 secondes pour le calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": ["Expliciter que la procédure visée prend appui sur les unités de numération et notamment le fait que 10 est égal à une dizaine:", "Expliciter également que, lors d'une multiplication par 10, une unité devient une dizaine et une dizaine devient une centaine. Ainsi, chaque chiffre du nombre initial prend une valeur 10 fois plus grande: le chiffre des unités devient le chiffre des dizaines et le chiffre des dizaines devient le chiffre des centaines.", "Le programme propose d'utiliser un outil du type glisse-nombres pour accompagner les premières multiplications par 10, en complément de la verbalisation de la procédure en termes d'unités de numération. Progressivement, l'élève apprend à s'en détacher. Exemple: multiplication de 72 par 10 (animation AC22-1)."],
+                  "cons": ["10 x 72 est égal à 72 x 10.", "72 x 10, c'est 72 fois une dizaine donc 72 dizaines.", "72 dizaines s'écrit aussi 720.", "10 x 72 = 720", "Pour le calcul 10 × 72, 2 devient le chiffre des dizaines, 7 devient le chiffre des centaines donc on a 7c 2d, ce qui s'écrit 720. 10 x 72 = 720."],
+                  "note": ["CE QUE L'ENSEIGNANT DOIT SAVOIR: Il faut éviter de dire qu'on ajoute un zéro à 72 pour trouver le résultat de 10 x 72 car cette règle ne fonctionnera pas au cycle 3 pour les calculs avec les décimaux. Exemple 5,6 x 10 = 56 et non 5,60.", "Trace écrite C22-1: 10 x 72 = 720. 10 x 72, c'est 72 fois une dizaine. C'est égal à 72 dizaines."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": ["Proposer les calculs: 10 x 53 = ? 10 x 12 = ? 10 x 100 = ? 10 x … = 890 10 x … = 230 10 x … = 50", "Laisser au moins 5 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": ["Proposer les calculs du document élève C22-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "note": ["Dans une étape de Paris-Nice parcourue par 234 cyclistes, combien de cyclistes sont arrivés avant le cent-soixante-deuxième coureur ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": ["Proposer les calculs oralement: 87 x 10 = ? 17 x 10 = ? 20 x 10 = ? 51 x 10 = ? 60 x 10 = ? 87 x 10 = ?", "Laisser au moins 3 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test en temps limité C22-3."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "note": ["La course Paris-Roubaix a rassemblé 200 cyclistes. Combien de cyclistes sont arrivés avant le deux-centième coureur ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": ["Proposer les petits problèmes oraux avec un temps limité à 5 secondes par calcul:"],
+                  "cons": ["Pour un spectacle, on a vendu 45 carnets de 10 tickets chacun. Combien de tickets ont été vendus en tout ?", "Le fleuriste a reçu 27 bouquets de 10 roses chacun. Combien de roses a-t-il reçues en tout ?", "Pour la fête de l'école, 14 classes ont préparé chacune 10 gâteaux. Combien de gâteaux y a-t-il en tout ?", "Un éleveur a 53 poules. Chaque poule pond en moyenne 10 œufs par mois. Combien d'œufs l'éleveur peut-il espérer récolter en un mois ?", "Dans un parking, il y a 71 rangées pour se garer. Chaque rangée a 10 places. Combien de voitures peuvent se garer dans ce parking ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test en temps limité C22-3."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "note": ["Dans une étape du tour d'Italie parcourue par 320 cyclistes, combien de cyclistes sont arrivés avant le deux-cent-cinquantième coureur ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["Donner cinq minutes aux élèves pour mémoriser les résultats affichés au tableau.", "CALCUL CHRONO P92 Multiplier par 10 un nombre inférieur à 100."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Nombres entiers",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 199,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Dénombrer et comparer des collections en les organisant. Exemple: 27 dizaines comparé à une collection de carrés-dizaines dessinés."] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A. Exemple: 1 centaine et 4 dizaines."] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A. Exemple: 14 dizaines comparé à 1 centaine 8 unités."] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A. Exemple: 30 dizaines comparé à 4 centaines."] }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 23,
+          "title": "Rectangles",
+          "domain": "geo",
+          "guidePage": 200,
+          "objective": "Utiliser l'équerre pour vérifier qu'un angle est droit\nConnaitre et utiliser le code pour les angles droits\nConnaitre les propriétés des angles et des égalités de longueur pour les carrés et les rectangles",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Utiliser l'équerre pour vérifier qu'un angle est droit",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 200,
+              "materials": ["une équerre et une gommette rouge par élève"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Annoncer l'objectif de la séance: apprendre à utiliser une équerre pour vérifier qu'un angle est droit.", "Rappeler que le coin d'un carré s'appelle un angle droit et qu'on utilise un gabarit d'angle droit pour vérifier si une figure a un ou plusieurs angles droits.", "Présenter le document D23-1 en demandant aux élèves de trouver les angles droits dans les figures proposées et de les marquer avec un petit carré rouge.", "Utiliser l'équerre pour trouver les figures du document 23 qui ont des angles droits.", "Marquer chaque angle droit à l'aide d'un petit carré rouge."],
+                  "el": ["Trouver le ou les angles droits sur l'équerre à l'aide d'un gabarit d'angle droit: utiliser un des carrés (l ou p) de la planche prédécoupée PP4 du cahier de l'élève MATHS EN CE1.", "Faire remarquer que l'équerre n'a qu'un seul angle droit.", "Coller une gommette rouge carrée à l'emplacement de l'angle droit après avoir vérifié que les deux autres angles ne sont pas droits."],
+                  "cons": ["On superpose l'angle de la figure avec l'angle droit de l'équerre (celui avec la gommette), c'est-à-dire on place ce sommet de l'angle de l'équerre sur le sommet de l'angle à vérifier et un côté de l'angle droit de l'équerre sur le côté de la figure: si l'autre côté de l'équerre se superpose avec l'autre côté de la figure, alors c'est un angle droit."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Expliciter: L'équerre comporte trois angles mais un seul est droit. Une équerre est souvent graduée mais cette graduation n'est pas utile pour reconnaitre ou tracer un angle droit. L'équerre sert à vérifier si une figure a un angle droit.", "Poursuivre à l'aide de l'animation A23-1."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["P94 Cherchons ensemble: Trouve les angles droits et marque-les d'un petit carré rouge."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P94 Ex1: Marque les angles droits d'un petit carré rouge puis complète les phrases. La figure A: a … angle droit. La figure B: a … angles droits. La figure C: a … angle droit."],
+                  "note": ["La figure C, sans angle droit, permet de vérifier que les élèves ne marquent pas d'angle par défaut ou par approximation visuelle."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler comment utiliser une équerre pour vérifier qu'une figure a un angle droit."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": null,
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 201,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 201 non fournie dans les captures — contenu de la séance 2 non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": null,
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 202,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Explicitation (suite ; début de séance non capturé, page 201 manquante)",
+                  "pe": ["Demander aux élèves d'expliquer la manière dont ils s'y sont pris pour trouver le rectangle et pour éliminer les autres figures.", "Vérifier que les autres rectangles ont des côtés opposés de même longueur."],
+                  "cons": ["La figure G a 4 côtés et 4 angles droits, c'est un rectangle. Les deux côtés face à face, c'est-à-dire les deux côtés opposés du rectangle G, ont la même longueur. Les deux côtés opposés mesurent 5 cm et les deux autres côtés opposés mesurent 3 cm."],
+                  "note": ["CE QUE L'ENSEIGNANT DOIT SAVOIR: Il est conseillé de ne pas parler de largeur et de longueur du rectangle au CE1 pour éviter toute confusion avec l'autre sens du mot longueur en grandeurs et mesures. La définition du rectangle qui sera la plus opérationnelle pour la suite du parcours des élèves est le rectangle a quatre côtés et quatre angles droits. Il est fortement déconseillé de dire aux élèves que le carré n'est pas un rectangle car c'est inexact. La connaissance que le carré est un rectangle particulier ne relève pas du CE1. De la même manière, il est déconseillé de dire qu'une figure est un rectangle donc ce n'est pas un carré. La propriété concernant l'égalité de longueur des côtés opposés est étudiée au cours de cette séquence mais elle n'est pas nécessaire pour vérifier qu'une figure est un rectangle."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": ["Mettre en place un jeu du portrait à partir du document D23-3 utilisé au cours de cette séance.", "Décrire une figure oralement et demander aux élèves d'écrire sur l'ardoise la lettre qui correspond à cette figure dans le document D23-3."],
+                  "cons": ["C'est un carré. Ses côtés mesurent 5 cm. Quelle figure est-ce ? J", "C'est un rectangle. Deux de ses côtés mesurent 2 cm. Les deux autres côtés mesurent 5 cm. Quelle figure est-ce ? B", "C'est un carré. Ses côtés mesurent 3 cm. Quelle figure est-ce ? F", "C'est un rectangle. Deux de ses côtés mesurent 4 cm. Les deux autres côtés mesurent 3 cm. Quelle figure est-ce ? A", "Ce n'est pas un rectangle. Deux de ses côtés mesurent 5 cm. Les deux autres côtés mesurent 3 cm. Quelle figure est-ce ? C"],
+                  "el": ["Utiliser l'équerre et la règle graduée pour identifier les figures décrites par l'enseignant.", "Écrire sur l'ardoise la lettre correspondant à chaque figure."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P95 Ex2: Explique pourquoi la figure n'est pas un rectangle."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler:"],
+                  "cons": ["Un rectangle a quatre sommets, quatre angles droits, quatre côtés et les côtés opposés ont la même longueur."]
+                }
+              ]
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 202,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P96 Ex3: De quelle figure s'agit-il ? C'est un rectangle. Deux de ses côtés mesurent 2 cm. Les deux autres côtés mesurent 5 cm. C'est la figure … / C'est un carré. Ses côtés mesurent 3 cm. C'est la figure … / C'est un rectangle de longueur 4 cm et de largeur 3 cm. C'est la figure …"]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence en prenant appui sur la trace écrite D23-4."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes multiplicatifs en une étape: recherche de la valeur d'une part",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 203,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 203 (Atelier problèmes du module 23) non fournie dans les captures — contenu non transcrit.]"
+            },
+            {
+              "seance_number": 6,
+              "title": "Doubles et moitiés",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 204,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Pratique autonome (suite ; échauffement et séances 1 à 3 non capturés, page 204 manquante)",
+                  "pe": ["CALCUL CHRONO Test en temps limité C23-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "note": ["Connaitre la table de multiplication par 7. Proposer au tableau le calcul 4 x 7 = 28 et expliciter: 4 x 7, c'est le double de 2 fois 7 donc le double de 14."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["CALCUL CHRONO P96 Connaitre des faits multiplicatifs usuels."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence."]
+                }
+              ],
+              "note": "Pages 204 (échauffement et séances 1 à 3 du calcul mental « Doubles et moitiés ») non fournie dans les captures. Seule la fin de la pratique autonome et la séance 4 apparaissent en haut de la page 205."
+            },
+            {
+              "seance_number": 7,
+              "title": "Formes planes",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 205,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Dire si les affirmations sont vraies ou fausses. Exemple figure A: 1. A a 6 côtés. 2. A a 5 côtés. 3. A est un polygone."] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A. Exemple figure B (hexagone): 1. B a 6 côtés. 2. B a 5 côtés. 3. B est un polygone."] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A. Exemple figure C (triangle): 1. C est un triangle. 2. C a 5 côtés. 3. C est rectangle."] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A. Exemple figure D (carré): 1. D est un carré. 2. D est un polygone. 3. D a quatre côtés."] }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 24,
+          "title": "Demi-droite graduée",
+          "domain": "nb",
+          "guidePage": 206,
+          "objective": "Comparer, encadrer, intercaler des nombres entiers en utilisant les symboles =, < ou >\nSavoir placer des nombres sur une demi-droite graduée",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Placer des nombres sur une demi-droite graduée",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 206,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Annoncer l'objectif de la séance: apprendre à placer des nombres sur une demi-droite graduée.", "ACTIVITÉ 1: Projeter la première demi-droite graduée de l'animation A24-1:"],
+                  "cons": ["Regardez cette ligne. C'est une demi-droite graduée. On a placé le nombre 240. Aujourd'hui, nous allons aider Riri la grenouille à faire des bonds sur la demi-droite graduée. Riri fait toujours des bonds de même longueur.", "La grenouille part du nombre 240. Elle fait des bonds de 5. Si elle fait 6 bonds de 5, sur quel nombre va-t-elle atterrir ?", "ACTIVITÉ 2: La grenouille part du nombre 353. Elle fait des bonds de 100. Si elle fait 4 bonds de 100, sur quel nombre va-t-elle atterrir ?", "ACTIVITÉ 3: La grenouille part du nombre 527. Elle fait 4 bonds et arrive sur le nombre 567. Quelle est la valeur de chaque bond pour aller de 527 à 567 en 4 bonds ?", "ACTIVITÉ 4: La grenouille part du nombre 498. Elle fait 5 bonds et arrive sur le nombre 503. En se déplaçant, elle est passée sur un nombre indiqué par une flèche. Quel est ce nombre ?"],
+                  "el": ["Pour chaque activité, effectuer la recherche sur l'ardoise ou calculer mentalement.", "Lors de la mise en commun, expliquer sa stratégie en montrant les bonds de la grenouille sur la demi-droite graduée."],
+                  "note": ["CE QUE DOIT SAVOIR L'ENSEIGNANT: Cet objectif a déjà été travaillé au CP et revu au début du CE1. L'objectif de cette séance est de réinvestir les procédures à mobiliser pour placer un nombre ou pour déterminer le nombre correspondant à un point sur une demi-droite graduée soit de un en un, soit de dix en dix, soit de cent en cent. Les élèves apprennent à faire le lien entre le nombre associé à un point et la distance entre ce point et l'origine de la demi-droite."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Expliciter les procédures à acquérir pour placer un nombre sur une demi-droite graduée."],
+                  "note": ["Procédures visées: Dénombrer les intervalles (les bonds) entre 498 et 503. Tâtonner pour trouver la valeur d'un bond, faire une hypothèse du type: je vais essayer de voir si les bonds sont de… 10. Vérifier en partant de 498 ou de 503, en ajoutant ou en retranchant la valeur du bond choisi, autant de fois qu'il y a d'intervalles comptés. Ajuster l'hypothèse: selon le résultat, essayer avec un bond plus grand ou plus petit. Calculer l'écart entre 498 et 503: 498 + ? = 503. L'écart de 5 est réparti sur 5 intervalles. Se demander: quel nombre, si je l'ajoute 5 fois, me donne 5 ? 5 fois combien égale 5 ?"]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["P98 Cherchons ensemble: Écris les nombres qui manquent sur les demi-droites graduées. (357…361 ; 600…660 ; 281 381 481 581 ; 450…480)"],
+                  "note": ["DIFFÉRENCIATION: Pour les élèves plus rapides: leur proposer de créer eux-mêmes une demi-droite graduée avec un nombre manquant pour un camarade."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P98 Ex1: Écris le nombre indiqué par chaque flèche. (100…900 ; 880…920)"]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": null,
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 207,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 207 non fournie dans les captures — contenu de la séance 2 non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": null,
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 208,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Explicitation (suite ; début de séance non capturé, page 207 manquante)",
+                  "pe": ["Amener les élèves à formuler: il faut trouver tous les nombres plus grands que 940 et plus petits que 960, c'est-à-dire supérieurs à 940 et inférieurs à 960.", "Ordonner les nombres sur la droite."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": ["Écrire au tableau: a) 576 < … < 582  b) 789 < … < 791  c) 238 < … < 240  d) … < 867 < …", "Pour la question d, par exemple, expliciter que de nombreuses solutions sont possibles: le nombre juste avant et juste après: 866 < 867 < 868 ; la dizaine juste avant et la dizaine après: 860 < 867 < 870 ; la centaine juste avant et la centaine après: 800 < 867 < 900 ; d'autres nombres, par exemple: 562 < 867 < 901."],
+                  "el": ["Écrire sur l'ardoise un nombre qui peut s'intercaler entre les nombres.", "Constater qu'une seule solution est possible dans les cas b) et c).", "Chercher deux nombres qui peuvent encadrer le nombre 867."]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P99 Ex2 et 3: Ex2. Encadre chaque nombre par les deux dizaines les plus proches. 20 < 23 < 30 ; … < 68 < … ; … < 99 < … ; … < 306 < … ; … < 799 < … ; … < 901 < … . Ex3. Encadre chaque nombre par les deux centaines les plus proches. 400 < 485 < 500 ; … < 683 < … ; … < 309 < … ; … < 769 < … ; … < 103 < … ; … < 950 < …"]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence:"],
+                  "cons": ["Intercaler un nombre entre deux nombres, c'est trouver un nombre compris entre les deux.", "Encadrer un nombre, c'est trouver deux nombres, l'un plus petit, l'autre plus grand."]
+                }
+              ]
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 208,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P100 Ex4: Écris le nombre indiqué par la flèche. (630…670 ; 60…560)"],
+                  "pe": ["Au cours de la synthèse, encourager les élèves à expliquer leur stratégie: cela permet de mettre en lumière leur raisonnement et d'identifier les éventuelles incompréhensions."],
+                  "note": ["Procédures possibles (exemple pour la première demi-droite graduée): Calculer l'écart entre 670 et 630 en utilisant une soustraction (670 - 630 = 40) ou une addition à trou (630 + ? = 670). Compter de 10 en 10 de 630 à 670 et constater qu'il a ajouté 4 fois 10, donc 40. Diviser l'écart par le nombre d'intervalles: quel nombre, si je l'ajoute 4 fois, me donne 40 ? 4 fois combien égale 40 ? Procéder par tâtonnement. Observer des régularités dans le passage de 630 à 670 où seule la dizaine change peut intuitivement orienter vers un pas de 10: dans 670, il y a 4 dizaines de plus que dans 630."]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P100 Ex5: Intercale un nombre qui convient. 20 < 23 < 30 ; 70 < … < 80 ; 130 < … < 140 ; 930 < … < 940 ; 700 < … < 800 ; 900 < … < 1000"]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes multiplicatifs en une étape: recherche de la valeur d'une part",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 209,
+              "materials": ["matériel de numération, 30 jetons"],
+              "phases": [
+                {
+                  "n": "Séance 1 — Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance: s'entrainer à résoudre des problèmes qui ressemblent à ceux où l'on a partagé des billes.", "Lire à haute voix le problème A écrit au tableau.", "Préciser aux élèves qu'ils ne peuvent plus utiliser des jetons pour résoudre le problème.", "Circuler dans les rangs pour prendre connaissance des idées de chacun.", "Organiser une mise en commun après la résolution du problème.", "Suivre la même démarche pour le problème B."],
+                  "cons": ["Dans la classe, il y a 21 élèves. Le professeur veut constituer 3 équipes comportant toutes le même nombre d'élèves. Combien d'élèves y aura-t-il par équipe ?", "Le fleuriste a reçu 38 roses. Il veut faire 5 bouquets. Il veut avoir le même nombre de roses dans chaque bouquet. Il doit rester le moins possible de roses. Combien de roses y aura-t-il dans chaque bouquet ?"],
+                  "el": ["Résoudre les problèmes A et B sur l'ardoise en n'ayant pas la possibilité de manipuler les jetons."],
+                  "note": ["Procédures observées (Problème A): Dessine 21 ronds symbolisant des têtes puis distribue les ronds un à un dans 3 paquets. Tâtonne en effectuant des additions répétées. Mobilise le résultat de la table de multiplication: 3 x 7 = 21.", "Procédures observées (Problème B): Dessine 38 roses puis distribue les roses une à une dans 5 paquets. Tâtonne en effectuant des additions répétées. Mobilise le résultat de la table de multiplication 7 x 5 = 35."]
+                },
+                {
+                  "n": "Séance 1 — Explicitation",
+                  "pe": ["Organiser une mise en commun des procédures utilisées: distribution sur un dessin, calcul mobilisant la connaissance des tables de multiplication."]
+                },
+                {
+                  "n": "Séance 1 — Pratique guidée",
+                  "el": ["P101 Pb1 et 2: Pb1. Dans la classe, il y a 24 élèves. Le professeur veut constituer 4 équipes comportant toutes le même nombre d'élèves. Combien d'élèves y aura-t-il par équipe ? Pb2. Le fleuriste a reçu 42 roses. Il veut faire 5 bouquets. Il veut avoir le même nombre de roses dans chaque bouquet. Il doit rester le moins possible de roses. Combien de roses y aura-t-il dans chaque bouquet ?"]
+                },
+                {
+                  "n": "Séance 1 — Clôture de la séance",
+                  "pe": ["Récapituler les procédures mobilisées pour résoudre les problèmes proposés au cours de la séance."]
+                },
+                {
+                  "n": "Séance 2 — Pratique guidée",
+                  "el": ["Résoudre, sans avoir accès à la manipulation, le problème C écrit au tableau."],
+                  "cons": ["Une chocolatière a fabriqué 105 chocolats. Elle veut les ranger dans 10 boites identiques. Il doit y avoir le même nombre de chocolats dans chaque boite. Il doit rester le moins possible de chocolats. Combien de chocolats y aura-t-il dans chaque boite ? Combien de chocolats restera-t-il ?"],
+                  "pe": ["Lors de la mise en commun, faire vérifier les réponses en manipulant les cubes."],
+                  "note": ["Procédures observées: Dessine 10 boites et distribue les chocolats un par un ou par petits paquets: mais 105 est un nombre trop grand pour que cette procédure soit menée à terme efficacement et sans erreur. Dessine 10 boites et distribue par dizaine dans chaque boite. Quand il a mis 1 dizaine dans chaque boite, constate qu'il a déjà distribué 10 dizaines c'est-à-dire 1 centaine. Il reste 5 unités. S'appuie sur la compréhension de la numération décimale: 1 centaine, c'est 10 dizaines. Partage 10 dizaines en 10 boites: cela fait 1 dizaine par boite. Il reste les 5 unités."]
+                },
+                {
+                  "n": "Séance 2 — Pratique autonome",
+                  "el": ["Résoudre P101 Pb3. P101 Pb4 est proposé aux élèves les plus rapides. Pb3. Monsieur Fairise achète 5 briques de jus de fruits identiques. Il paye 15 €. Quel est le prix d'une brique de jus de fruits ? Pb4. Une chocolatière a fabriqué 458 chocolats. Elle veut les ranger dans 10 boites identiques. Il doit y avoir le même nombre de chocolats dans chaque boite. Il doit rester le moins possible de chocolats possible. Combien de chocolats y aura-t-il dans chaque boite ? Combien de chocolats restera-t-il ?"]
+                },
+                {
+                  "n": "Séance 2 — Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Doubles et moitiés",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 210,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "note": ["Connaitre la table de multiplication par 7. Proposer au tableau le calcul 2 x 7 = 14 et rappeler: 2 x 7, c'est le double de 7."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": ["Dans les deux activités, laisser la possibilité aux élèves d'écrire les calculs intermédiaires sur l'ardoise.", "Leur laisser au moins 10 secondes par calcul.", "ACTIVITÉ 1: Demander aux élèves de calculer le double de 35 et écrire au tableau: double de 35 = ?", "ACTIVITÉ 2: Demander aux élèves de calculer la moitié de 90 et écrire au tableau: moitié de 90 = ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": ["Expliciter les procédures visées.", "Demander aux élèves de vérifier ce résultat en utilisant le matériel de numération ou avec la trace écrite C24-1.", "ACTIVITÉ 2: Demander aux élèves de constituer une collection 9 barres de 10 cubes (ou PP1) puis de chercher comment partager cette collection en deux.", "Mettre en évidence qu'on peut partager 8 dizaines en mettant 4 dizaines dans chaque paquet et qu'il reste 1 dizaine.", "Échanger cette dizaine contre 10 cubes isolés pour pouvoir la partager en deux.", "Récapituler:"],
+                  "cons": ["35 = 30 + 5.", "Le double de 35 est égal au double de 30 + le double de 5, donc c'est le résultat de 60 + 10 à savoir 70.", "Dans chaque paquet, il y a 4 dizaines et 5 unités, 40 + 5 = 45, il y a 45 cubes. Donc, la moitié de 90 est égale à 45.", "Pour calculer la moitié de 90, c'est un peu difficile avec 9 dizaines. Alors, on transforme 90 en 80 + 10 car c'est plus facile à partager. On calcule ensuite la moitié de 80 et la moitié de 10. On additionne les deux moitiés: 40 + 5 = 45."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": ["Reprendre la situation avec les calculs: double de 30 ? double de 25 ? double de 15 ? moitié de 50 ? moitié de 100 ? moitié de 50 ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": ["Proposer les calculs du document élève C24-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "note": ["Proposer au tableau le calcul 4 x 7 = 28 et rappeler: 4 x 7, c'est le double de 2 fois 7 donc le double de 14."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": ["Proposer les calculs oralement: double de 50 ? moitié de 70 ? double de 45 ? moitié de 80 ?", "Laisser au moins 5 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test en temps limité C24-3."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "note": ["Proposer au tableau le calcul 10 x 7 = 70 et rappeler: 10 x 7 = 7 x 10 = 70, c'est 7 fois une dizaine."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": ["Proposer les petits problèmes oraux avec un temps limité à 5 secondes par calcul:"],
+                  "cons": ["J'ai 30 euros dans ma tirelire. Ma grande sœur a exactement le double d'argent dans la sienne. Combien d'euros ma sœur a-t-elle ?", "J'ai 40 billes et je veux les partager équitablement avec mon ami. Nous serons deux à avoir des billes. Combien de billes chacun aura-t-il ?", "Dans un paquet de gâteaux, il y a 25 gâteaux. J'achète deux paquets identiques. Combien de gâteaux ai-je en tout ?", "Maman a préparé 35 crêpes. Papa en prépare encore 35. Combien de crêpes y aura-t-il en tout pour la fête ?", "Un ticket de manège coute 50 centimes. Si j'achète deux tickets, combien dois-je payer ?", "Léo et Tom ont ramassé ensemble 70 feuilles d'automne. Ils en ont ramassé autant l'un que l'autre. Combien de feuilles chaque enfant a-t-il ramassées ?", "Un livre a 90 pages. Si je lis exactement la moitié du livre aujourd'hui, combien de pages aurai-je lues ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test en temps limité C24-3."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "note": ["Proposer au tableau le calcul 5 x 7 = 35 et expliciter: 5 x 7, c'est la moitié de 10 x 7."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["CALCUL CHRONO P100 Connaitre les faits multiplicatifs usuels."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Fractions",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 211,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Écrire la fraction représentée par la partie coloriée en bleu."] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A."] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A."] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A."] }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 25,
+          "title": "Lecture de l'heure",
+          "domain": "gm",
+          "guidePage": 212,
+          "objective": "Connaitre, utiliser et distinguer les heures du matin et celles de l'après-midi",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Connaitre, utiliser et distinguer les heures du matin et celles de l'après-midi",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 212,
+              "materials": ["des horloges à aiguilles, des montres, des réveils apportés par les élèves en amont de la séquence, un réveil à affichage digital", "PP6"],
+              "phases": [
+                {
+                  "n": "Réactivation",
+                  "el": ["Classer les objets apportés selon différents critères et notamment en différenciant les horloges à aiguilles de celles à affichage digital.", "Observer les horloges et rappeler comment lire les heures.", "Fabriquer le cadran d'une horloge à aiguille avec le matériel de la planche prédécoupée PP6 du cahier de l'élève MATHS EN CE1.", "Lire l'heure sur une horloge à aiguille lorsque l'heure est donnée en heure entière le matin: sept heures, trois heures et douze heures (midi).", "Positionner les aiguilles de cette horloge correspondant à une heure donnée en heures entières inférieures ou égales à douze."],
+                  "cons": ["Sur une horloge à aiguilles: La petite aiguille indique l'heure. La grande aiguille indique les minutes. Quand l'heure est entière, celle-ci est positionnée sur le 12.", "Sur une horloge à affichage digital: Les deux premiers chiffres indiquent l'heure, les deux suivants indiquent les minutes. Quand l'heure est entière, l'affichage indiqué pour les minutes est 00 (Exemple 8 : 00).", "19 heures, c'est 7 heures de l'après-midi, c'est 7 heures après 12 heures (midi)."],
+                  "pe": ["Expliciter que, si une heure est inférieure à 12 heures, c'est le matin et que, si une heure est supérieure à 12 heures, c'est l'après-midi.", "Pour l'après-midi, après 12 heures (midi), continuer de compter les heures entières en faisant tourner les aiguilles sur une horloge: 13h, 14h, 15h… jusqu'à minuit.", "Écrire au tableau 12 heures + 7 heures = 19 heures."]
+                },
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance: apprendre à lire l'heure sur une horloge à aiguilles en distinguant les heures du matin de celles de l'après-midi.", "Demander aux élèves de lister les activités qu'ils font le matin et celles qu'ils font l'après-midi.", "Raconter:", "Faire émerger les conceptions des élèves et le besoin d'apprentissage à l'aide d'un questionnement oral collectif.", "Demander aux élèves de chercher comment afficher 19 heures sur une horloge à aiguilles."],
+                  "cons": ["Aujourd'hui, un élève de la classe voisine a rendez-vous pour son cours de batterie à 19 heures mais il ne sait pas lire cet horaire sur une horloge à aiguilles. La classe va devoir l'aider.", "Que faites-vous d'habitude à cette heure-là ?", "Est-ce que c'est le matin ou l'après-midi ?", "Comment peut-on savoir ?"],
+                  "el": ["En binômes, chercher sur une horloge comment positionner ses aiguilles pour qu'elle affiche 19 heures.", "Présenter sa solution et expliquer son raisonnement.", "Commenter, critiquer, proposer d'autres solutions."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Montrer que, sur une horloge à aiguilles, il y a deux aiguilles et des graduations de 1 à 12.", "Rappeler que la petite aiguille indique les heures."],
+                  "cons": ["Quand la petite aiguille est en face d'une graduation, par exemple quatre, et que la grande aiguille est sur la graduation 12, il est quatre heures, cela peut être 4 heures du matin ou 4 heures de l'après-midi. Quand la petite aiguille passe d'une graduation à la suivante, il s'écoule 1 heure.", "La petite aiguille fait deux fois le tour complet du cadran en un jour. Le matin s'étend de 0 heure (minuit) à 12 heures (midi). Quand il est 12 heures ou midi, la petite aiguille est revenue sur la graduation 12. Il s'est écoulé 12 heures. Ensuite c'est l'après-midi, la petite aiguille fait à nouveau le tour du cadran. De midi à minuit, il s'écoule 12 heures. En un jour, la petite aiguille fait deux fois le tour complet du cadran (12 heures + 12 heures). Un jour dure 24 heures."]
+                },
+                {
+                  "n": "Explicitation — Activité 2 (minutes, page 214)",
+                  "pe": ["ACTIVITÉ 2: Calculer combien de minutes met la grande aiguille pour faire un tour complet du cadran.", "Recenser les réponses et les procédures utilisées."],
+                  "note": ["Procédures utilisées: Compte les graduations en minutes sur le cadran de l'horloge: ce travail est long et fastidieux, on peut facilement se tromper. Effectue une addition en ligne ou en colonnes (5 x 12 = 60. Elle met 60 minutes). Observe qu'il y a 12 espaces entre deux chiffres sur le cadran et calcule 12 fois 5 minutes."]
+                },
+                {
+                  "n": "Explicitation — suite (heure/minute, demi-heure)",
+                  "pe": ["Montrer sur une horloge que la grande aiguille tourne plus rapidement que la petite aiguille: la rotation de la grande aiguille entraine celle de la petite et lorsque la grande aiguille fait un tour complet, la petite avance d'une heure et passe d'un chiffre au suivant.", "Expliquer que minute s'abrège en min et heure en h.", "Expliciter que, lorsque la grande aiguille fait la moitié d'un tour ou un demi-tour, il s'est écoulé la moitié d'une heure, donc une demi-heure."],
+                  "cons": ["Lorsque la grande aiguille fait un tour, il s'est écoulé une heure ou 60 minutes.", "Une heure est égale à 60 minutes.", "On peut écrire 1 h = 60 min.", "Une heure, c'est 60 minutes donc une demi-heure, c'est 30 minutes."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["Positionner les aiguilles d'une horloge pour afficher les heures écrites un tableau: 4 h 30 min, 17 h 30 min, 0 h 30 min (minuit et demi), 8 heures et demie, 12 h 30 min (midi et demi), 19 : 30 (affichage digital)."],
+                  "pe": ["Expliciter que, par exemple pour 4 h 30, quand la grande aiguille est en face de la graduation 6, la petite aiguille est entre deux graduations des heures (au milieu des graduations 4 et 5). La grande aiguille a fait un demi-tour depuis la position précédente. Il s'est écoulé une demi-heure depuis quatre heures: il est 4 h 30 minutes."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance:", "Afficher cette heure sur une horloge."],
+                  "cons": ["Une heure, c'est 60 minutes.", "Une demi-heure, c'est la moitié d'une heure, c'est 30 minutes.", "Quand l'aiguille des minutes est sur le 6, on dit et demie. Par exemple, 8 heures et demie."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": null,
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 213,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 213 non fournie dans les captures — contenu de la séance 2 non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": null,
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 215,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 215 non fournie dans les captures — contenu de la séance 3 (quarts d'heure) non transcrit.]"
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 216,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P104 Ex5 et 6: Ex5. Écris l'heure. (horloges: le matin, l'après-midi, le soir, le matin). Ex6. Dessine les aiguilles. 10 h 00 min, 16 h 30 min, 11 h 15 min, 22 h 45 min."]
+                },
+                {
+                  "n": "Consolidation",
+                  "el": ["P104 Ex7: Écris l'heure sur les cadrans. (le matin: 7:00, l'après-midi, l'après-midi, matin, soir)"],
+                  "note": ["Obstacles possibles: Automatisation insuffisante de la lecture de l'heure. Confusion de la petite et de la grande aiguille. Difficultés à coordonner deux systèmes de comptage différents (heures et minutes)."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence en prenant appui sur la trace écrite D25-2."],
+                  "note": ["Trace écrite D25-2 — Lecture de l'heure: Je sais lire l'heure sur une horloge à aiguilles (lorsque l'heure est donnée en heures entières, en heures et demi-heure ou en heures et quarts d'heure). Il est 11 h 15 min ou 11 heures et quart. Il est 7 h 30 min ou 7 heures et demi. Il est 4 h 45 min ou 5 heures moins le quart."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes mixtes en deux étapes",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 217,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Séance 1 — Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance. Laisser aux élèves un temps de lecture silencieuse du problème P105 Pb1, puis lire le texte à haute voix.", "Circuler dans les rangs pendant la recherche des élèves pour observer leurs stratégies et valoriser les réussites."],
+                  "cons": ["Dans un restaurant, il y a 6 tables de 5 places et 8 tables de 2 places. Combien de clients ce restaurant peut-il recevoir ?"],
+                  "el": ["Résoudre le problème individuellement dans un cahier pendant cinq minutes, matérialisées par un minuteur."]
+                },
+                {
+                  "n": "Séance 1 — Explicitation",
+                  "pe": ["Relire l'énoncé et demander à un élève de reformuler l'histoire à partir de questions.", "Avec les cartes du document P25-1, simuler la situation au tableau.", "Étudier quelques propositions de réponse des élèves.", "Expliciter que ce problème se résout en deux étapes.", "Élaborer la trace écrite (exemple de trace écrite P25-2)."],
+                  "cons": ["Que cherche-t-on ? Le nombre total de clients que le restaurant peut recevoir, c'est-à-dire le nombre de places disponibles.", "Qu'est-ce qu'on sait ? Il y a 6 tables de 5 places et 8 tables de 2 places."]
+                },
+                {
+                  "n": "Séance 1 — Pratique guidée",
+                  "el": ["Résoudre le problème P105 Pb2 en s'aidant de la trace écrite du problème précédent."],
+                  "cons": ["Dans un restaurant, il y a 10 tables de 4 places, 3 tables de 5 places et une table de 8 places. Combien de clients ce restaurant peut-il recevoir ?"],
+                  "note": ["CORRIGÉ: 1re étape 10 x 4 = 40. Il y a 40 places avec les tables de 4 places. 3 x 5 = 15. Il y a 15 places avec les tables de 5 places et 8 places avec la table de 8 places. 2e étape 40 + 15 + 8 = 63. Le restaurant peut recevoir 63 clients."]
+                },
+                {
+                  "n": "Séance 1 — Clôture de la séance",
+                  "pe": ["Faire formuler une analogie avec le problème 1: il y a deux étapes de résolution."]
+                },
+                {
+                  "n": "Séance 2 — Pratique autonome",
+                  "el": ["P105 Pb3 et 4: Pb3. Timéo avait 4 boites de 10 œufs. Il a utilisé 7 œufs. Combien d'œufs lui reste-t-il maintenant ? Pb4. Sur la table, il y a 4 piles de 5 livres et 1 pile de 3 livres. Y a-t-il assez de livres pour les 24 élèves de la classe ?"],
+                  "note": ["CORRIGÉ Pb3: Ce problème peut se résoudre en une étape si on comprend que quatre dizaines d'œufs, c'est 40 œufs. 40 - 7 = 33. Il lui reste 33 œufs. CORRIGÉ Pb4: 1re étape 4 x 5 = 20. 4 piles de 5 livres font 20 livres. 2e étape 20 + 3 = 23 et 23 < 24. Il n'y a pas assez de livres pour les 24 élèves de la classe."],
+                  "pe": ["DIFFÉRENCIATION: Proposer les problèmes P105 Pb5 et 6 aux élèves les plus rapides."]
+                },
+                {
+                  "n": "Séance 2 — Clôture de la séance",
+                  "pe": ["Institutionnaliser:"],
+                  "cons": ["Dans ces problèmes, il y a deux étapes."],
+                  "note": ["CORRIGÉ PROBLÈME 5: 1re étape 10 x 4 = 40. La professeure a acheté 40 pommes. 2e étape 40 - 25 = 15. Il reste 15 pommes maintenant. CORRIGÉ PROBLÈME 6: 1re étape 3 x 20 = 60. Elle a utilisé 60 perles pour fabriquer les colliers. 2e étape 90 - 60 = 30. Il lui reste 30 perles.", "Il est recommandé de prendre l'habitude d'écrire une phrase après chacune des étapes, pour ne pas se perdre dans les calculs."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Doubles et moitiés",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 218,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Séance 1 — Échauffement",
+                  "note": ["Connaitre les tables de multiplication: table de x 7. Proposer au tableau le calcul 3 x 7 = 21. Expliciter que 3 x 7, c'est 2 x 7 + 7."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Mise en situation",
+                  "pe": ["Dans les deux activités, laisser la possibilité aux élèves d'écrire les calculs intermédiaires sur l'ardoise.", "ACTIVITÉ 1: Demander aux élèves de calculer le double de 250 et écrire au tableau: double de 250 = ?", "ACTIVITÉ 2: Demander aux élèves de calculer la moitié de 300 et écrire au tableau: moitié de 300 = ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Explicitation",
+                  "pe": ["Expliciter les procédures visées."],
+                  "note": ["ACTIVITÉ 1: 250, c'est 25 dizaines. Le double de 25 dizaines est égal à 50 dizaines. En chiffres, 50 dizaines s'écrit 500. 250 = 200 + 50. Le double de 250 est égal au double de 200 + le double de 50 donc c'est le résultat de 400 + 100 à savoir 500. ACTIVITÉ 2: 300, c'est 30 dizaines. La moitié de 30 dizaines est égale à 15 dizaines. 15 dizaines s'écrit 150. 300 = 200 + 100. La moitié de 300 est égale à la moitié de 200 + la moitié de 100 donc c'est le résultat de 100 + 50 à savoir 150."]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique guidée",
+                  "pe": ["Reprendre la situation avec les calculs: double de 100 ? moitié de 200 ? double de 150 ? moitié de 400 ? double de 200 ? moitié de 1000 ? double de 300 ? moitié de 300 ? double de 500 ? moitié de 500 ?"]
+                },
+                {
+                  "n": "Calcul mental — Séance 1 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test écrit en temps limité C25-1. Effectuer le plus grand nombre possible de calculs en moins de deux minutes. Entourer sur la bande numérique le nombre de réponses justes obtenues."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Échauffement",
+                  "note": ["Proposer au tableau le calcul 6 x 7 = 42. Expliciter: 6 x 7 = 2 x 3 x 7 (le double de 3 fois 7 donc le double de 21). 6 x 7 = 3 x 7 + 3 x 7 (deux fois 3 fois 7)."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Explicitation",
+                  "pe": ["Demander aux élèves de lister les doubles et les moitiés qu'ils ont appris lors la séance précédente et d'élaborer la trace écrite C25-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique guidée",
+                  "pe": ["Proposer à l'oral les calculs: double de 150 ? moitié de 1000 ? double de 500 ? moitié de 500 ? double de 250 ? moitié de 400 ?", "Laisser au moins 5 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 2 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test écrit en temps limité C25-1."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Échauffement",
+                  "note": ["Proposer au tableau le calcul 7 x 7 = 49. Expliciter que 7 x 7 = 6 x 7 + 7."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique guidée",
+                  "pe": ["Proposer les calculs par écrit au tableau: double de 100 ? moitié de 400 ? double de 200 ? moitié de 600 ? double de 250 ? moitié de 500 ?", "Laisser au moins 5 secondes pour chaque calcul. Les élèves répondent sur l'ardoise."]
+                },
+                {
+                  "n": "Calcul mental — Séance 3 — Pratique autonome",
+                  "pe": ["CALCUL CHRONO Test en temps limité C25-1."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "note": ["Proposer au tableau le calcul 9 x 7 = 63. Rappeler: 10 x 7 = 70 et donc, si j'enlève 7 au résultat de 10 x 7, j'obtiens le résultat de 9 x 7 c'est-à-dire 70 – 7 = 63."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["CALCUL CHRONO P104 Connaitre des faits multiplicatifs usuels."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures acquises lors de la séquence."]
+                }
+              ]
+            },
+            {
+              "seance_number": 7,
+              "title": "Fractions",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 219,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Quelle fraction la partie rouge représente-t-elle ?"] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A."] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A."] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A."] }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 26,
+          "title": "Durées",
+          "domain": "gm",
+          "guidePage": 220,
+          "objective": "Connaitre les unités de mesure de durée, heure et minute, et les symboles associés (h et min)\nComparer et mesurer des durées écoulées entre deux instants affichés sur une horloge",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Estimer et comparer des durées",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 220,
+              "materials": ["un chronomètre et/ou un sablier d'une minute"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Commencer par un bref rappel de ce qui a été vu précédemment à propos du repérage dans le temps.", "Introduire la notion de durée."],
+                  "cons": ["Nous avons appris à repérer, quand des actions ou des évènements se déroulent dans la journée, le matin, l'après-midi et à quelle heure. Dans cette séquence, nous allons nous intéresser à combien de temps durent les actions ou les évènements. C'est ce qu'on appelle la durée.", "Nous allons jouer au jeu des statues: à mon signal, vous allez rester sans bouger, dans la position de votre choix, pendant la durée du sablier (sans dire que c'est une minute)."],
+                  "el": ["Estimer avec ses propres mots la durée de cette activité.", "Vérifier cette estimation avec le chronomètre ou une horloge.", "Constater que cette activité du jeu des statues a duré une minute.", "Estimer ensuite la durée d'une nuit de sommeil.", "Estimer enfin la durée des vacances de printemps."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Récapituler que l'activité du jeu des statues a duré une minute.", "Expliquer:"],
+                  "cons": ["Une nuit de sommeil dure entre 9 et 12 heures: c'est ce qui est recommandé pour un enfant de 8 ans. On exprime cette durée en heures.", "Les vacances de printemps durent 15 jours ou 2 semaines. On exprime cette durée en jours ou en semaines."],
+                  "el": ["Chercher d'autres activités qui s'expriment en minutes, en heures et en jours."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["Estimer la durée des activités demandées par l'enseignant."],
+                  "cons": ["Combien de temps mettez-vous pour enfiler votre manteau et pour mettre vos chaussures afin d'aller en récréation ?", "Combien de temps dure un weekend, du samedi matin au dimanche soir ?", "Combien de temps faut-il pour boire un verre d'eau ?", "Qu'est-ce qui prend le plus de temps: mettre son bonnet ou lire un livre ?", "J'ai mis 5 🖐 pour réaliser cet exercice.", "Lina est partie en vacances pendant 10 🖐.", "Une journée à l'école dure 6 🖐.", "Zoé est restée à la piscine pendant 2 🖐."],
+                  "pe": ["Écrire l'unité qui convient sur l'ardoise: minutes (min), heure (h), jours (j). (🖐 = l'enseignant tape dans les mains)"]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P106 Cherchons ensemble: Complète avec l'unité qui convient: minute (min), heure (h), jour (j). Une matinée d'école dure environ 3 … . Le dessin animé dure 5 … . Sacha et Zoé partent en vacances pendant 13 … . La récréation dure 15 … . Éva dort au moins 9 … par nuit. Louise se brosse les dents pendant 2 … ."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Rappeler:"],
+                  "cons": ["1 heure = 60 minutes et 1 jour = 24 heures."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": "Résoudre des problèmes impliquant des durées",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 220,
+              "materials": ["horloge à aiguilles PP6"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance: apprendre à résoudre des problèmes impliquant des durées.", "Lire à haute voix l'énoncé du problème écrit au tableau:", "Afficher l'horaire du début du film sur l'horloge de la classe.", "Expliciter comment il a procédé pour résoudre le problème."],
+                  "cons": ["Un film commence à 14 h 00 min. Il dure 2 heures 15 minutes. À quelle heure ce film se terminera-t-il ?"],
+                  "el": ["Résoudre le problème sur l'ardoise en ayant la possibilité de manipuler l'horloge de la planche prédécoupée PP6."],
+                  "note": ["Ce problème peut être difficile pour les élèves les plus fragiles. La manipulation de l'horloge permet de comprendre qu'on peut déjà ajouter 2 heures à 14 h 00 puis ajouter encore 15 minutes pour obtenir 16 h 15 min.", "[Suite du déroulement (fin de la Mise en situation / Explicitation) non fournie dans les captures — page 221 manquante.]"]
+                },
+                {
+                  "n": "Explicitation — Quarts d'heure (suite ; début non capturé, page 221 manquante)",
+                  "pe": ["Représenter trois quarts d'heure en assemblant les portions de disques obtenues.", "Chercher comment représenter un quart d'heure en positionnant un quart du disque sur le cadran l'horloge, en variant l'origine.", "Effectuer la même recherche pour obtenir une demi-heure puis trois quarts d'heure.", "Rappeler que l'aiguille des minutes fait le tour complet en une heure et que 1 heure = 60 minutes.", "Guider le comptage des minutes sur le cadran: il y a 5 minutes entre chaque chiffre.", "Dans le premier exemple, demander aux élèves de compter le nombre de minutes entre les graduations 12 et 3. Puis entre 2 et 5 puis 6 et 9.", "Constater qu'il y a toujours 15 minutes.", "Établir la relation 1 quart d'heure = 15 minutes.", "Reproduire cette activité pour la demi-heure et pour trois quarts d'heure.", "Récapituler au tableau toutes les relations à mémoriser: 1 quart d'heure = 15 minutes, 1 demi-heure = 30 minutes, 3 quarts d'heure = 45 minutes, 1 heure = 60 minutes."],
+                  "cons": ["Trois quarts d'heure, c'est un quart d'heure plus un quart d'heure plus un quart d'heure, c'est-à-dire trois fois un quart d'heure."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "el": ["P107 Ex3: Quelles sont les durées représentées en jaune sur les horloges ? Coche la ou les bonnes réponses. (une demi-heure/un quart d'heure/30 minutes/15 minutes, etc.)"]
+                },
+                {
+                  "n": "Pratique autonome",
+                  "el": ["P107 Ex4: Dessine les aiguilles qui manquent. Le cours de guitare d'Ugo dure une heure et quart. Le cours de trompette de Lina dure trois quarts d'heure."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Comme il est important de savoir reconnaitre ces durées sur l'horloge et de connaitre leur valeur en minutes, récapituler:"],
+                  "cons": ["Une heure peut se partager en demis et en quarts.", "1 quart d'heure, c'est 15 minutes,", "1 demi-heure (ou deux quarts d'heure), c'est 30 minutes,", "Trois quarts d'heure, c'est 45 minutes."]
+                }
+              ]
+            },
+            {
+              "seance_number": 3,
+              "title": null,
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 221,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 221 non fournie dans les captures — contenu de la séance 3 (quarts d'heure) non transcrit. Le contenu visible en haut de la page 222 (Explicitation des quarts d'heure) a été rattaché ci-dessus à la séance 2, faute de repère de séance clair sur les images fournies.]"
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 222,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Évaluation",
+                  "el": ["P108 Ex5: Coche les affirmations qui sont vraies. Aide-toi du schéma. (Deux demi-heures font une heure. Deux demi-heures font un quart d'heure. Deux fois une demi-heure, cela fait une heure. Une demi-heure, c'est la moitié d'une heure. / Quatre quarts d'heure font une heure. Deux quarts d'heure font une heure. Deux quarts d'heure font une demi-heure. Trois quarts d'heure, c'est trois fois un quart d'heure.)"]
+                },
+                {
+                  "n": "Consolidation",
+                  "pe": ["Lire à haute voix l'énoncé du problème écrit au tableau:"],
+                  "cons": ["Zoé a marché pendant 2 heures. Lina a marché pendant 130 minutes. Qui a marché le plus longtemps ?"],
+                  "note": ["CORRIGÉ: 2 x 60 minutes = 120 minutes. Zoé a marché pendant 120 minutes. 120 min < 130 min. Lina a marché plus longtemps que Zoé."],
+                  "el": ["P108 Ex6: Complète. Une heure, c'est … minutes. Une heure et demie, c'est … minutes. Une demi-heure, c'est … minutes. Deux heures, c'est … minutes."]
+                },
+                {
+                  "n": "Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence en prenant appui sur la trace écrite D26-2."]
+                }
+              ]
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes additifs en deux étapes",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 223,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Séance 1 — Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance.", "Laisser aux élèves un temps de lecture silencieuse du problème P109 Pb1, puis lire le texte à haute voix.", "Circuler dans les rangs pendant la recherche des élèves pour observer leurs stratégies et valoriser les réussites."],
+                  "cons": ["Mehdi était à la page 63 de son livre. Il a lu 24 pages ce matin et 12 pages cet après-midi. À quelle page Mehdi est-il maintenant ?"],
+                  "el": ["Résoudre le problème individuellement dans son cahier pendant cinq minutes, matérialisées par un minuteur."]
+                },
+                {
+                  "n": "Séance 1 — Explicitation",
+                  "pe": ["Relire l'énoncé et demander à un élève de raconter l'histoire de ce problème.", "Expliciter que ce problème se résout en deux étapes en prenant appui sur un schéma avec déplacement sur un axe.", "Élaborer la trace écrite P26-1.", "Rappeler que, dans un problème à étapes, il est recommandé de prendre l'habitude d'écrire une phrase après chacune des étapes dans les calculs, pour ne pas se perdre dans les calculs."]
+                },
+                {
+                  "n": "Séance 1 — Pratique guidée",
+                  "el": ["Résoudre P109 Pb2 en s'aidant de la trace écrite."],
+                  "cons": ["Lina était à la page 41 de son livre. Ce matin, elle a lu 15 pages et 12 pages cet après-midi. À quelle page du livre Lina est-elle maintenant ?"]
+                },
+                {
+                  "n": "Séance 1 — Clôture de la séance",
+                  "pe": ["Mettre en évidence l'analogie entre les deux problèmes: il y a deux étapes de résolution."]
+                },
+                {
+                  "n": "Séance 2 — Pratique guidée",
+                  "el": ["P109 Pb3 et 4: Pb3. Dans la bibliothèque de la classe, il y a 58 livres. Le professeur apporte 25 livres de plus. Les élèves en empruntent 18. Combien de livres y a-t-il dans la bibliothèque de classe maintenant ? Pb4. Dans la bibliothèque de la classe, il y a 83 livres. La professeure en apporte 18 de plus. Les élèves en empruntent 27. Combien de livres y a-t-il dans la bibliothèque de classe maintenant ?"],
+                  "note": ["CORRIGÉ Pb3: 58 + 28 = 83 ; 83 − 18 = 65. Il y a 65 livres dans la bibliothèque maintenant. CORRIGÉ Pb4: 83 + 18 = 101 ; 101 − 27 = 74. Il y a 74 livres dans la bibliothèque maintenant."],
+                  "pe": ["Vérifier les réponses en manipulant le matériel de numération PP1.", "Expliciter que ces problèmes se résolvent en deux étapes en prenant appui sur un schéma avec déplacement sur un axe non chronologique comme pour le problème 1 de la séance 1."]
+                },
+                {
+                  "n": "Séance 2 — Pratique autonome",
+                  "el": ["P109 Pb5 et 6: Pb5. Dans la bibliothèque de classe, j'ai rangé 76 albums et 32 bandes dessinées. Les autres livres sont documentaires. Combien de livres documentaires y a-t-il ? Pb6. Léon a emprunté un livre de 100 pages à la bibliothèque. Il a lu 18 pages lundi, 42 pages mardi et 35 pages mercredi. Combien de pages reste-t-il à lire à Léon ?"],
+                  "note": ["CORRIGÉ PROBLÈME 5: 24 + 32 = 56. Il y a 56 albums et BD dans la bibliothèque de la classe. 76 − 56 = 20. Il y a 20 livres documentaires. CORRIGÉ PROBLÈME 6: 18 + 42 + 35 = 95. Léon a lu 95 pages. 100 − 95 = 5 ou 95 + 5 = 100."]
+                },
+                {
+                  "n": "Séance 2 — Clôture de la séance",
+                  "pe": ["Mettre en évidence l'analogie entre les problèmes 3 et 4 avec les problèmes de montée et de descente dans le bus des séquences 6 et 9."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Connaitre dans les deux sens les tables de multiplication de 6 et de 7",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 224,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Explicitation (suite ; échauffement et séances 1 à 3 non capturés, page 224 manquante)",
+                  "cons": ["6 x 6, c'est (5 x 6) + (1 x 6): on se sert du résultat de 5 x 6.", "7 x 6, c'est (6 x 6) + (1 x 6): on se sert du résultat de 6 x 6.", "8 x 6, c'est 2 x (4 x 6): on se sert du résultat de 4 x 6."]
+                },
+                {
+                  "n": "Calcul mental — Pratique autonome",
+                  "pe": ["Donner un temps de cinq minutes aux élèves pour qu'ils mémorisent par groupes de 2 la table de x 6.", "Proposer le second exercice de C26-1."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": ["Écrire au tableau 8 unités + 60 dizaines.", "Demander d'écrire ce nombre en chiffres (608) puis de le lire.", "Même consigne avec 8 centaines (800)."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["Donner cinq minutes aux élèves pour qu'ils mémorisent les résultats appris au cours de la séance et présentés dans la trace écrite C26-2.", "CALCUL CHRONO P108 Connaitre dans les deux sens les tables de multiplication de 6 et de 7."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence."]
+                }
+              ],
+              "note": "Page 224 (échauffement et séances 1 à 3 du calcul mental) non fournie dans les captures. Seule la fin de l'Explicitation (probablement séance 3) apparait en haut de la page 225."
+            },
+            {
+              "seance_number": 7,
+              "title": "Droite graduée",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 225,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Écrire en chiffres le nombre indiqué par la flèche. (603…604)"] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A. (242…243)"] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A. (750…800)"] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A. (308…708)"] }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 27,
+          "title": "Longueurs : le kilomètre",
+          "domain": "gm",
+          "guidePage": 226,
+          "objective": "Connaitre et utiliser l'unité kilomètre et le symbole associé (km)\nConnaitre les relations entre les unités de longueur usuelles\nEstimer la longueur d'un objet du quotidien",
+          "seances": [
+            {
+              "seance_number": 1,
+              "title": "Connaitre et utiliser l'unité kilomètre et le symbole associé (km)",
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 226,
+              "materials": ["par groupe, une ficelle de 10 mètres, une règle de tableau ou un mètre ruban ou un mètre de menuisier apportés par les élèves"],
+              "phases": [
+                {
+                  "n": "Mise en situation",
+                  "pe": ["ACTIVITÉ 1: Présenter une ficelle de 10 mètres sans donner sa longueur.", "Demander à chaque groupe d'élèves d'estimer la longueur de la ficelle en leur proposant au tableau un choix de réponses possibles: environ 200 cm, environ 500 m, environ 10 m, environ 1 kilomètre, environ 100 m, environ 2 kilomètres.", "ACTIVITÉ 2: Annoncer aux élèves qu'ils doivent maintenant estimer la distance entre l'école et un lieu situé à environ 100 mètres de l'école (le gymnase, le terrain de sport…).", "Leur proposer au tableau le même choix de réponses possibles qu'à l'activité 1.", "Demander aux élèves de proposer un moyen de vérifier cette estimation.", "ACTIVITÉ 3:"],
+                  "cons": ["Maintenant, imaginez que nous parcourions 10 fois cette distance de 100 mètres. Quelle distance allons-nous parcourir en tout ? Comment calculer la distance totale du parcours ?"],
+                  "el": ["Estimer la longueur de la ficelle.", "Vérifier la réponse en mesurant la ficelle à l'aide de la règle de tableau ou d'un mètre à ruban par exemple.", "Estimer la distance entre l'école et le lieu choisi: environ 100 mètres.", "Vérifier la réponse à l'aide de la ficelle de 10 mètres.", "Constater que 100 mètres est égal à 10 fois 10 mètres.", "Calculer la distance école-lieu choisi en utilisant la multiplication.", "Expliquer comment il a procédé."]
+                },
+                {
+                  "n": "Explicitation",
+                  "pe": ["Expliciter comment calculer la distance école-lieu choisi en utilisant la multiplication:", "Introduire le mot kilomètre et son symbole km:", "Écrire au tableau: 1 km = 1000 m."],
+                  "cons": ["10 fois 100 m, c'est 10 fois une centaine de mètres, donc c'est mille mètres.", "10 fois la distance de 100 mètres, c'est 1 000 mètres. Cette distance de 1 000 mètres est appelée un kilomètre. On écrit 1 km.", "Pour mesurer de longues distances, comme la distance entre Rennes et Dijon, on utilise une unité plus grande que le mètre: le kilomètre."],
+                  "note": ["Trace écrite D27-1: Le kilomètre (km). Pour mesurer de grandes distances, on utilise une unité de mesure plus grande que le mètre: le kilomètre. Un kilomètre, c'est 10 fois 100 mètres. Un kilomètre, c'est 1000 mètres. Un piéton parcourt environ 1 km en une heure. 1 km = 10 x 100 m ; 1 km = 1000 m."]
+                },
+                {
+                  "n": "Pratique guidée",
+                  "pe": ["Demander aux élèves de choisir l'unité (cm, m ou km) qui convient:"],
+                  "cons": ["La longueur d'une trousse: 20 …", "La hauteur de la tour Eiffel: 324 …", "La distance Paris-Marseille: 800 …", "La longueur de ta règle: 20 …", "La distance parcourue par un piéton en une heure: 5 …"],
+                  "el": ["Écrire l'unité (cm, m ou km) qui convient sur l'ardoise."]
+                }
+              ]
+            },
+            {
+              "seance_number": 2,
+              "title": null,
+              "type": "rech",
+              "duration": 45,
+              "guidePage": 227,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 227 non fournie dans les captures — contenu de la séance 2 non transcrit.]"
+            },
+            {
+              "seance_number": 3,
+              "title": null,
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 228,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 228 non fournie dans les captures — contenu de la séance 3 non transcrit.]"
+            },
+            {
+              "seance_number": 4,
+              "title": "Bilan de la séquence",
+              "type": "rech",
+              "duration": 30,
+              "guidePage": 228,
+              "materials": [],
+              "phases": [],
+              "note": "[Page 228 non fournie dans les captures — contenu du bilan non transcrit.]"
+            },
+            {
+              "seance_number": 5,
+              "title": "Résoudre des problèmes ouverts",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 229,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Séance 1 — Mise en situation",
+                  "pe": ["Présenter l'objectif de la séance: résoudre un problème en mobilisant ses connaissances sur l'écriture en chiffres des nombres entiers.", "Afficher au tableau les 3 cartes (P27-1) utilisées dans le P113 Pb1 et expliquer la tâche à réaliser:"],
+                  "cons": ["Voici trois cartes avec les chiffres 8, 0 et 9. Vous devez utiliser ces trois cartes, une seule fois chacune, pour écrire un nombre à trois chiffres. Vous devez trouver le plus grand nombre de 3 chiffres qu'on peut écrire avec les cartes."],
+                  "el": ["Résoudre le défi en binôme et répondre sur l'ardoise."]
+                },
+                {
+                  "n": "Séance 1 — Explicitation",
+                  "pe": ["Inventorier et confronter toutes les réponses proposées par les binômes.", "Vérifier que les différentes réponses respectent les contraintes fixées.", "Demander aux élèves de justifier leur réponse et d'expliquer les procédures qu'ils ont utilisées.", "Expliciter clairement le lien entre la position et la valeur des chiffres:", "Reformuler les justifications des élèves:"],
+                  "cons": ["Pourquoi mettre le 9 ici (centaines) ? Cela rend le nombre plus grand que si on le met ici (dizaines).", "Tu as mis le chiffre 9 à la place des centaines parce que c'est le chiffre qui est la plus grande valeur dans cette position."],
+                  "note": ["Procédure visée: Écrire le plus grand chiffre pour les centaines. Écrire le plus grand des deux chiffres qui restent pour les dizaines. Écrire le dernier chiffre qui reste aux unités."]
+                },
+                {
+                  "n": "Séance 1 — Pratique guidée",
+                  "el": ["P113 Pb2: Trouve le plus petit nombre de 3 chiffres que tu peux écrire avec les cartes (7, 6, 4)."],
+                  "pe": ["Expliciter la stratégie à utiliser:"],
+                  "cons": ["Prendre le plus petit chiffre pour les centaines, puis le plus petit des chiffres restants pour les dizaines…"]
+                },
+                {
+                  "n": "Séance 1 — Pratique autonome",
+                  "el": ["P113 Pb3: Effectuer la recherche sur l'ardoise avant de recopier dans le cahier. Trouve les nombres de 3 chiffres qu'on peut écrire avec les cartes (9, 3, 7). Range du plus petit au plus grand."]
+                },
+                {
+                  "n": "Séance 1 — Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séance."]
+                },
+                {
+                  "n": "Séance 2 — Pratique guidée",
+                  "el": ["P113 Pb4: Avec les 4 cartes (4, 7, 3, 0), trouver le plus grand nombre de 3 chiffres qu'on peut écrire."],
+                  "pe": ["Donner un exemple de nombre de trois chiffres (307) qu'on peut écrire avec ses cartes pour que les élèves comprennent qu'une carte ne sera pas utilisée.", "Demander aux élèves de rappeler la procédure découverte au cours de la séance 1 pour résoudre ce problème."]
+                },
+                {
+                  "n": "Séance 2 — Pratique autonome",
+                  "el": ["P113 Pb5: Avec les 4 cartes (9, 2, 8, 5), trouver le plus petit nombre de 3 chiffres qu'on peut écrire."],
+                  "pe": ["Demander aux élèves de rappeler la procédure découverte au cours de la séance 1 pour résoudre ce problème."]
+                },
+                {
+                  "n": "Séance 2 — Clôture de la séance",
+                  "pe": ["Récapituler les apprentissages réalisés au cours de la séquence:"],
+                  "cons": ["Nous avons revu que la valeur d'un chiffre dépend de sa position dans l'écriture d'un nombre. Ces activités ont renforcé notre capacité à comparer les nombres de trois chiffres."]
+                }
+              ]
+            },
+            {
+              "seance_number": 6,
+              "title": "Connaitre dans les deux sens la table de multiplication de 8",
+              "type": "rit",
+              "duration": 15,
+              "guidePage": 230,
+              "materials": [],
+              "phases": [
+                {
+                  "n": "Calcul mental — Pratique guidée (suite ; échauffement et séances 1 à 3 non capturés, page 230 manquante)",
+                  "note": ["L'objectif est d'amener les élèves à se servir d'un résultat connu pour trouver un autre résultat."],
+                  "pe": ["Vidéoprojeter la droite graduée de l'animation AC27-1 en demandant aux élèves d'expliquer comment elle est construite.", "Demander aux élèves d'écrire le résultat indiqué par la flèche.", "Faire retrouver les autres résultats en suivant l'ordre proposé par l'animation.", "Demander aux élèves de justifier leurs réponses."],
+                  "cons": ["6 x 8 = 48. 6 x 8, c'est (5 x 8) – (1 x 8): on se sert du résultat de 5 x 8."]
+                },
+                {
+                  "n": "Calcul mental — Pratique autonome",
+                  "pe": ["Donner cinq minutes aux élèves pour qu'ils mémorisent les résultats par groupes de 2.", "CALCUL CHRONO Test en temps limité C27-2."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Échauffement",
+                  "pe": ["Écrire au tableau 26 unités + 2 centaines + 5 dizaines.", "Demander aux élèves d'écrire ce nombre en chiffres (276) puis de le lire.", "Même consigne avec 5 dizaines 200 unités (250)."]
+                },
+                {
+                  "n": "Calcul mental — Séance 4 — Évaluation",
+                  "pe": ["Donner cinq minutes aux élèves pour qu'ils mémorisent les résultats appris au cours de la séance.", "CALCUL CHRONO P112 Connaitre dans les deux sens les tables de multiplication de 2, de 4, de 6 et de 8."]
+                },
+                {
+                  "n": "Calcul mental — Clôture de la séquence",
+                  "pe": ["Corriger collectivement les calculs les moins réussis par les élèves.", "Récapituler les procédures travaillées lors de la séquence."]
+                }
+              ],
+              "note": "Page 230 (échauffement et séances 1 à 3 du calcul mental) non fournie dans les captures. Seule la fin de la pratique guidée/autonome et la séance 4 apparaissent en haut de la page 231."
+            },
+            {
+              "seance_number": 7,
+              "title": "Droite graduée",
+              "type": "rit",
+              "duration": 20,
+              "guidePage": 231,
+              "materials": [],
+              "phases": [
+                { "n": "Flash Maths A", "el": ["Écrire en chiffres le nombre indiqué par la flèche. (263…363)"] },
+                { "n": "Flash Maths B", "note": ["Consigne identique à Flash Maths A. (588…592)"] },
+                { "n": "Flash Maths C", "note": ["Consigne identique à Flash Maths A. (470…480)"] },
+                { "n": "Flash Maths D", "note": ["Consigne identique à Flash Maths A. (896…897)"] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
