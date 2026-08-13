@@ -20,6 +20,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { AgendaMessagingSwitch } from "@/components/ardoise/agenda-messaging-switch";
 import { AppShell } from "@/components/ardoise/app-shell";
+import { SchoolRhythmPill } from "@/components/ardoise/school-rhythm-pill";
 import { SUBJECT_BAND } from "@/components/ardoise/subject-styles";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -84,6 +85,7 @@ import {
   type PreparationItemKind,
 } from "@/lib/preparation-items";
 import { getRecentSignals } from "@/lib/signal-storage";
+import { getZoneCSchoolRhythm } from "@/lib/school-rhythm";
 import { cn } from "@/lib/utils";
 import { readJournalDays } from "@/lib/journal-storage";
 
@@ -390,41 +392,82 @@ function Dashboard() {
     .filter((m) => !handledMailIds.includes(m.externalId))
     .sort((a, b) => b.receivedAt.localeCompare(a.receivedAt))
     .slice(0, 4);
+  const schoolRhythm = useMemo(() => getZoneCSchoolRhythm(today), []);
 
   return (
     <AppShell>
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6 sm:py-8">
-        <header className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
-          <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Centre de pilotage
-            </p>
-            <h1 className="mt-1 flex flex-wrap items-baseline gap-x-3 text-3xl font-bold capitalize sm:text-4xl">
-              {dateLabel}
-              <span className="font-mono text-lg font-normal capitalize-none text-muted-foreground">
-                {timeLabel}
-              </span>
-            </h1>
+        <header className="overflow-hidden rounded-[30px] border border-primary/20 bg-[linear-gradient(145deg,oklch(1_0_0_/0.98),oklch(0.985_0.012_250_/0.95)),radial-gradient(circle_at_top_left,oklch(0.74_0.08_250_/0.16),transparent_34%)] p-5 shadow-raised sm:p-6">
+          <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-start">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-muted-foreground">
+                Centre de pilotage
+              </p>
+              <div className="mt-2 flex flex-wrap items-end gap-x-3 gap-y-2">
+                <h1 className="text-3xl font-bold capitalize tracking-tight text-foreground sm:text-4xl">
+                  {dateLabel}
+                </h1>
+                <span className="rounded-full border border-border/70 bg-card/85 px-3 py-1 font-mono text-sm text-muted-foreground shadow-sm">
+                  {timeLabel}
+                </span>
+              </div>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Une vue claire de la journée pour voir immédiatement les séances prévues, ce qu’il
+                reste à préparer et ce qui demande ton attention.
+              </p>
+              <div className="mt-4">
+                <SchoolRhythmPill rhythm={schoolRhythm} />
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 xl:justify-end">
+              <Button asChild size="sm">
+                <Link to="/journal">
+                  <BookOpen className="mr-1.5 h-4 w-4" />
+                  Ouvrir le journal
+                </Link>
+              </Button>
+              <Button asChild size="sm" variant="outline">
+                <Link to="/compagnon-classe">
+                  <Smartphone className="mr-1.5 h-4 w-4" />
+                  Mode classe
+                </Link>
+              </Button>
+              <Button asChild size="sm" variant="outline">
+                <Link to="/correction-rapide">Corriger</Link>
+              </Button>
+              <Button asChild size="sm" variant="outline">
+                <Link to="/programmation">Programmation</Link>
+              </Button>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-2 sm:justify-end">
-            <Button asChild size="sm">
-              <Link to="/journal">
-                <BookOpen className="mr-1.5 h-4 w-4" />
-                Ouvrir le journal
-              </Link>
-            </Button>
-            <Button asChild size="sm" variant="outline">
-              <Link to="/compagnon-classe">
-                <Smartphone className="mr-1.5 h-4 w-4" />
-                Mode classe
-              </Link>
-            </Button>
-            <Button asChild size="sm" variant="outline">
-              <Link to="/correction-rapide">Corriger</Link>
-            </Button>
-            <Button asChild size="sm" variant="outline">
-              <Link to="/programmation">Programmation</Link>
-            </Button>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-3 xl:max-w-3xl">
+            <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
+                Séances du jour
+              </p>
+              <p className="mt-2 text-2xl font-bold text-foreground">{daySessions.length}</p>
+              <p className="mt-1 text-xs text-muted-foreground">Journal du jour déjà chargé</p>
+            </div>
+            <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
+                À préparer
+              </p>
+              <p className="mt-2 text-2xl font-bold text-foreground">
+                {pendingPreparationItems.length}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Photocopies ou matériel en attente
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
+                Mails à traiter
+              </p>
+              <p className="mt-2 text-2xl font-bold text-foreground">{unhandledMailCount}</p>
+              <p className="mt-1 text-xs text-muted-foreground">Messages non encore traités</p>
+            </div>
           </div>
         </header>
 
