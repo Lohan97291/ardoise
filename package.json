@@ -1,5 +1,6 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "ardoise",
+  "description": "Assistant de pilotage de classe pour le CE1",
   "private": true,
   "sideEffects": false,
   "type": "module",
