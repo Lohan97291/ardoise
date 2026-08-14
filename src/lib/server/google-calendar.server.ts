@@ -50,11 +50,17 @@ const oauthStates = new Set<string>();
 const GOOGLE_TOKEN_ROW_ID = "ardoise-google-calendar";
 const GOOGLE_TOKEN_SCOPE = "google-calendar-token";
 
-function config() {
+function fallbackRedirectUri(requestUrl?: string): string {
+  if (requestUrl) {
+    return new URL("/api/calendar/google/callback", requestUrl).toString();
+  }
+  return "http://localhost:8080/api/calendar/google/callback";
+}
+
+function config(requestUrl?: string) {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-  const redirectUri =
-    process.env.GOOGLE_REDIRECT_URI ?? "http://localhost:8080/api/calendar/google/callback";
+  const redirectUri = process.env.GOOGLE_REDIRECT_URI?.trim() || fallbackRedirectUri(requestUrl);
   if (!clientId || !clientSecret) throw new Error("Google Calendar OAuth n'est pas configuré.");
   return { clientId, clientSecret, redirectUri };
 }
@@ -202,8 +208,8 @@ async function hydrateTokenFromCloud(): Promise<void> {
   if (restored) token = restored;
 }
 
-export function googleConnectUrl(): string {
-  const { clientId, redirectUri } = config();
+export function googleConnectUrl(requestUrl?: string): string {
+  const { clientId, redirectUri } = config(requestUrl);
   const state = randomBytes(24).toString("hex");
   oauthStates.add(state);
   const params = new URLSearchParams({
@@ -218,9 +224,13 @@ export function googleConnectUrl(): string {
   return `${GOOGLE_AUTH_URL}?${params.toString()}`;
 }
 
-export async function googleCallback(code: string, state: string): Promise<void> {
+export async function googleCallback(
+  code: string,
+  state: string,
+  requestUrl?: string,
+): Promise<void> {
   if (!oauthStates.delete(state)) throw new Error("État OAuth Google invalide ou expiré.");
-  const { clientId, clientSecret, redirectUri } = config();
+  const { clientId, clientSecret, redirectUri } = config(requestUrl);
   const response = await fetch(GOOGLE_TOKEN_URL, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded" },

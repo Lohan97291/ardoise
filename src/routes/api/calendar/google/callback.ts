@@ -10,7 +10,7 @@ export const Route = createFileRoute("/api/calendar/google/callback")({
         const state = url.searchParams.get("state");
         if (!code || !state) return new Response("Connexion Google incomplète.", { status: 400 });
         try {
-          await googleCallback(code, state);
+          await googleCallback(code, state, request.url);
           return Response.redirect(new URL("/agenda?google=connected", request.url), 302);
         } catch (error) {
           console.error(error);

@@ -38,11 +38,15 @@ type SupabaseServerDatabase = {
 let serverSupabaseClient: SupabaseClient<SupabaseServerDatabase> | null = null;
 
 function serverSupabaseUrl(): string | null {
-  return process.env.VITE_SUPABASE_URL?.trim() || null;
+  return process.env.SUPABASE_URL?.trim() || process.env.VITE_SUPABASE_URL?.trim() || null;
 }
 
 function serverSupabaseAnonKey(): string | null {
-  return process.env.VITE_SUPABASE_ANON_KEY?.trim() || null;
+  return (
+    process.env.SUPABASE_ANON_KEY?.trim() ||
+    process.env.VITE_SUPABASE_ANON_KEY?.trim() ||
+    null
+  );
 }
 
 export function isServerSupabaseConfigured(): boolean {

@@ -4,10 +4,10 @@ import { googleCalendarConfigured, googleConnectUrl } from "@/lib/server/google-
 export const Route = createFileRoute("/api/calendar/google/connect")({
   server: {
     handlers: {
-      GET: async () => {
+      GET: async ({ request }) => {
         if (!googleCalendarConfigured())
           return new Response("Google Calendar n'est pas configuré.", { status: 503 });
-        return Response.redirect(googleConnectUrl(), 302);
+        return Response.redirect(googleConnectUrl(request.url), 302);
       },
     },
   },
