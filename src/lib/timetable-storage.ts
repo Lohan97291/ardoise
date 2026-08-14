@@ -51,6 +51,12 @@ const maths = (
   subject: "maths",
   builderTemplateId,
 });
+const rituels = (start: string, end: string, title: string): TimetableSlot => ({
+  start,
+  end,
+  title,
+  subject: "rituels",
+});
 
 function normalizeMathsSlotTitle(slot: TimetableSlot): TimetableSlot {
   if (slot.subject !== "maths") return slot;
@@ -106,7 +112,7 @@ const LEGACY_BALANCED_SEED: WeeklyTimetable = {
     francais("11:15", "11:30", "Lecture compréhension"),
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
-    francais("13:30", "13:45", "Écriture (copie)", "ecriture-copie"),
+    rituels("13:30", "13:45", "Devoirs / agenda"),
     francais("13:45", "14:20", "Littérature / album", "litterature-album"),
     { start: "14:20", end: "14:50", title: "Questionner le monde", subject: "qlm" },
     { start: "14:50", end: "15:05", title: "Récréation", subject: "pause", fixed: true },
@@ -125,7 +131,7 @@ const LEGACY_BALANCED_SEED: WeeklyTimetable = {
     francais("11:05", "11:30", "Cléo - activité 2"),
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
-    francais("13:30", "13:45", "Écriture (copie)", "ecriture-copie"),
+    rituels("13:30", "13:45", "Devoirs / agenda"),
     francais("13:45", "14:15", "Production d'écrit", "production-ecrit"),
     francais("14:15", "14:30", "Cléo - lexique"),
     francais("14:30", "14:50", "Lecture", "lecture"),
@@ -148,7 +154,7 @@ const LEGACY_BALANCED_SEED: WeeklyTimetable = {
     { start: "11:00", end: "11:30", title: "Questionner le monde", subject: "qlm" },
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
-    francais("13:30", "13:45", "Écriture (copie)", "ecriture-copie"),
+    rituels("13:30", "13:45", "Devoirs / agenda"),
     { start: "13:45", end: "14:15", title: "Enseignement moral et civique", subject: "emc" },
     { start: "14:15", end: "14:50", title: "Anglais", subject: "lve" },
     { start: "14:50", end: "15:05", title: "Récréation", subject: "pause", fixed: true },
@@ -168,8 +174,8 @@ const LEGACY_BALANCED_SEED: WeeklyTimetable = {
     francais("10:55", "11:30", "Cléo - activité 1"),
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
-    francais("13:30", "13:45", "Écriture (calligraphie)", "ecriture-copie"),
-    francais("13:45", "14:15", "Cléo - activité 2"),
+    rituels("13:30", "13:45", "Devoirs / agenda"),
+    francais("13:45", "14:15", "Écriture", "ecriture-copie"),
     { start: "14:15", end: "14:30", title: "Anglais rituel / oral", subject: "lve" },
     { start: "14:30", end: "14:50", title: "EMC / débat", subject: "emc" },
     { start: "14:50", end: "15:05", title: "Récréation", subject: "pause", fixed: true },
@@ -191,7 +197,7 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     francais("11:00", "11:30", "Cléo - activité 1"),
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
-    francais("13:30", "13:45", "Écriture (copie)", "ecriture-copie"),
+    rituels("13:30", "13:45", "Devoirs / agenda"),
     francais("13:45", "14:20", "Littérature / album", "litterature-album"),
     { start: "14:20", end: "14:50", title: "Questionner le monde", subject: "qlm" },
     { start: "14:50", end: "15:05", title: "Récréation", subject: "pause", fixed: true },
@@ -209,7 +215,7 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     francais("11:05", "11:30", "Cléo - lexique"),
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
-    francais("13:30", "13:45", "Écriture (copie)", "ecriture-copie"),
+    rituels("13:30", "13:45", "Devoirs / agenda"),
     francais("13:45", "14:15", "Production d'écrit", "production-ecrit"),
     francais("14:15", "14:30", "Lecture", "lecture"),
     francais("14:30", "14:50", "Cléo - activité 3"),
@@ -232,7 +238,7 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     francais("11:00", "11:30", "Cléo - activité 2"),
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
-    francais("13:30", "13:45", "Écriture (copie)", "ecriture-copie"),
+    rituels("13:30", "13:45", "Devoirs / agenda"),
     { start: "13:45", end: "14:15", title: "Enseignement moral et civique", subject: "emc" },
     francais("14:15", "14:30", "Lecture", "lecture"),
     { start: "14:30", end: "14:50", title: "Questionner le monde", subject: "qlm" },
@@ -254,8 +260,8 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     francais("10:55", "11:30", "Cléo - activité 1"),
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
-    francais("13:30", "13:45", "Écriture (calligraphie)", "ecriture-copie"),
-    francais("13:45", "14:15", "Cléo - activité 2"),
+    rituels("13:30", "13:45", "Devoirs / agenda"),
+    francais("13:45", "14:15", "Écriture", "ecriture-copie"),
     { start: "14:15", end: "14:30", title: "Anglais rituel / oral", subject: "lve" },
     { start: "14:30", end: "14:50", title: "EMC / débat", subject: "emc" },
     { start: "14:50", end: "15:05", title: "Récréation", subject: "pause", fixed: true },
@@ -315,11 +321,63 @@ function migrateTimetable(timetable: WeeklyTimetable): WeeklyTimetable {
     duplicateEnglishSlot.correctionPeriod = undefined;
   }
 
+  for (const weekday of SCHOOL_DAYS_FOR_MIGRATION) {
+    const daySlots = next[weekday] ?? [];
+    const afterLunchSlot = daySlots.find(
+      (slot) =>
+        slot.start === "13:30" &&
+        slot.end === "13:45" &&
+        ["ecriture (copie)", "ecriture (calligraphie)"].includes(normalizeSlotTitle(slot.title)),
+    );
+
+    if (afterLunchSlot) {
+      afterLunchSlot.title = "Devoirs / agenda";
+      afterLunchSlot.subject = "rituels";
+      afterLunchSlot.builderTemplateId = undefined;
+      afterLunchSlot.resourceId = undefined;
+      afterLunchSlot.prepSheetId = undefined;
+      afterLunchSlot.programmingItemId = undefined;
+      afterLunchSlot.exercisePlan = undefined;
+      afterLunchSlot.correctionMode = undefined;
+      afterLunchSlot.correctionExerciseId = undefined;
+      afterLunchSlot.correctionPeriod = undefined;
+      afterLunchSlot.pedagogicalDomain = undefined;
+      afterLunchSlot.pedagogicalSubDomain = undefined;
+    }
+  }
+
+  const fridayWritingSlot = (next.vendredi ?? []).find(
+    (slot) => slot.start === "13:45" && slot.end === "14:15" && normalizeSlotTitle(slot.title) === "cleo - activite 2",
+  );
+
+  if (fridayWritingSlot) {
+    fridayWritingSlot.title = "Écriture";
+    fridayWritingSlot.subject = "francais";
+    fridayWritingSlot.builderTemplateId = "ecriture-copie";
+    fridayWritingSlot.resourceId = undefined;
+    fridayWritingSlot.prepSheetId = undefined;
+    fridayWritingSlot.programmingItemId = undefined;
+    fridayWritingSlot.exercisePlan = undefined;
+    fridayWritingSlot.correctionMode = undefined;
+    fridayWritingSlot.correctionExerciseId = undefined;
+    fridayWritingSlot.correctionPeriod = undefined;
+  }
+
   if (timetableMatches(next, LEGACY_BALANCED_SEED)) {
     return cloneTimetable(SEED_TIMETABLE);
   }
 
   return next;
+}
+
+const SCHOOL_DAYS_FOR_MIGRATION: Weekday[] = ["lundi", "mardi", "jeudi", "vendredi"];
+
+function normalizeSlotTitle(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
 }
 
 // ─────────────────────────────────────────────

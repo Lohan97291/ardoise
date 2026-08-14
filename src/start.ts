@@ -39,19 +39,18 @@ const authMiddleware = createMiddleware().server(async ({ request, pathname, nex
     return next();
   }
 
-  const acceptsHtml = request.headers.get("accept")?.includes("text/html") ?? false;
   const isApiRequest = pathname.startsWith("/api/");
-  if (!acceptsHtml && !isApiRequest) return next();
 
   const cookies = parseCookieHeader(request.headers.get("cookie"));
   if (isValidSessionCookie(cookies[AUTH_COOKIE_NAME])) return next();
 
-  if (acceptsHtml) {
-    const redirectUrl = new URL("/login", request.url);
-    redirectUrl.searchParams.set("next", pathname);
-    return new Response(null, { status: 302, headers: { Location: redirectUrl.toString() } });
+  if (isApiRequest) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return Response.json({ error: "Unauthorized" }, { status: 401 });
+
+  const redirectUrl = new URL("/login", request.url);
+  redirectUrl.searchParams.set("next", pathname);
+  return new Response(null, { status: 302, headers: { Location: redirectUrl.toString() } });
 });
 
 // Start installs this automatically when src/start.ts is absent; defining the
