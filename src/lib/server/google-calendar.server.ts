@@ -1,4 +1,5 @@
-import { createHash, randomBytes } from "node:crypto";
+import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
+import { getServerSupabaseClient } from "@/lib/server/supabase.server";
 
 const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
@@ -11,6 +12,14 @@ type GoogleToken = {
   refresh_token?: string;
   expires_in?: number;
   expires_at: number;
+};
+
+type StoredGoogleToken = {
+  version: 1;
+  iv: string;
+  tag: string;
+  data: string;
+  savedAt: string;
 };
 
 export type CalendarEvent = {
@@ -36,7 +45,10 @@ export type CalendarCreateInput = {
 };
 
 let token: GoogleToken | null = null;
+let tokenHydrationAttempted = false;
 const oauthStates = new Set<string>();
+const GOOGLE_TOKEN_ROW_ID = "ardoise-google-calendar";
+const GOOGLE_TOKEN_SCOPE = "google-calendar-token";
 
 function config() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
@@ -53,6 +65,141 @@ export function googleCalendarConfigured(): boolean {
 
 export function googleCalendarConnected(): boolean {
   return token !== null;
+}
+
+export async function googleCalendarConnectedStatus(): Promise<boolean> {
+  await hydrateTokenFromCloud();
+  return token !== null;
+}
+
+function encryptionSecret(): string | null {
+  return process.env.GOOGLE_TOKEN_ENCRYPTION_SECRET?.trim() || process.env.APP_PASSWORD?.trim() || null;
+}
+
+function encryptionKey(): Buffer | null {
+  const secret = encryptionSecret();
+  if (!secret) return null;
+  return createHash("sha256").update(secret).digest();
+}
+
+function encryptToken(value: GoogleToken): StoredGoogleToken | null {
+  const key = encryptionKey();
+  if (!key) return null;
+  const iv = randomBytes(12);
+  const cipher = createCipheriv("aes-256-gcm", key, iv);
+  const payload = Buffer.concat([
+    cipher.update(JSON.stringify(value), "utf8"),
+    cipher.final(),
+  ]);
+  const tag = cipher.getAuthTag();
+
+  return {
+    version: 1,
+    iv: iv.toString("base64"),
+    tag: tag.toString("base64"),
+    data: payload.toString("base64"),
+    savedAt: new Date().toISOString(),
+  };
+}
+
+function decryptToken(value: unknown): GoogleToken | null {
+  const key = encryptionKey();
+  if (!key || !value || typeof value !== "object") return null;
+  const payload = value as Partial<StoredGoogleToken>;
+  if (!payload.iv || !payload.tag || !payload.data) return null;
+
+  try {
+    const decipher = createDecipheriv(
+      "aes-256-gcm",
+      key,
+      Buffer.from(payload.iv, "base64"),
+    );
+    decipher.setAuthTag(Buffer.from(payload.tag, "base64"));
+    const decrypted = Buffer.concat([
+      decipher.update(Buffer.from(payload.data, "base64")),
+      decipher.final(),
+    ]).toString("utf8");
+    const parsed = JSON.parse(decrypted) as Partial<GoogleToken>;
+    if (!parsed.access_token || typeof parsed.expires_at !== "number") return null;
+    return {
+      access_token: parsed.access_token,
+      refresh_token: parsed.refresh_token,
+      expires_in: parsed.expires_in,
+      expires_at: parsed.expires_at,
+    };
+  } catch (error) {
+    console.error("Impossible de déchiffrer le jeton Google Calendar.", error);
+    return null;
+  }
+}
+
+async function persistToken(nextToken: GoogleToken | null): Promise<void> {
+  const client = getServerSupabaseClient();
+  if (!client) return;
+  if (!encryptionSecret()) return;
+
+  if (!nextToken) {
+    const { error } = await client.from("app_snapshots").upsert(
+      {
+        id: GOOGLE_TOKEN_ROW_ID,
+        scope: GOOGLE_TOKEN_SCOPE,
+        payload: {
+          version: 1,
+          disabled: true,
+          savedAt: new Date().toISOString(),
+        },
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "id" },
+    );
+    if (error) {
+      console.error(
+        "Impossible de marquer la connexion Google Calendar comme déconnectée dans Supabase.",
+        error,
+      );
+    }
+    return;
+  }
+
+  const encrypted = encryptToken(nextToken);
+  if (!encrypted) return;
+
+  const { error } = await client.from("app_snapshots").upsert(
+    {
+      id: GOOGLE_TOKEN_ROW_ID,
+      scope: GOOGLE_TOKEN_SCOPE,
+      payload: encrypted,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "id" },
+  );
+
+  if (error) {
+    console.error("Impossible de sauvegarder le jeton Google Calendar dans Supabase.", error);
+  }
+}
+
+async function hydrateTokenFromCloud(): Promise<void> {
+  if (tokenHydrationAttempted || token) return;
+  tokenHydrationAttempted = true;
+
+  const client = getServerSupabaseClient();
+  if (!client) return;
+  if (!encryptionSecret()) return;
+
+  const { data, error } = await client
+    .from("app_snapshots")
+    .select("payload")
+    .eq("id", GOOGLE_TOKEN_ROW_ID)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Impossible de relire le jeton Google Calendar depuis Supabase.", error);
+    return;
+  }
+
+  const restored = decryptToken(data?.payload);
+  if (restored) token = restored;
 }
 
 export function googleConnectUrl(): string {
@@ -99,9 +246,11 @@ export async function googleCallback(code: string, state: string): Promise<void>
     expires_in: value.expires_in,
     expires_at: Date.now() + (value.expires_in ?? 3600) * 1000,
   };
+  await persistToken(token);
 }
 
 async function accessToken(): Promise<string> {
+  await hydrateTokenFromCloud();
   if (!token) throw new Error("Google Calendar n'est pas connecté.");
   if (token.expires_at > Date.now() + 60_000) return token.access_token;
   if (!token.refresh_token)
@@ -125,6 +274,7 @@ async function accessToken(): Promise<string> {
   };
   if (!response.ok || !value.access_token) {
     token = null;
+    await persistToken(null);
     throw new Error(value.error ?? "Rafraîchissement Google impossible.");
   }
   token = {
@@ -132,6 +282,7 @@ async function accessToken(): Promise<string> {
     access_token: value.access_token,
     expires_at: Date.now() + (value.expires_in ?? 3600) * 1000,
   };
+  await persistToken(token);
   return token.access_token;
 }
 
@@ -144,7 +295,10 @@ async function calendarFetch(path: string, init?: RequestInit): Promise<Response
       ...init?.headers,
     },
   });
-  if (response.status === 401) token = null;
+  if (response.status === 401) {
+    token = null;
+    await persistToken(null);
+  }
   return response;
 }
 

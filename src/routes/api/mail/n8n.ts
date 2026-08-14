@@ -43,7 +43,7 @@ export const Route = createFileRoute("/api/mail/n8n")({
   server: {
     handlers: {
       // Lecture locale par la page Messagerie (pas d'auth : usage mono-utilisateur en local).
-      GET: async () => Response.json({ analyses: listMailAnalyses() }),
+      GET: async () => Response.json({ analyses: await listMailAnalyses() }),
 
       // Ingestion depuis n8n : lecture + analyse des mails faites entièrement côté n8n,
       // Ardoise ne reçoit que le résultat structuré (jamais mots de passe, jetons,
@@ -61,7 +61,7 @@ export const Route = createFileRoute("/api/mail/n8n")({
         if (!isValidPayload(value)) {
           return Response.json({ error: "Payload incomplet ou invalide" }, { status: 400 });
         }
-        return Response.json({ success: true, analysis: saveMailAnalysis(value) });
+        return Response.json({ success: true, analysis: await saveMailAnalysis(value) });
       },
     },
   },

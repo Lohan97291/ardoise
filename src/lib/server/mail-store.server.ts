@@ -1,15 +1,24 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
+import { getServerSupabaseClient } from "@/lib/server/supabase.server";
 import { normalizeMailAnalysis } from "./mail-analysis-normalizer";
 import type { MailAnalysis } from "./mail-types";
 
 /**
- * Persistance des analyses de mail dans un fichier local (.data/mail-analyses.json),
- * pour survivre aux redémarrages du serveur sans avoir besoin d'une vraie base de
- * données. À remplacer par une table SQL si le volume devient important.
+ * En local, on garde un fichier .data/mail-analyses.json.
+ * En production avec Supabase configuré, on sauvegarde aussi les mails dans app_snapshots
+ * pour qu'ils survivent aux redéploiements Vercel et restent visibles sur plusieurs appareils.
  */
 const STORE_PATH = join(process.cwd(), ".data", "mail-analyses.json");
+const MAIL_ROW_ID = "ardoise-mail-analyses";
+const MAIL_SCOPE = "mail-analyses";
+
+type MailSnapshot = {
+  version: 1;
+  updatedAt: string;
+  entries: MailAnalysis[];
+};
 
 function loadEntries(): MailAnalysis[] {
   try {
@@ -25,16 +34,67 @@ function saveEntries(entries: MailAnalysis[]): void {
   writeFileSync(STORE_PATH, JSON.stringify(entries, null, 2), "utf-8");
 }
 
-export function saveMailAnalysis(value: MailAnalysis): MailAnalysis {
+async function loadEntriesFromCloud(): Promise<MailAnalysis[] | null> {
+  const client = getServerSupabaseClient();
+  if (!client) return null;
+
+  const { data, error } = await client
+    .from("app_snapshots")
+    .select("payload")
+    .eq("id", MAIL_ROW_ID)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Impossible de lire les mails depuis Supabase.", error);
+    return null;
+  }
+
+  const payload = data?.payload;
+  if (!payload || typeof payload !== "object") return null;
+  const snapshot = payload as Partial<MailSnapshot>;
+  if (!Array.isArray(snapshot.entries)) return [];
+
+  return snapshot.entries.map(normalizeMailAnalysis);
+}
+
+async function saveEntriesToCloud(entries: MailAnalysis[]): Promise<void> {
+  const client = getServerSupabaseClient();
+  if (!client) return;
+
+  const snapshot: MailSnapshot = {
+    version: 1,
+    updatedAt: new Date().toISOString(),
+    entries,
+  };
+
+  const { error } = await client.from("app_snapshots").upsert(
+    {
+      id: MAIL_ROW_ID,
+      scope: MAIL_SCOPE,
+      payload: snapshot,
+      updated_at: snapshot.updatedAt,
+    },
+    { onConflict: "id" },
+  );
+
+  if (error) {
+    console.error("Impossible de sauvegarder les mails dans Supabase.", error);
+  }
+}
+
+export async function saveMailAnalysis(value: MailAnalysis): Promise<MailAnalysis> {
   const normalized = normalizeMailAnalysis(value);
-  const entries = loadEntries().map(normalizeMailAnalysis);
+  const entries = ((await loadEntriesFromCloud()) ?? loadEntries().map(normalizeMailAnalysis)).slice();
   const index = entries.findIndex((item) => item.externalId === normalized.externalId);
   if (index >= 0) entries[index] = normalized;
   else entries.unshift(normalized);
   saveEntries(entries);
+  await saveEntriesToCloud(entries);
   return normalized;
 }
 
-export function listMailAnalyses(): MailAnalysis[] {
+export async function listMailAnalyses(): Promise<MailAnalysis[]> {
+  const cloudEntries = await loadEntriesFromCloud();
+  if (cloudEntries) return cloudEntries;
   return loadEntries().map(normalizeMailAnalysis);
 }

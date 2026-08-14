@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   googleCalendarConfigured,
-  googleCalendarConnected,
+  googleCalendarConnectedStatus,
 } from "@/lib/server/google-calendar.server";
 
 export const Route = createFileRoute("/api/calendar/google/status")({
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/api/calendar/google/status")({
       GET: async () =>
         Response.json({
           configured: googleCalendarConfigured(),
-          connected: googleCalendarConnected(),
+          connected: await googleCalendarConnectedStatus(),
         }),
     },
   },
