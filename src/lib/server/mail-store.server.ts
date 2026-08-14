@@ -30,8 +30,12 @@ function loadEntries(): MailAnalysis[] {
 }
 
 function saveEntries(entries: MailAnalysis[]): void {
-  mkdirSync(dirname(STORE_PATH), { recursive: true });
-  writeFileSync(STORE_PATH, JSON.stringify(entries, null, 2), "utf-8");
+  try {
+    mkdirSync(dirname(STORE_PATH), { recursive: true });
+    writeFileSync(STORE_PATH, JSON.stringify(entries, null, 2), "utf-8");
+  } catch (error) {
+    console.warn("Sauvegarde locale des mails indisponible sur cet environnement.", error);
+  }
 }
 
 async function loadEntriesFromCloud(): Promise<MailAnalysis[] | null> {
