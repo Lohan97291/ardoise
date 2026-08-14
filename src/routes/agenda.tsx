@@ -616,6 +616,11 @@ function AgendaPage() {
                       </span>
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium">{item.title}</span>
+                        {item.note ? (
+                          <span className="mt-0.5 block text-xs text-muted-foreground">
+                            {item.note}
+                          </span>
+                        ) : null}
                         <span
                           className={cn(
                             "mt-0.5 inline-flex rounded-full border px-1.5 text-[0.6rem] font-semibold uppercase tracking-wide",
@@ -625,14 +630,16 @@ function AgendaPage() {
                           {AGENDA_TYPE_LABEL[item.type]}
                         </span>
                       </span>
-                      <button
-                        type="button"
-                        onClick={() => setItems(removeAgendaItem(item.id, key))}
-                        className="shrink-0 rounded-md p-1.5 text-muted-foreground opacity-0 transition-colors group-hover:opacity-100 hover:bg-danger-soft hover:text-danger-strong"
-                        aria-label="Supprimer"
-                      >
-                        <Trash2 className="h-3.5 w-3.5" />
-                      </button>
+                      {item.source !== "birthday" ? (
+                        <button
+                          type="button"
+                          onClick={() => setItems(removeAgendaItem(item.id, key))}
+                          className="shrink-0 rounded-md p-1.5 text-muted-foreground opacity-0 transition-colors group-hover:opacity-100 hover:bg-danger-soft hover:text-danger-strong"
+                          aria-label="Supprimer"
+                        >
+                          <Trash2 className="h-3.5 w-3.5" />
+                        </button>
+                      ) : null}
                     </li>
                   ))}
                 </ol>

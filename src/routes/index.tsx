@@ -1172,18 +1172,27 @@ function Dashboard() {
                           {item.time ?? "—"}
                         </span>
                         <span className={WIDGET_BADGE}>{AGENDA_TYPE_LABEL[item.type]}</span>
-                        <span className="min-w-0 flex-1 truncate text-sm">{item.title}</span>
-                        <button
-                          type="button"
-                          onClick={() => setAgendaItems(removeAgendaItem(item.id, todayKey))}
-                          className={cn(
-                            WIDGET_ICON_BTN,
-                            "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
-                          )}
-                          aria-label="Supprimer"
-                        >
-                          <X className="h-3.5 w-3.5" />
-                        </button>
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-sm">{item.title}</span>
+                          {item.note ? (
+                            <span className="block truncate text-[0.68rem] text-muted-foreground">
+                              {item.note}
+                            </span>
+                          ) : null}
+                        </span>
+                        {item.source !== "birthday" ? (
+                          <button
+                            type="button"
+                            onClick={() => setAgendaItems(removeAgendaItem(item.id, todayKey))}
+                            className={cn(
+                              WIDGET_ICON_BTN,
+                              "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
+                            )}
+                            aria-label="Supprimer"
+                          >
+                            <X className="h-3.5 w-3.5" />
+                          </button>
+                        ) : null}
                       </li>
                     ))}
                     {syncedAgendaEvents.map((event) => (
