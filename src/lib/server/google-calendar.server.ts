@@ -1,4 +1,11 @@
-import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
+import {
+  createCipheriv,
+  createDecipheriv,
+  createHash,
+  createHmac,
+  randomBytes,
+  timingSafeEqual,
+} from "node:crypto";
 import { getServerSupabaseClient } from "@/lib/server/supabase.server";
 
 const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -46,9 +53,9 @@ export type CalendarCreateInput = {
 
 let token: GoogleToken | null = null;
 let tokenHydrationAttempted = false;
-const oauthStates = new Set<string>();
 const GOOGLE_TOKEN_ROW_ID = "ardoise-google-calendar";
 const GOOGLE_TOKEN_SCOPE = "google-calendar-token";
+const GOOGLE_OAUTH_STATE_TTL_MS = 15 * 60_000;
 
 function fallbackRedirectUri(requestUrl?: string): string {
   if (requestUrl) {
@@ -80,6 +87,15 @@ export async function googleCalendarConnectedStatus(): Promise<boolean> {
 
 function encryptionSecret(): string | null {
   return process.env.GOOGLE_TOKEN_ENCRYPTION_SECRET?.trim() || process.env.APP_PASSWORD?.trim() || null;
+}
+
+function oauthStateSecret(): string {
+  return (
+    process.env.GOOGLE_OAUTH_STATE_SECRET?.trim() ||
+    encryptionSecret() ||
+    process.env.GOOGLE_CLIENT_SECRET?.trim() ||
+    "ardoise-google-oauth"
+  );
 }
 
 function encryptionKey(): Buffer | null {
@@ -208,10 +224,43 @@ async function hydrateTokenFromCloud(): Promise<void> {
   if (restored) token = restored;
 }
 
+function signOauthState(timestamp: string, nonce: string): string {
+  return createHmac("sha256", oauthStateSecret())
+    .update(`${timestamp}.${nonce}`)
+    .digest("hex");
+}
+
+function createOauthState(): string {
+  const timestamp = Date.now().toString();
+  const nonce = randomBytes(16).toString("hex");
+  const signature = signOauthState(timestamp, nonce);
+  return Buffer.from(`${timestamp}.${nonce}.${signature}`, "utf8").toString("base64url");
+}
+
+function verifyOauthState(state: string): boolean {
+  try {
+    const decoded = Buffer.from(state, "base64url").toString("utf8");
+    const [timestamp, nonce, signature] = decoded.split(".");
+    if (!timestamp || !nonce || !signature) return false;
+
+    const issuedAt = Number(timestamp);
+    if (!Number.isFinite(issuedAt)) return false;
+    if (Math.abs(Date.now() - issuedAt) > GOOGLE_OAUTH_STATE_TTL_MS) return false;
+
+    const expected = signOauthState(timestamp, nonce);
+    const providedBuffer = Buffer.from(signature, "hex");
+    const expectedBuffer = Buffer.from(expected, "hex");
+    if (providedBuffer.length !== expectedBuffer.length) return false;
+
+    return timingSafeEqual(providedBuffer, expectedBuffer);
+  } catch {
+    return false;
+  }
+}
+
 export function googleConnectUrl(requestUrl?: string): string {
   const { clientId, redirectUri } = config(requestUrl);
-  const state = randomBytes(24).toString("hex");
-  oauthStates.add(state);
+  const state = createOauthState();
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: redirectUri,
@@ -229,7 +278,7 @@ export async function googleCallback(
   state: string,
   requestUrl?: string,
 ): Promise<void> {
-  if (!oauthStates.delete(state)) throw new Error("État OAuth Google invalide ou expiré.");
+  if (!verifyOauthState(state)) throw new Error("État OAuth Google invalide ou expiré.");
   const { clientId, clientSecret, redirectUri } = config(requestUrl);
   const response = await fetch(GOOGLE_TOKEN_URL, {
     method: "POST",
