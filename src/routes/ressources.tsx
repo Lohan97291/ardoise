@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowLeft,
   ArrowRight,
@@ -80,6 +80,7 @@ function methodCoverMeta(method: ResourceMethod) {
 function ResourcesPage() {
   const [resourceTree, setResourceTree] = useState<ResourceMethod[]>([]);
   const [query, setQuery] = useState("");
+  const [libraryQuery, setLibraryQuery] = useState("");
   const [selectedMethod, setSelectedMethod] = useState<ResourceMethod | null>(null);
   const [selectedSequence, setSelectedSequence] = useState<ResourceSequence | null>(null);
   const [selectedSession, setSelectedSession] = useState<ResourceSession | null>(null);
@@ -87,12 +88,14 @@ function ResourcesPage() {
   const [openingMethodId, setOpeningMethodId] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [sheet, setSheet] = useState<Awaited<ReturnType<typeof loadPatchedPrepSheet>>>();
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let active = true;
     void loadMergedResourceTree().then((merged) => {
       if (!active) return;
       setResourceTree(merged);
+      setLoaded(true);
     });
     return () => {
       active = false;
@@ -110,6 +113,7 @@ function ResourcesPage() {
   }, [selectedSession?.prepSheetId]);
 
   const q = query.trim().toLowerCase();
+  const libraryQ = libraryQuery.trim().toLowerCase();
   const searchResults = useMemo(() => {
     if (!q) return [];
     const out: Array<{
@@ -132,6 +136,30 @@ function ResourcesPage() {
     }
     return out.slice(0, 120);
   }, [q, resourceTree]);
+
+  const filteredMethods = useMemo(() => {
+    if (!libraryQ) return resourceTree;
+    return resourceTree.filter((method) => {
+      const subjectLabel = SUBJECTS[method.subject].label.toLowerCase();
+      const subtitle = methodCoverMeta(method).subtitle.toLowerCase();
+      return (
+        method.label.toLowerCase().includes(libraryQ) ||
+        subjectLabel.includes(libraryQ) ||
+        subtitle.includes(libraryQ)
+      );
+    });
+  }, [libraryQ, resourceTree]);
+
+  const resourceStats = useMemo(() => {
+    const methodCount = resourceTree.length;
+    const sequenceCount = resourceTree.reduce((total, method) => total + method.sequences.length, 0);
+    const sessionCount = resourceTree.reduce(
+      (total, method) =>
+        total + method.sequences.reduce((subtotal, sequence) => subtotal + sequence.sessions.length, 0),
+      0,
+    );
+    return { methodCount, sequenceCount, sessionCount };
+  }, [resourceTree]);
 
   const previousSession =
     selectedSequence && selectedSession
@@ -208,8 +236,38 @@ function ResourcesPage() {
 
         {screen === "bibliotheque" ? (
           <section className="mt-6">
+            <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-[28px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-4 shadow-card">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-foreground">
+                  {resourceStats.methodCount} supports
+                </span>
+                <span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-muted-foreground">
+                  {resourceStats.sequenceCount} sommaires
+                </span>
+                <span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-muted-foreground">
+                  {resourceStats.sessionCount} séances
+                </span>
+              </div>
+              <div className="relative w-full max-w-sm">
+                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  value={libraryQuery}
+                  onChange={(event) => setLibraryQuery(event.target.value)}
+                  placeholder="Retrouver un support…"
+                  className="rounded-2xl border-border/70 bg-card/85 pl-9 shadow-sm"
+                />
+              </div>
+            </div>
+
             <div className="flex flex-wrap items-start justify-center gap-6 sm:justify-start">
-              {resourceTree.map((method) => {
+              {!loaded
+                ? Array.from({ length: 6 }, (_, index) => (
+                    <div
+                      key={`resource-skeleton-${index}`}
+                      className="h-[244px] w-[188px] animate-pulse rounded-[28px] border border-border/60 bg-secondary/45 shadow-card"
+                    />
+                  ))
+                : filteredMethods.map((method) => {
                 const cover = methodCoverMeta(method);
                 return (
                   <NotebookCover
@@ -224,6 +282,11 @@ function ResourcesPage() {
                 );
               })}
             </div>
+            {loaded && filteredMethods.length === 0 ? (
+              <div className="mt-5 rounded-[24px] border border-dashed border-border bg-card/70 px-5 py-8 text-center text-sm text-muted-foreground">
+                Aucun support ne correspond à cette recherche.
+              </div>
+            ) : null}
           </section>
         ) : null}
 
@@ -241,6 +304,14 @@ function ResourcesPage() {
                 <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
                   {selectedMethod.label}
                 </h2>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
+                    {selectedMethod.sequences.length} partie{selectedMethod.sequences.length > 1 ? "s" : ""}
+                  </span>
+                  <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
+                    {selectedMethod.sequences.reduce((total, sequence) => total + sequence.sessions.length, 0)} séance{selectedMethod.sequences.reduce((total, sequence) => total + sequence.sessions.length, 0) > 1 ? "s" : ""}
+                  </span>
+                </div>
               </header>
 
               <div className="relative max-w-md">
@@ -323,7 +394,7 @@ function ResourcesPage() {
               </div>
             </div>
 
-            <aside className="lg:sticky lg:top-20 lg:self-start">
+            <aside className="lg:sticky lg:top-20 lg:z-10 lg:self-start">
               <div className="card-surface flex max-h-[calc(100vh-7rem)] flex-col overflow-hidden rounded-[28px] border-primary/8 shadow-card">
                 <div className="flex items-start justify-between gap-3 border-b border-border bg-secondary/30 px-4 py-3.5">
                   <div className="min-w-0 flex-1">
@@ -394,7 +465,7 @@ function ResourcesPage() {
                   </div>
                 ) : (
                   <div className="m-4 rounded-[24px] border border-dashed border-border bg-secondary/20 p-4 text-sm text-muted-foreground">
-                    Sélectionne une séance pour lire sa fiche de préparation.
+                    Sélectionne une séance.
                   </div>
                 )}
               </div>

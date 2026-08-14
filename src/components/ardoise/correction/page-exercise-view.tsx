@@ -114,6 +114,27 @@ export function PageExerciseView({
         </div>
 
         <div className="flex flex-col gap-3 overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-card">
+          {selectedItem ? (
+            <div className="rounded-[22px] border border-primary/12 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-primary)_8%,white),color-mix(in_oklab,var(--color-secondary)_26%,transparent))] p-3">
+              <div className="flex flex-wrap items-center gap-2">
+                {selectedItem.repere ? (
+                  <span className="rounded-full border border-primary/15 bg-card px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wide text-primary">
+                    {selectedItem.repere}
+                  </span>
+                ) : null}
+                {selectedItem.domain ? (
+                  <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.68rem] font-medium text-muted-foreground">
+                    {selectedItem.domain}
+                  </span>
+                ) : null}
+              </div>
+              <p className="mt-2 text-base font-bold text-foreground">{selectedItem.label}</p>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                {selectedItem.instruction}
+              </p>
+            </div>
+          ) : null}
+
           <div className="flex items-center justify-between px-1">
             <p className="eyebrow">Élèves</p>
             <span className="text-xs font-semibold text-muted-foreground">
@@ -138,7 +159,10 @@ export function PageExerciseView({
                   <span className="grid h-5 w-5 place-items-center rounded-full bg-secondary text-[0.6rem]">
                     {initials(student)}
                   </span>
-                  {student.firstName}
+                  <span className="font-semibold text-foreground">{student.firstName}</span>
+                  <span className="text-[0.68rem] uppercase tracking-wide text-muted-foreground">
+                    {student.lastName}
+                  </span>
                   {status ? (
                     <span className={cn("rounded-full px-1.5 text-[0.6rem]", STATUS_CHIP[status])}>
                       {status}
@@ -151,7 +175,15 @@ export function PageExerciseView({
 
           {selectedStudent && selectedItem ? (
             <div className="mt-1 flex flex-col gap-3 border-t border-border pt-3">
-              <p className="text-sm font-semibold">{fullName(selectedStudent)}</p>
+              <div className="flex flex-wrap items-center justify-between gap-2 rounded-[20px] border border-border/70 bg-secondary/25 px-3 py-2.5">
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{fullName(selectedStudent)}</p>
+                  <p className="text-xs text-muted-foreground">Choisis le statut puis passe au cahier suivant.</p>
+                </div>
+                <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.68rem] font-medium text-muted-foreground">
+                  Raccourcis affichés sur les boutons
+                </span>
+              </div>
               <StatusButtons value={results[selectedStudent.id]} onSelect={(status) => mark(selectedStudent.id, status)} />
               <CommentField
                 value={getComment(planId, selectedStudent.id)}

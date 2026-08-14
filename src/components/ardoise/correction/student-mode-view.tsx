@@ -61,12 +61,27 @@ export function StudentModeView({
             <span className="grid h-6 w-6 place-items-center rounded-full bg-secondary text-[0.65rem]">
               {initials(s)}
             </span>
-            {fullName(s)}
+            <span className="flex min-w-0 flex-col text-left">
+              <span className="truncate text-sm font-semibold text-foreground">{s.firstName}</span>
+              <span className="truncate text-[0.68rem] uppercase tracking-wide text-muted-foreground">
+                {s.lastName}
+              </span>
+            </span>
           </button>
         ))}
       </div>
 
       <div className="flex flex-col gap-3 overflow-y-auto rounded-2xl border border-border bg-card p-3 shadow-card">
+        {student ? (
+          <div className="rounded-[22px] border border-primary/12 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-primary)_8%,white),color-mix(in_oklab,var(--color-secondary)_26%,transparent))] p-3">
+            <p className="eyebrow">Correction élève</p>
+            <p className="mt-1 text-base font-bold text-foreground">{fullName(student)}</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Avance page par page pour ce cahier, sans quitter l’élève en cours.
+            </p>
+          </div>
+        ) : null}
+
         <div className="flex items-center justify-between px-1">
           <button
             type="button"
