@@ -28,9 +28,15 @@ function isPublicAuthPath(pathname: string): boolean {
   return pathname === "/login" || pathname.startsWith("/api/auth/");
 }
 
+function isServiceIngressRequest(request: Request, pathname: string): boolean {
+  return pathname === "/api/mail/n8n" && request.method.toUpperCase() === "POST";
+}
+
 const authMiddleware = createMiddleware().server(async ({ request, pathname, next }) => {
   const appPassword = process.env.APP_PASSWORD;
-  if (!appPassword || isPublicAuthPath(pathname)) return next();
+  if (!appPassword || isPublicAuthPath(pathname) || isServiceIngressRequest(request, pathname)) {
+    return next();
+  }
 
   const acceptsHtml = request.headers.get("accept")?.includes("text/html") ?? false;
   const isApiRequest = pathname.startsWith("/api/");
