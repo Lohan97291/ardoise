@@ -11,6 +11,7 @@ import {
   Mail,
   RefreshCw,
   ShieldCheck,
+  Trash2,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -134,6 +135,35 @@ function deadlineToSortKey(deadline: MailDeadline): string {
   return `${deadline.date}T${deadline.time ?? "23:59"}`;
 }
 
+function normalizeForComparison(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buildDeadlineAgendaTitle(label: string, subject?: string | null): string {
+  const cleanLabel = cleanMailText(label);
+  const cleanSubject = cleanMailText(subject);
+
+  if (!cleanLabel) return cleanSubject || "Sans objet";
+  if (!cleanSubject) return cleanLabel;
+
+  const normalizedLabel = normalizeForComparison(cleanLabel);
+  const normalizedSubject = normalizeForComparison(cleanSubject);
+
+  if (normalizedLabel === normalizedSubject) return cleanLabel;
+  if (normalizedSubject.includes(normalizedLabel)) return cleanLabel;
+
+  if (!/^(date limite|echeance|échéance|répondre|reponse|réponse|retour|rappel|mail|a traiter|à traiter)/i.test(cleanLabel)) {
+    return cleanLabel;
+  }
+
+  return `${cleanLabel} — ${cleanSubject}`;
+}
+
 function buildAgendaSuggestion(mail: MailAnalysis): AgendaSuggestion | null {
   const todayKey = toISODate(new Date());
   const actions = splitMailActions(mail.actions);
@@ -155,7 +185,7 @@ function buildAgendaSuggestion(mail: MailAnalysis): AgendaSuggestion | null {
 
   if (upcomingDeadline) {
     return {
-      title: `${upcomingDeadline.label} — ${mail.subject || "Sans objet"}`,
+      title: buildDeadlineAgendaTitle(upcomingDeadline.label, mail.subject),
       date: upcomingDeadline.date,
       time: upcomingDeadline.time ?? undefined,
       type: hasMeetingIntent ? "rdv" : mail.replyRequired ? "mail" : "ponctuel",
@@ -213,7 +243,7 @@ async function saveSuggestedAgendaItem({
 }
 
 function deadlineAlreadyInAgenda(mail: MailAnalysis, deadline: MailDeadline): boolean {
-  const title = `${deadline.label} — ${mail.subject || "Sans objet"}`;
+  const title = buildDeadlineAgendaTitle(deadline.label, mail.subject);
   return getAgendaItemsForDate(deadline.date).some((item) => item.title === title);
 }
 
@@ -267,7 +297,7 @@ function DeadlineChip({
                   headers: { "content-type": "application/json" },
                   body: JSON.stringify({
                     sourceMailId: `${mail.externalId}:${deadline.label}:${deadline.date}:${deadline.time ?? "all-day"}`,
-                    summary: `${deadline.label} — ${mail.subject || "Sans objet"}`,
+                    summary: buildDeadlineAgendaTitle(deadline.label, mail.subject),
                     description: `Proposé depuis le mail de ${mail.fromName || mail.fromEmail}.\n\n${mail.summary}`,
                     date: deadline.date,
                     time: deadline.time,
@@ -279,7 +309,7 @@ function DeadlineChip({
               addAgendaItem({
                 date: deadline.date,
                 time: deadline.time ?? undefined,
-                title: `${deadline.label} — ${mail.subject || "Sans objet"}`,
+                title: buildDeadlineAgendaTitle(deadline.label, mail.subject),
                 type: "rdv",
               });
               setAdded(true);
@@ -391,6 +421,7 @@ function MessagingPage() {
   const [agendaDate, setAgendaDate] = useState(toISODate(new Date()));
   const [agendaTime, setAgendaTime] = useState("");
   const [agendaBusy, setAgendaBusy] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     void fetch("/api/calendar/google/status")
@@ -408,7 +439,7 @@ function MessagingPage() {
     setAgendaMail(mail);
     setAgendaTitle(
       firstDeadline
-        ? `${firstDeadline.label} — ${mail.subject || "Sans objet"}`
+        ? buildDeadlineAgendaTitle(firstDeadline.label, mail.subject)
         : mail.subject || "Mail à planifier",
     );
     setAgendaDate(firstDeadline?.date ?? toISODate(new Date()));
@@ -453,6 +484,30 @@ function MessagingPage() {
 
   function refreshAgendaCount() {
     setAgendaCount(getAgendaItemsForDate(toISODate(new Date())).length);
+  }
+
+  async function deleteMail(mail: MailAnalysis) {
+    const confirmed = window.confirm(
+      `Supprimer définitivement ce message de la messagerie Ardoise ?\n\n${mail.subject || "Sans objet"}`,
+    );
+
+    if (!confirmed) return;
+
+    setDeletingId(mail.externalId);
+    try {
+      const response = await fetch(
+        `/api/mail/n8n?externalId=${encodeURIComponent(mail.externalId)}`,
+        { method: "DELETE" },
+      );
+      if (!response.ok) throw new Error("Suppression impossible");
+      setHandledIds((current) => current.filter((id) => id !== mail.externalId));
+      await refetch();
+      toast.success("Le message a bien été supprimé.");
+    } catch {
+      toast.error("Le message n'a pas pu être supprimé.");
+    } finally {
+      setDeletingId(null);
+    }
   }
 
   const unhandled = analyses.filter((m) => !handledIds.includes(m.externalId));
@@ -585,19 +640,30 @@ function MessagingPage() {
                             {mail.fromEmail}
                           </p>
                         </div>
-                        <button
-                          type="button"
-                          onClick={() => setHandledIds(toggleMailHandled(mail.externalId))}
-                          className={cn(
-                            "flex shrink-0 items-center gap-1.5 rounded-full border bg-card px-2.5 py-1 text-xs font-semibold shadow-card transition-all duration-200 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                            showHandled
-                              ? "border-border text-muted-foreground hover:bg-secondary"
-                              : "border-border text-muted-foreground hover:border-sage hover:text-sage",
-                          )}
-                        >
-                          <Check className="h-3.5 w-3.5" />
-                          {showHandled ? "Remettre à traiter" : "Traité"}
-                        </button>
+                        <div className="flex shrink-0 items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => void deleteMail(mail)}
+                            disabled={deletingId === mail.externalId}
+                            className="flex items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-1 text-xs font-semibold text-muted-foreground shadow-card transition-all duration-200 hover:-translate-y-px hover:border-danger-soft-border hover:text-danger-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                            {deletingId === mail.externalId ? "Suppression…" : "Supprimer"}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setHandledIds(toggleMailHandled(mail.externalId))}
+                            className={cn(
+                              "flex items-center gap-1.5 rounded-full border bg-card px-2.5 py-1 text-xs font-semibold shadow-card transition-all duration-200 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                              showHandled
+                                ? "border-border text-muted-foreground hover:bg-secondary"
+                                : "border-border text-muted-foreground hover:border-sage hover:text-sage",
+                            )}
+                          >
+                            <Check className="h-3.5 w-3.5" />
+                            {showHandled ? "Remettre à traiter" : "Traité"}
+                          </button>
+                        </div>
                       </div>
 
                       <div className="mt-3 space-y-3">
@@ -659,7 +725,7 @@ function MessagingPage() {
                               className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-secondary"
                             >
                               <CalendarClock className="h-3.5 w-3.5 text-primary" />
-                              Créer un rendez-vous
+                              {suggestion ? "Choisir une autre date" : "Créer un rendez-vous"}
                             </button>
                           </div>
                           <ul className="mt-3 flex flex-wrap gap-2">

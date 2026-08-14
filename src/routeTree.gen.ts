@@ -39,6 +39,7 @@ import { Route as ApiCalendarGoogleCallbackRouteImport } from './routes/api/cale
 import { Route as ApiCalendarGoogleConnectRouteImport } from './routes/api/calendar/google/connect'
 import { Route as ApiCalendarGoogleStatusRouteImport } from './routes/api/calendar/google/status'
 import { Route as ApiCalendarIcloudEventsRouteImport } from './routes/api/calendar/icloud/events'
+import { Route as ApiIntegrationsN8nMailRouteImport } from './routes/api/integrations/n8n/mail'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -193,6 +194,11 @@ const ApiCalendarIcloudEventsRoute = ApiCalendarIcloudEventsRouteImport.update({
   path: '/api/calendar/icloud/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiIntegrationsN8nMailRoute = ApiIntegrationsN8nMailRouteImport.update({
+  id: '/api/integrations/n8n/mail',
+  path: '/api/integrations/n8n/mail',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -225,6 +231,7 @@ export interface FileRoutesByFullPath {
   '/api/calendar/google/connect': typeof ApiCalendarGoogleConnectRoute
   '/api/calendar/google/status': typeof ApiCalendarGoogleStatusRoute
   '/api/calendar/icloud/events': typeof ApiCalendarIcloudEventsRoute
+  '/api/integrations/n8n/mail': typeof ApiIntegrationsN8nMailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -257,6 +264,7 @@ export interface FileRoutesByTo {
   '/api/calendar/google/connect': typeof ApiCalendarGoogleConnectRoute
   '/api/calendar/google/status': typeof ApiCalendarGoogleStatusRoute
   '/api/calendar/icloud/events': typeof ApiCalendarIcloudEventsRoute
+  '/api/integrations/n8n/mail': typeof ApiIntegrationsN8nMailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -290,6 +298,7 @@ export interface FileRoutesById {
   '/api/calendar/google/connect': typeof ApiCalendarGoogleConnectRoute
   '/api/calendar/google/status': typeof ApiCalendarGoogleStatusRoute
   '/api/calendar/icloud/events': typeof ApiCalendarIcloudEventsRoute
+  '/api/integrations/n8n/mail': typeof ApiIntegrationsN8nMailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -324,6 +333,7 @@ export interface FileRouteTypes {
     | '/api/calendar/google/connect'
     | '/api/calendar/google/status'
     | '/api/calendar/icloud/events'
+    | '/api/integrations/n8n/mail'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -356,6 +366,7 @@ export interface FileRouteTypes {
     | '/api/calendar/google/connect'
     | '/api/calendar/google/status'
     | '/api/calendar/icloud/events'
+    | '/api/integrations/n8n/mail'
   id:
     | '__root__'
     | '/'
@@ -388,6 +399,7 @@ export interface FileRouteTypes {
     | '/api/calendar/google/connect'
     | '/api/calendar/google/status'
     | '/api/calendar/icloud/events'
+    | '/api/integrations/n8n/mail'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -421,6 +433,7 @@ export interface RootRouteChildren {
   ApiCalendarGoogleConnectRoute: typeof ApiCalendarGoogleConnectRoute
   ApiCalendarGoogleStatusRoute: typeof ApiCalendarGoogleStatusRoute
   ApiCalendarIcloudEventsRoute: typeof ApiCalendarIcloudEventsRoute
+  ApiIntegrationsN8nMailRoute: typeof ApiIntegrationsN8nMailRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -635,6 +648,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCalendarIcloudEventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/integrations/n8n/mail': {
+      id: '/api/integrations/n8n/mail'
+      path: '/api/integrations/n8n/mail'
+      fullPath: '/api/integrations/n8n/mail'
+      preLoaderRoute: typeof ApiIntegrationsN8nMailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -669,6 +689,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiCalendarGoogleConnectRoute: ApiCalendarGoogleConnectRoute,
   ApiCalendarGoogleStatusRoute: ApiCalendarGoogleStatusRoute,
   ApiCalendarIcloudEventsRoute: ApiCalendarIcloudEventsRoute,
+  ApiIntegrationsN8nMailRoute: ApiIntegrationsN8nMailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

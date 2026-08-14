@@ -22,6 +22,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
 
 import { AgendaMessagingSwitch } from "@/components/ardoise/agenda-messaging-switch";
 import { AppShell } from "@/components/ardoise/app-shell";
@@ -165,6 +166,7 @@ function AgendaPage() {
   const [googleEvents, setGoogleEvents] = useState<GoogleEvent[]>([]);
   const [icloudEvents, setIcloudEvents] = useState<ICloudEvent[]>([]);
   const [syncing, setSyncing] = useState(false);
+  const [savingAgendaItem, setSavingAgendaItem] = useState(false);
 
   // ── Vue mois ────────────────────────────────────────────────────────────
   const gridStart = startOfWeek(startOfMonth(monthAnchor), { weekStartsOn: 1 });
@@ -653,10 +655,13 @@ function AgendaPage() {
               {adding ? (
                 <form
                   className="card-surface space-y-2.5 p-4 shadow-card"
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
                     const title = newTitle.trim();
                     if (!title) return;
+
+                    setSavingAgendaItem(true);
+
                     setItems(
                       addAgendaItem({
                         date: key,
@@ -665,9 +670,40 @@ function AgendaPage() {
                         type: newType,
                       }),
                     );
-                    setNewTitle("");
-                    setNewTime("");
-                    setAdding(false);
+
+                    try {
+                      if (googleConnected) {
+                        const response = await fetch("/api/calendar/events", {
+                          method: "POST",
+                          headers: { "content-type": "application/json" },
+                          body: JSON.stringify({
+                            summary: title,
+                            description: `Créé depuis l'agenda Ardoise.\nType : ${AGENDA_TYPE_LABEL[newType]}.`,
+                            date: key,
+                            time: newTime || null,
+                            timeZone: "Europe/Paris",
+                          }),
+                        });
+
+                        if (!response.ok) {
+                          throw new Error("Google Calendar indisponible");
+                        }
+
+                        await loadGoogleEvents(date);
+                        toast.success("Ajouté dans Ardoise et Google Calendar.");
+                      } else {
+                        toast.success("Ajouté dans l'agenda Ardoise.");
+                      }
+                    } catch {
+                      toast.error(
+                        "L'élément a bien été enregistré dans Ardoise, mais pas dans Google Calendar.",
+                      );
+                    } finally {
+                      setSavingAgendaItem(false);
+                      setNewTitle("");
+                      setNewTime("");
+                      setAdding(false);
+                    }
                   }}
                 >
                   <p className="panel-heading text-sm">Nouvel élément</p>
@@ -701,12 +737,13 @@ function AgendaPage() {
                       type="button"
                       variant="ghost"
                       size="sm"
+                      disabled={savingAgendaItem}
                       onClick={() => setAdding(false)}
                     >
                       Annuler
                     </Button>
-                    <Button type="submit" size="sm">
-                      Ajouter
+                    <Button type="submit" size="sm" disabled={savingAgendaItem}>
+                      {savingAgendaItem ? "Ajout…" : "Ajouter"}
                     </Button>
                   </div>
                 </form>

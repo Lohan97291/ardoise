@@ -1,19 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+
 import {
   handleMailIngressDelete,
   handleMailIngressGet,
   handleMailIngressPost,
 } from "@/lib/server/mail-ingest.server";
 
-export const Route = createFileRoute("/api/mail/n8n")({
+export const Route = createFileRoute("/api/integrations/n8n/mail")({
   server: {
     handlers: {
-      // Lecture locale par la page Messagerie (pas d'auth : usage mono-utilisateur en local).
       GET: async () => handleMailIngressGet(),
-
-      // Ingestion depuis n8n : lecture + analyse des mails faites entièrement côté n8n,
-      // Ardoise ne reçoit que le résultat structuré (jamais mots de passe, jetons,
-      // pièces jointes originales ou corps complet du mail).
       POST: async ({ request }) => handleMailIngressPost(request),
       DELETE: async ({ request }) => handleMailIngressDelete(request),
     },

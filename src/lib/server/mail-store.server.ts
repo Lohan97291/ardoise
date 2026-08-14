@@ -98,3 +98,11 @@ export async function listMailAnalyses(): Promise<MailAnalysis[]> {
   if (cloudEntries) return cloudEntries;
   return loadEntries().map(normalizeMailAnalysis);
 }
+
+export async function deleteMailAnalysis(externalId: string): Promise<void> {
+  const entries = ((await loadEntriesFromCloud()) ?? loadEntries().map(normalizeMailAnalysis)).filter(
+    (item) => item.externalId !== externalId,
+  );
+  saveEntries(entries);
+  await saveEntriesToCloud(entries);
+}

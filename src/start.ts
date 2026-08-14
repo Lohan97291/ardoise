@@ -29,7 +29,8 @@ function isPublicAuthPath(pathname: string): boolean {
 }
 
 function isServiceIngressRequest(request: Request, pathname: string): boolean {
-  return pathname === "/api/mail/n8n" && request.method.toUpperCase() === "POST";
+  if (request.method.toUpperCase() !== "POST") return false;
+  return pathname === "/api/mail/n8n" || pathname === "/api/integrations/n8n/mail";
 }
 
 const authMiddleware = createMiddleware().server(async ({ request, pathname, next }) => {
