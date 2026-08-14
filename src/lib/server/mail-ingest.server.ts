@@ -4,6 +4,8 @@ import { deleteMailAnalysis, listMailAnalyses, saveMailAnalysis } from "@/lib/se
 const VALID_PRIORITIES: MailPriority[] = ["low", "normal", "important", "urgent"];
 const VALID_MAILBOX_LABELS = ["hotmail", "ac-versailles", "inconnue"];
 
+type IncomingMailAnalysis = Partial<MailAnalysis> & Record<string, unknown>;
+
 export function isValidMailAnalysisPayload(value: unknown): value is MailAnalysis {
   if (!value || typeof value !== "object") return false;
   const v = value as Record<string, unknown>;
@@ -32,6 +34,95 @@ export function isValidMailAnalysisPayload(value: unknown): value is MailAnalysi
   );
 }
 
+function asText(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function asNullableText(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+function normalizeMailboxLabel(value: unknown): MailAnalysis["mailboxLabel"] {
+  const normalized = asText(value).toLowerCase();
+  if (normalized === "hotmail" || normalized === "ac-versailles") return normalized;
+  return "inconnue";
+}
+
+function normalizePriority(value: unknown): MailPriority {
+  const normalized = asText(value).toLowerCase() as MailPriority;
+  return VALID_PRIORITIES.includes(normalized) ? normalized : "normal";
+}
+
+function normalizeStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value
+      .map((entry) => (typeof entry === "string" ? entry.trim() : ""))
+      .filter((entry) => entry.length > 0);
+  }
+
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? [trimmed] : [];
+  }
+
+  return [];
+}
+
+function normalizeDeadlines(value: unknown): MailAnalysis["deadlines"] {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") return null;
+      const candidate = entry as Record<string, unknown>;
+      const label = asText(candidate.label);
+      const date = asText(candidate.date);
+      const timeValue = candidate.time;
+      const time =
+        timeValue === null || timeValue === undefined ? null : asNullableText(timeValue);
+
+      if (!label || !date) return null;
+      return { label, date, time };
+    })
+    .filter((entry): entry is MailAnalysis["deadlines"][number] => entry !== null);
+}
+
+function coerceMailAnalysisPayload(value: unknown): MailAnalysis | null {
+  if (!value || typeof value !== "object") return null;
+
+  const candidate = value as IncomingMailAnalysis;
+  const externalId = asText(candidate.externalId);
+  const messageId = asText(candidate.messageId ?? candidate.messageid);
+  const fromEmail = asText(candidate.fromEmail ?? candidate.from);
+  const subject = asText(candidate.subject);
+  const receivedAt = asText(candidate.receivedAt);
+  const summary = asText(candidate.summary);
+
+  if (!externalId || !messageId || !fromEmail || !subject || !receivedAt || !summary) {
+    return null;
+  }
+
+  return {
+    externalId,
+    messageId,
+    mailboxLabel: normalizeMailboxLabel(candidate.mailboxLabel),
+    fromName: asText(candidate.fromName),
+    fromEmail,
+    subject,
+    receivedAt,
+    attachmentName: asNullableText(candidate.attachmentName),
+    attachmentType: asNullableText(candidate.attachmentType),
+    priority: normalizePriority(candidate.priority),
+    summary,
+    excerpt: asNullableText(candidate.excerpt),
+    actions: normalizeStringArray(candidate.actions),
+    deadlines: normalizeDeadlines(candidate.deadlines),
+    replyRequired: Boolean(candidate.replyRequired),
+  };
+}
+
 export function isAuthorizedMailIngress(request: Request): boolean {
   const secret = process.env.N8N_INGEST_SECRET;
   return Boolean(secret) && request.headers.get("authorization") === `Bearer ${secret}`;
@@ -53,11 +144,13 @@ export async function handleMailIngressPost(request: Request) {
     return Response.json({ error: "JSON invalide" }, { status: 400 });
   }
 
-  if (!isValidMailAnalysisPayload(value)) {
+  const payload = isValidMailAnalysisPayload(value) ? value : coerceMailAnalysisPayload(value);
+
+  if (!payload) {
     return Response.json({ error: "Payload incomplet ou invalide" }, { status: 400 });
   }
 
-  return Response.json({ success: true, analysis: await saveMailAnalysis(value) });
+  return Response.json({ success: true, analysis: await saveMailAnalysis(payload) });
 }
 
 export async function handleMailIngressDelete(request: Request) {
