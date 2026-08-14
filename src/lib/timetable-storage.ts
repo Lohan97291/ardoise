@@ -299,6 +299,20 @@ function timetableMatches(a: WeeklyTimetable, b: WeeklyTimetable): boolean {
 function migrateTimetable(timetable: WeeklyTimetable): WeeklyTimetable {
   const next = normalizeWeeklyTimetable(timetable);
 
+  for (const weekday of WEEKDAYS) {
+    for (const slot of next[weekday] ?? []) {
+      const normalizedTitle = normalizeSlotTitle(slot.title);
+      if (
+        slot.builderTemplateId === "ecriture-copie" ||
+        normalizedTitle === "ecriture / copie" ||
+        normalizedTitle === "ecriture (copie)" ||
+        normalizedTitle === "ecriture (calligraphie)"
+      ) {
+        slot.title = "Écriture";
+      }
+    }
+  }
+
   const mardi = next.mardi ?? [];
   const duplicateEnglishSlot = mardi.find(
     (slot) =>

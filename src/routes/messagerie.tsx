@@ -530,15 +530,16 @@ function MessagingPage() {
               mailCount={unhandled.length}
               className="mt-3"
             />
-            <p className="mt-2 flex max-w-2xl items-start gap-2 rounded-xl border border-border/70 bg-secondary/50 px-3 py-2.5 text-xs leading-relaxed text-muted-foreground">
-              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-sage" />
-              <span>
-                Les mails académiques sont lus et analysés par n8n, en local sur cet ordinateur.
-                Ardoise ne reçoit que le résultat : jamais les mots de passe, jetons, pièces jointes
-                originales. Les extraits affichés ici dépendent uniquement de ce que ton flux
-                renvoie à Ardoise.
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-secondary/50 px-2.5 py-1">
+                <ShieldCheck className="h-3.5 w-3.5 text-sage" />
+                Flux n8n local
               </span>
-            </p>
+              <span className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-secondary/50 px-2.5 py-1">
+                <RefreshCw className="h-3.5 w-3.5" />
+                Résumé envoyé à Ardoise
+              </span>
+            </div>
           </div>
           <Button
             variant="outline"
@@ -590,7 +591,7 @@ function MessagingPage() {
               <p className="mt-3 text-sm text-muted-foreground">
                 {showHandled
                   ? "Aucun mail traité."
-                  : "Aucune analyse reçue pour l'instant — elles apparaîtront ici dès que ton flux n8n en enverra."}
+                  : "Aucun mail reçu pour l'instant."}
               </p>
             </div>
           ) : (
@@ -631,6 +632,11 @@ function MessagingPage() {
                             <span className="text-[0.68rem] font-semibold uppercase tracking-wide text-muted-foreground">
                               {formatMailReceivedAt(mail.receivedAt)}
                             </span>
+                            {googleConnected ? (
+                              <span className="rounded-full border border-sage/35 bg-sage/15 px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-wide text-sage">
+                                Agenda Google lié
+                              </span>
+                            ) : null}
                           </div>
                           <h2 className="mt-1.5 truncate text-base font-semibold leading-snug text-foreground">
                             {mail.subject || "Sans objet"}
@@ -704,7 +710,7 @@ function MessagingPage() {
                         </section>
                       ) : null}
 
-                      {suggestion ? (
+                      {suggestion && mail.deadlines.length === 0 ? (
                         <AgendaSuggestionCard
                           mail={mail}
                           suggestion={suggestion}
@@ -717,7 +723,7 @@ function MessagingPage() {
                         <section className="mt-3 rounded-2xl border border-border/70 bg-card px-4 py-3">
                           <div className="flex flex-wrap items-center justify-between gap-3">
                             <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-muted-foreground">
-                              Échéances repérées
+                              Dates repérées
                             </p>
                             <button
                               type="button"

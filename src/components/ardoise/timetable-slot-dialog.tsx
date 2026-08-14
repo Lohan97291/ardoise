@@ -141,10 +141,10 @@ const BLOCK_LIBRARY: BuilderTemplate[] = [
   },
   {
     id: "ecriture-copie",
-    title: "Écriture / copie",
+    title: "Écriture",
     subject: "francais",
     duration: 15,
-    hint: "Petit créneau quotidien, facile à placer en reprise.",
+    hint: "Petit créneau quotidien d'écriture, copie ou calligraphie.",
     windows: [
       w("13:30", "14:00", "au retour de midi"),
       w("15:05", "15:35", "ou en fin de journée"),

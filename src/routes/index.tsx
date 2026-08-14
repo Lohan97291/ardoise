@@ -438,13 +438,15 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-3 xl:max-w-3xl">
-            <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
+          <div className="mt-5 grid gap-3 sm:grid-cols-[minmax(0,1.4fr)_repeat(2,minmax(0,1fr))] xl:max-w-4xl">
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4 shadow-card">
               <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
-                Séances du jour
+                Journal du jour
               </p>
               <p className="mt-2 text-2xl font-bold text-foreground">{daySessions.length}</p>
-              <p className="mt-1 text-xs text-muted-foreground">Journal du jour déjà chargé</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {currentFocusSession?.title ?? "Séances prévues"}
+              </p>
             </div>
             <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
               <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -453,16 +455,14 @@ function Dashboard() {
               <p className="mt-2 text-2xl font-bold text-foreground">
                 {pendingPreparationItems.length}
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Photocopies ou matériel en attente
-              </p>
+              <p className="mt-1 text-xs text-muted-foreground">Photocopies et matériel</p>
             </div>
             <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
               <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
                 Mails à traiter
               </p>
               <p className="mt-2 text-2xl font-bold text-foreground">{unhandledMailCount}</p>
-              <p className="mt-1 text-xs text-muted-foreground">Messages non encore traités</p>
+              <p className="mt-1 text-xs text-muted-foreground">Nouveaux messages</p>
             </div>
           </div>
         </header>
@@ -789,7 +789,7 @@ function Dashboard() {
                 ))}
               </ul>
             ) : (
-              <p className={WIDGET_EMPTY}>Aucune photocopie ni matériel spécifique à prévoir.</p>
+              <p className={WIDGET_EMPTY}>Rien à préparer.</p>
             )}
 
             {pendingPreparationItems.length > preparationPreview.length ? (
@@ -814,7 +814,7 @@ function Dashboard() {
                     <div className="space-y-4 p-6">
                       {preparationGroups.length === 0 ? (
                         <div className="rounded-2xl border border-dashed border-border bg-secondary/30 px-5 py-8 text-center text-sm text-muted-foreground">
-                          Rien à préparer pour le moment.
+                          Rien à préparer.
                         </div>
                       ) : (
                         preparationGroups.map((group) => (
@@ -894,8 +894,7 @@ function Dashboard() {
                     <div>
                       <h3 className="text-sm font-semibold">Ajouter quelque chose à préparer</h3>
                       <p className="mt-1 text-sm text-muted-foreground">
-                        Une ligne = un élément. Pratique pour les photocopies, les jeux de cartes,
-                        le matériel de manipulation ou un support à découper.
+                        Photocopies, matériel, supports.
                       </p>
                     </div>
 
@@ -1163,7 +1162,7 @@ function Dashboard() {
                 ) : null}
 
                 {agendaItems.length === 0 && syncedAgendaEvents.length === 0 ? (
-                  <p className={WIDGET_EMPTY}>Rien de prévu pour l'instant.</p>
+                  <p className={WIDGET_EMPTY}>Rien aujourd'hui.</p>
                 ) : (
                   <ol className="mt-3 space-y-0.5">
                     {agendaItems.map((item) => (
