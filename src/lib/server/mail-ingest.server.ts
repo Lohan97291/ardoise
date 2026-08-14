@@ -124,8 +124,23 @@ function coerceMailAnalysisPayload(value: unknown): MailAnalysis | null {
 }
 
 export function isAuthorizedMailIngress(request: Request): boolean {
-  const secret = process.env.N8N_INGEST_SECRET;
-  return Boolean(secret) && request.headers.get("authorization") === `Bearer ${secret}`;
+  const secret = process.env.N8N_INGEST_SECRET?.trim();
+  if (!secret) return false;
+
+  const authHeader = request.headers.get("authorization")?.trim();
+  const directHeader = request.headers.get("x-ardoise-ingest-secret")?.trim();
+  const url = new URL(request.url);
+  const querySecret = url.searchParams.get("secret")?.trim();
+
+  if (authHeader === `Bearer ${secret}` || authHeader === secret) {
+    return true;
+  }
+
+  if (directHeader === secret || querySecret === secret) {
+    return true;
+  }
+
+  return false;
 }
 
 export async function handleMailIngressGet() {

@@ -33,13 +33,7 @@ export function NotebookSummary({
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-5">
       <div className="rounded-[28px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_95%,transparent),color-mix(in_oklab,var(--color-secondary)_38%,transparent))] p-4 shadow-raised sm:p-5">
         <p className="eyebrow">Sommaire du cahier</p>
-        <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
-          Choisir rapidement la bonne page
-        </h2>
-        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-          Trois entrées seulement : reprendre la dernière page, aller à une page précise ou
-          retrouver une notion en quelques mots.
-        </p>
+        <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">Choisir la page</h2>
       </div>
 
       <form
@@ -119,7 +113,7 @@ export function NotebookSummary({
       </div>
       {!lastPage && !query.trim() ? (
         <p className="px-1 text-xs text-muted-foreground">
-          {notebookPageSummary(source, 1) ? "Astuce : tapez un numéro de page ou une notion." : ""}
+          {notebookPageSummary(source, 1) ? "Tapez un numéro de page ou une notion." : ""}
         </p>
       ) : null}
     </div>

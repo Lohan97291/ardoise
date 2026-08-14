@@ -8,7 +8,6 @@ import { NotebookCover } from "@/components/ardoise/correction/notebook-cover";
 import { NotebookSummary } from "@/components/ardoise/correction/notebook-summary";
 import { PageExerciseView } from "@/components/ardoise/correction/page-exercise-view";
 import { SheetCorrectionView } from "@/components/ardoise/correction/sheet-correction-view";
-import { SheetCover } from "@/components/ardoise/correction/sheet-cover";
 import { StudentModeView } from "@/components/ardoise/correction/student-mode-view";
 import { Button } from "@/components/ui/button";
 import {
@@ -86,6 +85,56 @@ function formatSheetDate(iso: string): string {
   const date = new Date(`${iso}T00:00:00`);
   if (Number.isNaN(date.getTime())) return iso;
   return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+}
+
+function stepIndex(screen: Screen): 1 | 2 | 3 {
+  if (screen === "accueil" || screen === "feuille") return 1;
+  if (screen === "sommaire") return 2;
+  return 3;
+}
+
+function CorrectionSteps({ current }: { current: 1 | 2 | 3 }) {
+  const steps = [
+    { index: 1, label: "Cahier" },
+    { index: 2, label: "Sommaire" },
+    { index: 3, label: "Correction" },
+  ] as const;
+
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      {steps.map((step) => {
+        const active = current === step.index;
+        const done = current > step.index;
+        return (
+          <div
+            key={step.index}
+            className={cn(
+              "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors",
+              active
+                ? "border-primary bg-primary text-primary-foreground"
+                : done
+                  ? "border-primary/20 bg-primary/8 text-primary"
+                  : "border-border bg-card text-muted-foreground",
+            )}
+          >
+            <span
+              className={cn(
+                "grid h-5 w-5 place-items-center rounded-full text-[0.65rem]",
+                active
+                  ? "bg-primary-foreground/18 text-primary-foreground"
+                  : done
+                    ? "bg-primary/12 text-primary"
+                    : "bg-secondary text-muted-foreground",
+              )}
+            >
+              {step.index}
+            </span>
+            {step.label}
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 function CorrectionRapidePage() {
@@ -195,14 +244,18 @@ function CorrectionRapidePage() {
         {screen === "accueil" ? (
           <>
             <header className="overflow-hidden rounded-[32px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_97%,transparent),color-mix(in_oklab,var(--color-secondary)_34%,transparent))] px-5 py-5 shadow-raised sm:px-6">
-              <p className="eyebrow">Corriger & suivre</p>
-              <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Correction rapide
-              </h1>
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                Commencez par choisir le bon cahier. Ensuite, on ouvre directement un sommaire
-                simple pour retrouver la bonne page sans vous perdre.
-              </p>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="eyebrow">Corriger & suivre</p>
+                  <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                    Correction rapide
+                  </h1>
+                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                    Choisissez le cahier, ouvrez la page, puis corrigez sans détour.
+                  </p>
+                </div>
+                <CorrectionSteps current={stepIndex(screen)} />
+              </div>
             </header>
             <div className="stagger-children flex flex-wrap items-start justify-center gap-6 py-2 sm:justify-start">
               {NOTEBOOKS.map(({ source: notebookSource, spineClassName, icon }) => {
@@ -219,23 +272,31 @@ function CorrectionRapidePage() {
                   />
                 );
               })}
-              <SheetCover
-                onClick={() => {
-                  setSheetDate(todayISO());
-                  setSheetDialogOpen(true);
-                }}
-              />
             </div>
 
-            {sheets.length > 0 ? (
-              <section className="rounded-[26px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_95%,transparent),color-mix(in_oklab,var(--color-secondary)_22%,transparent))] p-3 shadow-card">
-                <div className="px-1">
-                  <p className="eyebrow">Évaluations et feuilles</p>
+            <section className="rounded-[24px] border border-border/70 bg-card/80 p-4 shadow-card">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="eyebrow">Évaluations</p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Reprenez une correction déjà créée sans repartir de zéro.
+                    Pour une feuille ou une évaluation hors cahier.
                   </p>
                 </div>
-                <ul className="mt-2 space-y-1">
+                <div className="flex items-center gap-2">
+                  <Button
+                    onClick={() => {
+                      setSheetDate(todayISO());
+                      setSheetDialogOpen(true);
+                    }}
+                  >
+                    <FileText className="mr-1.5 h-4 w-4" />
+                    Nouvelle évaluation
+                  </Button>
+                </div>
+              </div>
+
+              {sheets.length > 0 ? (
+                <ul className="mt-3 space-y-1">
                   {sheets.map((entry) => (
                     <li key={entry.id} className="flex items-center gap-2">
                       <button
@@ -265,8 +326,8 @@ function CorrectionRapidePage() {
                     </li>
                   ))}
                 </ul>
-              </section>
-            ) : null}
+              ) : null}
+            </section>
           </>
         ) : null}
 
@@ -289,6 +350,9 @@ function CorrectionRapidePage() {
                 <p className="text-xs text-muted-foreground">
                   Évaluation du {formatSheetDate(sheet.date)}
                 </p>
+              </div>
+              <div className="ml-auto hidden sm:block">
+                <CorrectionSteps current={stepIndex(screen)} />
               </div>
             </header>
             <SheetCorrectionView sheet={sheet} />
@@ -348,6 +412,7 @@ function CorrectionRapidePage() {
                   {notebookCoverMeta(source).title}
                 </h1>
               </div>
+              <CorrectionSteps current={stepIndex(screen)} />
             </header>
             <NotebookSummary source={source} lastPage={lastPage} onOpenPage={openPage} />
           </>
@@ -367,6 +432,7 @@ function CorrectionRapidePage() {
                   </h1>
                 </div>
                 <div className="flex items-center gap-2">
+                  <CorrectionSteps current={stepIndex(screen)} />
                   <div className="flex items-center rounded-full border border-border bg-card p-1 shadow-card">
                     <button
                       type="button"
@@ -379,7 +445,7 @@ function CorrectionRapidePage() {
                       )}
                     >
                       <Rows3 className="h-3.5 w-3.5" />
-                      Page à page
+                      Par page
                     </button>
                     <button
                       type="button"

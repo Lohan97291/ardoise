@@ -1,4 +1,4 @@
-import { PATCHED_RESOURCE_TREE } from "@/lib/resource-tree-patched";
+import { PATCHED_RESOURCE_TREE } from "@/lib/patched-resource-methods";
 import type {
   ResourceMethod,
   ResourceSequence,
