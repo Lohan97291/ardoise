@@ -4,6 +4,7 @@ const SNAPSHOT_ROW_ID = "ardoise-main";
 const SNAPSHOT_SCOPE = "app-state";
 const CLOUD_SYNC_META_KEY = "ardoise.cloudSync.v1";
 const SYNCABLE_KEY_PATTERN = /^ardoise([.-]|$)/i;
+export const CLOUD_SYNC_EVENT = "ardoise-cloud-sync-updated";
 
 export type CloudSyncMeta = {
   lastUploadedAt?: string;
@@ -39,6 +40,11 @@ function writeCloudSyncMeta(patch: Partial<CloudSyncMeta>): CloudSyncMeta {
   };
   try {
     window.localStorage.setItem(CLOUD_SYNC_META_KEY, JSON.stringify(next));
+    window.dispatchEvent(
+      new CustomEvent(CLOUD_SYNC_EVENT, {
+        detail: next,
+      }),
+    );
   } catch {
     /* noop */
   }

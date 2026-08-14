@@ -1,4 +1,13 @@
-import { CloudDownload, CloudUpload, KeyRound, RotateCcw, Save, UserRound } from "lucide-react";
+import {
+  CloudAlert,
+  CloudDownload,
+  CloudUpload,
+  KeyRound,
+  RefreshCcw,
+  RotateCcw,
+  Save,
+  UserRound,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -6,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
+  CLOUD_SYNC_EVENT,
   getCloudSyncState,
   pullCloudStateToLocal,
   pushLocalStateToCloud,
@@ -17,6 +27,7 @@ import {
   saveProfileSettings,
   type ProfileSettings,
 } from "@/lib/profile-settings";
+import { healthcheckSupabase } from "@/lib/supabase";
 
 function emptyPasswordForm() {
   return {
@@ -32,12 +43,62 @@ export function ProfileSettingsPanel() {
   const [savingProfile, setSavingProfile] = useState(false);
   const [savingPassword, setSavingPassword] = useState(false);
   const [syncState, setSyncState] = useState(getCloudSyncState());
+  const [cloudHealth, setCloudHealth] = useState<{ ok: boolean; message: string }>({
+    ok: syncState.configured,
+    message: syncState.configured
+      ? "Vérification de la connexion cloud…"
+      : "Supabase n'est pas encore configuré dans l'application.",
+  });
   const [uploadingCloud, setUploadingCloud] = useState(false);
   const [downloadingCloud, setDownloadingCloud] = useState(false);
+  const [checkingCloud, setCheckingCloud] = useState(false);
+  const [reloadRecommended, setReloadRecommended] = useState(false);
 
   useEffect(() => {
     setProfile(readProfileSettings());
     setSyncState(getCloudSyncState());
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function refreshCloudStatus() {
+      const nextSyncState = getCloudSyncState();
+      setSyncState(nextSyncState);
+
+      if (!nextSyncState.configured) {
+        if (!cancelled) {
+          setCloudHealth({
+            ok: false,
+            message: "Supabase n'est pas encore configuré dans l'application.",
+          });
+        }
+        return;
+      }
+
+      setCheckingCloud(true);
+      try {
+        const nextHealth = await healthcheckSupabase();
+        if (!cancelled) setCloudHealth(nextHealth);
+      } finally {
+        if (!cancelled) setCheckingCloud(false);
+      }
+    }
+
+    void refreshCloudStatus();
+
+    function handleCloudRefresh() {
+      void refreshCloudStatus();
+    }
+
+    window.addEventListener(CLOUD_SYNC_EVENT, handleCloudRefresh as EventListener);
+    window.addEventListener("focus", handleCloudRefresh);
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener(CLOUD_SYNC_EVENT, handleCloudRefresh as EventListener);
+      window.removeEventListener("focus", handleCloudRefresh);
+    };
   }, []);
 
   function updateProfile<K extends keyof ProfileSettings>(key: K, value: ProfileSettings[K]) {
@@ -66,6 +127,8 @@ export function ProfileSettingsPanel() {
     try {
       const result = await pushLocalStateToCloud();
       setSyncState(getCloudSyncState());
+      setReloadRecommended(false);
+      setCloudHealth(await healthcheckSupabase());
       toast.success(`${result.count} blocs de données envoyés dans le cloud.`);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Impossible d'envoyer la sauvegarde cloud.");
@@ -79,9 +142,12 @@ export function ProfileSettingsPanel() {
     try {
       const result = await pullCloudStateToLocal();
       setSyncState(getCloudSyncState());
-      toast.success(
-        `${result.count} blocs récupérés depuis ${result.source}. Recharge la page pour tout retrouver.`,
-      );
+      setCloudHealth(await healthcheckSupabase());
+      setReloadRecommended(true);
+      toast.success(`${result.count} blocs récupérés depuis ${result.source}.`);
+      window.setTimeout(() => {
+        window.location.reload();
+      }, 900);
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Impossible de récupérer la sauvegarde cloud.",
@@ -246,10 +312,24 @@ export function ProfileSettingsPanel() {
 
         <div className="space-y-4 p-4">
           <div className="rounded-2xl border border-primary/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] px-3 py-3">
-            <p className="text-xs font-medium text-muted-foreground">
-              {syncState.configured
-                ? "Supabase est prêt. Tu peux envoyer ton état actuel dans le cloud, puis le récupérer sur un autre appareil."
-                : "Supabase n'est pas encore prêt dans l'application."}
+            <div className="flex flex-wrap items-center gap-2">
+              <span
+                className={
+                  cloudHealth.ok
+                    ? "rounded-full border border-sage/30 bg-sage/15 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wide text-foreground"
+                    : "rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wide text-amber-950"
+                }
+              >
+                {cloudHealth.ok ? "Cloud prêt" : "Cloud à vérifier"}
+              </span>
+              {checkingCloud ? (
+                <span className="text-[0.68rem] font-medium text-muted-foreground">
+                  Vérification…
+                </span>
+              ) : null}
+            </div>
+            <p className="mt-2 text-xs font-medium text-muted-foreground">
+              {cloudHealth.message}
             </p>
             {syncState.lastUploadedAt ? (
               <p className="mt-2 text-xs text-muted-foreground">
@@ -260,6 +340,13 @@ export function ProfileSettingsPanel() {
               <p className="mt-1 text-xs text-muted-foreground">
                 Dernière récupération : {new Date(syncState.lastDownloadedAt).toLocaleString("fr-FR")}
               </p>
+            ) : null}
+            {reloadRecommended ? (
+              <div className="mt-3 rounded-2xl border border-primary/10 bg-primary/5 px-3 py-2.5">
+                <p className="text-xs font-medium text-foreground">
+                  Les données viennent d’être récupérées. Ardoise se recharge pour tout remettre en place.
+                </p>
+              </div>
             ) : null}
           </div>
 
@@ -282,6 +369,34 @@ export function ProfileSettingsPanel() {
             >
               <CloudDownload className="mr-1.5 h-4 w-4" />
               {downloadingCloud ? "Récupération…" : "Récupérer mes données"}
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => window.location.reload()}
+              disabled={!reloadRecommended}
+            >
+              <RefreshCcw className="mr-1.5 h-4 w-4" />
+              Recharger Ardoise
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={async () => {
+                setCheckingCloud(true);
+                try {
+                  setSyncState(getCloudSyncState());
+                  setCloudHealth(await healthcheckSupabase());
+                  toast.success("Connexion cloud vérifiée.");
+                } finally {
+                  setCheckingCloud(false);
+                }
+              }}
+            >
+              <CloudAlert className="mr-1.5 h-4 w-4" />
+              Tester la connexion
             </Button>
           </div>
         </div>

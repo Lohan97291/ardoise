@@ -4,6 +4,7 @@ import {
   CalendarCheck,
   CalendarClock,
   CalendarDays,
+  Cloud,
   ClipboardCheck,
   ClipboardList,
   LayoutDashboard,
@@ -26,8 +27,10 @@ import {
   markAgendaKeysSeen,
   markMailIdsSeen,
 } from "@/lib/nav-alerts-storage";
+import { CLOUD_SYNC_EVENT, getCloudSyncState } from "@/lib/cloud-sync";
 import { ThemeControls } from "@/components/ardoise/theme-controls";
 import { ProfileSettingsPanel } from "@/components/ardoise/profile-settings-panel";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Tooltip,
@@ -131,6 +134,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [mailIds, setMailIds] = useState<string[]>([]);
   const [agendaKeys, setAgendaKeys] = useState<string[]>([]);
   const [profile, setProfile] = useState<ProfileSettings>(readProfileSettings);
+  const [cloudState, setCloudState] = useState(getCloudSyncState);
   const { data: mailAnalyses = [] } = useMailAnalyses();
 
   useEffect(() => {
@@ -152,6 +156,22 @@ export function AppShell({ children }: { children: ReactNode }) {
     return () => {
       window.removeEventListener(PROFILE_SETTINGS_EVENT, syncProfile as EventListener);
       window.removeEventListener("storage", syncProfile);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    function syncCloud() {
+      setCloudState(getCloudSyncState());
+    }
+
+    syncCloud();
+    window.addEventListener(CLOUD_SYNC_EVENT, syncCloud as EventListener);
+    window.addEventListener("focus", syncCloud);
+    return () => {
+      window.removeEventListener(CLOUD_SYNC_EVENT, syncCloud as EventListener);
+      window.removeEventListener("focus", syncCloud);
     };
   }, []);
 
@@ -510,14 +530,32 @@ export function AppShell({ children }: { children: ReactNode }) {
               <PopoverTrigger asChild>
                 <button
                   type="button"
-                  className="flex shrink-0 items-center gap-2 rounded-full border border-border/80 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_38%,transparent))] px-2 py-1.5 text-xs font-medium text-muted-foreground shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary hover:text-foreground hover:shadow-raised"
+                  className="flex shrink-0 items-center gap-3 rounded-2xl border border-border/80 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_38%,transparent))] px-2.5 py-1.5 text-left shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-raised"
                   aria-label="Options et apparence"
                   title="Options et apparence"
                 >
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-secondary/85 text-primary">
+                  <Avatar className="h-10 w-10 border border-primary/15 shadow-card">
+                    <AvatarFallback className="bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-primary)_90%,transparent),color-mix(in_oklab,var(--color-primary)_70%,var(--color-sage)))] text-sm font-semibold text-primary-foreground">
+                      {profile.initials || "MB"}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="hidden min-w-0 sm:block">
+                    <span className="block truncate text-sm font-semibold text-foreground">
+                      {profile.displayName || "M. Boulard"}
+                    </span>
+                    <span className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <span
+                        className={cn(
+                          "h-2 w-2 rounded-full",
+                          cloudState.configured ? "bg-sage" : "bg-amber-400",
+                        )}
+                      />
+                      {cloudState.configured ? "Cloud prêt" : "Cloud local"}
+                    </span>
+                  </span>
+                  <span className="grid h-8 w-8 place-items-center rounded-full border border-border/70 bg-secondary/85 text-primary">
                     <Palette className="h-3.5 w-3.5" />
                   </span>
-                  <span className="hidden sm:inline">Options</span>
                 </button>
               </PopoverTrigger>
               <PopoverContent align="end" className="max-h-[80vh] w-[23rem] overflow-y-auto">
@@ -528,8 +566,9 @@ export function AppShell({ children }: { children: ReactNode }) {
                       <span className="h-1.5 w-1.5 rounded-full bg-sage" />
                       {profile.classLabel}
                     </span>
-                    <span className="text-xs font-medium text-muted-foreground">
-                      {profile.displayName}
+                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                      <Cloud className="h-3.5 w-3.5" />
+                      {cloudState.configured ? "Cloud prêt" : "Cloud local"}
                     </span>
                   </div>
                   <ProfileSettingsPanel />
@@ -548,9 +587,6 @@ export function AppShell({ children }: { children: ReactNode }) {
                 </div>
               </PopoverContent>
             </Popover>
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-primary)_90%,transparent),color-mix(in_oklab,var(--color-primary)_70%,var(--color-sage)))] text-sm font-semibold text-primary-foreground shadow-raised ring-2 ring-background/80">
-              {profile.initials}
-            </span>
           </div>
         </header>
         <main className="animate-fade-in">{children}</main>
