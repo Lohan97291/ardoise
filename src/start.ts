@@ -25,7 +25,15 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 // Application accessible avec un seul mot de passe partagé (usage personnel, pas de comptes).
 // Désactivé automatiquement si APP_PASSWORD n'est pas défini (dev local par défaut).
 function isPublicAuthPath(pathname: string): boolean {
-  return pathname === "/login" || pathname.startsWith("/api/auth/");
+  return (
+    pathname === "/login" ||
+    pathname.startsWith("/api/auth/") ||
+    pathname.startsWith("/assets/") ||
+    pathname === "/favicon.ico" ||
+    pathname === "/favicon.png" ||
+    pathname === "/apple-touch-icon.png" ||
+    pathname === "/robots.txt"
+  );
 }
 
 function isServiceIngressRequest(request: Request, pathname: string): boolean {
