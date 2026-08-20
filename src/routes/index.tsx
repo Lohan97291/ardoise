@@ -8,12 +8,9 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
-  CloudDownload,
-  CloudUpload,
   Mail,
   Plus,
   Printer,
-  RefreshCcw,
   StickyNote,
   Trash2,
   Users,
@@ -80,12 +77,6 @@ import {
   type AgendaItem,
   type AgendaItemType,
 } from "@/lib/agenda-storage";
-import {
-  CLOUD_SYNC_EVENT,
-  getCloudSyncState,
-  pullCloudStateToLocal,
-  pushLocalStateToCloud,
-} from "@/lib/cloud-sync";
 import { getCustomPhases, type CustomPhase } from "@/lib/custom-phases-storage";
 import { useMailAnalyses } from "@/hooks/use-mail-analyses";
 import { getHandledMailIds } from "@/lib/mail-status-storage";
@@ -96,7 +87,6 @@ import {
 } from "@/lib/preparation-items";
 import { getRecentSignals } from "@/lib/signal-storage";
 import { getZoneCSchoolRhythm } from "@/lib/school-rhythm";
-import { healthcheckSupabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import { readJournalDays } from "@/lib/journal-storage";
 
@@ -344,14 +334,6 @@ function Dashboard() {
   const [agendaItems, setAgendaItems] = useState<AgendaItem[]>(() =>
     getAgendaItemsForDate(todayKey),
   );
-  const [cloudSyncState, setCloudSyncState] = useState(getCloudSyncState);
-  const [cloudHealth, setCloudHealth] = useState<{ ok: boolean; message: string }>({
-    ok: cloudSyncState.configured,
-    message: cloudSyncState.configured
-      ? "Connexion cloud en cours de vérification…"
-      : "Cloud non configuré.",
-  });
-  const [cloudAction, setCloudAction] = useState<"upload" | "download" | null>(null);
   const [addingAgendaItem, setAddingAgendaItem] = useState(false);
   const [newAgendaTitle, setNewAgendaTitle] = useState("");
   const [newAgendaTime, setNewAgendaTime] = useState("");
@@ -412,75 +394,6 @@ function Dashboard() {
     .sort((a, b) => b.receivedAt.localeCompare(a.receivedAt))
     .slice(0, 4);
   const schoolRhythm = useMemo(() => getZoneCSchoolRhythm(today), []);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function refreshCloudPanel() {
-      const nextSyncState = getCloudSyncState();
-      if (!cancelled) setCloudSyncState(nextSyncState);
-
-      if (!nextSyncState.configured) {
-        if (!cancelled) {
-          setCloudHealth({
-            ok: false,
-            message: "Cloud non configuré.",
-          });
-        }
-        return;
-      }
-
-      const nextHealth = await healthcheckSupabase();
-      if (!cancelled) setCloudHealth(nextHealth);
-    }
-
-    void refreshCloudPanel();
-
-    function handleCloudRefresh() {
-      void refreshCloudPanel();
-    }
-
-    window.addEventListener(CLOUD_SYNC_EVENT, handleCloudRefresh as EventListener);
-    window.addEventListener("focus", handleCloudRefresh);
-    return () => {
-      cancelled = true;
-      window.removeEventListener(CLOUD_SYNC_EVENT, handleCloudRefresh as EventListener);
-      window.removeEventListener("focus", handleCloudRefresh);
-    };
-  }, []);
-
-  async function handleDashboardCloudUpload() {
-    setCloudAction("upload");
-    try {
-      const result = await pushLocalStateToCloud();
-      setCloudSyncState(getCloudSyncState());
-      setCloudHealth(await healthcheckSupabase());
-      toast.success(`${result.count} blocs sauvegardés dans le cloud.`);
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Impossible d'envoyer la sauvegarde.");
-    } finally {
-      setCloudAction(null);
-    }
-  }
-
-  async function handleDashboardCloudDownload() {
-    setCloudAction("download");
-    try {
-      const result = await pullCloudStateToLocal();
-      setCloudSyncState(getCloudSyncState());
-      setCloudHealth(await healthcheckSupabase());
-      toast.success(`${result.count} blocs récupérés depuis ${result.source}.`);
-      window.setTimeout(() => {
-        window.location.reload();
-      }, 900);
-    } catch (error) {
-      toast.error(
-        error instanceof Error ? error.message : "Impossible de récupérer la sauvegarde cloud.",
-      );
-    } finally {
-      setCloudAction(null);
-    }
-  }
 
   return (
     <AppShell>
@@ -554,69 +467,6 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="mt-3 xl:max-w-4xl">
-            <div className="flex flex-col gap-3 rounded-2xl border border-border/70 bg-card/85 px-4 py-3 shadow-card sm:flex-row sm:items-center sm:justify-between">
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <p className="text-sm font-semibold text-foreground">Sauvegarde cloud</p>
-                  <span
-                    className={
-                      cloudHealth.ok
-                        ? "rounded-full border border-sage/30 bg-sage/15 px-2 py-0.5 text-[0.68rem] font-semibold uppercase tracking-wide text-foreground"
-                        : "rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[0.68rem] font-semibold uppercase tracking-wide text-amber-950"
-                    }
-                  >
-                    {cloudHealth.ok ? "Prête" : "À vérifier"}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs text-muted-foreground">{cloudHealth.message}</p>
-                <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                  <span>
-                    Dernier envoi :{" "}
-                    {cloudSyncState.lastUploadedAt
-                      ? new Date(cloudSyncState.lastUploadedAt).toLocaleString("fr-FR")
-                      : "jamais"}
-                  </span>
-                  <span>
-                    Dernière récupération :{" "}
-                    {cloudSyncState.lastDownloadedAt
-                      ? new Date(cloudSyncState.lastDownloadedAt).toLocaleString("fr-FR")
-                      : "jamais"}
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={() => void handleDashboardCloudUpload()}
-                  disabled={!cloudSyncState.configured || cloudAction !== null}
-                >
-                  <CloudUpload className="mr-1.5 h-4 w-4" />
-                  {cloudAction === "upload" ? "Sauvegarde…" : "Sauvegarder"}
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  onClick={() => void handleDashboardCloudDownload()}
-                  disabled={!cloudSyncState.configured || cloudAction !== null}
-                >
-                  <CloudDownload className="mr-1.5 h-4 w-4" />
-                  {cloudAction === "download" ? "Récupération…" : "Récupérer"}
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => window.location.reload()}
-                >
-                  <RefreshCcw className="mr-1.5 h-4 w-4" />
-                  Recharger
-                </Button>
-              </div>
-            </div>
-          </div>
         </header>
 
         {/* Cahier journal du jour — information principale de l'écran */}
