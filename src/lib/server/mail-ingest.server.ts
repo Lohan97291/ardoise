@@ -6,6 +6,12 @@ const VALID_MAILBOX_LABELS = ["hotmail", "ac-versailles", "inconnue"];
 
 type IncomingMailAnalysis = Partial<MailAnalysis> & Record<string, unknown>;
 
+const NO_STORE_HEADERS = {
+  "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+  Pragma: "no-cache",
+  Expires: "0",
+};
+
 export function isValidMailAnalysisPayload(value: unknown): value is MailAnalysis {
   if (!value || typeof value !== "object") return false;
   const v = value as Record<string, unknown>;
@@ -144,28 +150,41 @@ export function isAuthorizedMailIngress(request: Request): boolean {
 }
 
 export async function handleMailIngressGet() {
-  return Response.json({ analyses: await listMailAnalyses() });
+  return Response.json({ analyses: await listMailAnalyses() }, { headers: NO_STORE_HEADERS });
 }
 
 export async function handleMailIngressPost(request: Request) {
   if (!isAuthorizedMailIngress(request)) {
-    return Response.json({ error: "Unauthorized" }, { status: 401 });
+    return Response.json(
+      {
+        error: "Unauthorized",
+        details:
+          "Le secret n8n est absent ou ne correspond pas au header Authorization / x-ardoise-ingest-secret.",
+      },
+      { status: 401, headers: NO_STORE_HEADERS },
+    );
   }
 
   let value: unknown;
   try {
     value = await request.json();
   } catch {
-    return Response.json({ error: "JSON invalide" }, { status: 400 });
+    return Response.json({ error: "JSON invalide" }, { status: 400, headers: NO_STORE_HEADERS });
   }
 
   const payload = isValidMailAnalysisPayload(value) ? value : coerceMailAnalysisPayload(value);
 
   if (!payload) {
-    return Response.json({ error: "Payload incomplet ou invalide" }, { status: 400 });
+    return Response.json(
+      { error: "Payload incomplet ou invalide" },
+      { status: 400, headers: NO_STORE_HEADERS },
+    );
   }
 
-  return Response.json({ success: true, analysis: await saveMailAnalysis(payload) });
+  return Response.json(
+    { success: true, analysis: await saveMailAnalysis(payload) },
+    { headers: NO_STORE_HEADERS },
+  );
 }
 
 export async function handleMailIngressDelete(request: Request) {
@@ -173,9 +192,12 @@ export async function handleMailIngressDelete(request: Request) {
   const externalId = url.searchParams.get("externalId")?.trim();
 
   if (!externalId) {
-    return Response.json({ error: "externalId manquant" }, { status: 400 });
+    return Response.json(
+      { error: "externalId manquant" },
+      { status: 400, headers: NO_STORE_HEADERS },
+    );
   }
 
   await deleteMailAnalysis(externalId);
-  return Response.json({ success: true, externalId });
+  return Response.json({ success: true, externalId }, { headers: NO_STORE_HEADERS });
 }

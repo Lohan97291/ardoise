@@ -181,6 +181,20 @@ function resizeSlotDuration(slot: TimetableSlot, deltaMinutes: number): Timetabl
   };
 }
 
+function visualSlotHeight(slot: TimetableSlot, nextSlot?: TimetableSlot): number {
+  const top = minuteToVisualY(toMinutes(slot.start));
+  const bottom = minuteToVisualY(toMinutes(slot.end));
+  const naturalHeight = Math.max(12, bottom - top);
+
+  if (!nextSlot) return naturalHeight;
+
+  const nextTop = minuteToVisualY(toMinutes(nextSlot.start));
+  const availableHeight = nextTop - top - 2;
+
+  if (availableHeight <= 0) return 8;
+  return Math.max(8, Math.min(naturalHeight, availableHeight));
+}
+
 function roundToStep(minutes: number, step = SLOT_STEP): number {
   return Math.round(minutes / step) * step;
 }
@@ -863,6 +877,12 @@ function EmploiDuTempsPage() {
     jeudi: null,
     vendredi: null,
   });
+  const toolbarButtonClass =
+    "h-9 rounded-xl border-border/70 bg-background/95 px-3 shadow-sm hover:bg-secondary";
+  const toolbarAccentButtonClass =
+    "h-9 rounded-xl border-primary/15 bg-primary/5 px-3 text-primary shadow-sm hover:bg-primary/10";
+  const dayButtonClass =
+    "h-7 rounded-lg border-border/70 bg-background/90 px-2.5 text-[0.68rem] shadow-sm hover:bg-secondary";
 
   useEffect(() => {
     setTimetable(getTimetable());
@@ -1427,244 +1447,271 @@ function EmploiDuTempsPage() {
           </div>
         </div>
 
-        <header className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+        <header className="grid gap-2">
           <div className="min-w-0">
             <p className="eyebrow">Emploi du temps</p>
             <h1 className="mt-1 text-3xl font-bold sm:text-4xl">Semaine type CE1</h1>
-          </div>
-          <div className="flex shrink-0 flex-wrap items-center gap-2 print:hidden">
-            <Button variant="outline" size="sm" onClick={() => window.print()}>
-              <Printer className="mr-1.5 h-4 w-4" />
-              Imprimer / PDF
-            </Button>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="outline" size="sm">
-                  <CalendarDays className="mr-1.5 h-4 w-4" />
-                  Semaine du{" "}
-                  {applyDate.toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent align="end" className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={applyDate}
-                  onSelect={(date) => date && setApplyDate(upcomingMonday(date))}
-                />
-              </PopoverContent>
-            </Popover>
-            <Button size="sm" onClick={handleApply}>
-              Appliquer au journal
-            </Button>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Une vue simple pour ajuster la semaine, appliquer le bon modèle et vérifier
+              rapidement l’équilibre global.
+            </p>
           </div>
         </header>
 
-        <section className="mt-3 flex flex-wrap items-center gap-2 print:hidden">
-          <Select value={activeTimetableId} onValueChange={switchTimetable}>
-            <SelectTrigger className="h-9 w-[15rem]">
-              <SelectValue placeholder="Emploi du temps" />
-            </SelectTrigger>
-            <SelectContent>
-              {timetables.map((entry) => (
-                <SelectItem key={entry.id} value={entry.id}>
-                  {entry.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        <section className="card-surface mt-4 space-y-3 p-4 shadow-card print:hidden">
+          <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
+            <div className="flex min-w-0 flex-wrap items-center gap-2">
+              <div className="min-w-0">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                  Emploi actif
+                </p>
+                <div className="mt-1 flex flex-wrap items-center gap-2">
+                  <Select value={activeTimetableId} onValueChange={switchTimetable}>
+                    <SelectTrigger className="h-9 w-[16rem] rounded-xl border-border/70 bg-background/95 shadow-sm">
+                      <SelectValue placeholder="Emploi du temps" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {timetables.map((entry) => (
+                        <SelectItem key={entry.id} value={entry.id}>
+                          {entry.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm">
-                <MoreVertical className="mr-1.5 h-4 w-4" />
-                Gérer
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="sm" className={toolbarButtonClass}>
+                        <MoreVertical className="mr-1.5 h-4 w-4" />
+                        Gérer
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-64">
+                      <DropdownMenuItem onSelect={() => openNamePrompt({ kind: "create" })}>
+                        <Plus className="mr-2 h-4 w-4" /> Nouvel emploi du temps
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onSelect={() =>
+                          openNamePrompt(
+                            { kind: "rename", id: activeTimetableId },
+                            timetables.find((entry) => entry.id === activeTimetableId)?.name ?? "",
+                          )
+                        }
+                      >
+                        <Pencil className="mr-2 h-4 w-4" /> Renommer
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onSelect={() => openNamePrompt({ kind: "duplicate", id: activeTimetableId })}
+                      >
+                        <Copy className="mr-2 h-4 w-4" /> Dupliquer
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        className="text-destructive focus:text-destructive"
+                        onSelect={() => handleDeleteTimetable(activeTimetableId)}
+                        disabled={timetables.length <= 1}
+                      >
+                        <Trash2 className="mr-2 h-4 w-4" /> Supprimer
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onSelect={() => openNamePrompt({ kind: "save-preset" })}>
+                        <FolderOpen className="mr-2 h-4 w-4" /> Enregistrer comme modèle
+                      </DropdownMenuItem>
+                      {presets.length > 0 ? <DropdownMenuSeparator /> : null}
+                      {presets.map((preset) => (
+                        <DropdownMenuItem
+                          key={preset.id}
+                          onSelect={() => handleApplyPreset(preset.id)}
+                          className="justify-between gap-2"
+                        >
+                          <span className="truncate">{preset.name}</span>
+                          <button
+                            type="button"
+                            className="shrink-0 rounded p-0.5 text-muted-foreground hover:text-destructive"
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              handleDeletePreset(preset.id);
+                            }}
+                            aria-label={`Supprimer le modèle ${preset.name}`}
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 xl:justify-end">
+              <Button
+                variant="outline"
+                size="sm"
+                className={toolbarButtonClass}
+                onClick={() => window.print()}
+              >
+                <Printer className="mr-1.5 h-4 w-4" />
+                Imprimer / PDF
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-64">
-              <DropdownMenuItem onSelect={() => openNamePrompt({ kind: "create" })}>
-                <Plus className="mr-2 h-4 w-4" /> Nouvel emploi du temps
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onSelect={() =>
-                  openNamePrompt(
-                    { kind: "rename", id: activeTimetableId },
-                    timetables.find((entry) => entry.id === activeTimetableId)?.name ?? "",
-                  )
-                }
+              <Button
+                variant="outline"
+                size="sm"
+                className={toolbarButtonClass}
+                onClick={() => openJournalDay("lundi")}
               >
-                <Pencil className="mr-2 h-4 w-4" /> Renommer
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onSelect={() => openNamePrompt({ kind: "duplicate", id: activeTimetableId })}
+                Ouvrir le journal
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className={toolbarAccentButtonClass}
+                onClick={() => setConfirmSeedReload(true)}
               >
-                <Copy className="mr-2 h-4 w-4" /> Dupliquer
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="text-destructive focus:text-destructive"
-                onSelect={() => handleDeleteTimetable(activeTimetableId)}
-                disabled={timetables.length <= 1}
-              >
-                <Trash2 className="mr-2 h-4 w-4" /> Supprimer
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onSelect={() => openNamePrompt({ kind: "save-preset" })}>
-                <FolderOpen className="mr-2 h-4 w-4" /> Enregistrer comme modèle
-              </DropdownMenuItem>
-              {presets.length > 0 ? <DropdownMenuSeparator /> : null}
-              {presets.map((preset) => (
-                <DropdownMenuItem
-                  key={preset.id}
-                  onSelect={() => handleApplyPreset(preset.id)}
-                  className="justify-between gap-2"
-                >
-                  <span className="truncate">{preset.name}</span>
-                  <button
-                    type="button"
-                    className="shrink-0 rounded p-0.5 text-muted-foreground hover:text-destructive"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      handleDeletePreset(preset.id);
-                    }}
-                    aria-label={`Supprimer le modèle ${preset.name}`}
-                  >
-                    <Trash2 className="h-3.5 w-3.5" />
-                  </button>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button variant="outline" size="sm" onClick={() => setConfirmSeedReload(true)}>
-            <Sparkles className="mr-1.5 h-4 w-4" />
-            EDT validé
-          </Button>
-          <Button variant="outline" size="sm" onClick={() => openJournalDay("lundi")}>
-            Ouvrir le journal
-          </Button>
-
-          <div className="ml-auto">
-            <PedagogicalAiDialog
-              title={ardoiseAiTitle("Emploi du temps")}
-              description={`${ARDOISE_AI_NAME} t'aide à arbitrer la semaine type à partir des contraintes déjà posées.`}
-              triggerLabel="Aide IA"
-              className="h-9"
-              modes={["timetable"]}
-              initialMode="timetable"
-              buildRequest={() => ({
-              title: "Organisation hebdomadaire CE1",
-              subject: "Emploi du temps de classe",
-              contextSections: [
-                {
-                  label: "Volumes globaux",
-                  items: [
-                    `Temps d'enseignement total : ${hoursLabel(weeklyTeachingTotal)}`,
-                    `Français : ${hoursLabel(frenchTotal)}`,
-                    `Mathématiques : ${hoursLabel(mathsTotal)}`,
-                    `${officialTargetsReached}/${OFFICIAL_THRESHOLDS.length} repères officiels couverts ou presque`,
+                <Sparkles className="mr-1.5 h-4 w-4" />
+                EDT validé
+              </Button>
+              <PedagogicalAiDialog
+                title={ardoiseAiTitle("Emploi du temps")}
+                description={`${ARDOISE_AI_NAME} t'aide à arbitrer la semaine type à partir des contraintes déjà posées.`}
+                triggerLabel="Aide IA"
+                className={toolbarButtonClass}
+                modes={["timetable"]}
+                initialMode="timetable"
+                buildRequest={() => ({
+                  title: "Organisation hebdomadaire CE1",
+                  subject: "Emploi du temps de classe",
+                  contextSections: [
+                    {
+                      label: "Volumes globaux",
+                      items: [
+                        `Temps d'enseignement total : ${hoursLabel(weeklyTeachingTotal)}`,
+                        `Français : ${hoursLabel(frenchTotal)}`,
+                        `Mathématiques : ${hoursLabel(mathsTotal)}`,
+                        `${officialTargetsReached}/${OFFICIAL_THRESHOLDS.length} repères officiels couverts ou presque`,
+                      ],
+                    },
+                    {
+                      label: "Écarts aux repères",
+                      items: thresholdGaps.map(
+                        (threshold) =>
+                          `${threshold.label} : ${hoursLabel(threshold.actual)} prévus, repère ${hoursLabel(
+                            threshold.minutes,
+                          )}, écart ${hoursLabel(threshold.gap)}`,
+                      ),
+                    },
+                    {
+                      label: "Rythme des journées",
+                      items: SCHOOL_DAYS.map((weekday) => {
+                        const slots = timetable[weekday].filter((slot) => !slot.fixed);
+                        const total = slots.reduce((sum, slot) => sum + slotMinutes(slot), 0);
+                        return `${WEEKDAY_LABELS[weekday]} : ${hoursLabel(total)} · ${slots
+                          .map((slot) => `${slot.start} ${slot.title}`)
+                          .join(" | ")}`;
+                      }),
+                    },
+                    {
+                      label: "Enchaînements à surveiller",
+                      items:
+                        repetitiveRuns.length > 0
+                          ? repetitiveRuns.map(
+                              (run) =>
+                                `${WEEKDAY_LABELS[run.weekday]} : ${run.count} créneaux de ${SUBJECTS[
+                                  run.subject
+                                ].label.toLowerCase()} à la suite entre ${run.start} et ${run.end}`,
+                            )
+                          : [
+                              "Aucun enchaînement long de trois créneaux ou plus dans une même matière.",
+                            ],
+                    },
                   ],
-                },
-                {
-                  label: "Écarts aux repères",
-                  items: thresholdGaps.map(
-                    (threshold) =>
-                      `${threshold.label} : ${hoursLabel(threshold.actual)} prévus, repère ${hoursLabel(
-                        threshold.minutes,
-                      )}, écart ${hoursLabel(threshold.gap)}`,
-                  ),
-                },
-                {
-                  label: "Rythme des journées",
-                  items: SCHOOL_DAYS.map((weekday) => {
-                    const slots = timetable[weekday].filter((slot) => !slot.fixed);
-                    const total = slots.reduce((sum, slot) => sum + slotMinutes(slot), 0);
-                    return `${WEEKDAY_LABELS[weekday]} : ${hoursLabel(total)} · ${slots
-                      .map((slot) => `${slot.start} ${slot.title}`)
-                      .join(" | ")}`;
-                  }),
-                },
-                {
-                  label: "Enchaînements à surveiller",
-                  items:
-                    repetitiveRuns.length > 0
-                      ? repetitiveRuns.map(
-                          (run) =>
-                            `${WEEKDAY_LABELS[run.weekday]} : ${run.count} créneaux de ${SUBJECTS[
-                              run.subject
-                            ].label.toLowerCase()} à la suite entre ${run.start} et ${run.end}`,
-                        )
-                      : [
-                          "Aucun enchaînement long de trois créneaux ou plus dans une même matière.",
-                        ],
-                },
-              ],
-            })}
-            />
-          </div>
-        </section>
-
-        <AiActionStrip actions={emploiAiActions} className="mt-3" />
-
-        <section className="mt-4 flex flex-wrap items-center gap-2 print:hidden">
-          <ToggleGroup
-            type="single"
-            value={builderMode}
-            onValueChange={(value) => {
-              if (value === "construct" || value === "move") setBuilderMode(value);
-            }}
-            className="rounded-xl border border-border bg-card p-1 shadow-card"
-          >
-            <ToggleGroupItem
-              value="construct"
-              aria-label="Mode construction"
-              className="rounded-lg px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
-            >
-              <Sparkles className="mr-1.5 h-4 w-4" />
-              Créer
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              value="move"
-              aria-label="Mode déplacement"
-              className="rounded-lg px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
-            >
-              <Hand className="mr-1.5 h-4 w-4" />
-              Déplacer
-            </ToggleGroupItem>
-          </ToggleGroup>
-
-          <div className="flex flex-wrap items-center gap-1.5">
-            <StatChip label="Enseignement" value={hoursLabel(weeklyTeachingTotal)} />
-            <StatChip label="Blocs" value={`${flexibleSlotCount}`} />
-            <StatChip label="Jours" value={`${activeDays}/${SCHOOL_DAYS.length}`} />
-            <StatChip
-              label="Repères"
-              value={`${officialTargetsReached}/${OFFICIAL_THRESHOLDS.length}`}
-            />
+                })}
+              />
+            </div>
           </div>
 
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="ghost" size="sm" className="ml-auto text-muted-foreground">
-                Légende des placements
+          <div className="grid gap-3 border-t border-border/70 pt-3 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
+            <div className="flex flex-wrap items-center gap-2">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    <CalendarDays className="mr-1.5 h-4 w-4" />
+                    Semaine du{" "}
+                    {applyDate.toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent align="start" className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={applyDate}
+                    onSelect={(date) => date && setApplyDate(upcomingMonday(date))}
+                  />
+                </PopoverContent>
+              </Popover>
+              <Button size="sm" onClick={handleApply}>
+                Appliquer au journal
               </Button>
-            </PopoverTrigger>
-            <PopoverContent align="end" className="w-80 space-y-2.5">
-              <LegendCard
-                level="ok"
-                title="Placement cohérent"
-                description="Le bloc rentre dans la journée et respecte le rythme conseillé."
+
+              <ToggleGroup
+                type="single"
+                value={builderMode}
+                onValueChange={(value) => {
+                  if (value === "construct" || value === "move") setBuilderMode(value);
+                }}
+                className="rounded-xl border border-border bg-card p-1 shadow-card"
+              >
+                <ToggleGroupItem
+                  value="construct"
+                  aria-label="Mode construction"
+                  className="rounded-lg px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+                >
+                  <Sparkles className="mr-1.5 h-4 w-4" />
+                  Créer
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value="move"
+                  aria-label="Mode déplacement"
+                  className="rounded-lg px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+                >
+                  <Hand className="mr-1.5 h-4 w-4" />
+                  Déplacer
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-1.5 xl:justify-end">
+              <StatChip label="Enseignement" value={hoursLabel(weeklyTeachingTotal)} />
+              <StatChip label="Blocs" value={`${flexibleSlotCount}`} />
+              <StatChip label="Jours" value={`${activeDays}/${SCHOOL_DAYS.length}`} />
+              <StatChip
+                label="Repères"
+                value={`${officialTargetsReached}/${OFFICIAL_THRESHOLDS.length}`}
               />
-              <LegendCard
-                level="warn"
-                title="Placement atypique"
-                description="Le bloc reste possible, mais une confirmation est demandée."
-              />
-              <LegendCard
-                level="block"
-                title="Placement impossible"
-                description="Chevauchement ou sortie du temps scolaire : il faut ajuster l'horaire."
-              />
-            </PopoverContent>
-          </Popover>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" size="sm" className="text-muted-foreground">
+                    Légende
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent align="end" className="w-80 space-y-2.5">
+                  <LegendCard
+                    level="ok"
+                    title="Placement cohérent"
+                    description="Le bloc rentre dans la journée et respecte le rythme conseillé."
+                  />
+                  <LegendCard
+                    level="warn"
+                    title="Placement atypique"
+                    description="Le bloc reste possible, mais une confirmation est demandée."
+                  />
+                  <LegendCard
+                    level="block"
+                    title="Placement impossible"
+                    description="Chevauchement ou sortie du temps scolaire : il faut ajuster l'horaire."
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+          </div>
         </section>
 
         <section className="mt-3">
@@ -1711,6 +1758,7 @@ function EmploiDuTempsPage() {
               const preview =
                 hoverWeekday === weekday ? dropPreview(timetable, weekday, dragPayload) : null;
               const teachingSlots = renderedSlots.filter((slot) => !slot.fixed);
+              const visibleSlots = renderedSlots.filter((slot) => !isMiddayBreak(slot));
               const showTimeLabels = Boolean(focusedDay) || weekday === SCHOOL_DAYS[0];
 
 
@@ -1769,7 +1817,7 @@ function EmploiDuTempsPage() {
                           type="button"
                           variant="ghost"
                           size="icon"
-                          className="h-7 w-7 rounded-full text-muted-foreground print:hidden"
+                          className="h-7 w-7 rounded-lg border border-border/70 bg-background/90 text-muted-foreground shadow-sm hover:bg-secondary print:hidden"
                           aria-label={
                             focusedDay === weekday
                               ? "Revenir à la semaine"
@@ -1793,9 +1841,9 @@ function EmploiDuTempsPage() {
                         </Button>
                         <Button
                           type="button"
-                          variant="ghost"
+                          variant="outline"
                           size="sm"
-                          className="h-7 rounded-full px-2 text-[0.68rem] print:hidden"
+                          className={cn(dayButtonClass, "print:hidden")}
                           onClick={(event) => {
                             event.stopPropagation();
                             openJournalDay(weekday);
@@ -1806,7 +1854,7 @@ function EmploiDuTempsPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-7 rounded-full border-dashed px-2 text-[0.68rem] print:hidden"
+                          className={cn(dayButtonClass, "border-dashed print:hidden")}
                           onClick={() => openNew(weekday)}
                         >
                           <Plus className="mr-1 h-3.5 w-3.5" />
@@ -1880,12 +1928,10 @@ function EmploiDuTempsPage() {
                         </div>
                       ) : null}
 
-                      {renderedSlots
-                        .filter((slot) => !isMiddayBreak(slot))
-                        .map((slot, index) => {
+                      {visibleSlots.map((slot, index) => {
                           const top = minuteToVisualY(toMinutes(slot.start));
-                          const bottom = minuteToVisualY(toMinutes(slot.end));
-                          const height = Math.max(18, bottom - top);
+                          const nextSlot = visibleSlots[index + 1];
+                          const height = visualSlotHeight(slot, nextSlot);
                           return (
                             <div
                               key={`${weekday}-${index}-${slot.start}-${slot.title}`}
@@ -2309,6 +2355,9 @@ function SlotCard({
   onDragEnd: React.DragEventHandler<HTMLButtonElement>;
 }) {
   const moveHandleLabel = compactSlotLabel(slot);
+  const secondaryLine =
+    slot.note?.trim() ||
+    (slot.title.trim() && slot.title !== moveHandleLabel ? slot.title : "");
   const time = (
     <span className="font-mono text-[0.68rem] opacity-80">
       {slot.start}–{slot.end}
@@ -2376,8 +2425,8 @@ function SlotCard({
               {slot.start}–{slot.end}
             </span>
           </span>
-          {!compact && slot.title.trim() && slot.title !== moveHandleLabel ? (
-            <span className="truncate text-[0.68rem] opacity-80">{slot.title}</span>
+          {!compact && secondaryLine ? (
+            <span className="truncate text-[0.68rem] opacity-80">{secondaryLine}</span>
           ) : null}
           {!compact && progLabel ? (
             <span className="flex min-w-0 items-center gap-1 text-[0.65rem] opacity-90">

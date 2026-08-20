@@ -58,6 +58,17 @@ const rituels = (start: string, end: string, title: string): TimetableSlot => ({
   subject: "rituels",
 });
 
+function toMinutes(time: string): number {
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours! * 60 + minutes!;
+}
+
+function toTimeString(minutes: number): string {
+  const hours = Math.floor(minutes / 60);
+  const remainder = minutes % 60;
+  return `${String(hours).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
+}
+
 function normalizeMathsSlotTitle(slot: TimetableSlot): TimetableSlot {
   if (slot.subject !== "maths") return slot;
 
@@ -86,10 +97,53 @@ function normalizeMathsSlotTitle(slot: TimetableSlot): TimetableSlot {
   return slot;
 }
 
+function clampSlotDuration(slot: TimetableSlot): TimetableSlot {
+  const start = toMinutes(slot.start);
+  const end = toMinutes(slot.end);
+  if (end > start) return slot;
+  return {
+    ...slot,
+    end: toTimeString(start + 5),
+  };
+}
+
+function sanitizeDaySlots(slots: TimetableSlot[]): TimetableSlot[] {
+  const sorted = [...slots]
+    .map((slot) => clampSlotDuration(normalizeMathsSlotTitle(slot)))
+    .sort((a, b) => a.start.localeCompare(b.start));
+
+  return sorted.reduce<TimetableSlot[]>((acc, slot) => {
+    if (acc.length === 0) {
+      acc.push(slot);
+      return acc;
+    }
+
+    const previous = acc[acc.length - 1]!;
+    const previousEnd = toMinutes(previous.end);
+    const currentStart = toMinutes(slot.start);
+    const currentEnd = toMinutes(slot.end);
+
+    if (currentStart >= previousEnd) {
+      acc.push(slot);
+      return acc;
+    }
+
+    const duration = Math.max(5, currentEnd - currentStart);
+    const shifted: TimetableSlot = {
+      ...slot,
+      start: toTimeString(previousEnd),
+      end: toTimeString(previousEnd + duration),
+    };
+
+    acc.push(shifted);
+    return acc;
+  }, []);
+}
+
 function normalizeWeeklyTimetable(timetable: WeeklyTimetable): WeeklyTimetable {
   const next = cloneTimetable(timetable);
   for (const weekday of WEEKDAYS) {
-    next[weekday] = (next[weekday] ?? []).map(normalizeMathsSlotTitle);
+    next[weekday] = sanitizeDaySlots(next[weekday] ?? []);
   }
   return next;
 }
@@ -184,7 +238,7 @@ const LEGACY_BALANCED_SEED: WeeklyTimetable = {
   ],
 };
 
-const SEED_TIMETABLE: WeeklyTimetable = {
+const PREVIOUS_SEED_TIMETABLE: WeeklyTimetable = {
   lundi: [
     { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
     francais("08:30", "08:50", "Langage oral"),
@@ -258,6 +312,483 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     { start: "14:50", end: "15:05", title: "Récréation", subject: "pause", fixed: true },
     { start: "15:05", end: "15:35", title: "Éducation musicale", subject: "arts" },
     { start: "15:35", end: "16:30", title: "Éducation physique et sportive", subject: "eps" },
+  ],
+};
+
+const SEED_TIMETABLE: WeeklyTimetable = {
+  lundi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    {
+      start: "08:30",
+      end: "08:50",
+      title: "Langage oral",
+      subject: "francais",
+      note: "Quoi de neuf / rituel oral",
+    },
+    {
+      start: "08:50",
+      end: "09:20",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "sequence-maths-35",
+      note: "Flash maths + Séquence séance 1",
+    },
+    {
+      start: "09:20",
+      end: "09:50",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 1 (cour, matin)",
+    },
+    {
+      start: "09:50",
+      end: "10:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "10:05",
+      end: "10:35",
+      title: "Orthographémic",
+      subject: "francais",
+      builderTemplateId: "orthographe-dictee",
+      note: "Découverte / classement graphèmes",
+    },
+    {
+      start: "10:35",
+      end: "11:00",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "calcul-mental",
+      note: "Calcul mental + problème du jour",
+    },
+    {
+      start: "11:00",
+      end: "11:30",
+      title: "Cléo",
+      subject: "francais",
+      builderTemplateId: "grammaire",
+      note: "EDL grammaire",
+    },
+    { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    {
+      start: "13:20",
+      end: "13:30",
+      title: "Lecture",
+      subject: "francais",
+      builderTemplateId: "lecture",
+      note: "Quart d'heure lecture (plaisir)",
+    },
+    {
+      start: "13:30",
+      end: "13:50",
+      title: "Devoirs / agenda",
+      subject: "rituels",
+      note: "Écriture des devoirs",
+    },
+    {
+      start: "13:50",
+      end: "14:20",
+      title: "Questionner le monde",
+      subject: "qlm",
+      builderTemplateId: "qlm",
+      note: "Le vivant, la matière, les objets",
+    },
+    {
+      start: "14:20",
+      end: "14:50",
+      title: "Lecture",
+      subject: "francais",
+      builderTemplateId: "lecture",
+      note: "Compréhension guidée",
+    },
+    {
+      start: "14:50",
+      end: "15:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "15:05",
+      end: "15:35",
+      title: "Éducation musicale",
+      subject: "arts",
+      note: "Chant, écoute",
+    },
+    {
+      start: "15:35",
+      end: "16:05",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 1 (cour/gymnase)",
+    },
+    {
+      start: "16:05",
+      end: "16:30",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 1 (suite)",
+    },
+  ],
+  mardi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    {
+      start: "08:30",
+      end: "08:50",
+      title: "Cléo",
+      subject: "francais",
+      builderTemplateId: "grammaire",
+      note: "EDL lexique",
+    },
+    {
+      start: "08:50",
+      end: "09:20",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "sequence-maths-35",
+      note: "Flash maths + Séquence séance 2",
+    },
+    {
+      start: "09:20",
+      end: "09:50",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "sequence-maths-35",
+      note: "Séquence séance 2 (suite)",
+    },
+    {
+      start: "09:50",
+      end: "10:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "10:05",
+      end: "10:35",
+      title: "Orthographémic",
+      subject: "francais",
+      builderTemplateId: "orthographe-dictee",
+      note: "Lecture-compréhension du texte",
+    },
+    {
+      start: "10:35",
+      end: "11:00",
+      title: "Orthographémic",
+      subject: "francais",
+      builderTemplateId: "orthographe-dictee",
+      note: "Ateliers Fluence/Mallette/Tapette",
+    },
+    {
+      start: "11:00",
+      end: "11:30",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "calcul-mental",
+      note: "Calcul mental",
+    },
+    { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    {
+      start: "13:20",
+      end: "13:30",
+      title: "Lecture",
+      subject: "francais",
+      builderTemplateId: "lecture",
+      note: "Quart d'heure lecture (plaisir)",
+    },
+    {
+      start: "13:30",
+      end: "13:50",
+      title: "Devoirs / agenda",
+      subject: "rituels",
+      note: "Écriture des devoirs",
+    },
+    {
+      start: "13:50",
+      end: "14:20",
+      title: "Production d'écrit",
+      subject: "francais",
+      builderTemplateId: "production-ecrit",
+      note: "Rédaction guidée",
+    },
+    {
+      start: "14:20",
+      end: "14:50",
+      title: "Anglais",
+      subject: "lve",
+      builderTemplateId: "anglais-seance",
+      note: "LV séance 1",
+    },
+    {
+      start: "14:50",
+      end: "15:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "15:05",
+      end: "15:35",
+      title: "Arts plastiques",
+      subject: "arts",
+      builderTemplateId: "arts-visuels",
+      note: "Projet arts visuels (album)",
+    },
+    {
+      start: "15:35",
+      end: "16:05",
+      title: "Arts plastiques",
+      subject: "arts",
+      builderTemplateId: "arts-visuels",
+      note: "Projet arts visuels (suite)",
+    },
+    {
+      start: "16:05",
+      end: "16:30",
+      title: "Poésie",
+      subject: "francais",
+      note: "Poésie / lecture offerte",
+    },
+  ],
+  mercredi: [],
+  jeudi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    {
+      start: "08:30",
+      end: "08:50",
+      title: "Cléo",
+      subject: "francais",
+      builderTemplateId: "grammaire",
+      note: "EDL conjugaison",
+    },
+    {
+      start: "08:50",
+      end: "09:20",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "sequence-maths-35",
+      note: "Flash maths + Séquence séance 3",
+    },
+    {
+      start: "09:20",
+      end: "09:50",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 2 + course aux mots (cour)",
+    },
+    {
+      start: "09:50",
+      end: "10:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "10:05",
+      end: "10:35",
+      title: "Orthographémic",
+      subject: "francais",
+      builderTemplateId: "orthographe-dictee",
+      note: "Dictée flash + grilles",
+    },
+    {
+      start: "10:35",
+      end: "11:00",
+      title: "Maths ateliers",
+      subject: "maths",
+      builderTemplateId: "atelier-problemes",
+      note: "Atelier problèmes séance 1",
+    },
+    {
+      start: "11:00",
+      end: "11:30",
+      title: "Cléo",
+      subject: "francais",
+      builderTemplateId: "grammaire",
+      note: "EDL grammaire (entraînement)",
+    },
+    { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    {
+      start: "13:20",
+      end: "13:30",
+      title: "Lecture",
+      subject: "francais",
+      builderTemplateId: "lecture",
+      note: "Quart d'heure lecture (plaisir)",
+    },
+    {
+      start: "13:30",
+      end: "13:50",
+      title: "Devoirs / agenda",
+      subject: "rituels",
+      note: "Écriture des devoirs",
+    },
+    {
+      start: "13:50",
+      end: "14:20",
+      title: "EMC",
+      subject: "emc",
+      builderTemplateId: "emc",
+      note: "Débat réglé / vivre ensemble",
+    },
+    {
+      start: "14:20",
+      end: "14:50",
+      title: "Lecture",
+      subject: "francais",
+      builderTemplateId: "lecture",
+      note: "Lecture textes longs / fluence",
+    },
+    {
+      start: "14:50",
+      end: "15:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "15:05",
+      end: "15:35",
+      title: "Questionner le monde",
+      subject: "qlm",
+      builderTemplateId: "qlm",
+      note: "Espace et temps",
+    },
+    {
+      start: "15:35",
+      end: "16:05",
+      title: "Anglais",
+      subject: "lve",
+      builderTemplateId: "anglais-seance",
+      note: "LV séance 2",
+    },
+    {
+      start: "16:05",
+      end: "16:30",
+      title: "Écriture",
+      subject: "francais",
+      builderTemplateId: "ecriture-copie",
+      note: "Calligraphie",
+    },
+  ],
+  vendredi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    {
+      start: "08:30",
+      end: "08:50",
+      title: "Cléo",
+      subject: "francais",
+      builderTemplateId: "grammaire",
+      note: "EDL orthographe (mots invariables)",
+    },
+    {
+      start: "08:50",
+      end: "09:20",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "sequence-maths-35",
+      note: "Flash maths + Séquence séance 4",
+    },
+    {
+      start: "09:20",
+      end: "09:50",
+      title: "Questionner le monde",
+      subject: "qlm",
+      builderTemplateId: "qlm",
+      note: "Le vivant / expériences",
+    },
+    {
+      start: "09:50",
+      end: "10:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "10:05",
+      end: "10:35",
+      title: "Orthographémic",
+      subject: "francais",
+      builderTemplateId: "orthographe-dictee",
+      note: "Systématisation + dictée bilan",
+    },
+    {
+      start: "10:35",
+      end: "11:00",
+      title: "Maths ateliers",
+      subject: "maths",
+      builderTemplateId: "atelier-problemes",
+      note: "Atelier problèmes séance 2",
+    },
+    {
+      start: "11:00",
+      end: "11:30",
+      title: "Lecture",
+      subject: "francais",
+      builderTemplateId: "lecture",
+      note: "Lecture à voix haute / fluence",
+    },
+    { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    {
+      start: "13:20",
+      end: "13:30",
+      title: "Lecture",
+      subject: "francais",
+      builderTemplateId: "lecture",
+      note: "Quart d'heure lecture (plaisir)",
+    },
+    {
+      start: "13:30",
+      end: "13:50",
+      title: "Devoirs / agenda",
+      subject: "rituels",
+      note: "Écriture des devoirs",
+    },
+    {
+      start: "13:50",
+      end: "14:20",
+      title: "Mathématiques",
+      subject: "maths",
+      note: "Résolution de problèmes / jeux maths",
+    },
+    {
+      start: "14:20",
+      end: "14:50",
+      title: "Anglais",
+      subject: "lve",
+      builderTemplateId: "anglais-rituel",
+      note: "LV rituel / oral",
+    },
+    {
+      start: "14:50",
+      end: "15:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "15:05",
+      end: "15:35",
+      title: "Éducation musicale",
+      subject: "arts",
+      note: "Chant / pratique",
+    },
+    {
+      start: "15:35",
+      end: "16:05",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 3 (cour/gymnase)",
+    },
+    {
+      start: "16:05",
+      end: "16:30",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 3 (suite)",
+    },
   ],
 };
 
@@ -368,7 +899,10 @@ function migrateTimetable(timetable: WeeklyTimetable): WeeklyTimetable {
     fridayWritingSlot.correctionPeriod = undefined;
   }
 
-  if (timetableMatches(next, LEGACY_BALANCED_SEED)) {
+  if (
+    timetableMatches(next, LEGACY_BALANCED_SEED) ||
+    timetableMatches(next, PREVIOUS_SEED_TIMETABLE)
+  ) {
     return cloneTimetable(SEED_TIMETABLE);
   }
 

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { MailAnalysis } from "@/lib/server/mail-types";
 
 async function fetchMailAnalyses(): Promise<MailAnalysis[]> {
-  const response = await fetch("/api/mail/n8n");
+  const response = await fetch("/api/mail/n8n", { cache: "no-store" });
   const value = (await response.json()) as { analyses?: MailAnalysis[] };
   return value.analyses ?? [];
 }
@@ -17,7 +17,8 @@ export function useMailAnalyses() {
   return useQuery({
     queryKey: ["mail-analyses"],
     queryFn: fetchMailAnalyses,
-    staleTime: 30_000,
-    refetchInterval: 120_000,
+    staleTime: 10_000,
+    refetchInterval: 20_000,
+    refetchOnWindowFocus: true,
   });
 }

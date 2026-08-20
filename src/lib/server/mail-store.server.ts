@@ -20,6 +20,18 @@ type MailSnapshot = {
   entries: MailAnalysis[];
 };
 
+function mergeEntries(...groups: MailAnalysis[][]): MailAnalysis[] {
+  const byExternalId = new Map<string, MailAnalysis>();
+
+  for (const group of groups) {
+    for (const entry of group) {
+      byExternalId.set(entry.externalId, normalizeMailAnalysis(entry));
+    }
+  }
+
+  return [...byExternalId.values()].sort((a, b) => b.receivedAt.localeCompare(a.receivedAt));
+}
+
 function loadEntries(): MailAnalysis[] {
   try {
     if (!existsSync(STORE_PATH)) return [];
@@ -88,7 +100,9 @@ async function saveEntriesToCloud(entries: MailAnalysis[]): Promise<void> {
 
 export async function saveMailAnalysis(value: MailAnalysis): Promise<MailAnalysis> {
   const normalized = normalizeMailAnalysis(value);
-  const entries = ((await loadEntriesFromCloud()) ?? loadEntries().map(normalizeMailAnalysis)).slice();
+  const entries = (
+    (await loadEntriesFromCloud()) ?? loadEntries().map(normalizeMailAnalysis)
+  ).slice();
   const index = entries.findIndex((item) => item.externalId === normalized.externalId);
   if (index >= 0) entries[index] = normalized;
   else entries.unshift(normalized);
@@ -99,8 +113,15 @@ export async function saveMailAnalysis(value: MailAnalysis): Promise<MailAnalysi
 
 export async function listMailAnalyses(): Promise<MailAnalysis[]> {
   const cloudEntries = await loadEntriesFromCloud();
-  if (cloudEntries) return cloudEntries;
-  return loadEntries().map(normalizeMailAnalysis);
+  const localEntries = loadEntries().map(normalizeMailAnalysis);
+
+  if (cloudEntries === null) return localEntries;
+  if (cloudEntries.length === 0 && localEntries.length > 0) {
+    await saveEntriesToCloud(localEntries);
+    return localEntries;
+  }
+
+  return mergeEntries(cloudEntries, localEntries);
 }
 
 export async function deleteMailAnalysis(externalId: string): Promise<void> {

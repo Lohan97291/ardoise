@@ -284,9 +284,32 @@ function AgendaPage() {
     }
   }, []);
 
+  const refreshAgenda = useCallback(async () => {
+    if (view === "month") {
+      await loadMonth();
+      return;
+    }
+
+    setItems(getAgendaItemsForDate(key));
+    await loadGoogleEvents(date);
+  }, [date, key, loadGoogleEvents, loadMonth, view]);
+
   useEffect(() => {
     if (view === "day") void loadGoogleEvents(date);
   }, [view, key, loadGoogleEvents]);
+
+  useEffect(() => {
+    function handleRefresh() {
+      void refreshAgenda();
+    }
+
+    window.addEventListener("focus", handleRefresh);
+    window.addEventListener("storage", handleRefresh);
+    return () => {
+      window.removeEventListener("focus", handleRefresh);
+      window.removeEventListener("storage", handleRefresh);
+    };
+  }, [refreshAgenda]);
 
   const { data: mailAnalyses = [] } = useMailAnalyses();
   const mailCount = mailAnalyses.filter(
@@ -342,6 +365,18 @@ function AgendaPage() {
             >
               <Plus className="mr-1.5 h-4 w-4" />
               Ajouter vite
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-full px-5 font-semibold shadow-card"
+              onClick={() => void refreshAgenda()}
+              disabled={syncing || monthSyncing}
+            >
+              <RefreshCw
+                className={cn("mr-1.5 h-4 w-4", (syncing || monthSyncing) && "animate-spin")}
+              />
+              Actualiser
             </Button>
             <div className="flex items-center rounded-full border border-border bg-card p-0.5 shadow-card">
               <button
