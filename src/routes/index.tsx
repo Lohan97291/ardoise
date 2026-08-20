@@ -445,9 +445,9 @@ function Dashboard() {
                 Journal du jour
               </p>
               <p className="mt-2 text-2xl font-bold text-foreground">{daySessions.length}</p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {currentFocusSession?.title ?? "Séances prévues"}
-              </p>
+              {currentFocusSession ? (
+                <p className="mt-1 text-xs text-muted-foreground">{currentFocusSession.title}</p>
+              ) : null}
             </div>
             <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
               <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -456,14 +456,12 @@ function Dashboard() {
               <p className="mt-2 text-2xl font-bold text-foreground">
                 {pendingPreparationItems.length}
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">Photocopies et matériel</p>
             </div>
             <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
               <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
                 Mails à traiter
               </p>
               <p className="mt-2 text-2xl font-bold text-foreground">{unhandledMailCount}</p>
-              <p className="mt-1 text-xs text-muted-foreground">Nouveaux messages</p>
             </div>
           </div>
 
@@ -565,11 +563,7 @@ function Dashboard() {
                         <span>Durée prévue : {fmtDur(focusTimer.total)}</span>
                         <span>Fin prévue : {currentFocusSession?.end}</span>
                       </span>
-                    ) : (
-                      <span className="mt-2 text-[0.65rem] text-muted-foreground/70 opacity-0 transition-opacity group-hover:opacity-100">
-                        Cliquer pour le détail
-                      </span>
-                    )}
+                    ) : null}
                   </button>
 
                 </div>
@@ -714,9 +708,6 @@ function Dashboard() {
         {/* Satellites du quotidien : compacts et secondaires */}
         <div className="flex items-center justify-between gap-3">
           <p className="eyebrow">Le reste de la journée</p>
-          <p className="text-xs text-muted-foreground">
-            Les outils du quotidien restent accessibles juste en dessous.
-          </p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {/* Cahier d'appel */}
@@ -730,9 +721,7 @@ function Dashboard() {
                 Faire l'appel
               </Button>
             </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              {STUDENTS.length} élèves inscrits · Appel du matin non enregistré.
-            </p>
+            <p className="mt-3 text-sm text-muted-foreground">{STUDENTS.length} élèves</p>
           </section>
 
           {/* À préparer */}
@@ -895,9 +884,6 @@ function Dashboard() {
                   <div className="space-y-4 px-6 py-5">
                     <div>
                       <h3 className="text-sm font-semibold">Ajouter quelque chose à préparer</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        Photocopies, matériel, supports.
-                      </p>
                     </div>
 
                     <form
@@ -977,10 +963,6 @@ function Dashboard() {
                       </Button>
                     </form>
 
-                    <div className="rounded-2xl border border-border bg-secondary/30 p-4 text-sm text-muted-foreground">
-                      Les éléments issus du cahier journal remontent automatiquement. Ici, tu
-                      ajoutes seulement ce qui demande un vrai travail en amont.
-                    </div>
                   </div>
                 </div>
 
