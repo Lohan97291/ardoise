@@ -5,6 +5,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  APP_EDITION_STORAGE_KEY,
+  FORCE_PASSWORD_CHANGE_STORAGE_KEY,
+} from "@/lib/app-edition";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -34,8 +38,23 @@ function LoginPage() {
         setLoading(false);
         return;
       }
+      const payload = (await response.json().catch(() => null)) as
+        | { edition?: "full" | "collegue"; mustChangePassword?: boolean }
+        | null;
+      if (payload?.edition) {
+        window.localStorage.setItem(APP_EDITION_STORAGE_KEY, payload.edition);
+      }
+      if (payload?.mustChangePassword) {
+        window.localStorage.setItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY, "1");
+      } else {
+        window.localStorage.removeItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY);
+      }
       const next = new URLSearchParams(window.location.search).get("next");
-      window.location.href = next && next.startsWith("/") ? next : "/";
+      const target = new URL(next && next.startsWith("/") ? next : "/", window.location.origin);
+      if (payload?.edition === "collegue") {
+        target.searchParams.set("edition", "collegue");
+      }
+      window.location.href = `${target.pathname}${target.search}${target.hash}`;
     } catch {
       setError("Connexion impossible pour le moment.");
       setLoading(false);
@@ -54,7 +73,7 @@ function LoginPage() {
           </div>
           <h1 className="mt-3 text-lg font-semibold text-foreground">Ardoise</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Entrez le mot de passe pour continuer.
+            Entrez le mot de passe pour ouvrir votre espace.
           </p>
         </div>
 

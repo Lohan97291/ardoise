@@ -28,6 +28,7 @@ import {
   type ProfileSettings,
 } from "@/lib/profile-settings";
 import { healthcheckSupabase } from "@/lib/supabase";
+import { useAppEdition } from "@/lib/app-edition";
 
 function emptyPasswordForm() {
   return {
@@ -37,7 +38,14 @@ function emptyPasswordForm() {
   };
 }
 
-export function ProfileSettingsPanel() {
+export function ProfileSettingsPanel({
+  mustChangePassword = false,
+  onPasswordChanged,
+}: {
+  mustChangePassword?: boolean;
+  onPasswordChanged?: () => void;
+}) {
+  const { isColleagueEdition } = useAppEdition();
   const [profile, setProfile] = useState<ProfileSettings>(DEFAULT_PROFILE_SETTINGS);
   const [passwordForm, setPasswordForm] = useState(emptyPasswordForm);
   const [savingProfile, setSavingProfile] = useState(false);
@@ -194,6 +202,7 @@ export function ProfileSettingsPanel() {
 
       setPasswordForm(emptyPasswordForm());
       toast.success("Mot de passe changé.");
+      onPasswordChanged?.();
     } finally {
       setSavingPassword(false);
     }
@@ -411,16 +420,27 @@ export function ProfileSettingsPanel() {
             <div>
               <p className="text-sm font-semibold text-foreground">Sécurité</p>
               <p className="text-xs text-muted-foreground">
-                Changer le mot de passe d’accès.
+                {isColleagueEdition
+                  ? "Changer le mot de passe de cet espace collègue."
+                  : "Changer le mot de passe d’accès."}
               </p>
             </div>
           </div>
         </div>
 
         <form className="space-y-4 p-4" onSubmit={handleChangePassword}>
+          {mustChangePassword ? (
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 px-3 py-2.5">
+              <p className="text-xs font-medium text-foreground">
+                Première connexion détectée : le mot de passe collègue doit maintenant être personnalisé.
+              </p>
+            </div>
+          ) : null}
           <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 px-3 py-2.5">
             <p className="text-xs font-medium text-amber-950">
-              Garde un mot de passe simple à retenir pour toi, mais suffisamment différent de tes autres accès.
+              {isColleagueEdition
+                ? "Choisis un mot de passe personnel, simple à retenir pour la collègue, mais différent de ses autres accès."
+                : "Garde un mot de passe simple à retenir pour toi, mais suffisamment différent de tes autres accès."}
             </p>
           </div>
 

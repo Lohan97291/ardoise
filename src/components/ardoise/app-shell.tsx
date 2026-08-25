@@ -44,26 +44,18 @@ import {
   readProfileSettings,
   type ProfileSettings,
 } from "@/lib/profile-settings";
+import {
+  APP_EDITION_STORAGE_KEY,
+  FORCE_PASSWORD_CHANGE_STORAGE_KEY,
+  getEditionLabel,
+  isRouteEnabled,
+  useAppEdition,
+  type AppRoutePath,
+} from "@/lib/app-edition";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
-  to:
-    | "/"
-    | "/journal"
-    | "/agenda"
-    | "/programmation"
-    | "/programmation-annuelle"
-    | "/emploi-du-temps"
-    | "/ressources"
-    | "/correction-rapide"
-    | "/fluence"
-    | "/bilan-seance"
-    | "/carnet-notes"
-    | "/eleves"
-    | "/resultats-exercices"
-    | "/groupes-besoin"
-    | "/ateliers-reprise"
-    | "/messagerie";
+  to: AppRoutePath;
   label: string;
   icon: LucideIcon;
   alertKey?: "agenda" | "messagerie";
@@ -125,10 +117,13 @@ const SECONDARY: { label: string; icon: LucideIcon }[] = [{ label: "Photocopies"
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { edition, isColleagueEdition } = useAppEdition();
   const { logoCompactSrc, logoIconSrc } = useThemePalette();
   const [pinned, setPinned] = useState(false);
   const [hovered, setHovered] = useState(false);
   const sidebarCompact = !pinned && !hovered;
+  const [optionsOpen, setOptionsOpen] = useState(false);
+  const [mustChangePassword, setMustChangePassword] = useState(false);
   const [mailAlertCount, setMailAlertCount] = useState(0);
   const [agendaAlertCount, setAgendaAlertCount] = useState(0);
   const [mailIds, setMailIds] = useState<string[]>([]);
@@ -136,12 +131,33 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<ProfileSettings>(readProfileSettings);
   const [cloudState, setCloudState] = useState(getCloudSyncState);
   const { data: mailAnalyses = [] } = useMailAnalyses();
+  const visibleNavGroups = useMemo(
+    () =>
+      NAV_GROUPS.map((group) => ({
+        ...group,
+        items: group.items.filter((item) => isRouteEnabled(item.to, edition)),
+      })).filter((group) => group.items.length > 0),
+    [edition],
+  );
+  const visibleNav = useMemo(() => visibleNavGroups.flatMap((group) => group.items), [visibleNavGroups]);
+  const routeEnabled = isRouteEnabled(pathname, edition);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const stored = window.localStorage.getItem("ardoise-sidebar-pinned");
     setPinned(stored === "1");
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const shouldPrompt =
+      isColleagueEdition &&
+      window.localStorage.getItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY) === "1";
+    setMustChangePassword(shouldPrompt);
+    if (shouldPrompt) {
+      setOptionsOpen(true);
+    }
+  }, [isColleagueEdition]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -181,15 +197,25 @@ export function AppShell({ children }: { children: ReactNode }) {
   }, [pinned]);
 
   useEffect(() => {
+    if (isColleagueEdition) {
+      setMailIds([]);
+      setMailAlertCount(0);
+      return;
+    }
     const handledIds = new Set(getHandledMailIds());
     const activeMailIds = mailAnalyses
       .filter((mail) => !handledIds.has(mail.externalId))
       .map((mail) => mail.externalId);
     setMailIds(activeMailIds);
     setMailAlertCount(countUnseenMailIds(activeMailIds));
-  }, [mailAnalyses]);
+  }, [isColleagueEdition, mailAnalyses]);
 
   useEffect(() => {
+    if (isColleagueEdition) {
+      setAgendaKeys([]);
+      setAgendaAlertCount(0);
+      return;
+    }
     let cancelled = false;
 
     function toParisMidnightIso(date: Date, addDays = 0): string {
@@ -272,7 +298,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       cancelled = true;
       window.clearInterval(intervalId);
     };
-  }, []);
+  }, [isColleagueEdition]);
 
   useEffect(() => {
     if (pathname === "/messagerie" && mailIds.length > 0) {
@@ -300,6 +326,42 @@ export function AppShell({ children }: { children: ReactNode }) {
     if (item.alertKey === "messagerie") return mailAlertCount;
     return 0;
   }
+
+  const restrictedPage = (
+    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <div className="card-surface rounded-[28px] p-6 sm:p-8">
+        <p className="eyebrow">Édition collègue</p>
+        <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          Cette page n’est pas incluse dans cette version
+        </h1>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Cette déclinaison d’Ardoise est recentrée sur le cahier journal, les ressources, les
+          corrections, le carnet de notes et le suivi des élèves pour garder un espace plus simple
+          à utiliser au quotidien.
+        </p>
+        <div className="mt-5 flex flex-wrap gap-2">
+          <Link
+            to="/journal"
+            className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-card transition-opacity hover:opacity-90"
+          >
+            Ouvrir le cahier journal
+          </Link>
+          <Link
+            to="/ressources"
+            className="inline-flex items-center rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+          >
+            Voir les ressources
+          </Link>
+          <Link
+            to="/eleves"
+            className="inline-flex items-center rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+          >
+            Suivre les élèves
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -352,7 +414,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
         <TooltipProvider delayDuration={120}>
           <nav className="mt-7 flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto pr-1">
-            {NAV_GROUPS.map((group) => (
+            {visibleNavGroups.map((group) => (
               <div key={group.title}>
                 {!sidebarCompact ? (
                   <div className="flex items-center gap-2 px-3">
@@ -430,7 +492,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </TooltipProvider>
 
         <nav className="mt-6 flex flex-col gap-0.5" aria-label="Fonctionnalités à venir">
-          {SECONDARY.map(({ label, icon: Icon }) => (
+          {(!isColleagueEdition ? SECONDARY : []).map(({ label, icon: Icon }) => (
             <span
               key={label}
               aria-disabled="true"
@@ -476,24 +538,25 @@ export function AppShell({ children }: { children: ReactNode }) {
       </aside>
 
       <div className={cn("transition-all duration-300", pinned ? "lg:pl-64" : "lg:pl-20")}>
-        <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-background)_84%,transparent),color-mix(in_oklab,var(--color-card)_74%,transparent))] px-4 py-3 backdrop-blur-2xl sm:px-6">
+        <header className="sticky top-0 z-30 flex items-center gap-2.5 border-b border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-background)_84%,transparent),color-mix(in_oklab,var(--color-card)_74%,transparent))] px-3 py-2.5 backdrop-blur-2xl sm:gap-3 sm:px-6 sm:py-3">
           <img src={logoCompactSrc} alt="Ardoise" className="h-7 w-auto shrink-0 lg:hidden" />
           <nav
-            className="flex min-w-0 items-center gap-1.5 overflow-x-auto lg:hidden"
+            className="flex min-w-0 items-center gap-1 overflow-x-auto pb-0.5 lg:hidden"
             style={{ scrollbarWidth: "none" }}
           >
-            {NAV.map((item) => (
+            {visibleNav.map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
                 className={cn(
-                  "shrink-0 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors",
+                  "shrink-0 rounded-full border border-border bg-card px-2.5 py-1.5 text-[0.72rem] font-medium text-muted-foreground transition-colors max-[430px]:px-2",
                   pathname === item.to &&
                     "border-transparent bg-primary text-primary-foreground shadow-card",
                 )}
               >
                 <span className="inline-flex items-center gap-1.5">
-                  {item.label}
+                  <item.icon className="h-3.5 w-3.5 shrink-0" />
+                  <span className="max-[430px]:hidden">{item.label}</span>
                   {getItemAlertCount(item) > 0 ? (
                     <span
                       className={cn(
@@ -518,19 +581,19 @@ export function AppShell({ children }: { children: ReactNode }) {
             </span>
           </div>
 
-          <div className="ml-auto flex shrink-0 items-center gap-2">
-            {mailAlertCount > 0 || agendaAlertCount > 0 ? (
+          <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+            {!isColleagueEdition && (mailAlertCount > 0 || agendaAlertCount > 0) ? (
               <span className="hidden items-center gap-1.5 rounded-full border border-danger-soft-border bg-danger-soft px-3 py-1.5 text-xs font-semibold text-danger-strong lg:inline-flex">
                 <CalendarCheck className="h-3.5 w-3.5" />
                 {mailAlertCount + agendaAlertCount} alerte
                 {mailAlertCount + agendaAlertCount > 1 ? "s" : ""}
               </span>
             ) : null}
-            <Popover>
+            <Popover open={optionsOpen} onOpenChange={setOptionsOpen}>
               <PopoverTrigger asChild>
                 <button
                   type="button"
-                  className="flex shrink-0 items-center gap-3 rounded-2xl border border-border/80 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_38%,transparent))] px-2.5 py-1.5 text-left shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-raised"
+                  className="flex shrink-0 items-center gap-2 rounded-2xl border border-border/80 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_38%,transparent))] px-2 py-1.5 text-left shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-raised sm:gap-3 sm:px-2.5"
                   aria-label="Options et apparence"
                   title="Options et apparence"
                 >
@@ -552,8 +615,13 @@ export function AppShell({ children }: { children: ReactNode }) {
                       />
                       {cloudState.configured ? "Cloud prêt" : "Cloud local"}
                     </span>
+                    {isColleagueEdition ? (
+                      <span className="mt-0.5 block text-[0.68rem] font-medium tracking-[0.08em] text-muted-foreground uppercase">
+                        {getEditionLabel(edition)}
+                      </span>
+                    ) : null}
                   </span>
-                  <span className="grid h-8 w-8 place-items-center rounded-full border border-border/70 bg-secondary/85 text-primary">
+                  <span className="grid h-7 w-7 place-items-center rounded-full border border-border/70 bg-secondary/85 text-primary sm:h-8 sm:w-8">
                     <Palette className="h-3.5 w-3.5" />
                   </span>
                 </button>
@@ -571,10 +639,20 @@ export function AppShell({ children }: { children: ReactNode }) {
                       {cloudState.configured ? "Cloud prêt" : "Cloud local"}
                     </span>
                   </div>
-                  <ProfileSettingsPanel />
+                  <ProfileSettingsPanel
+                    mustChangePassword={mustChangePassword}
+                    onPasswordChanged={() => {
+                      if (typeof window !== "undefined") {
+                        window.localStorage.removeItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY);
+                      }
+                      setMustChangePassword(false);
+                    }}
+                  />
                   <button
                     type="button"
                     onClick={() => {
+                      window.localStorage.removeItem(APP_EDITION_STORAGE_KEY);
+                      window.localStorage.removeItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY);
                       void fetch("/api/auth/logout", { method: "POST" }).finally(() => {
                         window.location.href = "/login";
                       });
@@ -589,7 +667,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Popover>
           </div>
         </header>
-        <main className="animate-fade-in">{children}</main>
+        <main className="animate-fade-in">{routeEnabled ? children : restrictedPage}</main>
       </div>
     </div>
   );

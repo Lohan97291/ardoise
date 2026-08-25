@@ -10,6 +10,7 @@ import {
 import { useEffect } from "react";
 
 import { ThemePaletteProvider } from "@/lib/theme-palette";
+import { AppEditionProvider } from "@/lib/app-edition";
 import { Toaster } from "@/components/ui/sonner";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import "../styles.css";
@@ -60,11 +61,13 @@ function RootComponent() {
       </head>
       <body>
         <ThemePaletteProvider>
-          <QueryClientProvider client={queryClient}>
-            {/* Required: nested routes render here. */}
-            <Outlet />
-            <Toaster richColors position="bottom-right" />
-          </QueryClientProvider>
+          <AppEditionProvider>
+            <QueryClientProvider client={queryClient}>
+              {/* Required: nested routes render here. */}
+              <Outlet />
+              <Toaster richColors position="bottom-right" />
+            </QueryClientProvider>
+          </AppEditionProvider>
         </ThemePaletteProvider>
         <Scripts />
       </body>

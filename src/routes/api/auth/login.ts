@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { buildSessionCookie, checkPassword, isAuthConfigured } from "@/lib/server/auth.server";
+import {
+  buildSessionCookie,
+  colleaguePasswordNeedsReset,
+  getEditionForPassword,
+  isAuthConfigured,
+} from "@/lib/server/auth.server";
 
 export const Route = createFileRoute("/api/auth/login")({
   server: {
@@ -19,12 +24,17 @@ export const Route = createFileRoute("/api/auth/login")({
           body && typeof body === "object" && "password" in body
             ? String((body as Record<string, unknown>).password ?? "")
             : "";
-        if (!checkPassword(password)) {
+        const edition = getEditionForPassword(password);
+        if (!edition) {
           return Response.json({ error: "Mot de passe incorrect." }, { status: 401 });
         }
         return Response.json(
-          { success: true },
-          { headers: { "Set-Cookie": buildSessionCookie(request) } },
+          {
+            success: true,
+            edition,
+            mustChangePassword: edition === "collegue" ? colleaguePasswordNeedsReset() : false,
+          },
+          { headers: { "Set-Cookie": buildSessionCookie(request, edition) } },
         );
       },
     },

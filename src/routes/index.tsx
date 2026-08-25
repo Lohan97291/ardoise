@@ -89,6 +89,7 @@ import { getRecentSignals } from "@/lib/signal-storage";
 import { getZoneCSchoolRhythm } from "@/lib/school-rhythm";
 import { cn } from "@/lib/utils";
 import { readJournalDays } from "@/lib/journal-storage";
+import { useAppEdition } from "@/lib/app-edition";
 
 const PHASE_RING: Record<PhaseStatus, string> = {
   not_started: "border-border text-transparent hover:border-muted-foreground",
@@ -188,6 +189,7 @@ function dashboardEventTime(event: DashboardSyncedEvent): string {
 }
 
 function Dashboard() {
+  const { isColleagueEdition } = useAppEdition();
   const [dateLabel, setDateLabel] = useState(() => formatLongDate(today));
   const [timeLabel, setTimeLabel] = useState("");
   const [nowMinutes, setNowMinutes] = useState<number | null>(null);
@@ -341,6 +343,10 @@ function Dashboard() {
   const [syncedAgendaEvents, setSyncedAgendaEvents] = useState<DashboardSyncedEvent[]>([]);
 
   useEffect(() => {
+    if (isColleagueEdition) {
+      setSyncedAgendaEvents([]);
+      return;
+    }
     let cancelled = false;
     const start = new Date(today);
     start.setHours(0, 0, 0, 0);
@@ -382,17 +388,19 @@ function Dashboard() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [isColleagueEdition]);
 
   const { data: mailAnalyses = [] } = useMailAnalyses();
   const handledMailIds = getHandledMailIds();
-  const unhandledMailCount = mailAnalyses.filter(
-    (m) => !handledMailIds.includes(m.externalId),
-  ).length;
-  const recentMails = mailAnalyses
-    .filter((m) => !handledMailIds.includes(m.externalId))
-    .sort((a, b) => b.receivedAt.localeCompare(a.receivedAt))
-    .slice(0, 4);
+  const unhandledMailCount = isColleagueEdition
+    ? 0
+    : mailAnalyses.filter((m) => !handledMailIds.includes(m.externalId)).length;
+  const recentMails = isColleagueEdition
+    ? []
+    : mailAnalyses
+        .filter((m) => !handledMailIds.includes(m.externalId))
+        .sort((a, b) => b.receivedAt.localeCompare(a.receivedAt))
+        .slice(0, 4);
   const schoolRhythm = useMemo(() => getZoneCSchoolRhythm(today), []);
 
   return (
@@ -434,7 +442,9 @@ function Dashboard() {
                 <Link to="/correction-rapide">Corriger</Link>
               </Button>
               <Button asChild size="sm" variant="outline">
-                <Link to="/programmation">Programmation</Link>
+                <Link to={isColleagueEdition ? "/ressources" : "/programmation"}>
+                  {isColleagueEdition ? "Ressources" : "Programmation"}
+                </Link>
               </Button>
             </div>
           </div>
@@ -1029,8 +1039,8 @@ function Dashboard() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)]">
-          {/* Agenda & messagerie */}
-          <section className={WIDGET}>
+          {!isColleagueEdition ? (
+            <section className={WIDGET}>
             <div className="grid gap-3 border-b border-border pb-3">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className={WIDGET_TITLE}>
@@ -1248,7 +1258,8 @@ function Dashboard() {
                 )}
               </div>
             </div>
-          </section>
+            </section>
+          ) : null}
 
           {/* Signaux à surveiller — automatiques + ajoutés à la main */}
           <section className={cn(WIDGET_COMPACT, "border-danger-soft-border bg-danger-soft")}>

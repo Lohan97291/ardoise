@@ -3,6 +3,8 @@ import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/r
 import { renderErrorPage } from "./lib/error-page";
 import {
   AUTH_COOKIE_NAME,
+  getEditionFromSessionCookie,
+  isAuthConfigured,
   isValidSessionCookie,
   parseCookieHeader,
 } from "./lib/server/auth.server";
@@ -42,15 +44,30 @@ function isServiceIngressRequest(request: Request, pathname: string): boolean {
 }
 
 const authMiddleware = createMiddleware().server(async ({ request, pathname, next }) => {
-  const appPassword = process.env.APP_PASSWORD;
-  if (!appPassword || isPublicAuthPath(pathname) || isServiceIngressRequest(request, pathname)) {
+  if (!isAuthConfigured() || isPublicAuthPath(pathname) || isServiceIngressRequest(request, pathname)) {
     return next();
   }
 
   const isApiRequest = pathname.startsWith("/api/");
 
   const cookies = parseCookieHeader(request.headers.get("cookie"));
-  if (isValidSessionCookie(cookies[AUTH_COOKIE_NAME])) return next();
+  if (isValidSessionCookie(cookies[AUTH_COOKIE_NAME])) {
+    const acceptsHtml = request.headers.get("accept")?.includes("text/html") ?? false;
+    if (acceptsHtml) {
+      const sessionEdition = getEditionFromSessionCookie(cookies[AUTH_COOKIE_NAME]);
+      if (sessionEdition === "collegue") {
+        const currentUrl = new URL(request.url);
+        if (currentUrl.searchParams.get("edition") !== "collegue") {
+          currentUrl.searchParams.set("edition", "collegue");
+          return new Response(null, {
+            status: 302,
+            headers: { Location: currentUrl.toString() },
+          });
+        }
+      }
+    }
+    return next();
+  }
 
   if (isApiRequest) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
