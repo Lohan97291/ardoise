@@ -432,12 +432,14 @@ function Dashboard() {
                   Ouvrir le journal
                 </Link>
               </Button>
-              <Button asChild size="sm" variant="outline">
-                <Link to="/compagnon-classe">
-                  <Smartphone className="mr-1.5 h-4 w-4" />
-                  Mode classe
-                </Link>
-              </Button>
+              {!isColleagueEdition ? (
+                <Button asChild size="sm" variant="outline">
+                  <Link to="/compagnon-classe">
+                    <Smartphone className="mr-1.5 h-4 w-4" />
+                    Mode classe
+                  </Link>
+                </Button>
+              ) : null}
               <Button asChild size="sm" variant="outline">
                 <Link to="/correction-rapide">Corriger</Link>
               </Button>
@@ -449,7 +451,14 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-[minmax(0,1.4fr)_repeat(2,minmax(0,1fr))] xl:max-w-4xl">
+          <div
+            className={cn(
+              "mt-5 grid gap-3 xl:max-w-4xl",
+              isColleagueEdition
+                ? "sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]"
+                : "sm:grid-cols-[minmax(0,1.4fr)_repeat(2,minmax(0,1fr))]",
+            )}
+          >
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4 shadow-card">
               <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
                 Journal du jour
@@ -467,12 +476,14 @@ function Dashboard() {
                 {pendingPreparationItems.length}
               </p>
             </div>
-            <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
-                Mails à traiter
-              </p>
-              <p className="mt-2 text-2xl font-bold text-foreground">{unhandledMailCount}</p>
-            </div>
+            {!isColleagueEdition ? (
+              <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Mails à traiter
+                </p>
+                <p className="mt-2 text-2xl font-bold text-foreground">{unhandledMailCount}</p>
+              </div>
+            ) : null}
           </div>
 
         </header>
@@ -1381,9 +1392,11 @@ function Dashboard() {
                 })}
               </ul>
             )}
-            <Button asChild variant="outline" size="sm" className="mt-3 w-full bg-card">
-              <Link to="/fluence">Voir le suivi de la classe</Link>
-            </Button>
+            {!isColleagueEdition ? (
+              <Button asChild variant="outline" size="sm" className="mt-3 w-full bg-card">
+                <Link to="/fluence">Voir le suivi de la classe</Link>
+              </Button>
+            ) : null}
           </section>
         </div>
       </div>

@@ -491,29 +491,31 @@ export function AppShell({ children }: { children: ReactNode }) {
           </nav>
         </TooltipProvider>
 
-        <nav className="mt-6 flex flex-col gap-0.5" aria-label="Fonctionnalités à venir">
-          {(!isColleagueEdition ? SECONDARY : []).map(({ label, icon: Icon }) => (
-            <span
-              key={label}
-              aria-disabled="true"
-              title={`${label} · fonctionnalité à venir`}
-              className={cn(
-                "cursor-not-allowed items-center rounded-lg border border-dashed border-border/70 text-sm font-medium text-muted-foreground/60",
-                sidebarCompact ? "flex justify-center px-2 py-2.5" : "flex gap-2.5 px-3 py-2",
-              )}
-            >
-              <Icon className="h-4 w-4 shrink-0 opacity-60" />
-              {!sidebarCompact ? (
-                <>
-                  <span className="truncate">{label}</span>
-                  <span className="ml-auto shrink-0 rounded-full bg-secondary px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-muted-foreground">
-                    Bientôt
-                  </span>
-                </>
-              ) : null}
-            </span>
-          ))}
-        </nav>
+        {!isColleagueEdition ? (
+          <nav className="mt-6 flex flex-col gap-0.5" aria-label="Fonctionnalités à venir">
+            {SECONDARY.map(({ label, icon: Icon }) => (
+              <span
+                key={label}
+                aria-disabled="true"
+                title={`${label} · fonctionnalité à venir`}
+                className={cn(
+                  "cursor-not-allowed items-center rounded-lg border border-dashed border-border/70 text-sm font-medium text-muted-foreground/60",
+                  sidebarCompact ? "flex justify-center px-2 py-2.5" : "flex gap-2.5 px-3 py-2",
+                )}
+              >
+                <Icon className="h-4 w-4 shrink-0 opacity-60" />
+                {!sidebarCompact ? (
+                  <>
+                    <span className="truncate">{label}</span>
+                    <span className="ml-auto shrink-0 rounded-full bg-secondary px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-muted-foreground">
+                      Bientôt
+                    </span>
+                  </>
+                ) : null}
+              </span>
+            ))}
+          </nav>
+        ) : null}
 
         <div
           className={cn(
