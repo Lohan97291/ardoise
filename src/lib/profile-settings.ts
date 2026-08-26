@@ -1,4 +1,5 @@
 import { createLocalStore } from "@/lib/local-store";
+import { CURRENT_CLASSROOM } from "@/lib/ardoise-eval";
 
 export type ProfileSettings = {
   displayName: string;
@@ -10,14 +11,22 @@ export type ProfileSettings = {
 export const PROFILE_SETTINGS_EVENT = "ardoise:profile-settings-updated";
 
 export const DEFAULT_PROFILE_SETTINGS: ProfileSettings = {
-  displayName: "M. Boulard",
-  initials: "MB",
-  classLabel: "CE1 · 2026-2027",
-  schoolLabel: "11 élèves · École Romain Rolland",
+  displayName: CURRENT_CLASSROOM.displayName,
+  initials: CURRENT_CLASSROOM.initials,
+  classLabel: CURRENT_CLASSROOM.classLabel,
+  schoolLabel: CURRENT_CLASSROOM.schoolLabel,
 };
 
+function getProfileStoreKey() {
+  if (CURRENT_CLASSROOM.key === "boulard") {
+    return "ardoise-profile-settings";
+  }
+
+  return "ardoise-profile-settings-romain-rolland";
+}
+
 const profileStore = createLocalStore<ProfileSettings>(
-  "ardoise-profile-settings",
+  getProfileStoreKey(),
   DEFAULT_PROFILE_SETTINGS,
 );
 
@@ -38,7 +47,13 @@ export function normalizeProfileSettings(
 }
 
 export function readProfileSettings(): ProfileSettings {
-  return normalizeProfileSettings(profileStore.get());
+  const stored = normalizeProfileSettings(profileStore.get());
+
+  if (CURRENT_CLASSROOM.key !== "boulard" && stored.displayName === "M. Boulard") {
+    return DEFAULT_PROFILE_SETTINGS;
+  }
+
+  return stored;
 }
 
 export function saveProfileSettings(

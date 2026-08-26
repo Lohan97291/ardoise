@@ -10,6 +10,8 @@ import {
   FORCE_PASSWORD_CHANGE_STORAGE_KEY,
 } from "@/lib/app-edition";
 
+const COLLEAGUE_CLASSROOM_STORAGE_KEY = "ardoise-colleague-classroom";
+
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [{ title: "Connexion — Ardoise" }],
@@ -39,10 +41,17 @@ function LoginPage() {
         return;
       }
       const payload = (await response.json().catch(() => null)) as
-        | { edition?: "full" | "collegue"; mustChangePassword?: boolean }
+        | {
+            edition?: "full" | "collegue";
+            mustChangePassword?: boolean;
+            classroom?: "durand" | "grimal";
+          }
         | null;
       if (payload?.edition) {
         window.localStorage.setItem(APP_EDITION_STORAGE_KEY, payload.edition);
+      }
+      if (payload?.classroom) {
+        window.localStorage.setItem(COLLEAGUE_CLASSROOM_STORAGE_KEY, payload.classroom);
       }
       if (payload?.mustChangePassword) {
         window.localStorage.setItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY, "1");
@@ -53,6 +62,9 @@ function LoginPage() {
       const target = new URL(next && next.startsWith("/") ? next : "/", window.location.origin);
       if (payload?.edition === "collegue") {
         target.searchParams.set("edition", "collegue");
+        if (payload.classroom) {
+          target.searchParams.set("classroom", payload.classroom);
+        }
       }
       window.location.href = `${target.pathname}${target.search}${target.hash}`;
     } catch {

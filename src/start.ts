@@ -7,6 +7,7 @@ import {
   isAuthConfigured,
   isValidSessionCookie,
   parseCookieHeader,
+  resolveColleagueClassroom,
 } from "./lib/server/auth.server";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
@@ -59,6 +60,14 @@ const authMiddleware = createMiddleware().server(async ({ request, pathname, nex
         const currentUrl = new URL(request.url);
         if (currentUrl.searchParams.get("edition") !== "collegue") {
           currentUrl.searchParams.set("edition", "collegue");
+          currentUrl.searchParams.set("classroom", resolveColleagueClassroom());
+          return new Response(null, {
+            status: 302,
+            headers: { Location: currentUrl.toString() },
+          });
+        }
+        if (currentUrl.searchParams.get("classroom") !== resolveColleagueClassroom()) {
+          currentUrl.searchParams.set("classroom", resolveColleagueClassroom());
           return new Response(null, {
             status: 302,
             headers: { Location: currentUrl.toString() },

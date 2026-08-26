@@ -6,6 +6,7 @@ import type { AppEdition } from "@/lib/app-edition";
 export const AUTH_COOKIE_NAME = "ardoise_auth";
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30; // 30 jours
 const AUTH_SETTINGS_PATH = join(process.cwd(), ".data", "auth-settings.json");
+export type ColleagueClassroom = "durand" | "grimal";
 
 type AuthSettings = {
   password?: string;
@@ -13,6 +14,7 @@ type AuthSettings = {
   colleaguePassword?: string;
   colleaguePasswordUpdatedAt?: string;
   colleaguePasswordMustChange?: boolean;
+  colleagueClassroom?: ColleagueClassroom;
 };
 
 function safeEqual(a: string, b: string): boolean {
@@ -28,6 +30,26 @@ function resolveFullPasswordSecret(): string {
 
 function resolveColleaguePasswordSecret(): string {
   return readStoredAuthSettings()?.colleaguePassword ?? process.env.APP_PASSWORD_COLLEGUE ?? "";
+}
+
+function normalizeColleagueClassroom(
+  raw: string | null | undefined,
+): ColleagueClassroom | null {
+  if (!raw) return null;
+  const cleaned = raw.trim().toLowerCase();
+  if (cleaned === "durand") return "durand";
+  if (cleaned === "grimal") return "grimal";
+  return null;
+}
+
+export function resolveColleagueClassroom(): ColleagueClassroom {
+  const stored = normalizeColleagueClassroom(readStoredAuthSettings()?.colleagueClassroom);
+  if (stored) return stored;
+
+  const envClassroom = normalizeColleagueClassroom(
+    process.env.ARDOISE_COLLEAGUE_CLASSROOM ?? process.env.VITE_ARDOISE_COLLEAGUE_CLASSROOM,
+  );
+  return envClassroom ?? "durand";
 }
 
 function getSessionSecret(): string {
@@ -63,6 +85,7 @@ function readStoredAuthSettings(): AuthSettings | null {
       colleaguePassword: hasColleaguePassword ? parsed.colleaguePassword?.trim() : undefined,
       colleaguePasswordUpdatedAt: parsed.colleaguePasswordUpdatedAt ?? undefined,
       colleaguePasswordMustChange: Boolean(parsed.colleaguePasswordMustChange),
+      colleagueClassroom: normalizeColleagueClassroom(parsed.colleagueClassroom),
     };
   } catch {
     return null;
@@ -116,6 +139,13 @@ function persistAuthSettings(partial: Partial<AuthSettings>): void {
       (partial.colleaguePassword ? new Date().toISOString() : undefined),
     colleaguePasswordMustChange:
       partial.colleaguePasswordMustChange ?? current.colleaguePasswordMustChange ?? false,
+    colleagueClassroom:
+      partial.colleagueClassroom ??
+      current.colleagueClassroom ??
+      normalizeColleagueClassroom(
+        process.env.ARDOISE_COLLEAGUE_CLASSROOM ?? process.env.VITE_ARDOISE_COLLEAGUE_CLASSROOM,
+      ) ??
+      "durand",
   });
 }
 

@@ -5,6 +5,7 @@ import {
   colleaguePasswordNeedsReset,
   getEditionForPassword,
   isAuthConfigured,
+  resolveColleagueClassroom,
 } from "@/lib/server/auth.server";
 
 export const Route = createFileRoute("/api/auth/login")({
@@ -33,6 +34,7 @@ export const Route = createFileRoute("/api/auth/login")({
             success: true,
             edition,
             mustChangePassword: edition === "collegue" ? colleaguePasswordNeedsReset() : false,
+            classroom: edition === "collegue" ? resolveColleagueClassroom() : undefined,
           },
           { headers: { "Set-Cookie": buildSessionCookie(request, edition) } },
         );

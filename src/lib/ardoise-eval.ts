@@ -33,20 +33,137 @@ export type Student = {
   lastName: string;
 };
 
-// CE1 D — M. BOULARD — École Romain Rolland — Vigneux-sur-Seine — 2026-2027
-export const STUDENTS: Student[] = [
-  { id: "el-1", firstName: "Ysmaël", lastName: "Abdallah" },
-  { id: "el-2", firstName: "Fanta", lastName: "Berthe" },
-  { id: "el-3", firstName: "Lucas", lastName: "Deproge Ngom" },
-  { id: "el-4", firstName: "Ylan", lastName: "Ferjule" },
-  { id: "el-5", firstName: "Kamil", lastName: "Mohamed" },
-  { id: "el-6", firstName: "Elena", lastName: "Nefous" },
-  { id: "el-7", firstName: "Emmanuella", lastName: "Nyapi-Gath" },
-  { id: "el-8", firstName: "Fatoumata", lastName: "Sakho" },
-  { id: "el-9", firstName: "Nadia Zainab", lastName: "Stolarska Muhammad" },
-  { id: "el-10", firstName: "Sayden", lastName: "Tessia" },
-  { id: "el-11", firstName: "Lea", lastName: "Yefsah" },
+export type ClassroomKey = "boulard" | "durand" | "grimal";
+
+export type ClassroomDefinition = {
+  key: ClassroomKey;
+  displayName: string;
+  initials: string;
+  classLabel: string;
+  schoolLabel: string;
+  students: Student[];
+};
+
+const ROMAIN_ROLLAND_COLLEAGUE_STUDENTS: Student[] = [
+  { id: "grimal-1", firstName: "Ashley", lastName: "Banzouzi-Ndala" },
+  { id: "grimal-2", firstName: "Oceane", lastName: "Da Silva Bridanne" },
+  { id: "grimal-3", firstName: "Maïa", lastName: "Da Veiga Cotillard" },
+  { id: "grimal-4", firstName: "Mauro", lastName: "Dos Santos Mendes Vaz" },
+  { id: "grimal-5", firstName: "Mylhan", lastName: "Dunyach" },
+  { id: "grimal-6", firstName: "Ayaz", lastName: "Dursun" },
+  { id: "grimal-7", firstName: "Lyna", lastName: "Ettabia" },
+  { id: "grimal-8", firstName: "DANIEL", lastName: "Ferreira Castro" },
+  { id: "grimal-9", firstName: "FODIE", lastName: "Gassama" },
+  { id: "grimal-10", firstName: "Mah-Bintou", lastName: "Keita" },
+  { id: "durand-1", firstName: "Thania", lastName: "Agad" },
+  { id: "durand-2", firstName: "Nousseyba", lastName: "Kherbach" },
+  { id: "durand-3", firstName: "Aurelio", lastName: "Lutumba Mateus Sebastiao" },
+  { id: "durand-4", firstName: "Nolann", lastName: "Martial" },
+  { id: "durand-5", firstName: "Melek", lastName: "Megherbi" },
+  { id: "durand-6", firstName: "Victoria", lastName: "Oba" },
+  { id: "durand-7", firstName: "Hawa", lastName: "Sangare" },
+  { id: "durand-8", firstName: "Souleyman", lastName: "Sano" },
+  { id: "durand-9", firstName: "Teo", lastName: "Spac" },
+  { id: "durand-10", firstName: "Kimia", lastName: "Tchatat" },
 ];
+
+const APP_EDITION_STORAGE_KEY = "ardoise-app-edition";
+const COLLEAGUE_CLASSROOM_STORAGE_KEY = "ardoise-colleague-classroom";
+
+function normalizeEdition(raw: string | null | undefined): "full" | "collegue" {
+  return raw === "collegue" || raw === "colleague" ? "collegue" : "full";
+}
+
+function normalizeClassroomKey(raw: string | null | undefined): ClassroomKey | null {
+  if (!raw) return null;
+  const cleaned = raw.trim().toLowerCase();
+  if (cleaned === "boulard") return "boulard";
+  if (cleaned === "durand") return "durand";
+  if (cleaned === "grimal") return "grimal";
+  return null;
+}
+
+function readCurrentEdition(): "full" | "collegue" {
+  if (typeof window !== "undefined") {
+    const url = new URL(window.location.href);
+    const queryEdition = normalizeEdition(url.searchParams.get("edition"));
+    if (queryEdition === "collegue") return "collegue";
+
+    const storedEdition = normalizeEdition(window.localStorage.getItem(APP_EDITION_STORAGE_KEY));
+    if (storedEdition === "collegue") return "collegue";
+  }
+
+  return normalizeEdition(import.meta.env.VITE_ARDOISE_EDITION);
+}
+
+function readColleagueClassroom(): ClassroomKey {
+  if (typeof window !== "undefined") {
+    const url = new URL(window.location.href);
+    const queryClassroom =
+      normalizeClassroomKey(url.searchParams.get("classroom")) ??
+      normalizeClassroomKey(url.searchParams.get("teacher"));
+    if (queryClassroom && queryClassroom !== "boulard") return queryClassroom;
+
+    const storedClassroom = normalizeClassroomKey(
+      window.localStorage.getItem(COLLEAGUE_CLASSROOM_STORAGE_KEY),
+    );
+    if (storedClassroom && storedClassroom !== "boulard") return storedClassroom;
+  }
+
+  const envClassroom = normalizeClassroomKey(import.meta.env.VITE_ARDOISE_COLLEAGUE_CLASSROOM);
+  return envClassroom === "grimal" || envClassroom === "durand" ? envClassroom : "durand";
+}
+
+export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
+  // CE1 D — M. BOULARD — École Romain Rolland — Vigneux-sur-Seine — 2026-2027
+  boulard: {
+    key: "boulard",
+    displayName: "M. Boulard",
+    initials: "MB",
+    classLabel: "CE1 · 2026-2027",
+    schoolLabel: "11 élèves · École Romain Rolland",
+    students: [
+      { id: "el-1", firstName: "Ysmaël", lastName: "Abdallah" },
+      { id: "el-2", firstName: "Fanta", lastName: "Berthe" },
+      { id: "el-3", firstName: "Lucas", lastName: "Deproge Ngom" },
+      { id: "el-4", firstName: "Ylan", lastName: "Ferjule" },
+      { id: "el-5", firstName: "Kamil", lastName: "Mohamed" },
+      { id: "el-6", firstName: "Elena", lastName: "Nefous" },
+      { id: "el-7", firstName: "Emmanuella", lastName: "Nyapi-Gath" },
+      { id: "el-8", firstName: "Fatoumata", lastName: "Sakho" },
+      { id: "el-9", firstName: "Nadia Zainab", lastName: "Stolarska Muhammad" },
+      { id: "el-10", firstName: "Sayden", lastName: "Tessia" },
+      { id: "el-11", firstName: "Lea", lastName: "Yefsah" },
+    ],
+  },
+  durand: {
+    key: "durand",
+    displayName: "Mme Durand · Mme Grimal",
+    initials: "DG",
+    classLabel: "CE1 A · 2026-2027",
+    schoolLabel: "20 élèves · École Romain Rolland",
+    students: ROMAIN_ROLLAND_COLLEAGUE_STUDENTS,
+  },
+  grimal: {
+    key: "grimal",
+    displayName: "Mme Durand · Mme Grimal",
+    initials: "DG",
+    classLabel: "CE1 A · 2026-2027",
+    schoolLabel: "20 élèves · École Romain Rolland",
+    students: ROMAIN_ROLLAND_COLLEAGUE_STUDENTS,
+  },
+};
+
+export function resolveCurrentClassroomKey(): ClassroomKey {
+  return readCurrentEdition() === "collegue" ? readColleagueClassroom() : "boulard";
+}
+
+export function getCurrentClassroom(): ClassroomDefinition {
+  return CLASSROOMS[resolveCurrentClassroomKey()];
+}
+
+export const CURRENT_CLASSROOM = getCurrentClassroom();
+export const STUDENTS: Student[] = CURRENT_CLASSROOM.students;
 
 export function initials(student: Student) {
   return `${student.firstName[0]}${student.lastName[0]}`.toUpperCase();
@@ -96,11 +213,11 @@ export type CatalogEntry = {
    * Français : C=Compréhension V=Vocabulaire G=Grammaire O=Orthographe
    * Maths    : nb=Nombres calc=Calcul gm=Grandeurs geo=Géométrie don=Données
    */
-  domain: "C" | "V" | "G" | "O" | "nb" | "calc" | "gm" | "geo" | "don";
+  domain: "C" | "V" | "G" | "O" | "nb" | "calc" | "gm" | "geo" | "don" | "pe";
   period: 1 | 2 | 3 | 4 | 5;
 };
 
-export const FRENCH_DOMAINS = new Set(["C", "V", "G", "O"]);
+export const FRENCH_DOMAINS = new Set(["C", "V", "G", "O", "pe"]);
 
 export const DOMAIN_LABELS: Record<string, string> = {
   // Français (Cléo CE1)
@@ -114,6 +231,8 @@ export const DOMAIN_LABELS: Record<string, string> = {
   gm: "Grandeurs et mesures",
   geo: "Géométrie",
   don: "Organisation de données",
+  // MDI Production d'écrit
+  pe: "Production d'écrit",
 };
 
 export function catalogToExercise(entry: CatalogEntry, date: string): Exercise {
