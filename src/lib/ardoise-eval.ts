@@ -162,8 +162,55 @@ export function getCurrentClassroom(): ClassroomDefinition {
   return CLASSROOMS[resolveCurrentClassroomKey()];
 }
 
-export const CURRENT_CLASSROOM = getCurrentClassroom();
-export const STUDENTS: Student[] = CURRENT_CLASSROOM.students;
+export const CURRENT_CLASSROOM: ClassroomDefinition = new Proxy({} as ClassroomDefinition, {
+  get(_target, prop) {
+    const classroom = getCurrentClassroom();
+    const value = Reflect.get(classroom, prop, classroom);
+    return typeof value === "function" ? value.bind(classroom) : value;
+  },
+  has(_target, prop) {
+    return prop in getCurrentClassroom();
+  },
+  ownKeys() {
+    return Reflect.ownKeys(getCurrentClassroom());
+  },
+  getOwnPropertyDescriptor(_target, prop) {
+    const descriptor = Object.getOwnPropertyDescriptor(getCurrentClassroom(), prop);
+    return descriptor
+      ? { ...descriptor, configurable: true }
+      : {
+          configurable: true,
+          enumerable: true,
+          writable: false,
+          value: Reflect.get(getCurrentClassroom(), prop),
+        };
+  },
+});
+
+export const STUDENTS: Student[] = new Proxy([] as Student[], {
+  get(_target, prop) {
+    const students = getCurrentClassroom().students;
+    const value = Reflect.get(students, prop, students);
+    return typeof value === "function" ? value.bind(students) : value;
+  },
+  has(_target, prop) {
+    return prop in getCurrentClassroom().students;
+  },
+  ownKeys() {
+    return Reflect.ownKeys(getCurrentClassroom().students);
+  },
+  getOwnPropertyDescriptor(_target, prop) {
+    const descriptor = Object.getOwnPropertyDescriptor(getCurrentClassroom().students, prop);
+    return descriptor
+      ? { ...descriptor, configurable: true }
+      : {
+          configurable: true,
+          enumerable: true,
+          writable: false,
+          value: Reflect.get(getCurrentClassroom().students, prop),
+        };
+  },
+});
 
 export function initials(student: Student) {
   return `${student.firstName[0]}${student.lastName[0]}`.toUpperCase();

@@ -1,5 +1,5 @@
 import { createLocalStore } from "@/lib/local-store";
-import { CURRENT_CLASSROOM } from "@/lib/ardoise-eval";
+import { getCurrentClassroom } from "@/lib/ardoise-eval";
 
 export type ProfileSettings = {
   displayName: string;
@@ -10,47 +10,72 @@ export type ProfileSettings = {
 
 export const PROFILE_SETTINGS_EVENT = "ardoise:profile-settings-updated";
 
-export const DEFAULT_PROFILE_SETTINGS: ProfileSettings = {
-  displayName: CURRENT_CLASSROOM.displayName,
-  initials: CURRENT_CLASSROOM.initials,
-  classLabel: CURRENT_CLASSROOM.classLabel,
-  schoolLabel: CURRENT_CLASSROOM.schoolLabel,
-};
+function getDefaultProfileSettings(): ProfileSettings {
+  const classroom = getCurrentClassroom();
+  return {
+    displayName: classroom.displayName,
+    initials: classroom.initials,
+    classLabel: classroom.classLabel,
+    schoolLabel: classroom.schoolLabel,
+  };
+}
+
+export const DEFAULT_PROFILE_SETTINGS: ProfileSettings = new Proxy({} as ProfileSettings, {
+  get(_target, prop) {
+    return Reflect.get(getDefaultProfileSettings(), prop);
+  },
+  ownKeys() {
+    return Reflect.ownKeys(getDefaultProfileSettings());
+  },
+  getOwnPropertyDescriptor(_target, prop) {
+    return {
+      configurable: true,
+      enumerable: true,
+      writable: false,
+      value: Reflect.get(getDefaultProfileSettings(), prop),
+    };
+  },
+});
 
 function getProfileStoreKey() {
-  if (CURRENT_CLASSROOM.key === "boulard") {
+  if (getCurrentClassroom().key === "boulard") {
     return "ardoise-profile-settings";
   }
 
   return "ardoise-profile-settings-romain-rolland";
 }
 
-const profileStore = createLocalStore<ProfileSettings>(
-  getProfileStoreKey(),
-  DEFAULT_PROFILE_SETTINGS,
-);
+function getProfileStore() {
+  return createLocalStore<ProfileSettings>(getProfileStoreKey(), getDefaultProfileSettings);
+}
 
 function normalizeInitials(value: string): string {
   const cleaned = value.replace(/\s+/g, "").slice(0, 3);
-  return cleaned ? cleaned.toUpperCase() : DEFAULT_PROFILE_SETTINGS.initials;
+  return cleaned ? cleaned.toUpperCase() : getDefaultProfileSettings().initials;
 }
 
 export function normalizeProfileSettings(
   value: Partial<ProfileSettings> | ProfileSettings,
 ): ProfileSettings {
+  const defaults = getDefaultProfileSettings();
   return {
-    displayName: value.displayName?.trim() || DEFAULT_PROFILE_SETTINGS.displayName,
-    initials: normalizeInitials(value.initials ?? DEFAULT_PROFILE_SETTINGS.initials),
-    classLabel: value.classLabel?.trim() || DEFAULT_PROFILE_SETTINGS.classLabel,
-    schoolLabel: value.schoolLabel?.trim() || DEFAULT_PROFILE_SETTINGS.schoolLabel,
+    displayName: value.displayName?.trim() || defaults.displayName,
+    initials: normalizeInitials(value.initials ?? defaults.initials),
+    classLabel: value.classLabel?.trim() || defaults.classLabel,
+    schoolLabel: value.schoolLabel?.trim() || defaults.schoolLabel,
   };
 }
 
 export function readProfileSettings(): ProfileSettings {
-  const stored = normalizeProfileSettings(profileStore.get());
+  const stored = normalizeProfileSettings(getProfileStore().get());
+  const defaults = getDefaultProfileSettings();
 
-  if (CURRENT_CLASSROOM.key !== "boulard" && stored.displayName === "M. Boulard") {
-    return DEFAULT_PROFILE_SETTINGS;
+  if (
+    getCurrentClassroom().key !== "boulard" &&
+    stored.displayName === "M. Boulard" &&
+    stored.classLabel === "CE1 · 2026-2027"
+  ) {
+    return defaults;
   }
 
   return stored;
@@ -63,7 +88,7 @@ export function saveProfileSettings(
     ...readProfileSettings(),
     ...value,
   });
-  profileStore.set(next);
+  getProfileStore().set(next);
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent(PROFILE_SETTINGS_EVENT, { detail: next }));
   }
@@ -71,11 +96,10 @@ export function saveProfileSettings(
 }
 
 export function resetProfileSettings(): ProfileSettings {
-  profileStore.set(DEFAULT_PROFILE_SETTINGS);
+  const defaults = getDefaultProfileSettings();
+  getProfileStore().set(defaults);
   if (typeof window !== "undefined") {
-    window.dispatchEvent(
-      new CustomEvent(PROFILE_SETTINGS_EVENT, { detail: DEFAULT_PROFILE_SETTINGS }),
-    );
+    window.dispatchEvent(new CustomEvent(PROFILE_SETTINGS_EVENT, { detail: defaults }));
   }
-  return DEFAULT_PROFILE_SETTINGS;
+  return defaults;
 }
