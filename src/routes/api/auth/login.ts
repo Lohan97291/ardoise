@@ -4,6 +4,7 @@ import {
   buildSessionCookie,
   getLoginAccess,
   isAuthConfigured,
+  type ColleagueClassroom,
 } from "@/lib/server/auth.server";
 
 export const Route = createFileRoute("/api/auth/login")({
@@ -23,7 +24,15 @@ export const Route = createFileRoute("/api/auth/login")({
           body && typeof body === "object" && "password" in body
             ? String((body as Record<string, unknown>).password ?? "")
             : "";
-        const access = getLoginAccess(password);
+        const rawClassroom =
+          body && typeof body === "object" && "classroom" in body
+            ? String((body as Record<string, unknown>).classroom ?? "")
+            : "";
+        const classroom =
+          rawClassroom === "menager" || rawClassroom === "thomas-henry"
+            ? (rawClassroom as ColleagueClassroom)
+            : null;
+        const access = await getLoginAccess(password, classroom);
         if (!access) {
           return Response.json({ error: "Mot de passe incorrect." }, { status: 401 });
         }

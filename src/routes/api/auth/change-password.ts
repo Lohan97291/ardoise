@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   AUTH_COOKIE_NAME,
   changePassword,
+  getClassroomFromSessionCookie,
   getEditionFromSessionCookie,
   parseCookieHeader,
 } from "@/lib/server/auth.server";
@@ -29,8 +30,9 @@ export const Route = createFileRoute("/api/auth/change-password")({
 
         const cookies = parseCookieHeader(request.headers.get("cookie"));
         const edition = getEditionFromSessionCookie(cookies[AUTH_COOKIE_NAME]) ?? "full";
+        const classroom = getClassroomFromSessionCookie(cookies[AUTH_COOKIE_NAME]);
 
-        const result = changePassword(edition, currentPassword, nextPassword);
+        const result = await changePassword(edition, classroom, currentPassword, nextPassword);
         if (!result.ok) {
           return Response.json({ error: result.error ?? "Impossible de changer le mot de passe." }, { status: 400 });
         }

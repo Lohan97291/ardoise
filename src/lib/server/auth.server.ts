@@ -1,7 +1,8 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import type { AppEdition } from "@/lib/app-edition";
+import { getServerSupabaseClient } from "@/lib/server/supabase.server";
 
 export const AUTH_COOKIE_NAME = "ardoise_auth";
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30; // 30 jours
@@ -22,6 +23,28 @@ type AuthSettings = {
   colleaguePasswordMustChange?: boolean;
   colleagueClassroom?: ColleagueClassroom;
 };
+
+type ColleagueCredential = {
+  passwordHash: string;
+  updatedAt: string;
+  mustChangePassword: boolean;
+};
+
+type CloudCredentials = {
+  version: 1;
+  colleagues: Partial<Record<ColleagueClassroom, ColleagueCredential>>;
+};
+
+const CLOUD_CREDENTIALS_ID = "ardoise-colleague-credentials";
+const CLOUD_CREDENTIALS_SCOPE = "auth-colleague-credentials";
+
+function hashPassword(password: string): string {
+  return createHash("sha256").update(`ardoise-auth-v1:${password}`).digest("hex");
+}
+
+function passwordMatchesHash(password: string, hash: string): boolean {
+  return safeEqual(hashPassword(password), hash);
+}
 
 function safeEqual(a: string, b: string): boolean {
   const bufA = Buffer.from(a);
@@ -123,14 +146,77 @@ export function colleaguePasswordNeedsReset(): boolean {
   return Boolean(process.env.APP_PASSWORD_COLLEGUE);
 }
 
-export function getEditionForPassword(password: string): AppEdition | null {
-  return getLoginAccess(password)?.edition ?? null;
+async function loadCloudCredentials(): Promise<CloudCredentials> {
+  const client = getServerSupabaseClient();
+  if (!client) return { version: 1, colleagues: {} };
+
+  try {
+    const { data, error } = await client
+      .from("app_snapshots")
+      .select("payload")
+      .eq("id", CLOUD_CREDENTIALS_ID)
+      .maybeSingle();
+    if (error || !data?.payload || typeof data.payload !== "object") {
+      return { version: 1, colleagues: {} };
+    }
+
+    const value = data.payload as Partial<CloudCredentials>;
+    return value.version === 1 && value.colleagues && typeof value.colleagues === "object"
+      ? { version: 1, colleagues: value.colleagues }
+      : { version: 1, colleagues: {} };
+  } catch {
+    return { version: 1, colleagues: {} };
+  }
 }
 
-export function getLoginAccess(password: string): LoginAccess | null {
+async function saveCloudCredentials(credentials: CloudCredentials): Promise<void> {
+  const client = getServerSupabaseClient();
+  if (!client) throw new Error("La sauvegarde cloud des accès n'est pas disponible.");
+
+  const { error } = await client.from("app_snapshots").upsert(
+    {
+      id: CLOUD_CREDENTIALS_ID,
+      scope: CLOUD_CREDENTIALS_SCOPE,
+      payload: credentials,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "id" },
+  );
+  if (error) throw new Error(error.message);
+}
+
+function colleagueEnvironmentPassword(classroom: ColleagueClassroom): string {
+  if (classroom === "menager") return process.env.APP_PASSWORD_MENAGER ?? "";
+  if (classroom === "thomas-henry") return process.env.APP_PASSWORD_THOMAS_HENRY ?? "";
+  return "";
+}
+
+export async function getLoginAccess(
+  password: string,
+  requestedClassroom?: ColleagueClassroom | null,
+): Promise<LoginAccess | null> {
   const fullPassword = resolveFullPasswordSecret();
   if (fullPassword && safeEqual(password, fullPassword)) {
     return { edition: "full", mustChangePassword: false };
+  }
+
+  if (requestedClassroom === "menager" || requestedClassroom === "thomas-henry") {
+    const credentials = await loadCloudCredentials();
+    const savedCredential = credentials.colleagues[requestedClassroom];
+    if (savedCredential && passwordMatchesHash(password, savedCredential.passwordHash)) {
+      return {
+        edition: "collegue",
+        classroom: requestedClassroom,
+        mustChangePassword: savedCredential.mustChangePassword,
+      };
+    }
+
+    const starterPassword = colleagueEnvironmentPassword(requestedClassroom);
+    if (starterPassword && safeEqual(password, starterPassword)) {
+      return { edition: "collegue", classroom: requestedClassroom, mustChangePassword: true };
+    }
+
+    return null;
   }
 
   const colleaguePassword = resolveColleaguePasswordSecret();
@@ -140,16 +226,6 @@ export function getLoginAccess(password: string): LoginAccess | null {
       classroom: resolveColleagueClassroom(),
       mustChangePassword: colleaguePasswordNeedsReset(),
     };
-  }
-
-  const menagerPassword = process.env.APP_PASSWORD_MENAGER ?? "";
-  if (menagerPassword && safeEqual(password, menagerPassword)) {
-    return { edition: "collegue", classroom: "menager", mustChangePassword: false };
-  }
-
-  const thomasHenryPassword = process.env.APP_PASSWORD_THOMAS_HENRY ?? "";
-  if (thomasHenryPassword && safeEqual(password, thomasHenryPassword)) {
-    return { edition: "collegue", classroom: "thomas-henry", mustChangePassword: false };
   }
 
   return null;
@@ -181,14 +257,15 @@ function persistAuthSettings(partial: Partial<AuthSettings>): void {
   });
 }
 
-export function changePassword(
+export async function changePassword(
   edition: AppEdition,
+  classroom: ColleagueClassroom | null,
   currentPassword: string,
   nextPassword: string,
-): {
+): Promise<{
   ok: boolean;
   error?: string;
-} {
+}> {
   if (!isAuthConfigured()) {
     return { ok: false, error: "Aucun mot de passe n'est configuré pour le moment." };
   }
@@ -199,6 +276,40 @@ export function changePassword(
   }
 
   if (edition === "collegue") {
+    if (classroom === "menager" || classroom === "thomas-henry") {
+      const credentials = await loadCloudCredentials();
+      const savedCredential = credentials.colleagues[classroom];
+      const isCurrentPasswordValid = savedCredential
+        ? passwordMatchesHash(currentPassword, savedCredential.passwordHash)
+        : safeEqual(currentPassword, colleagueEnvironmentPassword(classroom));
+      if (!isCurrentPasswordValid) {
+        return { ok: false, error: "Le mot de passe actuel est incorrect." };
+      }
+
+      try {
+        await saveCloudCredentials({
+          version: 1,
+          colleagues: {
+            ...credentials.colleagues,
+            [classroom]: {
+              passwordHash: hashPassword(trimmed),
+              updatedAt: new Date().toISOString(),
+              mustChangePassword: false,
+            },
+          },
+        });
+        return { ok: true };
+      } catch (error) {
+        return {
+          ok: false,
+          error:
+            error instanceof Error
+              ? `Impossible d'enregistrer le nouveau mot de passe : ${error.message}`
+              : "Impossible d'enregistrer le nouveau mot de passe.",
+        };
+      }
+    }
+
     const expected = resolveColleaguePasswordSecret();
     if (!expected || !safeEqual(currentPassword, expected)) {
       return { ok: false, error: "Le mot de passe actuel est incorrect." };
