@@ -38,6 +38,8 @@ import {
   saveGeneratedStandaloneSession,
 } from "@/lib/generated-resources-storage";
 import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
+import { createBoulardFirstSchoolDay, FIRST_SCHOOL_DAY_KEY } from "@/lib/first-school-day";
+import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 import type {
   PlumeJournalDayPlan,
   PlumeSequencePlan,
@@ -96,7 +98,16 @@ function parseRequestedDate(): Date | null {
 }
 
 function getInitialDays(): Record<string, Session[]> {
-  return readJournalDays();
+  const days = readJournalDays();
+  if (resolveCurrentClassroomKey() !== "boulard" || days[FIRST_SCHOOL_DAY_KEY]) {
+    return days;
+  }
+
+  const next = {
+    ...days,
+    [FIRST_SCHOOL_DAY_KEY]: createBoulardFirstSchoolDay(),
+  };
+  return writeJournalDays(next);
 }
 
 function toMinutes(value: string): number {
