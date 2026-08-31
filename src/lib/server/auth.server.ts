@@ -200,6 +200,27 @@ export async function getLoginAccess(
     return { edition: "full", mustChangePassword: false };
   }
 
+  // Des mots de passe collègue distincts suffisent à ouvrir automatiquement la bonne classe.
+  // Le choix d'espace reste donc optionnel sur l'écran de connexion.
+  if (!requestedClassroom) {
+    const credentials = await loadCloudCredentials();
+    for (const classroom of ["menager", "thomas-henry"] as const) {
+      const savedCredential = credentials.colleagues[classroom];
+      if (savedCredential && passwordMatchesHash(password, savedCredential.passwordHash)) {
+        return {
+          edition: "collegue",
+          classroom,
+          mustChangePassword: savedCredential.mustChangePassword,
+        };
+      }
+
+      const starterPassword = colleagueEnvironmentPassword(classroom);
+      if (starterPassword && safeEqual(password, starterPassword)) {
+        return { edition: "collegue", classroom, mustChangePassword: true };
+      }
+    }
+  }
+
   if (requestedClassroom === "menager" || requestedClassroom === "thomas-henry") {
     const credentials = await loadCloudCredentials();
     const savedCredential = credentials.colleagues[requestedClassroom];

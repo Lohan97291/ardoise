@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BookOpen, Check, Lock, Sparkles, UsersRound } from "lucide-react";
+import { Check, Lock, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -12,33 +12,6 @@ import {
 
 const COLLEAGUE_CLASSROOM_STORAGE_KEY = "ardoise-colleague-classroom";
 
-type LoginSpace = "boulard" | "menager" | "thomas-henry";
-
-const LOGIN_SPACES: {
-  id: LoginSpace;
-  title: string;
-  subtitle: string;
-  classroom?: "menager" | "thomas-henry";
-}[] = [
-  {
-    id: "boulard",
-    title: "Mon espace Ardoise",
-    subtitle: "Cahier journal, ressources, suivi et outils de la classe.",
-  },
-  {
-    id: "menager",
-    title: "Classe de Véronique Ménager",
-    subtitle: "Cahier journal, ressources et suivi des élèves.",
-    classroom: "menager",
-  },
-  {
-    id: "thomas-henry",
-    title: "Classe de Claire Thomas & Virginie Henry",
-    subtitle: "Cahier journal, ressources et suivi des élèves.",
-    classroom: "thomas-henry",
-  },
-];
-
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [{ title: "Connexion — Ardoise" }],
@@ -48,7 +21,6 @@ export const Route = createFileRoute("/login")({
 
 function LoginPage() {
   const [password, setPassword] = useState("");
-  const [space, setSpace] = useState<LoginSpace>("boulard");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -60,10 +32,7 @@ function LoginPage() {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          password,
-          classroom: LOGIN_SPACES.find((item) => item.id === space)?.classroom,
-        }),
+        body: JSON.stringify({ password }),
       });
       if (!response.ok) {
         const payload = (await response.json().catch(() => null)) as { error?: string } | null;
@@ -137,33 +106,10 @@ function LoginPage() {
           <div>
             <p className="eyebrow">Bienvenue</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Ouvrir mon espace</h2>
-            <p className="mt-2 text-sm leading-5 text-muted-foreground">Choisissez votre classe, puis entrez votre mot de passe.</p>
+            <p className="mt-2 text-sm leading-5 text-muted-foreground">Entrez simplement votre mot de passe : Ardoise ouvre automatiquement le bon espace.</p>
           </div>
 
-          <fieldset className="mt-7 space-y-2" aria-label="Choix de l'espace">
-            {LOGIN_SPACES.map((item) => {
-              const selected = space === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setSpace(item.id)}
-                  className={`group flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition-all ${selected ? "border-primary/35 bg-primary/8 shadow-[0_16px_30px_-24px_rgba(37,99,235,0.65)]" : "border-border bg-background hover:border-primary/20 hover:bg-secondary/40"}`}
-                >
-                  <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${selected ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
-                    {item.id === "boulard" ? <BookOpen className="h-5 w-5" /> : <UsersRound className="h-5 w-5" />}
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-semibold text-foreground">{item.title}</span>
-                    <span className="mt-0.5 block text-xs leading-4 text-muted-foreground">{item.subtitle}</span>
-                  </span>
-                  <span className={`h-4 w-4 shrink-0 rounded-full border ${selected ? "border-primary bg-primary shadow-[inset_0_0_0_3px_var(--color-card)]" : "border-muted-foreground/40"}`} />
-                </button>
-              );
-            })}
-          </fieldset>
-
-          <div className="mt-6 space-y-2">
+          <div className="mt-8 space-y-2">
             <Label htmlFor="password">Mot de passe</Label>
             <Input id="password" type="password" autoFocus autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} />
           </div>
@@ -174,7 +120,7 @@ function LoginPage() {
             <Lock className="mr-2 h-4 w-4" />
             {loading ? "Connexion…" : "Entrer dans Ardoise"}
           </Button>
-          <p className="mt-4 text-center text-xs text-muted-foreground">À la première connexion, les espaces collègues choisissent leur mot de passe personnel.</p>
+          <p className="mt-4 text-center text-xs text-muted-foreground">À la première connexion, chaque collègue choisit son mot de passe personnel.</p>
         </form>
       </div>
     </div>
