@@ -129,7 +129,7 @@ export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
     displayName: "M. Boulard",
     initials: "MB",
     classLabel: "CE1 · 2026-2027",
-    schoolLabel: "11 élèves · École Romain Rolland",
+    schoolLabel: "10 élèves · École Romain Rolland",
     students: [
       { id: "el-1", firstName: "Ysmaël", lastName: "Abdallah" },
       { id: "el-2", firstName: "Fanta", lastName: "Berthe" },
@@ -141,7 +141,6 @@ export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
       { id: "el-8", firstName: "Fatoumata", lastName: "Sakho" },
       { id: "el-9", firstName: "Nadia Zainab", lastName: "Stolarska Muhammad" },
       { id: "el-10", firstName: "Sayden", lastName: "Tessia" },
-      { id: "el-11", firstName: "Lea", lastName: "Yefsah" },
     ],
   },
   durand: {
