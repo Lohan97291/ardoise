@@ -33,7 +33,12 @@ export type Student = {
   lastName: string;
 };
 
-export type ClassroomKey = "boulard" | "durand" | "grimal";
+export type ClassroomKey =
+  | "boulard"
+  | "durand"
+  | "grimal"
+  | "menager"
+  | "thomas-henry";
 
 export type ClassroomDefinition = {
   key: ClassroomKey;
@@ -55,6 +60,7 @@ const ROMAIN_ROLLAND_COLLEAGUE_STUDENTS: Student[] = [
   { id: "grimal-8", firstName: "DANIEL", lastName: "Ferreira Castro" },
   { id: "grimal-9", firstName: "FODIE", lastName: "Gassama" },
   { id: "grimal-10", firstName: "Mah-Bintou", lastName: "Keita" },
+  { id: "grimal-11", firstName: "Arielle", lastName: "Ekoue" },
   { id: "durand-1", firstName: "Thania", lastName: "Agad" },
   { id: "durand-2", firstName: "Nousseyba", lastName: "Kherbach" },
   { id: "durand-3", firstName: "Aurelio", lastName: "Lutumba Mateus Sebastiao" },
@@ -80,6 +86,8 @@ function normalizeClassroomKey(raw: string | null | undefined): ClassroomKey | n
   if (cleaned === "boulard") return "boulard";
   if (cleaned === "durand") return "durand";
   if (cleaned === "grimal") return "grimal";
+  if (cleaned === "menager") return "menager";
+  if (cleaned === "thomas-henry" || cleaned === "thomas_henry") return "thomas-henry";
   return null;
 }
 
@@ -111,7 +119,7 @@ function readColleagueClassroom(): ClassroomKey {
   }
 
   const envClassroom = normalizeClassroomKey(import.meta.env.VITE_ARDOISE_COLLEAGUE_CLASSROOM);
-  return envClassroom === "grimal" || envClassroom === "durand" ? envClassroom : "durand";
+  return envClassroom && envClassroom !== "boulard" ? envClassroom : "durand";
 }
 
 export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
@@ -141,7 +149,7 @@ export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
     displayName: "Mme Durand · Mme Grimal",
     initials: "DG",
     classLabel: "CE1 A · 2026-2027",
-    schoolLabel: "20 élèves · École Romain Rolland",
+    schoolLabel: "21 élèves · École Romain Rolland",
     students: ROMAIN_ROLLAND_COLLEAGUE_STUDENTS,
   },
   grimal: {
@@ -149,8 +157,58 @@ export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
     displayName: "Mme Durand · Mme Grimal",
     initials: "DG",
     classLabel: "CE1 A · 2026-2027",
-    schoolLabel: "20 élèves · École Romain Rolland",
+    schoolLabel: "21 élèves · École Romain Rolland",
     students: ROMAIN_ROLLAND_COLLEAGUE_STUDENTS,
+  },
+  menager: {
+    key: "menager",
+    displayName: "Mme Ménager",
+    initials: "VM",
+    classLabel: "CE1 B · 2026-2027",
+    schoolLabel: "11 élèves · École Romain Rolland",
+    students: [
+      { id: "menager-1", firstName: "Amir", lastName: "Ammar" },
+      { id: "menager-2", firstName: "Swan", lastName: "Assamene" },
+      { id: "menager-3", firstName: "Emma", lastName: "Druc" },
+      { id: "menager-4", firstName: "Mariella", lastName: "Josengo Jovelino" },
+      { id: "menager-5", firstName: "Emmanuel", lastName: "Kimbouani Bourges" },
+      { id: "menager-6", firstName: "Jannah", lastName: "Missoum" },
+      { id: "menager-7", firstName: "Adam", lastName: "Rahmani Kaddouri" },
+      { id: "menager-8", firstName: "Layane", lastName: "Sassi" },
+      { id: "menager-9", firstName: "Samuel", lastName: "Se Guelableon" },
+      { id: "menager-10", firstName: "Kassandra", lastName: "To" },
+      { id: "menager-11", firstName: "Haoua", lastName: "Yao" },
+    ],
+  },
+  "thomas-henry": {
+    key: "thomas-henry",
+    displayName: "Mme Thomas · Mme Henry",
+    initials: "TH",
+    classLabel: "CE1 C · 2026-2027",
+    schoolLabel: "21 élèves · École Romain Rolland",
+    students: [
+      { id: "thomas-1", firstName: "Salmah", lastName: "Abdou" },
+      { id: "thomas-2", firstName: "Ilyassa", lastName: "Ahamada" },
+      { id: "thomas-3", firstName: "Soann", lastName: "Andriampirimanana" },
+      { id: "thomas-4", firstName: "Sawda", lastName: "Cisse" },
+      { id: "thomas-5", firstName: "Miya", lastName: "Cocquet" },
+      { id: "thomas-6", firstName: "Daouda", lastName: "Diarra" },
+      { id: "thomas-7", firstName: "Alexa", lastName: "Lefebvre" },
+      { id: "thomas-8", firstName: "Dylan", lastName: "Login" },
+      { id: "thomas-9", firstName: "Zoé", lastName: "Pardillos" },
+      { id: "thomas-10", firstName: "Muhammad", lastName: "Qadree" },
+      { id: "henry-1", firstName: "Afnan", lastName: "Boucham" },
+      { id: "henry-2", firstName: "Ousmane", lastName: "Diarra" },
+      { id: "henry-3", firstName: "Dana", lastName: "Dimitrenco" },
+      { id: "henry-4", firstName: "Yamissa", lastName: "Fofana" },
+      { id: "henry-5", firstName: "Kenza", lastName: "Imrek" },
+      { id: "henry-6", firstName: "Mohammed", lastName: "Khelil" },
+      { id: "henry-7", firstName: "Angelo", lastName: "Lutumba Mateus Sebastiao" },
+      { id: "henry-8", firstName: "Imran", lastName: "Missoum" },
+      { id: "henry-9", firstName: "Amina", lastName: "Papa Ahamada" },
+      { id: "henry-10", firstName: "Jahyana", lastName: "Tayliam Saadi" },
+      { id: "henry-11", firstName: "Amir", lastName: "Zouba" },
+    ],
   },
 };
 

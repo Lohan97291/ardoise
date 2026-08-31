@@ -38,11 +38,16 @@ export const DEFAULT_PROFILE_SETTINGS: ProfileSettings = new Proxy({} as Profile
 });
 
 function getProfileStoreKey() {
-  if (getCurrentClassroom().key === "boulard") {
+  const classroomKey = getCurrentClassroom().key;
+  if (classroomKey === "boulard") {
     return "ardoise-profile-settings";
   }
 
-  return "ardoise-profile-settings-romain-rolland";
+  if (classroomKey === "durand" || classroomKey === "grimal") {
+    return "ardoise-profile-settings-romain-rolland";
+  }
+
+  return `ardoise-profile-settings-${classroomKey}`;
 }
 
 function getProfileStore() {

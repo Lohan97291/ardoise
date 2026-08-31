@@ -6,7 +6,13 @@ import type { AppEdition } from "@/lib/app-edition";
 export const AUTH_COOKIE_NAME = "ardoise_auth";
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30; // 30 jours
 const AUTH_SETTINGS_PATH = join(process.cwd(), ".data", "auth-settings.json");
-export type ColleagueClassroom = "durand" | "grimal";
+export type ColleagueClassroom = "durand" | "grimal" | "menager" | "thomas-henry";
+
+export type LoginAccess = {
+  edition: AppEdition;
+  classroom?: ColleagueClassroom;
+  mustChangePassword: boolean;
+};
 
 type AuthSettings = {
   password?: string;
@@ -39,6 +45,8 @@ function normalizeColleagueClassroom(
   const cleaned = raw.trim().toLowerCase();
   if (cleaned === "durand") return "durand";
   if (cleaned === "grimal") return "grimal";
+  if (cleaned === "menager") return "menager";
+  if (cleaned === "thomas-henry" || cleaned === "thomas_henry") return "thomas-henry";
   return null;
 }
 
@@ -53,7 +61,13 @@ export function resolveColleagueClassroom(): ColleagueClassroom {
 }
 
 function getSessionSecret(): string {
-  return resolveFullPasswordSecret() || resolveColleaguePasswordSecret();
+  return (
+    resolveFullPasswordSecret() ||
+    resolveColleaguePasswordSecret() ||
+    process.env.APP_PASSWORD_MENAGER ||
+    process.env.APP_PASSWORD_THOMAS_HENRY ||
+    ""
+  );
 }
 
 function sign(payload: string): string {
@@ -62,7 +76,7 @@ function sign(payload: string): string {
 }
 
 export function isAuthConfigured(): boolean {
-  return Boolean(resolveFullPasswordSecret() || resolveColleaguePasswordSecret());
+  return Boolean(getSessionSecret());
 }
 
 export function checkPassword(password: string): boolean {
@@ -110,14 +124,32 @@ export function colleaguePasswordNeedsReset(): boolean {
 }
 
 export function getEditionForPassword(password: string): AppEdition | null {
-  const colleaguePassword = resolveColleaguePasswordSecret();
-  if (colleaguePassword && safeEqual(password, colleaguePassword)) {
-    return "collegue";
-  }
+  return getLoginAccess(password)?.edition ?? null;
+}
 
+export function getLoginAccess(password: string): LoginAccess | null {
   const fullPassword = resolveFullPasswordSecret();
   if (fullPassword && safeEqual(password, fullPassword)) {
-    return "full";
+    return { edition: "full", mustChangePassword: false };
+  }
+
+  const colleaguePassword = resolveColleaguePasswordSecret();
+  if (colleaguePassword && safeEqual(password, colleaguePassword)) {
+    return {
+      edition: "collegue",
+      classroom: resolveColleagueClassroom(),
+      mustChangePassword: colleaguePasswordNeedsReset(),
+    };
+  }
+
+  const menagerPassword = process.env.APP_PASSWORD_MENAGER ?? "";
+  if (menagerPassword && safeEqual(password, menagerPassword)) {
+    return { edition: "collegue", classroom: "menager", mustChangePassword: false };
+  }
+
+  const thomasHenryPassword = process.env.APP_PASSWORD_THOMAS_HENRY ?? "";
+  if (thomasHenryPassword && safeEqual(password, thomasHenryPassword)) {
+    return { edition: "collegue", classroom: "thomas-henry", mustChangePassword: false };
   }
 
   return null;
@@ -192,14 +224,15 @@ export function changePassword(
   return { ok: true };
 }
 
-export function createSessionCookieValue(edition: AppEdition): string {
+export function createSessionCookieValue(edition: AppEdition, classroom?: ColleagueClassroom): string {
   const expiresAt = String(Date.now() + SESSION_TTL_MS);
-  const payload = `${edition}.${expiresAt}`;
+  const payload = `${edition}.${classroom ?? ""}.${expiresAt}`;
   return `${payload}.${sign(payload)}`;
 }
 
 type ParsedSession = {
   edition: AppEdition;
+  classroom?: ColleagueClassroom;
   expiresAt: number;
 };
 
@@ -214,14 +247,24 @@ function parseSessionCookie(value: string | undefined | null): ParsedSession | n
     return { edition: "full", expiresAt: Number(expiresAt) };
   }
 
-  if (parts.length !== 3) return null;
+  if (parts.length === 3) {
+    const [rawEdition, expiresAt, signature] = parts;
+    const edition: AppEdition = rawEdition === "collegue" ? "collegue" : "full";
+    const payload = `${edition}.${expiresAt}`;
+    if (!Number.isFinite(Number(expiresAt)) || Date.now() > Number(expiresAt)) return null;
+    if (!safeEqual(signature, sign(payload))) return null;
+    return { edition, expiresAt: Number(expiresAt) };
+  }
 
-  const [rawEdition, expiresAt, signature] = parts;
+  if (parts.length !== 4) return null;
+
+  const [rawEdition, rawClassroom, expiresAt, signature] = parts;
   const edition: AppEdition = rawEdition === "collegue" ? "collegue" : "full";
-  const payload = `${edition}.${expiresAt}`;
+  const classroom = normalizeColleagueClassroom(rawClassroom);
+  const payload = `${edition}.${rawClassroom}.${expiresAt}`;
   if (!Number.isFinite(Number(expiresAt)) || Date.now() > Number(expiresAt)) return null;
   if (!safeEqual(signature, sign(payload))) return null;
-  return { edition, expiresAt: Number(expiresAt) };
+  return { edition, classroom: edition === "collegue" ? classroom ?? undefined : undefined, expiresAt: Number(expiresAt) };
 }
 
 export function isValidSessionCookie(value: string | undefined | null): boolean {
@@ -230,6 +273,12 @@ export function isValidSessionCookie(value: string | undefined | null): boolean 
 
 export function getEditionFromSessionCookie(value: string | undefined | null): AppEdition | null {
   return parseSessionCookie(value)?.edition ?? null;
+}
+
+export function getClassroomFromSessionCookie(
+  value: string | undefined | null,
+): ColleagueClassroom | null {
+  return parseSessionCookie(value)?.classroom ?? null;
 }
 
 export function parseCookieHeader(header: string | null): Record<string, string> {
@@ -245,11 +294,15 @@ export function parseCookieHeader(header: string | null): Record<string, string>
   return out;
 }
 
-export function buildSessionCookie(request: Request, edition: AppEdition): string {
+export function buildSessionCookie(
+  request: Request,
+  edition: AppEdition,
+  classroom?: ColleagueClassroom,
+): string {
   const isHttps = new URL(request.url).protocol === "https:";
   const maxAgeSeconds = Math.floor(SESSION_TTL_MS / 1000);
   return [
-    `${AUTH_COOKIE_NAME}=${createSessionCookieValue(edition)}`,
+    `${AUTH_COOKIE_NAME}=${createSessionCookieValue(edition, classroom)}`,
     "Path=/",
     "HttpOnly",
     "SameSite=Lax",

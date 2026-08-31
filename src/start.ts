@@ -3,6 +3,7 @@ import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/r
 import { renderErrorPage } from "./lib/error-page";
 import {
   AUTH_COOKIE_NAME,
+  getClassroomFromSessionCookie,
   getEditionFromSessionCookie,
   isAuthConfigured,
   isValidSessionCookie,
@@ -60,14 +61,19 @@ const authMiddleware = createMiddleware().server(async ({ request, pathname, nex
         const currentUrl = new URL(request.url);
         if (currentUrl.searchParams.get("edition") !== "collegue") {
           currentUrl.searchParams.set("edition", "collegue");
-          currentUrl.searchParams.set("classroom", resolveColleagueClassroom());
+          currentUrl.searchParams.set(
+            "classroom",
+            getClassroomFromSessionCookie(cookies[AUTH_COOKIE_NAME]) ?? resolveColleagueClassroom(),
+          );
           return new Response(null, {
             status: 302,
             headers: { Location: currentUrl.toString() },
           });
         }
-        if (currentUrl.searchParams.get("classroom") !== resolveColleagueClassroom()) {
-          currentUrl.searchParams.set("classroom", resolveColleagueClassroom());
+        const classroom =
+          getClassroomFromSessionCookie(cookies[AUTH_COOKIE_NAME]) ?? resolveColleagueClassroom();
+        if (currentUrl.searchParams.get("classroom") !== classroom) {
+          currentUrl.searchParams.set("classroom", classroom);
           return new Response(null, {
             status: 302,
             headers: { Location: currentUrl.toString() },
