@@ -1,7 +1,6 @@
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase";
+import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 
-const SNAPSHOT_ROW_ID = "ardoise-main";
-const SNAPSHOT_SCOPE = "app-state";
 const CLOUD_SYNC_META_KEY = "ardoise.cloudSync.v1";
 const SYNCABLE_KEY_PATTERN = /^ardoise([.-]|$)/i;
 export const CLOUD_SYNC_EVENT = "ardoise-cloud-sync-updated";
@@ -17,6 +16,14 @@ type LocalSnapshot = {
   source: string;
   keys: Record<string, string>;
 };
+
+function getSnapshotIdentity(): { id: string; scope: string } {
+  const classroom = resolveCurrentClassroomKey();
+  return {
+    id: `ardoise-${classroom}`,
+    scope: `app-state:${classroom}`,
+  };
+}
 
 function canUseStorage(): boolean {
   return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
@@ -119,10 +126,11 @@ export async function pushLocalStateToCloud(): Promise<{
   }
 
   const snapshot = collectLocalSnapshot();
+  const snapshotIdentity = getSnapshotIdentity();
   const { error } = await client.from("app_snapshots").upsert(
     {
-      id: SNAPSHOT_ROW_ID,
-      scope: SNAPSHOT_SCOPE,
+      id: snapshotIdentity.id,
+      scope: snapshotIdentity.scope,
       payload: snapshot,
       updated_at: snapshot.updatedAt,
     },
@@ -148,10 +156,11 @@ export async function pullCloudStateToLocal(): Promise<{
     throw new Error("Supabase n'est pas encore configuré dans l'application.");
   }
 
+  const snapshotIdentity = getSnapshotIdentity();
   const { data, error } = await client
     .from("app_snapshots")
     .select("payload")
-    .eq("id", SNAPSHOT_ROW_ID)
+    .eq("id", snapshotIdentity.id)
     .maybeSingle();
 
   if (error) throw new Error(error.message);
