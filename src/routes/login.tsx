@@ -81,7 +81,14 @@ function LoginPage() {
           <div aria-hidden="true" className="absolute -right-16 -top-14 h-56 w-56 rounded-full border border-white/15 bg-white/5" />
           <div aria-hidden="true" className="absolute -bottom-24 -left-20 h-64 w-64 rounded-full border border-white/10 bg-white/5" />
           <div className="relative">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide">
+            <div className="inline-flex rounded-2xl border border-white/15 bg-white/95 px-4 py-3 shadow-lg shadow-black/10">
+              <img
+                src="/assets/logo/themes/ardoise-logo-horizontal-forest-light.png"
+                alt="Ardoise"
+                className="h-8 w-auto"
+              />
+            </div>
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide">
               <Sparkles className="h-3.5 w-3.5" />
               ARDOISE · CE1
             </div>
