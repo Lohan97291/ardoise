@@ -1,14 +1,20 @@
 import type { ResourceMethod } from "@/lib/ardoise-data";
+import {
+  FIRST_SCHOOL_DAY_RESOURCE_METHOD,
+  getFirstSchoolDayPrepSheet,
+} from "@/lib/first-school-day-resources";
 import { getGeneratedPrepSheet, getGeneratedResourceTree } from "@/lib/generated-resources-storage";
 import type { ResourceSequence, ResourceSession } from "@/lib/ardoise-data";
-import { getPatchedPrepSheet } from "@/lib/patched-prep-sheets";
+import { getPatchedPrepSheet as getBasePatchedPrepSheet } from "@/lib/patched-prep-sheets";
 import { PATCHED_RESOURCE_TREE } from "@/lib/patched-resource-methods";
 
-export { getPatchedPrepSheet } from "@/lib/patched-prep-sheets";
+export function getPatchedPrepSheet(id?: string) {
+  return getFirstSchoolDayPrepSheet(id) ?? getBasePatchedPrepSheet(id);
+}
 export { PATCHED_RESOURCE_TREE } from "@/lib/patched-resource-methods";
 
 export function getMergedResourceTree(): ResourceMethod[] {
-  return [...PATCHED_RESOURCE_TREE, ...getGeneratedResourceTree()];
+  return [FIRST_SCHOOL_DAY_RESOURCE_METHOD, ...PATCHED_RESOURCE_TREE, ...getGeneratedResourceTree()];
 }
 
 export type PatchedResourceMatch = {

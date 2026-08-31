@@ -99,7 +99,14 @@ function parseRequestedDate(): Date | null {
 
 function getInitialDays(): Record<string, Session[]> {
   const days = readJournalDays();
-  if (resolveCurrentClassroomKey() !== "boulard" || days[FIRST_SCHOOL_DAY_KEY]) {
+  const firstDay = days[FIRST_SCHOOL_DAY_KEY];
+  const needsFirstDayRefresh = firstDay?.some(
+    (session) => session.id === "2026-09-01-production-ecrit",
+  );
+  if (
+    resolveCurrentClassroomKey() !== "boulard" ||
+    (firstDay && !needsFirstDayRefresh)
+  ) {
     return days;
   }
 
