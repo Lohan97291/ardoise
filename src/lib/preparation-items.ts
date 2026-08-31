@@ -1,5 +1,6 @@
 import { getPrepSheet, SUBJECTS, type Session } from "@/lib/ardoise-data";
 import { getSessionExtras } from "@/lib/custom-session-storage";
+import { getFirstSchoolDayPrepSheet } from "@/lib/first-school-day-resources";
 
 export type PreparationItemKind = "photocopy" | "material" | "manual";
 
@@ -62,7 +63,8 @@ function uniqueByKey(items: PreparationItem[]): PreparationItem[] {
 }
 
 export function getSessionPreparationItems(session: Session): PreparationItem[] {
-  const prepSheet = getPrepSheet(session.prepSheetId);
+  // Les fiches de rentrée sont des ressources dédiées, en dehors du catalogue historique.
+  const prepSheet = getFirstSchoolDayPrepSheet(session.prepSheetId) ?? getPrepSheet(session.prepSheetId);
   const extras = getSessionExtras(session.id);
   const sessionPrefix = `${session.start} · ${session.title}`;
   const base = {

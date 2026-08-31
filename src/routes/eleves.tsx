@@ -646,7 +646,10 @@ function ElevesPage() {
     if (typeof window === "undefined") return STUDENTS[0]?.id ?? "";
     return new URLSearchParams(window.location.search).get("studentId") ?? STUDENTS[0]?.id ?? "";
   }, []);
-  const [tab, setTab] = useState<Tab>("liste");
+  const [tab, setTab] = useState<Tab>(() => {
+    if (typeof window === "undefined") return "liste";
+    return new URLSearchParams(window.location.search).get("tab") === "appel" ? "appel" : "liste";
+  });
   const [attendanceView, setAttendanceView] = useState<AttendanceView>("register");
   const [search, setSearch] = useState("");
   const [selectedStudentId, setSelectedStudentId] = useState(initialStudentId);

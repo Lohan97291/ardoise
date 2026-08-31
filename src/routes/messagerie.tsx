@@ -533,7 +533,7 @@ function MessagingPage() {
             <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
               <span className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-secondary/50 px-2.5 py-1">
                 <ShieldCheck className="h-3.5 w-3.5 text-sage" />
-                Flux n8n local
+                Flux n8n sécurisé
               </span>
               <span className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-secondary/50 px-2.5 py-1">
                 <RefreshCw className="h-3.5 w-3.5" />

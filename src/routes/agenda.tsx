@@ -12,6 +12,7 @@ import {
 } from "date-fns";
 import { fr } from "date-fns/locale";
 import {
+  AlertCircle,
   CalendarCheck,
   CalendarClock,
   ChevronLeft,
@@ -164,6 +165,7 @@ function AgendaPage() {
   const [googleConnected, setGoogleConnected] = useState(false);
   const [googleConfigured, setGoogleConfigured] = useState(false);
   const [googleEvents, setGoogleEvents] = useState<GoogleEvent[]>([]);
+  const [googleSyncError, setGoogleSyncError] = useState<string | null>(null);
   const [icloudEvents, setIcloudEvents] = useState<ICloudEvent[]>([]);
   const [syncing, setSyncing] = useState(false);
   const [savingAgendaItem, setSavingAgendaItem] = useState(false);
@@ -183,6 +185,7 @@ function AgendaPage() {
   const loadMonth = useCallback(async () => {
     setMonthItems(getAgendaItemsInRange(toISODate(gridStart), toISODate(gridEnd)));
     setMonthSyncing(true);
+    setGoogleSyncError(null);
     try {
       const status = await fetch("/api/calendar/google/status").then(
         (r) => r.json() as Promise<{ configured: boolean; connected: boolean }>,
@@ -195,7 +198,8 @@ function AgendaPage() {
         const response = await fetch(
           `/api/calendar/events?timeMin=${encodeURIComponent(isoAtMidnight(gridStart))}&timeMax=${encodeURIComponent(isoAtMidnight(gridEnd, true))}`,
         );
-        const value = (await response.json()) as { events?: GoogleEvent[] };
+        const value = (await response.json()) as { events?: GoogleEvent[]; error?: string };
+        if (!response.ok) throw new Error(value.error ?? "Lecture de Google Calendar impossible.");
         setMonthGoogleEvents(value.events ?? []);
       }
       const icloudResponse = await fetch(
@@ -203,9 +207,12 @@ function AgendaPage() {
       );
       const icloudValue = (await icloudResponse.json()) as { events?: ICloudEvent[] };
       setMonthIcloudEvents(icloudValue.events ?? []);
-    } catch {
+    } catch (error) {
       setMonthGoogleEvents([]);
       setMonthIcloudEvents([]);
+      setGoogleSyncError(
+        error instanceof Error ? error.message : "La synchronisation Google est indisponible.",
+      );
     } finally {
       setMonthSyncing(false);
     }
@@ -256,6 +263,7 @@ function AgendaPage() {
   // ── Vue jour ────────────────────────────────────────────────────────────
   const loadGoogleEvents = useCallback(async (targetDate: Date) => {
     setSyncing(true);
+    setGoogleSyncError(null);
     try {
       const status = await fetch("/api/calendar/google/status").then(
         (r) => r.json() as Promise<{ configured: boolean; connected: boolean }>,
@@ -268,7 +276,8 @@ function AgendaPage() {
         const response = await fetch(
           `/api/calendar/events?timeMin=${encodeURIComponent(isoAtMidnight(targetDate))}&timeMax=${encodeURIComponent(isoAtMidnight(targetDate, true))}`,
         );
-        const value = (await response.json()) as { events?: GoogleEvent[] };
+        const value = (await response.json()) as { events?: GoogleEvent[]; error?: string };
+        if (!response.ok) throw new Error(value.error ?? "Lecture de Google Calendar impossible.");
         setGoogleEvents(value.events ?? []);
       }
       const icloudResponse = await fetch(
@@ -276,9 +285,12 @@ function AgendaPage() {
       );
       const icloudValue = (await icloudResponse.json()) as { events?: ICloudEvent[] };
       setIcloudEvents(icloudValue.events ?? []);
-    } catch {
+    } catch (error) {
       setGoogleEvents([]);
       setIcloudEvents([]);
+      setGoogleSyncError(
+        error instanceof Error ? error.message : "La synchronisation Google est indisponible.",
+      );
     } finally {
       setSyncing(false);
     }
@@ -517,6 +529,13 @@ function AgendaPage() {
           <p className="mt-3 rounded-xl border border-dashed border-border bg-secondary/40 px-3 py-2 text-xs text-muted-foreground">
             Google Calendar sera disponible après l'ajout des identifiants OAuth dans le serveur
             Ardoise.
+          </p>
+        ) : null}
+
+        {googleSyncError ? (
+          <p className="mt-3 flex items-center gap-2 rounded-xl border border-destructive/25 bg-destructive/5 px-3 py-2 text-xs text-destructive">
+            <AlertCircle className="h-4 w-4 shrink-0" />
+            Google Calendar : {googleSyncError} Reconnectez Google si le problème persiste.
           </p>
         ) : null}
 

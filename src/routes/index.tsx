@@ -39,11 +39,16 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   SUBJECTS,
   formatLongDate,
-  getPrepSheet,
   toISODate,
   type Session,
 } from "@/lib/ardoise-data";
-import { STUDENTS, fullName, initials, type Student } from "@/lib/ardoise-eval";
+import {
+  resolveCurrentClassroomKey,
+  STUDENTS,
+  fullName,
+  initials,
+  type Student,
+} from "@/lib/ardoise-eval";
 import {
   addExtraPrepared,
   addManualSignal,
@@ -88,8 +93,10 @@ import {
 import { getRecentSignals } from "@/lib/signal-storage";
 import { getZoneCSchoolRhythm } from "@/lib/school-rhythm";
 import { cn } from "@/lib/utils";
-import { readJournalDays } from "@/lib/journal-storage";
+import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
 import { useAppEdition } from "@/lib/app-edition";
+import { createBoulardFirstSchoolDay, FIRST_SCHOOL_DAY_KEY } from "@/lib/first-school-day";
+import { getPatchedPrepSheet } from "@/lib/resource-tree-patched";
 
 const PHASE_RING: Record<PhaseStatus, string> = {
   not_started: "border-border text-transparent hover:border-muted-foreground",
@@ -210,7 +217,24 @@ function Dashboard() {
   useEffect(() => setMounted(true), []);
 
   const todayKey = toISODate(today);
-  const todaySessions = mounted ? readJournalDays()[todayKey] ?? [] : [];
+  const todaySessions = useMemo(() => {
+    if (!mounted) return [];
+
+    const days = readJournalDays();
+    if (
+      todayKey === FIRST_SCHOOL_DAY_KEY &&
+      resolveCurrentClassroomKey() === "boulard" &&
+      !days[FIRST_SCHOOL_DAY_KEY]
+    ) {
+      const next = writeJournalDays({
+        ...days,
+        [FIRST_SCHOOL_DAY_KEY]: createBoulardFirstSchoolDay(),
+      });
+      return next[todayKey] ?? [];
+    }
+
+    return days[todayKey] ?? [];
+  }, [mounted, todayKey]);
 
   const daySessions = useMemo(
     () => todaySessions.filter((s) => s.subject !== "pause"),
@@ -266,7 +290,7 @@ function Dashboard() {
   };
 
   const expandedSession = daySessions.find((s) => s.id === expandedId) ?? null;
-  const expandedPrep = expandedSession ? getPrepSheet(expandedSession.prepSheetId) : undefined;
+  const expandedPrep = expandedSession ? getPatchedPrepSheet(expandedSession.prepSheetId) : undefined;
 
   const [phaseStatuses, setPhaseStatuses] = useState<Record<number, PhaseStatus>>({});
   const [expandedCustomPhases, setExpandedCustomPhases] = useState<CustomPhase[]>([]);
@@ -738,8 +762,8 @@ function Dashboard() {
                 <Users className="h-4 w-4 shrink-0 text-primary" />
                 Cahier d'appel
               </h2>
-              <Button variant="outline" size="sm" className="shrink-0">
-                Faire l'appel
+              <Button variant="outline" size="sm" className="shrink-0" asChild>
+                <Link to="/eleves?tab=appel">Faire l'appel</Link>
               </Button>
             </div>
             <p className="mt-3 text-sm text-muted-foreground">{STUDENTS.length} élèves</p>
