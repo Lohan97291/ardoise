@@ -41,7 +41,7 @@ export function createBoulardFirstSchoolDay(): Session[] {
       subject: "francais",
       pedagogicalDomain: "Écriture",
       free: true,
-      note: "Présenter le code du cahier : compter un carreau, sauter une ligne, commencer une nouvelle ligne, barrer proprement et corriger en vert. Dictée très courte : « Lili a un sac. »",
+      note: "Présenter le code du cahier : compter un carreau, sauter une ligne, commencer une nouvelle ligne, barrer proprement et corriger en vert. Dictée de rentrée : « Aujourd'hui, c'est la rentrée. Je suis en CE1 D dans la classe de Monsieur Boulard. »",
     },
     {
       id: "2026-09-01-recreation-matin",
