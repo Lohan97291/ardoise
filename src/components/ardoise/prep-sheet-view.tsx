@@ -289,11 +289,11 @@ export function PrepSheetView({
   }
 
   return (
-    <div className="print-sheet space-y-4 rounded-[28px] border border-border/80 bg-white p-3 shadow-[0_22px_56px_-34px_rgba(31,41,55,0.22)] print:border-0 print:bg-white print:p-0 print:shadow-none sm:p-5">
+    <div className="print-sheet prep-document space-y-4 rounded-[28px] border border-border/80 bg-[linear-gradient(180deg,#ffffff,#f7f8fb)] p-3 shadow-[0_22px_56px_-34px_rgba(31,41,55,0.22)] print:border-0 print:bg-white print:p-0 print:shadow-none sm:p-5">
       {/* Identité de la fiche */}
       <header
         className={cn(
-          "overflow-hidden rounded-[24px] border border-border/80 bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(247,249,252,1))] p-5 shadow-sm print:static print:bg-white print:shadow-none",
+          "prep-sheet-header overflow-hidden rounded-[24px] border border-border/80 bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(239,244,255,0.92))] p-5 shadow-sm print:static print:bg-white print:shadow-none",
           stickyHeader ? "sticky top-0 z-10" : "relative",
         )}
       >
@@ -312,6 +312,9 @@ export function PrepSheetView({
               <span className="rounded-full border border-border/70 bg-white px-3 py-1 text-[0.7rem] font-semibold text-muted-foreground shadow-sm">
                 Fiche de prep
               </span>
+              <span className="rounded-full border border-border/70 bg-white px-3 py-1 text-[0.7rem] font-semibold text-muted-foreground shadow-sm">
+                Document enseignant
+              </span>
             </div>
             <div>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground/80">
@@ -328,13 +331,13 @@ export function PrepSheetView({
           <button
             type="button"
             onClick={() => window.print()}
-            className="print:hidden inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-white px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition-colors hover:bg-secondary"
+            className="prep-print-hidden inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-white px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition-colors hover:bg-secondary"
           >
             <Printer className="h-3.5 w-3.5" />
             Imprimer
           </button>
         </div>
-        <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+        <div className="prep-sheet-metrics mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
           <PrepMetricPill
             label="Durée"
             value={sheet.duration || "—"}
@@ -351,7 +354,7 @@ export function PrepSheetView({
           ) : null}
         </div>
         {studentPagesLabel && teacherPagesLabel ? (
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className="prep-page-references mt-2 flex flex-wrap gap-2">
             <PageReferencePill label="Cahier élève" value={studentPagesLabel} compact />
             <PageReferencePill label="Guide du maître" value={teacherPagesLabel} compact />
           </div>
@@ -359,7 +362,7 @@ export function PrepSheetView({
       </header>
 
       {/* Sommaire cliquable : navigue directement vers une section de la fiche */}
-      <nav className="flex flex-wrap gap-1.5 rounded-2xl border border-border/70 bg-secondary/40 p-1.5 print:hidden">
+      <nav className="prep-print-hidden flex flex-wrap gap-1.5 rounded-2xl border border-border/70 bg-secondary/40 p-1.5">
         {sommaireItems.map((item) => (
           <button
             key={item.id}
@@ -375,7 +378,7 @@ export function PrepSheetView({
       </nav>
 
       {/* Compétence + objectif : les deux repères clés, côte à côte */}
-      <div id="sheet-objectif" className="scroll-mt-24 grid gap-3 sm:grid-cols-2">
+      <div id="sheet-objectif" className="prep-section scroll-mt-24 grid gap-3 sm:grid-cols-2">
         <KeyBlock label="Compétence visée" text={sheet.competence} />
         <KeyBlock
           label="Objectif de la séance"
@@ -387,7 +390,7 @@ export function PrepSheetView({
 
       <section
         id="sheet-domaines"
-        className="scroll-mt-24 rounded-[22px] border border-border/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(244,247,255,0.92))] p-4 shadow-sm print:border print:bg-white print:shadow-none"
+        className="prep-section scroll-mt-24 rounded-[22px] border border-border/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(244,247,255,0.92))] p-4 shadow-sm print:border print:bg-white print:shadow-none"
       >
         <SectionTitle
           eyebrow="Rattachement institutionnel"
@@ -412,7 +415,7 @@ export function PrepSheetView({
       </section>
 
       {sheet.vocabulary?.length || sheet.languageStructures?.length ? (
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="prep-section grid gap-3 sm:grid-cols-2">
           {sheet.vocabulary?.length ? (
             <ListBlock
               icon={<Languages className="h-4 w-4" />}
@@ -433,7 +436,7 @@ export function PrepSheetView({
       ) : null}
 
       {/* Déroulé */}
-      <section id="sheet-deroule" className="scroll-mt-24 rounded-[22px] border border-border/80 bg-card p-4 shadow-sm print:border print:bg-white print:shadow-none">
+      <section id="sheet-deroule" className="prep-section scroll-mt-24 rounded-[22px] border border-border/80 bg-card p-4 shadow-sm print:border print:bg-white print:shadow-none">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="min-w-0">
             <SectionTitle
@@ -445,7 +448,7 @@ export function PrepSheetView({
           <div className="flex items-center gap-2">
             <span
               className={cn(
-                "rounded-full px-2.5 py-1 text-[0.72rem] font-semibold tabular-nums",
+                "prep-print-hidden rounded-full px-2.5 py-1 text-[0.72rem] font-semibold tabular-nums",
                 doneCount === total && total > 0
                   ? "bg-sage/25 text-foreground"
                   : "bg-secondary text-muted-foreground",
@@ -457,7 +460,7 @@ export function PrepSheetView({
               <button
                 type="button"
                 onClick={reset}
-                className="rounded-md px-1.5 py-0.5 text-[0.7rem] font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="prep-print-hidden rounded-md px-1.5 py-0.5 text-[0.7rem] font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 Réinitialiser
               </button>
@@ -465,7 +468,7 @@ export function PrepSheetView({
           </div>
         </div>
         {total > 0 ? (
-          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-secondary">
+          <div className="prep-print-hidden mt-2 h-1.5 overflow-hidden rounded-full bg-secondary">
             <div
               className="h-full rounded-full bg-sage transition-all duration-300"
               style={{ width: `${pct}%` }}
@@ -486,7 +489,7 @@ export function PrepSheetView({
               <li
                 key={phase.title}
                 className={cn(
-                  "relative rounded-[22px] border p-4 shadow-sm transition-all duration-200",
+                  "prep-phase relative rounded-[22px] border p-4 shadow-sm transition-all duration-200",
                   PHASE_TONE_STYLES[phaseTone].shell,
                   status === "completed" && "border-sage/50",
                   status === "in_progress" && "border-ochre/50",
@@ -549,7 +552,7 @@ export function PrepSheetView({
                     aria-label={`Phase ${i + 1} : ${PHASE_STATUS_LABEL[status]}`}
                     title={`Statut : ${PHASE_STATUS_LABEL[status]} (cliquer pour changer)`}
                     className={cn(
-                      "grid h-7 w-7 shrink-0 place-items-center rounded-full border-2 transition-all duration-200",
+                      "prep-print-hidden grid h-7 w-7 shrink-0 place-items-center rounded-full border-2 transition-all duration-200",
                       PHASE_RING[status],
                     )}
                   >
@@ -573,7 +576,7 @@ export function PrepSheetView({
       </section>
 
       {/* Matériel / photocopies */}
-      <div id="sheet-materiel" className="scroll-mt-24 grid gap-3 sm:grid-cols-2">
+      <div id="sheet-materiel" className="prep-section scroll-mt-24 grid gap-3 sm:grid-cols-2">
         <ListBlock
           collapsible
           icon={<Wrench className="h-4 w-4" />}
@@ -590,7 +593,7 @@ export function PrepSheetView({
       </div>
 
       {sheet.audioVideo?.length || sheet.notes?.length ? (
-        <div id="sheet-notes" className="scroll-mt-24 grid gap-3 sm:grid-cols-2">
+        <div id="sheet-notes" className="prep-section scroll-mt-24 grid gap-3 sm:grid-cols-2">
           {sheet.audioVideo?.length ? (
             <ListBlock
               collapsible
@@ -613,7 +616,7 @@ export function PrepSheetView({
       ) : null}
 
       {sheet.exercises?.length ? (
-        <section id="sheet-exercices" className="scroll-mt-24 rounded-[22px] border border-border/80 bg-card p-4 shadow-sm print:border print:bg-white print:shadow-none">
+        <section id="sheet-exercices" className="prep-section scroll-mt-24 rounded-[22px] border border-border/80 bg-card p-4 shadow-sm print:border print:bg-white print:shadow-none">
           <button
             type="button"
             onClick={() => setExercisesOpen((o) => !o)}
@@ -689,7 +692,7 @@ export function PrepSheetView({
       ) : null}
 
       {sheet.coverageNote ? (
-        <section className="rounded-2xl border border-dashed border-border bg-secondary/40 p-4">
+        <section className="prep-section rounded-2xl border border-dashed border-border bg-secondary/40 p-4">
           <h4 className="eyebrow">Note de couverture</h4>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             {sheet.coverageNote}
@@ -699,7 +702,7 @@ export function PrepSheetView({
 
       {/* Différenciation regroupée en fin de fiche */}
       {differentiations.length ? (
-        <section id="sheet-differenciation" className="scroll-mt-24 rounded-[22px] border border-border/80 bg-card p-4 shadow-sm print:border print:bg-white print:shadow-none">
+        <section id="sheet-differenciation" className="prep-section scroll-mt-24 rounded-[22px] border border-border/80 bg-card p-4 shadow-sm print:border print:bg-white print:shadow-none">
           <SectionTitle
             eyebrow="Différenciation"
             title="Ajustements et étayage"
