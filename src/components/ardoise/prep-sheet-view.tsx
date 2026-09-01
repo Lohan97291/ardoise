@@ -1,8 +1,10 @@
 import {
   BookMarked,
+  BookOpenCheck,
   Check,
   ChevronDown,
   Clock,
+  GraduationCap,
   Languages,
   Printer,
   Sparkles,
@@ -13,6 +15,7 @@ import { useState, type ReactNode } from "react";
 
 import { SUBJECT_BAND } from "@/components/ardoise/subject-styles";
 import { SUBJECTS, type PrepSheet } from "@/lib/ardoise-data";
+import { getPrepSheetCurricularLinks } from "@/lib/curricular-domains";
 import {
   getPhaseStatuses,
   nextPhaseStatus,
@@ -248,6 +251,7 @@ export function PrepSheetView({
   const exerciseCount = sheet.exercises?.length ?? 0;
   const studentPagesLabel = formatPageList(sheet.studentPages);
   const teacherPagesLabel = formatPageList(sheet.teacherPages);
+  const curricularLinks = getPrepSheetCurricularLinks(sheet);
 
   const [statuses, setStatuses] = useState<Record<number, PhaseStatus>>(() =>
     sessionId ? getPhaseStatuses(sessionId) : {},
@@ -259,6 +263,7 @@ export function PrepSheetView({
 
   const sommaireItems: { id: string; label: string }[] = [
     { id: "sheet-objectif", label: "Objectif" },
+    { id: "sheet-domaines", label: "Domaines" },
     ...(total > 0 ? [{ id: "sheet-deroule", label: "Déroulé" }] : []),
     { id: "sheet-materiel", label: "Matériel" },
     ...((sheet.exercises?.length ?? 0) > 0 ? [{ id: "sheet-exercices", label: "Exercices" }] : []),
@@ -379,6 +384,32 @@ export function PrepSheetView({
           icon={<Target className="h-4 w-4" />}
         />
       </div>
+
+      <section
+        id="sheet-domaines"
+        className="scroll-mt-24 rounded-[22px] border border-border/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(244,247,255,0.92))] p-4 shadow-sm print:border print:bg-white print:shadow-none"
+      >
+        <SectionTitle
+          eyebrow="Rattachement institutionnel"
+          title="Domaines de la séance"
+          description="Socle commun et domaines disciplinaires à reporter dans la préparation."
+          icon={<GraduationCap className="h-4 w-4" />}
+        />
+        <div className="mt-3 grid gap-3 lg:grid-cols-2">
+          <DomainCard
+            icon={<GraduationCap className="h-4 w-4" />}
+            title="Domaines du socle"
+            items={curricularLinks.socleDomains}
+            tone="socle"
+          />
+          <DomainCard
+            icon={<BookOpenCheck className="h-4 w-4" />}
+            title={`Domaines ${SUBJECTS[sheet.subject].label.toLowerCase()}`}
+            items={curricularLinks.disciplinaryDomains}
+            tone="discipline"
+          />
+        </div>
+      </section>
 
       {sheet.vocabulary?.length || sheet.languageStructures?.length ? (
         <div className="grid gap-3 sm:grid-cols-2">
@@ -1136,6 +1167,53 @@ function ListBlock({
         </div>
       </div>
     </section>
+  );
+}
+
+function DomainCard({
+  title,
+  icon,
+  items,
+  tone,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  items: string[];
+  tone: "socle" | "discipline";
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-[18px] border p-3.5",
+        tone === "socle"
+          ? "border-sky-200/80 bg-sky-50/80"
+          : "border-amber-200/80 bg-amber-50/80",
+      )}
+    >
+      <div className="flex items-center gap-2">
+        <span
+          className={cn(
+            "grid h-8 w-8 place-items-center rounded-xl border bg-white/85 shadow-sm",
+            tone === "socle" ? "border-sky-200 text-sky-700" : "border-amber-200 text-amber-700",
+          )}
+        >
+          {icon}
+        </span>
+        <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-foreground/70">
+          {title}
+        </p>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {items.map((item) => (
+          <span
+            key={item}
+            className="rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[0.78rem] font-semibold leading-snug text-foreground shadow-sm"
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 

@@ -57,6 +57,8 @@ export type PrepSheet = {
   id: string;
   title: string;
   subject: SubjectKey;
+  socleDomains?: string[];
+  disciplinaryDomains?: string[];
   objective: string;
   competence: string;
   duration: string;

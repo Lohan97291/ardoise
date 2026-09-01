@@ -48,14 +48,30 @@ type OrthographemicWordList = {
   lists: Array<{ n: number; mots: string[] }>;
 };
 
+type OrthographemicReusableFlow = {
+  id: string;
+  sourceKey?: string;
+  title: string;
+  steps: OrthographemicPhase[];
+  note?: string;
+};
+
 type OrthographemicGuide = {
   method: string;
   chapters: OrthographemicChapter[];
   weeks: OrthographemicWeek[];
+  reusableFlows?: OrthographemicReusableFlow[];
   wordLists?: Record<string, OrthographemicWordList>;
 };
 
 const orthographemicGuide = orthographemicGuideData as OrthographemicGuide;
+
+const reusableFlowById = new Map(
+  (orthographemicGuide.reusableFlows ?? []).flatMap((flow) => [
+    [flow.id, flow],
+    flow.sourceKey ? [flow.sourceKey, flow] : [flow.id, flow],
+  ]),
+);
 
 const TYPE_LABELS: Record<string, string> = {
   ateliers: "Ateliers",
@@ -87,10 +103,26 @@ function activityLabel(activity: OrthographemicActivity): string {
   return activity.optional ? `${type} facultatif` : type;
 }
 
+function reusableFlowForActivity(activity: OrthographemicActivity): OrthographemicReusableFlow | undefined {
+  const title = activity.title.toLowerCase();
+
+  if (title.includes("découverte des valeurs")) return reusableFlowById.get("decouverte-valeurs");
+  if (title.includes("jeux")) return reusableFlowById.get("jeux");
+  if (title.includes("consolidation") || title.includes("régulation")) {
+    return reusableFlowById.get("consolidation-regulation");
+  }
+
+  return reusableFlowById.get(activity.type) ?? reusableFlowById.get(activity.type.replaceAll("-", "_"));
+}
+
 function phaseFromActivity(activity: OrthographemicActivity): PrepPhase[] {
-  const phases = activity.phases?.length
-    ? activity.phases
-    : [{ n: activity.title, m: activity.duration, d: "Consulter le support Orthographémic pour le détail de la séance." }];
+  const fallbackFlow = reusableFlowForActivity(activity);
+  const phases =
+    activity.phases?.length && !activity.phases.every((phase) => phase.d.includes("Déroulé issu de la programmation Orthographémic"))
+      ? activity.phases
+      : fallbackFlow?.steps?.length
+        ? fallbackFlow.steps
+        : [{ n: activity.title, m: activity.duration, d: "Consulter le support Orthographémic pour le détail de la séance." }];
 
   return phases.map((phase) => ({
     title: phase.n || activity.title,
@@ -115,6 +147,11 @@ function buildPrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepS
     id: day.id,
     title: `Semaine ${week.week} · Jour ${day.day} — ${week.title}`,
     subject: "francais",
+    socleDomains: [
+      "D1 · Les langages pour penser et communiquer",
+      "D2 · Les méthodes et outils pour apprendre",
+    ],
+    disciplinaryDomains: ["Étude de la langue : grammaire, orthographe, lexique", "Lecture et compréhension de l'écrit", "Écriture"],
     objective: week.title,
     competence: "Étudier les correspondances graphèmes-phonèmes et mémoriser l'orthographe des mots.",
     duration: durationLabel(day.duration) ?? "",
