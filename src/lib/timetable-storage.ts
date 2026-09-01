@@ -4,7 +4,6 @@
  */
 import type { Session, SubjectKey } from "@/lib/ardoise-data";
 import { toISODate } from "@/lib/ardoise-data";
-import { getExercisePlan } from "@/lib/exercise-plans";
 import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
 
 export type Weekday = "lundi" | "mardi" | "mercredi" | "jeudi" | "vendredi";
@@ -1164,7 +1163,6 @@ const WEEKDAY_OFFSET: Record<Weekday, number> = {
 
 /** Écrit les 5 jours de la semaine (à partir du lundi `monday`) dans le cahier journal. */
 export async function applyTimetableToWeek(monday: Date): Promise<void> {
-  const { autofillJournalDay } = await import("@/lib/journal-autofill");
   const timetable = getTimetable();
   const store = readJournalDays();
 
@@ -1184,16 +1182,9 @@ export async function applyTimetableToWeek(monday: Date): Promise<void> {
       pedagogicalSubDomain: s.pedagogicalSubDomain,
       builderTemplateId: s.builderTemplateId,
       free: s.free,
-      prepSheetId: s.prepSheetId,
-      resourceId: s.resourceId,
-      programmingItemId: s.programmingItemId,
-      exercisePlan: s.exercisePlan ?? getExercisePlan(s.programmingItemId),
-      correctionMode: s.correctionMode,
-      correctionExerciseId: s.correctionExerciseId,
-      correctionPeriod: s.correctionPeriod,
       note: s.note,
     }));
-    store[key] = (await autofillJournalDay(key, baseSessions, store)).sessions;
+    store[key] = baseSessions;
   }
 
   writeJournalDays(store);

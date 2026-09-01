@@ -13,7 +13,6 @@ import {
   Printer,
   Settings2,
   Sparkles,
-  Wand2,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -43,7 +42,6 @@ import {
   saveGeneratedStandaloneSession,
 } from "@/lib/generated-resources-storage";
 import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
-import { createBoulardFirstSchoolDay, FIRST_SCHOOL_DAY_KEY } from "@/lib/first-school-day";
 import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 import {
   removeExtraPreparedForSessions,
@@ -130,18 +128,7 @@ function parseRequestedDate(): Date | null {
 
 function getInitialDays(): Record<string, Session[]> {
   let days = readJournalDays();
-  const firstDay = days[FIRST_SCHOOL_DAY_KEY];
-  const needsFirstDayRefresh = firstDay?.some(
-    (session) => session.id === "2026-09-01-production-ecrit",
-  );
   const isBoulard = resolveCurrentClassroomKey() === "boulard";
-
-  if (isBoulard && (!firstDay || needsFirstDayRefresh)) {
-    days = writeJournalDays({
-      ...days,
-      [FIRST_SCHOOL_DAY_KEY]: createBoulardFirstSchoolDay(),
-    });
-  }
 
   if (!isBoulard || typeof window === "undefined") return days;
   if (window.localStorage.getItem(BOULARD_RESET_MARKER_KEY)) return days;
@@ -198,6 +185,21 @@ function getSubjectLabel(subject: Session["subject"]): string {
     pause: "Pause",
   };
   return labels[subject] ?? subject;
+}
+
+function withoutResourceAttachments(session: Session): Session {
+  return {
+    id: session.id,
+    start: session.start,
+    end: session.end,
+    title: session.title,
+    subject: session.subject,
+    pedagogicalDomain: session.pedagogicalDomain,
+    pedagogicalSubDomain: session.pedagogicalSubDomain,
+    builderTemplateId: session.builderTemplateId,
+    free: session.free,
+    note: session.note,
+  };
 }
 
 function saveGeneratedPrepIntoSession(sessionId: string, plan: PlumeSessionPlan["session"]): void {
@@ -380,38 +382,16 @@ function JournalPage() {
     const dayIndex = date.getDay() - 1;
     const weekday = WEEKDAYS[dayIndex] as Weekday | undefined;
     const slots = weekday ? getTimetable()[weekday] : [];
-    const baseSessions = slots.map((slot, i) => ({ ...slot, id: `${key}-${i}` }));
-    void (async () => {
-      const { autofillJournalDay } = await import("@/lib/journal-autofill");
-      const current = readJournalDays();
-      const autofilled = await autofillJournalDay(key, baseSessions, current);
-      const updated = { ...current, [key]: autofilled.sessions };
-      writeJournalDays(updated);
-      setDays(updated);
-      toast.success("Journée importée et complétée automatiquement.", {
-        description:
-          autofilled.missingCount > 0
-            ? `${autofilled.linkedCount} séance(s) rattachée(s) automatiquement. ${autofilled.missingCount} séance(s) demandent encore une vraie suite de projet.`
-            : `${autofilled.linkedCount} séance(s) rattachée(s) automatiquement à leurs ressources.`,
-      });
-    })();
-  };
-
-  const autoFillCurrentDay = () => {
-    void (async () => {
-      const { autofillJournalDay } = await import("@/lib/journal-autofill");
-      const current = readJournalDays();
-      const autofilled = await autofillJournalDay(key, sessions, current);
-      const updated = { ...current, [key]: autofilled.sessions };
-      writeJournalDays(updated);
-      setDays(updated);
-      toast.success("Cahier journal complété automatiquement.", {
-        description:
-          autofilled.missingCount > 0
-            ? `${autofilled.linkedCount} séance(s) reliée(s). ${autofilled.missingCount} séance(s) restent à générer ou préciser.`
-            : `${autofilled.linkedCount} séance(s) reliée(s) à la bonne ressource.`,
-      });
-    })();
+    const baseSessions = slots.map((slot, i) =>
+      withoutResourceAttachments({ ...slot, id: `${key}-${i}` }),
+    );
+    const current = readJournalDays();
+    const updated = { ...current, [key]: baseSessions };
+    writeJournalDays(updated);
+    setDays(updated);
+    toast.success("Journée importée vierge.", {
+      description: "Les ressources restent à rattacher manuellement depuis le cahier journal.",
+    });
   };
 
   const handleSave = (session: Session) => {
@@ -821,10 +801,6 @@ function JournalPage() {
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Ajouter une séance
-              </Button>
-              <Button variant="ghost" className="sm:w-auto" onClick={autoFillCurrentDay}>
-                <Wand2 className="mr-2 h-4 w-4" />
-                Compléter automatiquement
               </Button>
             </div>
           </div>

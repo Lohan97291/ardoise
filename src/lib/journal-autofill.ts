@@ -10,6 +10,7 @@ import {
 type JournalStore = Record<string, Session[]>;
 
 type AutofillMode = "next" | "current";
+const MATHS_CE1_METHOD_ID = "m-maths-ce1-guide";
 
 type MethodResolution = {
   methodId: string;
@@ -89,7 +90,7 @@ async function methodIdFromAttachedSession(session: Session): Promise<string | u
 
   if (session.programmingItemId) {
     if (/^e_p\d+_\d+$/i.test(session.programmingItemId)) return "m-cleo";
-    if (/^m\d+$/i.test(session.programmingItemId)) return "m-acces";
+    if (/^m\d+$/i.test(session.programmingItemId)) return MATHS_CE1_METHOD_ID;
     if (/^ortho-s\d+$/i.test(session.programmingItemId)) return ORTHO_METHOD.id;
   }
 
@@ -109,7 +110,7 @@ function frenchMissingMessage(session: Session): string | undefined {
   }
 
   if (templateId === "production-ecrit" || normalizedTitle.includes("production d ecrit")) {
-    return "Production d'écrits : ressource spécifique à rattacher manuellement, ou à générer avec Plume d'Ardoise selon le projet en cours.";
+    return undefined;
   }
 
   if (
@@ -148,7 +149,7 @@ function resolveMethod(session: Session): MethodResolution | null {
     (templateId === "sequence-maths-45" || templateId === "sequence-maths-35") &&
     normalizedTitle === "mathematiques"
   ) {
-    return { methodId: "m-acces", mode: "next" };
+    return { methodId: MATHS_CE1_METHOD_ID, mode: "next" };
   }
 
   if (
@@ -161,7 +162,7 @@ function resolveMethod(session: Session): MethodResolution | null {
       normalizedTitle.includes("calcul mental") ||
       normalizedTitle.includes("atelier problemes"))
   ) {
-    return { methodId: "m-acces", mode: "current" };
+    return { methodId: MATHS_CE1_METHOD_ID, mode: "current" };
   }
 
   if (normalizedTitle.includes("langage oral")) {
@@ -189,6 +190,13 @@ function resolveMethod(session: Session): MethodResolution | null {
     (normalizedTitle.includes("education musicale") || normalizedTitle.includes("musique"))
   ) {
     return { methodId: "m-vivre-la-musique-ce1", mode: "next" };
+  }
+
+  if (
+    session.subject === "francais" &&
+    (templateId === "production-ecrit" || normalizedTitle.includes("production d ecrit"))
+  ) {
+    return { methodId: "m-mdi-production-ecrit", mode: "next" };
   }
 
   if (
@@ -373,7 +381,7 @@ export async function autofillJournalDay(
     const resolution: MethodResolution | null = attachedMethodId
       ? {
           methodId: attachedMethodId,
-          mode: attachedMethodId === "m-acces" ? "current" : "next",
+          mode: attachedMethodId === MATHS_CE1_METHOD_ID ? "current" : "next",
         }
       : resolveMethod(session);
     if (!resolution) {
@@ -407,7 +415,7 @@ export async function autofillJournalDay(
     const orderedResources = flatSessions(method);
     const lastIndex = lastResourceIndex(method, [...workingHistory, ...nextSessions], session.id);
     const isGenericAccesMathsSession =
-      resolution.methodId === "m-acces" &&
+      resolution.methodId === MATHS_CE1_METHOD_ID &&
       (session.builderTemplateId === "sequence-maths-45" ||
         session.builderTemplateId === "sequence-maths-35") &&
       normalize(session.title) === "mathematiques";

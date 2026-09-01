@@ -43,7 +43,6 @@ import {
   type Session,
 } from "@/lib/ardoise-data";
 import {
-  resolveCurrentClassroomKey,
   STUDENTS,
   fullName,
   initials,
@@ -93,9 +92,8 @@ import {
 import { getRecentSignals } from "@/lib/signal-storage";
 import { getZoneCSchoolRhythm } from "@/lib/school-rhythm";
 import { cn } from "@/lib/utils";
-import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
+import { readJournalDays } from "@/lib/journal-storage";
 import { useAppEdition } from "@/lib/app-edition";
-import { createBoulardFirstSchoolDay, FIRST_SCHOOL_DAY_KEY } from "@/lib/first-school-day";
 import { getPatchedPrepSheet } from "@/lib/resource-tree-patched";
 
 const PHASE_RING: Record<PhaseStatus, string> = {
@@ -219,21 +217,7 @@ function Dashboard() {
   const todayKey = toISODate(today);
   const todaySessions = useMemo(() => {
     if (!mounted) return [];
-
-    const days = readJournalDays();
-    if (
-      todayKey === FIRST_SCHOOL_DAY_KEY &&
-      resolveCurrentClassroomKey() === "boulard" &&
-      !days[FIRST_SCHOOL_DAY_KEY]
-    ) {
-      const next = writeJournalDays({
-        ...days,
-        [FIRST_SCHOOL_DAY_KEY]: createBoulardFirstSchoolDay(),
-      });
-      return next[todayKey] ?? [];
-    }
-
-    return days[todayKey] ?? [];
+    return readJournalDays()[todayKey] ?? [];
   }, [mounted, todayKey]);
 
   const daySessions = useMemo(
