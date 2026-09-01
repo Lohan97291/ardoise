@@ -17,6 +17,10 @@ import {
   MDI_PE_SESSION_PREP_SHEETS,
 } from "@/lib/mdi-pe-resource-bridge";
 import {
+  getOrthographemicPrepSheet,
+  ORTHOGRAPHEMIC_SESSION_PREP_SHEETS,
+} from "@/lib/orthographemic-resource-bridge";
+import {
   getQlmMdiGuidePrepSheet,
   QLM_MDI_GUIDE_SESSION_PREP_SHEETS,
 } from "@/lib/qlm-mdi-guide-resource-bridge";
@@ -38,6 +42,7 @@ export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
     MATHS_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     MATHS_CE1_AUXILIARY_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     LANGAGE_ORAL_PREP_SHEETS.find((prep) => prep.id === id) ??
+    ORTHOGRAPHEMIC_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     MDI_PE_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     MDI_ECRITURE_TRANSITION_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     QLM_MDI_GUIDE_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
@@ -45,6 +50,7 @@ export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
     VLM_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     getMathsCe1AuxiliaryPrepSheet(id) ??
     getMathsCe1PrepSheet(id) ??
+    getOrthographemicPrepSheet(id) ??
     getMdiPePrepSheet(id) ??
     getMdiEcritureTransitionPrepSheet(id) ??
     getQlmMdiGuidePrepSheet(id) ??

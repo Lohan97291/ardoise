@@ -9,6 +9,7 @@ import {
 } from "@/lib/maths-ce1-resource-bridge";
 import { MDI_ECRITURE_TRANSITION_RESOURCE_METHOD } from "@/lib/mdi-ecriture-transition-resource-bridge";
 import { MDI_PE_RESOURCE_METHOD } from "@/lib/mdi-pe-resource-bridge";
+import { ORTHOGRAPHEMIC_RESOURCE_METHOD } from "@/lib/orthographemic-resource-bridge";
 import { QLM_MDI_GUIDE_RESOURCE_METHOD } from "@/lib/qlm-mdi-guide-resource-bridge";
 import { WELL_DONE_CE1_RESOURCE_METHOD } from "@/lib/well-done-ce1-resource-bridge";
 import { VIVRE_LA_MUSIQUE_CE1_RESOURCE_METHOD } from "@/lib/vivre-la-musique-ce1-resource-bridge";
@@ -121,6 +122,7 @@ export const PATCHED_RESOURCE_TREE: ResourceMethod[] = [
   MATHS_CE1_FLASH_MATHS_P1_RESOURCE_METHOD,
   REAL_ORAL_METHOD,
   REAL_ORAL_BY_DOMAIN_METHOD,
+  ORTHOGRAPHEMIC_RESOURCE_METHOD,
   MDI_PE_RESOURCE_METHOD,
   MDI_ECRITURE_TRANSITION_RESOURCE_METHOD,
   QLM_MDI_GUIDE_RESOURCE_METHOD,
