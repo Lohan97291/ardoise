@@ -31,6 +31,7 @@ const DEFAULT_STUDENT_PROFILES: Record<string, StudentProfile> = {
   "el-8": { birthDate: "2019-01-23" },
   "el-9": { birthDate: "2019-01-04" },
   "el-10": { birthDate: "2019-11-09" },
+  "el-11": { birthDate: "2018-08-16" },
   "durand-1": { birthDate: "2019-09-22" },
   "durand-2": { birthDate: "2019-06-06" },
   "durand-3": { birthDate: "2019-04-22" },

@@ -46,7 +46,7 @@ export const FIRST_SCHOOL_DAY_PREP_SHEETS: PrepSheet[] = [
       { title: "Collecte", duration: "5 min", detail: "Ramasser les dossiers sans correction collective. Noter les élèves qui ont besoin d'une passation plus accompagnée." },
     ],
     material: ["Dossier élève « Mes évaluations diagnostiques » Orthographémic CE1", "Crayons à papier", "Gomme"],
-    photocopies: ["Évaluations diagnostiques Orthographémic CE1 : 10 exemplaires déjà imprimés"],
+    photocopies: ["Évaluations diagnostiques Orthographémic CE1 : 11 exemplaires déjà imprimés"],
     notes: ["Cette séance est rattachée à Orthographémic CE1, semaine 1. Elle ne renvoie à aucune page d'exercices du manuel."],
   },
   {
@@ -77,7 +77,7 @@ export const FIRST_SCHOOL_DAY_PREP_SHEETS: PrepSheet[] = [
       { title: "Ramassage", duration: "5 min", detail: "Ramasser les évaluations pour préparer les premiers groupes de besoin. Aucune correction collective aujourd'hui." },
     ],
     material: ["Évaluations diagnostiques CE1 de mathématiques", "Crayons à papier", "Gommes"],
-    photocopies: ["Évaluations diagnostiques CE1 - mathématiques : 10 exemplaires déjà imprimés"],
+    photocopies: ["Évaluations diagnostiques CE1 - mathématiques : 11 exemplaires déjà imprimés"],
     notes: ["Aucune référence à la page 34 : elle ne correspond pas à cette évaluation diagnostique."],
   },
   {
@@ -108,7 +108,7 @@ export const FIRST_SCHOOL_DAY_PREP_SHEETS: PrepSheet[] = [
       { title: "Retour sur le texte", duration: "10 min", detail: "Revenir sur quelques réponses avec le texte sous les yeux. Valoriser les stratégies : chercher l'information, relire, justifier." },
     ],
     material: ["Fiche de lecture compréhension « C'est la rentrée... »", "Crayons à papier", "Surligneurs facultatifs"],
-    photocopies: ["Fiche « C'est la rentrée... » : 10 exemplaires à prévoir"],
+    photocopies: ["Fiche « C'est la rentrée... » : 11 exemplaires à prévoir"],
     notes: ["Support transmis en PDF. Il remplace toute référence erronée à une page d'exercices."],
   },
   {
