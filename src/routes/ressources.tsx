@@ -65,6 +65,7 @@ type ResourceShelf = {
   subtitle: string;
   spine: string;
   methods: ResourceMethod[];
+  forceShelf?: boolean;
 };
 
 type ResourceGuideGroup = {
@@ -88,6 +89,7 @@ const METHOD_COVER_STYLES: Record<string, { spine: string; subtitle: string }> =
   "m-qlm-mdi-guide": { spine: "bg-teal-500", subtitle: "Guide enseignant" },
   "m-well-done-ce1": { spine: "bg-lime-500", subtitle: "Anglais" },
   "m-vivre-la-musique-ce1": { spine: "bg-orange-500", subtitle: "Éducation musicale" },
+  "m-premiere-journee-ce1": { spine: "bg-slate-600", subtitle: "Rentrée" },
 };
 
 const MATHS_CE1_METHOD_ORDER = [
@@ -233,15 +235,20 @@ function ResourcesPage() {
 
     resourceTree
       .filter((method) => !groupedMethodIds.has(method.id))
-      .forEach((method) => {
-        const cover = methodCoverMeta(method);
-        shelves.push({
-          id: `shelf-${method.id}`,
-          label: method.label,
-          subtitle: cover.subtitle,
-          spine: cover.spine,
-          methods: [method],
-        });
+      .forEach((method, index) => {
+        if (index === 0) {
+          shelves.push({
+            id: "shelf-personal-resources",
+            label: "Mes ressources",
+            subtitle: "Créations personnelles",
+            spine: "bg-slate-700",
+            methods: [],
+            forceShelf: true,
+          });
+        }
+
+        const personalShelf = shelves.find((shelf) => shelf.id === "shelf-personal-resources");
+        personalShelf?.methods.push(method);
       });
 
     return shelves;
@@ -308,7 +315,7 @@ function ResourcesPage() {
   }
 
   function openShelf(shelf: ResourceShelf) {
-    if (shelf.methods.length === 1) {
+    if (shelf.methods.length === 1 && !shelf.forceShelf) {
       openMethod(shelf.methods[0], shelf);
       return;
     }
@@ -443,7 +450,9 @@ function ResourcesPage() {
                     Bibliothèque
                   </Button>
                 </div>
-                <p className="eyebrow mt-3">Guides du maître</p>
+                <p className="eyebrow mt-3">
+                  {selectedShelf.id === "shelf-personal-resources" ? "Ressources personnelles" : "Guides du maître"}
+                </p>
                 <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
                   {selectedShelf.label}
                 </h2>
@@ -476,7 +485,11 @@ function ResourcesPage() {
                 <div className="flex items-center gap-2">
                   <Button variant="ghost" size="sm" className="h-8 px-2.5" onClick={backFromSummary}>
                     <ArrowLeft className="mr-1.5 h-4 w-4" />
-                    {selectedShelf && selectedShelf.methods.length > 1 ? "Guides" : "Bibliothèque"}
+                    {selectedShelf?.id === "shelf-personal-resources"
+                      ? "Mes ressources"
+                      : selectedShelf && selectedShelf.methods.length > 1
+                        ? "Guides"
+                        : "Bibliothèque"}
                   </Button>
                 </div>
                 <p className="eyebrow mt-3">Sommaire du guide</p>
