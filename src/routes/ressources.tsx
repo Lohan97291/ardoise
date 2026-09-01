@@ -67,15 +67,27 @@ type ResourceShelf = {
   methods: ResourceMethod[];
 };
 
+type ResourceGuideGroup = {
+  id: string;
+  label: string;
+  subtitle: string;
+  spine: string;
+  methodIds: string[];
+};
+
 const METHOD_COVER_STYLES: Record<string, { spine: string; subtitle: string }> = {
   "m-cleo": { spine: "bg-sky-500", subtitle: "Cahier de français" },
   "m-maths-ce1-guide": { spine: "bg-violet-500", subtitle: "Guide enseignant" },
   "m-maths-ce1-p1-atelier-problemes": { spine: "bg-rose-500", subtitle: "Période 1" },
   "m-maths-ce1-p1-calcul-mental": { spine: "bg-amber-500", subtitle: "Période 1" },
   "m-maths-ce1-p1-flash-maths": { spine: "bg-emerald-500", subtitle: "Période 1" },
-  "m-langage-oral-ce": { spine: "bg-indigo-500", subtitle: "Langage oral" },
+  "m-langage-oral-ce": { spine: "bg-indigo-500", subtitle: "Sommaire officiel" },
+  "m-langage-oral-ce-domaines": { spine: "bg-blue-500", subtitle: "Domaines" },
   "m-mdi-production-ecrit": { spine: "bg-fuchsia-500", subtitle: "Production d'écrit" },
   "m-mdi-ecriture-transition": { spine: "bg-cyan-500", subtitle: "Écriture / copie" },
+  "m-qlm-mdi-guide": { spine: "bg-teal-500", subtitle: "Guide enseignant" },
+  "m-well-done-ce1": { spine: "bg-lime-500", subtitle: "Anglais" },
+  "m-vivre-la-musique-ce1": { spine: "bg-orange-500", subtitle: "Éducation musicale" },
 };
 
 const MATHS_CE1_METHOD_ORDER = [
@@ -85,8 +97,49 @@ const MATHS_CE1_METHOD_ORDER = [
   "m-maths-ce1-p1-flash-maths",
 ];
 
+const RESOURCE_GUIDE_GROUPS: ResourceGuideGroup[] = [
+  {
+    id: "shelf-francais-ce1",
+    label: "Français CE1",
+    subtitle: "Cléo · Oral · Écriture · Production d'écrit",
+    spine: "bg-sky-500",
+    methodIds: [
+      "m-cleo",
+      "m-langage-oral-ce",
+      "m-langage-oral-ce-domaines",
+      "m-mdi-production-ecrit",
+      "m-mdi-ecriture-transition",
+    ],
+  },
+  {
+    id: "shelf-maths-ce1",
+    label: "Maths en CE1 - ACCÈS",
+    subtitle: "Guide + rituels",
+    spine: "bg-violet-500",
+    methodIds: MATHS_CE1_METHOD_ORDER,
+  },
+  {
+    id: "shelf-qlm-ce1",
+    label: "Questionner le monde",
+    subtitle: "MDI · guide enseignant",
+    spine: "bg-teal-500",
+    methodIds: ["m-qlm-mdi-guide"],
+  },
+  {
+    id: "shelf-lve-arts-ce1",
+    label: "Langues et arts",
+    subtitle: "Anglais · musique",
+    spine: "bg-orange-500",
+    methodIds: ["m-well-done-ce1", "m-vivre-la-musique-ce1"],
+  },
+];
+
 function isMathsCe1Method(method: ResourceMethod) {
   return method.id.startsWith("m-maths-ce1");
+}
+
+function isLangageOralMethod(method: ResourceMethod) {
+  return method.id.startsWith("m-langage-oral-ce");
 }
 
 function methodCoverMeta(method: ResourceMethod) {
@@ -99,8 +152,9 @@ function methodCoverMeta(method: ResourceMethod) {
 }
 
 function methodCoverTitle(method: ResourceMethod) {
-  if (!isMathsCe1Method(method)) return method.label;
-  return method.label.replace(/^Maths en CE1\s*[—-]\s*/i, "");
+  if (isMathsCe1Method(method)) return method.label.replace(/^Maths en CE1\s*[—-]\s*/i, "");
+  if (isLangageOralMethod(method)) return method.label.replace(/^Langage oral CE\s*[—-]\s*/i, "");
+  return method.label;
 }
 
 function ResourcesPage() {
@@ -165,36 +219,30 @@ function ResourcesPage() {
   }, [q, resourceTree]);
 
   const libraryShelves = useMemo<ResourceShelf[]>(() => {
-    const mathsMethods = resourceTree
-      .filter(isMathsCe1Method)
-      .sort(
-        (left, right) =>
-          MATHS_CE1_METHOD_ORDER.indexOf(left.id) - MATHS_CE1_METHOD_ORDER.indexOf(right.id),
-      );
-    const otherMethods = resourceTree.filter((method) => !isMathsCe1Method(method));
+    const methodById = new Map(resourceTree.map((method) => [method.id, method]));
+    const groupedMethodIds = new Set(RESOURCE_GUIDE_GROUPS.flatMap((group) => group.methodIds));
+    const shelves: ResourceShelf[] = RESOURCE_GUIDE_GROUPS.map((group) => ({
+      id: group.id,
+      label: group.label,
+      subtitle: group.subtitle,
+      spine: group.spine,
+      methods: group.methodIds
+        .map((methodId) => methodById.get(methodId))
+        .filter((method): method is ResourceMethod => Boolean(method)),
+    })).filter((shelf) => shelf.methods.length > 0);
 
-    const shelves: ResourceShelf[] = [];
-
-    if (mathsMethods.length > 0) {
-      shelves.push({
-        id: "shelf-maths-ce1",
-        label: "Maths en CE1 - ACCÈS",
-        subtitle: "Guide + rituels",
-        spine: "bg-violet-500",
-        methods: mathsMethods,
+    resourceTree
+      .filter((method) => !groupedMethodIds.has(method.id))
+      .forEach((method) => {
+        const cover = methodCoverMeta(method);
+        shelves.push({
+          id: `shelf-${method.id}`,
+          label: method.label,
+          subtitle: cover.subtitle,
+          spine: cover.spine,
+          methods: [method],
+        });
       });
-    }
-
-    otherMethods.forEach((method) => {
-      const cover = methodCoverMeta(method);
-      shelves.push({
-        id: `shelf-${method.id}`,
-        label: method.label,
-        subtitle: cover.subtitle,
-        spine: cover.spine,
-        methods: [method],
-      });
-    });
 
     return shelves;
   }, [resourceTree]);
@@ -395,7 +443,7 @@ function ResourcesPage() {
                     Bibliothèque
                   </Button>
                 </div>
-                <p className="eyebrow mt-3">Sous-cahiers</p>
+                <p className="eyebrow mt-3">Guides du maître</p>
                 <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
                   {selectedShelf.label}
                 </h2>
@@ -428,7 +476,7 @@ function ResourcesPage() {
                 <div className="flex items-center gap-2">
                   <Button variant="ghost" size="sm" className="h-8 px-2.5" onClick={backFromSummary}>
                     <ArrowLeft className="mr-1.5 h-4 w-4" />
-                    {selectedShelf && selectedShelf.methods.length > 1 ? "Sous-cahiers" : "Bibliothèque"}
+                    {selectedShelf && selectedShelf.methods.length > 1 ? "Guides" : "Bibliothèque"}
                   </Button>
                 </div>
                 <p className="eyebrow mt-3">Sommaire du guide</p>
