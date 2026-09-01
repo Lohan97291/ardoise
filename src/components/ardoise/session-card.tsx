@@ -1,4 +1,4 @@
-import { ClipboardCheck, Copy, FileText, Plus, Trash2 } from "lucide-react";
+import { ClipboardCheck, Copy, FileText, Plus, Printer, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { SUBJECT_BAND, SUBJECT_STRIP } from "@/components/ardoise/subject-styles";
@@ -17,6 +17,7 @@ type Props = {
   onDuplicate: (session: Session) => void;
   onDelete: (session: Session) => void;
   onAddAfter: (session: Session) => void;
+  onPrintPrep?: (session: Session) => void;
 };
 
 export function SessionCard({
@@ -26,6 +27,7 @@ export function SessionCard({
   onDuplicate,
   onDelete,
   onAddAfter,
+  onPrintPrep,
 }: Props) {
   const [prep, setPrep] = useState<PrepSheet | undefined>();
   const [resourceMatch, setResourceMatch] = useState<PatchedResourceMatch | undefined>();
@@ -101,29 +103,46 @@ export function SessionCard({
               </p>
             ) : null}
             <div className="mt-2">
-              {resultTarget ? (
-                <button
-                  type="button"
-                  title={resultTarget.label}
-                  aria-label={resultTarget.label}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    onCorrect(session);
-                  }}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-2.5 py-1 text-[0.68rem] font-semibold text-muted-foreground transition-colors hover:bg-background hover:text-foreground"
-                >
-                  <ClipboardCheck className="h-3.5 w-3.5" />
-                  {compactCorrectionLabel}
-                </button>
-              ) : (
-                <p
-                  title={correctionLabel}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-[0.68rem] font-semibold text-muted-foreground"
-                >
-                  <ClipboardCheck className="h-3.5 w-3.5" />
-                  {compactCorrectionLabel}
-                </p>
-              )}
+              <div className="flex flex-wrap gap-1.5">
+                {prep && onPrintPrep ? (
+                  <button
+                    type="button"
+                    title="Imprimer la fiche de prep en PDF"
+                    aria-label="Imprimer la fiche de prep en PDF"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onPrintPrep(session);
+                    }}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-2.5 py-1 text-[0.68rem] font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  >
+                    <Printer className="h-3.5 w-3.5" />
+                    Fiche PDF
+                  </button>
+                ) : null}
+                {resultTarget ? (
+                  <button
+                    type="button"
+                    title={resultTarget.label}
+                    aria-label={resultTarget.label}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onCorrect(session);
+                    }}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-2.5 py-1 text-[0.68rem] font-semibold text-muted-foreground transition-colors hover:bg-background hover:text-foreground"
+                  >
+                    <ClipboardCheck className="h-3.5 w-3.5" />
+                    {compactCorrectionLabel}
+                  </button>
+                ) : (
+                  <p
+                    title={correctionLabel}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-[0.68rem] font-semibold text-muted-foreground"
+                  >
+                    <ClipboardCheck className="h-3.5 w-3.5" />
+                    {compactCorrectionLabel}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
 

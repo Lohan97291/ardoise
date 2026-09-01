@@ -19,6 +19,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AiActionStrip } from "@/components/ardoise/ai-action-strip";
 import { AppShell } from "@/components/ardoise/app-shell";
 import { JournalPlumeDialog } from "@/components/ardoise/journal-plume-dialog";
+import { PrepSheetView } from "@/components/ardoise/prep-sheet-view";
 import { SessionCard } from "@/components/ardoise/session-card";
 import { SessionModal } from "@/components/ardoise/session-modal";
 import { Button } from "@/components/ui/button";
@@ -42,6 +43,7 @@ import {
   saveGeneratedStandaloneSession,
 } from "@/lib/generated-resources-storage";
 import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
+import { loadPatchedPrepSheet } from "@/lib/resource-library";
 import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 import {
   removeExtraPreparedForSessions,
@@ -240,6 +242,7 @@ function JournalPage() {
   const [viewMode, setViewMode] = useState<JournalViewMode>("day");
   const [displayOptions, setDisplayOptions] =
     useState<JournalDisplayOptions>(DEFAULT_DISPLAY_OPTIONS);
+  const [printPrep, setPrintPrep] = useState<{ sessionId: string; sheet: Awaited<ReturnType<typeof loadPatchedPrepSheet>> } | null>(null);
 
   const key = toISODate(date);
   const sessions = days[key] ?? [];
@@ -259,6 +262,17 @@ function JournalPage() {
     [days, displayOptions, weekDays],
   );
   const isToday = key === toISODate(today);
+
+  useEffect(() => {
+    if (!printPrep?.sheet) return;
+
+    const timeout = window.setTimeout(() => {
+      window.print();
+      window.setTimeout(() => setPrintPrep(null), 250);
+    }, 100);
+
+    return () => window.clearTimeout(timeout);
+  }, [printPrep]);
 
   const stats = useMemo(
     () => ({
@@ -779,6 +793,15 @@ function JournalPage() {
                 }
                 onDelete={(s) => update(sessions.filter((x) => x.id !== s.id))}
                 onAddAfter={addAfter}
+                onPrintPrep={(s) => {
+                  void loadPatchedPrepSheet(s.prepSheetId).then((sheet) => {
+                    if (!sheet) {
+                      toast.error("Aucune fiche de prep imprimable n'est rattachée à cette séance.");
+                      return;
+                    }
+                    setPrintPrep({ sessionId: s.id, sheet });
+                  });
+                }}
               />
             ))}
 
@@ -805,6 +828,12 @@ function JournalPage() {
             </div>
           </div>
         )}
+
+        {printPrep?.sheet ? (
+          <div className="fixed -left-[9999px] top-0 w-[794px] print:static print:w-auto">
+            <PrepSheetView sheet={printPrep.sheet} sessionId={printPrep.sessionId} stickyHeader={false} />
+          </div>
+        ) : null}
 
         {/* Actions secondaires + aide IA : barre compacte */}
         <section className="journal-print-hidden mt-6 rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_92%,transparent),color-mix(in_oklab,var(--color-secondary)_34%,transparent))] px-3 py-2.5 shadow-card">
