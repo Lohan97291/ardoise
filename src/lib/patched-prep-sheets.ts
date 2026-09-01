@@ -32,6 +32,10 @@ import {
   getVlmCe1PrepSheet,
   VLM_CE1_SESSION_PREP_SHEETS,
 } from "@/lib/vivre-la-musique-ce1-resource-bridge";
+import {
+  getEmcCe1PrepSheet,
+  EMC_CE1_SESSION_PREP_SHEETS,
+} from "@/lib/emc-ce1-resource-bridge";
 
 export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
   if (!id) return undefined;
@@ -48,6 +52,7 @@ export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
     QLM_MDI_GUIDE_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     WELL_DONE_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     VLM_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
+    EMC_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     getMathsCe1AuxiliaryPrepSheet(id) ??
     getMathsCe1PrepSheet(id) ??
     getOrthographemicPrepSheet(id) ??
@@ -56,6 +61,7 @@ export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
     getQlmMdiGuidePrepSheet(id) ??
     getWellDoneCe1PrepSheet(id) ??
     getVlmCe1PrepSheet(id) ??
+    getEmcCe1PrepSheet(id) ??
     getPrepSheet(id)
   );
 }

@@ -13,6 +13,7 @@ import { ORTHOGRAPHEMIC_RESOURCE_METHOD } from "@/lib/orthographemic-resource-br
 import { QLM_MDI_GUIDE_RESOURCE_METHOD } from "@/lib/qlm-mdi-guide-resource-bridge";
 import { WELL_DONE_CE1_RESOURCE_METHOD } from "@/lib/well-done-ce1-resource-bridge";
 import { VIVRE_LA_MUSIQUE_CE1_RESOURCE_METHOD } from "@/lib/vivre-la-musique-ce1-resource-bridge";
+import { EMC_CE1_RESOURCE_METHOD } from "@/lib/emc-ce1-resource-bridge";
 
 const PERIODS = [1, 2, 3, 4, 5] as const;
 const ORAL_PERIOD_LABELS: Record<(typeof PERIODS)[number], string> = {
@@ -128,4 +129,5 @@ export const PATCHED_RESOURCE_TREE: ResourceMethod[] = [
   QLM_MDI_GUIDE_RESOURCE_METHOD,
   WELL_DONE_CE1_RESOURCE_METHOD,
   VIVRE_LA_MUSIQUE_CE1_RESOURCE_METHOD,
+  EMC_CE1_RESOURCE_METHOD,
 ];
