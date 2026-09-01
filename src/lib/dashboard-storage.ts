@@ -25,6 +25,25 @@ export function setSessionStatus(sessionId: string, status: SessionStatus): void
   sessionStatusStore.set(store);
 }
 
+export function resetSessionStatusesForSessions(sessionIds: string[]): void {
+  if (sessionIds.length === 0) return;
+
+  const ids = new Set(sessionIds);
+  const store = sessionStatusStore.get();
+  let changed = false;
+
+  for (const sessionId of ids) {
+    if (sessionId in store) {
+      delete store[sessionId];
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    sessionStatusStore.set(store);
+  }
+}
+
 // ─────────────────────────────────────────────
 // À préparer : items cochés (dérivés des fiches) + items ajoutés à la main
 // ─────────────────────────────────────────────
@@ -82,6 +101,14 @@ export function addExtraPrepared(
 
 export function removeExtraPrepared(id: string): PreparedExtraItem[] {
   const next = getExtraPrepared().filter((i) => i.id !== id);
+  return preparedExtraStore.set(next);
+}
+
+export function removeExtraPreparedForSessions(sessionIds: string[]): PreparedExtraItem[] {
+  if (sessionIds.length === 0) return getExtraPrepared();
+
+  const ids = new Set(sessionIds);
+  const next = getExtraPrepared().filter((item) => !item.sessionId || !ids.has(item.sessionId));
   return preparedExtraStore.set(next);
 }
 

@@ -41,3 +41,22 @@ export function resetPhaseStatuses(sessionId: string): void {
   delete store[sessionId];
   sessionPhasesStore.set(store);
 }
+
+export function resetPhaseStatusesForSessions(sessionIds: string[]): void {
+  if (sessionIds.length === 0) return;
+
+  const ids = new Set(sessionIds);
+  const store = sessionPhasesStore.get();
+  let changed = false;
+
+  for (const sessionId of ids) {
+    if (sessionId in store) {
+      delete store[sessionId];
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    sessionPhasesStore.set(store);
+  }
+}

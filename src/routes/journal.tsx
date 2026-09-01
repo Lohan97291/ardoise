@@ -10,6 +10,8 @@ import {
   Link2,
   MoreHorizontal,
   Plus,
+  Printer,
+  Settings2,
   Sparkles,
   Wand2,
 } from "lucide-react";
@@ -24,8 +26,11 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -40,6 +45,11 @@ import {
 import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
 import { createBoulardFirstSchoolDay, FIRST_SCHOOL_DAY_KEY } from "@/lib/first-school-day";
 import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
+import {
+  removeExtraPreparedForSessions,
+  resetSessionStatusesForSessions,
+} from "@/lib/dashboard-storage";
+import { resetPhaseStatusesForSessions } from "@/lib/session-phases-storage";
 import type {
   PlumeJournalDayPlan,
   PlumeSequencePlan,
@@ -75,6 +85,27 @@ const today = new Date();
 /* ─────────────── Week navigation ─────────────── */
 
 const DAY_LABELS = ["Lu", "Ma", "Me", "Je", "Ve"] as const;
+const BOULARD_RESET_FROM_KEY = "2026-09-03";
+const BOULARD_RESET_MARKER_KEY = "ardoise.journal.boulard.reset-from-2026-09-03.v1";
+
+type JournalViewMode = "day" | "week";
+
+type JournalDisplayOptions = {
+  times: boolean;
+  subjects: boolean;
+  notes: boolean;
+  prep: boolean;
+  pauses: boolean;
+};
+
+const DEFAULT_DISPLAY_OPTIONS: JournalDisplayOptions = {
+  times: true,
+  subjects: true,
+  notes: true,
+  prep: true,
+  pauses: true,
+};
+
 function getWeekDays(date: Date): Date[] {
   const dow = date.getDay(); // 0 = dimanche
   const offset = dow === 0 ? -6 : 1 - dow; // ramener au lundi
@@ -98,22 +129,38 @@ function parseRequestedDate(): Date | null {
 }
 
 function getInitialDays(): Record<string, Session[]> {
-  const days = readJournalDays();
+  let days = readJournalDays();
   const firstDay = days[FIRST_SCHOOL_DAY_KEY];
   const needsFirstDayRefresh = firstDay?.some(
     (session) => session.id === "2026-09-01-production-ecrit",
   );
-  if (
-    resolveCurrentClassroomKey() !== "boulard" ||
-    (firstDay && !needsFirstDayRefresh)
-  ) {
+  const isBoulard = resolveCurrentClassroomKey() === "boulard";
+
+  if (isBoulard && (!firstDay || needsFirstDayRefresh)) {
+    days = writeJournalDays({
+      ...days,
+      [FIRST_SCHOOL_DAY_KEY]: createBoulardFirstSchoolDay(),
+    });
+  }
+
+  if (!isBoulard || typeof window === "undefined") return days;
+  if (window.localStorage.getItem(BOULARD_RESET_MARKER_KEY)) return days;
+
+  const entriesToReset = Object.entries(days).filter(([dateKey]) => dateKey >= BOULARD_RESET_FROM_KEY);
+  if (entriesToReset.length === 0) {
+    window.localStorage.setItem(BOULARD_RESET_MARKER_KEY, "done");
     return days;
   }
 
-  const next = {
-    ...days,
-    [FIRST_SCHOOL_DAY_KEY]: createBoulardFirstSchoolDay(),
-  };
+  const sessionIds = entriesToReset.flatMap(([, sessions]) => sessions.map((session) => session.id));
+  resetPhaseStatusesForSessions(sessionIds);
+  resetSessionStatusesForSessions(sessionIds);
+  removeExtraPreparedForSessions(sessionIds);
+
+  const next = Object.fromEntries(
+    Object.entries(days).filter(([dateKey]) => dateKey < BOULARD_RESET_FROM_KEY),
+  );
+  window.localStorage.setItem(BOULARD_RESET_MARKER_KEY, "done");
   return writeJournalDays(next);
 }
 
@@ -133,6 +180,24 @@ function toTimeLabel(totalMinutes: number): string {
 function durationMinutes(label: string): number {
   const match = label.match(/(\d+)/);
   return match ? Number(match[1]) : 30;
+}
+
+function getVisibleSessions(sessions: Session[], options: JournalDisplayOptions): Session[] {
+  return options.pauses ? sessions : sessions.filter((session) => session.subject !== "pause");
+}
+
+function getSubjectLabel(subject: Session["subject"]): string {
+  const labels: Partial<Record<Session["subject"], string>> = {
+    francais: "Français",
+    maths: "Maths",
+    qlm: "QLM",
+    arts: "Arts",
+    eps: "EPS",
+    anglais: "Anglais",
+    emc: "EMC",
+    pause: "Pause",
+  };
+  return labels[subject] ?? subject;
 }
 
 function saveGeneratedPrepIntoSession(sessionId: string, plan: PlumeSessionPlan["session"]): void {
@@ -170,9 +235,27 @@ function JournalPage() {
   const [editing, setEditing] = useState<Session | null>(null);
   const [open, setOpen] = useState(false);
   const [deepLinkHandled, setDeepLinkHandled] = useState(false);
+  const [viewMode, setViewMode] = useState<JournalViewMode>("day");
+  const [displayOptions, setDisplayOptions] =
+    useState<JournalDisplayOptions>(DEFAULT_DISPLAY_OPTIONS);
 
   const key = toISODate(date);
   const sessions = days[key] ?? [];
+  const visibleSessions = getVisibleSessions(sessions, displayOptions);
+  const weekDays = useMemo(() => getWeekDays(date), [date]);
+  const weekEntries = useMemo(
+    () =>
+      weekDays.map((day) => {
+        const dateKey = toISODate(day);
+        const daySessions = days[dateKey] ?? [];
+        return {
+          date: day,
+          dateKey,
+          sessions: getVisibleSessions(daySessions, displayOptions),
+        };
+      }),
+    [days, displayOptions, weekDays],
+  );
   const isToday = key === toISODate(today);
 
   const stats = useMemo(
@@ -430,7 +513,7 @@ function JournalPage() {
 
   return (
     <AppShell>
-      <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+      <div className="print-sheet mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
         {/* En-tête jour : navigation de date, l'action la plus fréquente */}
         <header className="card-surface overflow-hidden border-primary/10 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_97%,transparent),color-mix(in_oklab,var(--color-secondary)_36%,transparent))] p-4 shadow-raised sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -476,7 +559,65 @@ function JournalPage() {
             </div>
 
             {/* Sélecteur / navigation de date : usage quotidien */}
-            <div className="flex shrink-0 items-center gap-1 rounded-full border border-border/60 bg-card/75 p-1 shadow-sm">
+            <div className="journal-print-hidden flex shrink-0 flex-wrap items-center justify-end gap-1">
+              <div className="flex items-center gap-1 rounded-full border border-border/60 bg-card/75 p-1 shadow-sm">
+                <Button
+                  variant={viewMode === "day" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode("day")}
+                >
+                  Jour
+                </Button>
+                <Button
+                  variant={viewMode === "week" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode("week")}
+                >
+                  Semaine
+                </Button>
+              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm" className="rounded-full">
+                    <Settings2 className="mr-2 h-4 w-4" />
+                    Affichage
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>Faire apparaître</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {[
+                    ["times", "Horaires"],
+                    ["subjects", "Domaines"],
+                    ["notes", "Notes"],
+                    ["prep", "Fiches liées"],
+                    ["pauses", "Pauses"],
+                  ].map(([optionKey, label]) => (
+                    <DropdownMenuCheckboxItem
+                      key={optionKey}
+                      checked={displayOptions[optionKey as keyof JournalDisplayOptions]}
+                      onCheckedChange={(checked) =>
+                        setDisplayOptions((current) => ({
+                          ...current,
+                          [optionKey]: Boolean(checked),
+                        }))
+                      }
+                    >
+                      {label}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button
+                variant="outline"
+                size="sm"
+                className="rounded-full"
+                onClick={() => window.print()}
+              >
+                <Printer className="mr-2 h-4 w-4" />
+                Imprimer
+              </Button>
+              <div className="flex items-center gap-1 rounded-full border border-border/60 bg-card/75 p-1 shadow-sm">
               <Button
                 variant="outline"
                 size="sm"
@@ -511,12 +652,13 @@ function JournalPage() {
                   <Calendar mode="single" selected={date} onSelect={(d) => d && setDate(d)} />
                 </PopoverContent>
               </Popover>
+              </div>
             </div>
           </div>
 
           {/* Navigation semaine */}
-          <div className="mt-4 flex gap-1">
-            {getWeekDays(date).map((d, i) => {
+          <div className="journal-print-hidden mt-4 flex gap-1">
+            {weekDays.map((d, i) => {
               const dKey = toISODate(d);
               const active = dKey === key;
               const isTodayDay = dKey === toISODate(today);
@@ -550,7 +692,83 @@ function JournalPage() {
         </header>
 
         {/* Journée : le cœur de la page, en priorité visuelle */}
-        {sessions.length === 0 ? (
+        {viewMode === "week" ? (
+          <section className="mt-6 grid gap-3">
+            {weekEntries.map((entry) => {
+              const active = entry.dateKey === key;
+              return (
+                <article
+                  key={entry.dateKey}
+                  className={cn(
+                    "rounded-[24px] border bg-card/85 p-4 shadow-card",
+                    active ? "border-primary/30 ring-2 ring-primary/10" : "border-border/70",
+                  )}
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <p className="eyebrow">{formatLongDate(entry.date)}</p>
+                      <h2 className="text-lg font-semibold">
+                        {entry.sessions.filter((session) => session.subject !== "pause").length}{" "}
+                        séance
+                        {entry.sessions.filter((session) => session.subject !== "pause").length > 1
+                          ? "s"
+                          : ""}
+                      </h2>
+                    </div>
+                    <Button variant="ghost" size="sm" onClick={() => setDate(entry.date)}>
+                      Ouvrir
+                    </Button>
+                  </div>
+
+                  {entry.sessions.length === 0 ? (
+                    <p className="mt-3 rounded-2xl border border-dashed border-border/70 bg-secondary/35 px-3 py-4 text-sm text-muted-foreground">
+                      Journée vide.
+                    </p>
+                  ) : (
+                    <div className="mt-3 space-y-2">
+                      {entry.sessions.map((session) => (
+                        <button
+                          key={session.id}
+                          type="button"
+                          onClick={() => {
+                            setDate(entry.date);
+                            setEditing(session);
+                            setOpen(true);
+                          }}
+                          className="w-full rounded-2xl border border-border/70 bg-background/70 px-3 py-2 text-left shadow-sm transition hover:border-primary/30 hover:bg-primary/5"
+                        >
+                          <div className="flex flex-wrap items-center gap-2">
+                            {displayOptions.times && (
+                              <span className="rounded-full bg-secondary px-2 py-0.5 text-[0.68rem] font-semibold text-muted-foreground">
+                                {session.start} - {session.end}
+                              </span>
+                            )}
+                            {displayOptions.subjects && (
+                              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[0.68rem] font-semibold text-primary">
+                                {getSubjectLabel(session.subject)}
+                              </span>
+                            )}
+                            {displayOptions.prep && session.prepSheetId && (
+                              <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[0.68rem] font-semibold text-emerald-800">
+                                Fiche liée
+                              </span>
+                            )}
+                          </div>
+                          <p className="mt-1 font-semibold text-foreground">{session.title}</p>
+                          {displayOptions.notes && session.note && (
+                            <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
+                              {session.note}
+                            </p>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
+          </section>
+        ) : visibleSessions.length === 0 ? (
           <div className="mt-6 animate-rise-in rounded-3xl border border-dashed border-border bg-card/70 px-6 py-14 text-center shadow-card">
             <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl border border-border bg-secondary/70 text-primary">
               <Download className="h-6 w-6" />
@@ -563,7 +781,7 @@ function JournalPage() {
           </div>
         ) : (
           <div className="mt-6 space-y-2.5">
-            {sessions.map((session) => (
+            {visibleSessions.map((session) => (
               <SessionCard
                 key={session.id}
                 session={session}
@@ -613,7 +831,7 @@ function JournalPage() {
         )}
 
         {/* Actions secondaires + aide IA : barre compacte */}
-        <section className="mt-6 rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_92%,transparent),color-mix(in_oklab,var(--color-secondary)_34%,transparent))] px-3 py-2.5 shadow-card">
+        <section className="journal-print-hidden mt-6 rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_92%,transparent),color-mix(in_oklab,var(--color-secondary)_34%,transparent))] px-3 py-2.5 shadow-card">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex min-w-0 items-center gap-2">
               <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">

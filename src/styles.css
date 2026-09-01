@@ -614,6 +614,11 @@
     color: black;
   }
 
+  .journal-print-hidden,
+  .journal-print-hidden * {
+    display: none !important;
+  }
+
   .print-sheet .bg-card,
   .print-sheet .bg-secondary\/35,
   .print-sheet .bg-secondary\/40,
