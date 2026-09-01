@@ -57,16 +57,37 @@ export const Route = createFileRoute("/ressources")({
   component: ResourcesPage,
 });
 
-type Screen = "bibliotheque" | "sommaire" | "seance";
+type Screen = "bibliotheque" | "rayon" | "sommaire" | "seance";
+
+type ResourceShelf = {
+  id: string;
+  label: string;
+  subtitle: string;
+  spine: string;
+  methods: ResourceMethod[];
+};
 
 const METHOD_COVER_STYLES: Record<string, { spine: string; subtitle: string }> = {
   "m-cleo": { spine: "bg-sky-500", subtitle: "Cahier de français" },
-  "m-maths-ce1": { spine: "bg-violet-500", subtitle: "Guide du maître" },
-  "m-maths-ce1-ateliers-problemes-p1": { spine: "bg-rose-500", subtitle: "Ateliers problèmes" },
-  "m-maths-ce1-calcul-mental-p1": { spine: "bg-amber-500", subtitle: "Calcul mental" },
-  "m-maths-ce1-flash-maths-p1": { spine: "bg-emerald-500", subtitle: "Flash maths" },
+  "m-maths-ce1-guide": { spine: "bg-violet-500", subtitle: "Guide enseignant" },
+  "m-maths-ce1-p1-atelier-problemes": { spine: "bg-rose-500", subtitle: "Période 1" },
+  "m-maths-ce1-p1-calcul-mental": { spine: "bg-amber-500", subtitle: "Période 1" },
+  "m-maths-ce1-p1-flash-maths": { spine: "bg-emerald-500", subtitle: "Période 1" },
   "m-langage-oral-ce": { spine: "bg-indigo-500", subtitle: "Langage oral" },
+  "m-mdi-production-ecrit": { spine: "bg-fuchsia-500", subtitle: "Production d'écrit" },
+  "m-mdi-ecriture-transition": { spine: "bg-cyan-500", subtitle: "Écriture / copie" },
 };
+
+const MATHS_CE1_METHOD_ORDER = [
+  "m-maths-ce1-guide",
+  "m-maths-ce1-p1-atelier-problemes",
+  "m-maths-ce1-p1-calcul-mental",
+  "m-maths-ce1-p1-flash-maths",
+];
+
+function isMathsCe1Method(method: ResourceMethod) {
+  return method.id.startsWith("m-maths-ce1");
+}
 
 function methodCoverMeta(method: ResourceMethod) {
   return (
@@ -77,10 +98,16 @@ function methodCoverMeta(method: ResourceMethod) {
   );
 }
 
+function methodCoverTitle(method: ResourceMethod) {
+  if (!isMathsCe1Method(method)) return method.label;
+  return method.label.replace(/^Maths en CE1\s*[—-]\s*/i, "");
+}
+
 function ResourcesPage() {
   const [resourceTree, setResourceTree] = useState<ResourceMethod[]>([]);
   const [query, setQuery] = useState("");
   const [libraryQuery, setLibraryQuery] = useState("");
+  const [selectedShelf, setSelectedShelf] = useState<ResourceShelf | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<ResourceMethod | null>(null);
   const [selectedSequence, setSelectedSequence] = useState<ResourceSequence | null>(null);
   const [selectedSession, setSelectedSession] = useState<ResourceSession | null>(null);
@@ -137,18 +164,59 @@ function ResourcesPage() {
     return out.slice(0, 120);
   }, [q, resourceTree]);
 
-  const filteredMethods = useMemo(() => {
-    if (!libraryQ) return resourceTree;
-    return resourceTree.filter((method) => {
-      const subjectLabel = SUBJECTS[method.subject].label.toLowerCase();
-      const subtitle = methodCoverMeta(method).subtitle.toLowerCase();
-      return (
-        method.label.toLowerCase().includes(libraryQ) ||
-        subjectLabel.includes(libraryQ) ||
-        subtitle.includes(libraryQ)
+  const libraryShelves = useMemo<ResourceShelf[]>(() => {
+    const mathsMethods = resourceTree
+      .filter(isMathsCe1Method)
+      .sort(
+        (left, right) =>
+          MATHS_CE1_METHOD_ORDER.indexOf(left.id) - MATHS_CE1_METHOD_ORDER.indexOf(right.id),
       );
+    const otherMethods = resourceTree.filter((method) => !isMathsCe1Method(method));
+
+    const shelves: ResourceShelf[] = [];
+
+    if (mathsMethods.length > 0) {
+      shelves.push({
+        id: "shelf-maths-ce1",
+        label: "Maths en CE1 - ACCÈS",
+        subtitle: "Guide + rituels",
+        spine: "bg-violet-500",
+        methods: mathsMethods,
+      });
+    }
+
+    otherMethods.forEach((method) => {
+      const cover = methodCoverMeta(method);
+      shelves.push({
+        id: `shelf-${method.id}`,
+        label: method.label,
+        subtitle: cover.subtitle,
+        spine: cover.spine,
+        methods: [method],
+      });
     });
-  }, [libraryQ, resourceTree]);
+
+    return shelves;
+  }, [resourceTree]);
+
+  const filteredShelves = useMemo(() => {
+    if (!libraryQ) return libraryShelves;
+    return libraryShelves.filter((shelf) => {
+      const inShelf =
+        shelf.label.toLowerCase().includes(libraryQ) ||
+        shelf.subtitle.toLowerCase().includes(libraryQ);
+      const inChild = shelf.methods.some((method) => {
+        const cover = methodCoverMeta(method);
+        const subjectLabel = SUBJECTS[method.subject].label.toLowerCase();
+        return (
+          method.label.toLowerCase().includes(libraryQ) ||
+          cover.subtitle.toLowerCase().includes(libraryQ) ||
+          subjectLabel.includes(libraryQ)
+        );
+      });
+      return inShelf || inChild;
+    });
+  }, [libraryQ, libraryShelves]);
 
   const resourceStats = useMemo(() => {
     const methodCount = resourceTree.length;
@@ -179,15 +247,29 @@ function ResourcesPage() {
         })()
       : null;
 
-  function openMethod(method: ResourceMethod) {
+  function openMethod(method: ResourceMethod, shelf?: ResourceShelf | null) {
     setOpeningMethodId(method.id);
     window.setTimeout(() => {
+      setSelectedShelf(shelf ?? null);
       setSelectedMethod(method);
       setSelectedSequence(null);
       setSelectedSession(null);
       setScreen("sommaire");
       setOpeningMethodId(null);
     }, 260);
+  }
+
+  function openShelf(shelf: ResourceShelf) {
+    if (shelf.methods.length === 1) {
+      openMethod(shelf.methods[0], shelf);
+      return;
+    }
+
+    setSelectedShelf(shelf);
+    setSelectedMethod(null);
+    setSelectedSequence(null);
+    setSelectedSession(null);
+    setScreen("rayon");
   }
 
   function openSequence(sequence: ResourceSequence) {
@@ -198,6 +280,7 @@ function ResourcesPage() {
 
   function backToLibrary() {
     setScreen("bibliotheque");
+    setSelectedShelf(null);
     setSelectedMethod(null);
     setSelectedSequence(null);
     setSelectedSession(null);
@@ -210,6 +293,19 @@ function ResourcesPage() {
     setSelectedSession(null);
   }
 
+  function backFromSummary() {
+    if (selectedShelf && selectedShelf.methods.length > 1) {
+      setScreen("rayon");
+      setSelectedMethod(null);
+      setSelectedSequence(null);
+      setSelectedSession(null);
+      setQuery("");
+      return;
+    }
+
+    backToLibrary();
+  }
+
   return (
     <AppShell>
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
@@ -219,7 +315,7 @@ function ResourcesPage() {
           description=""
         />
 
-        <SecondaryPageLinks className="md:grid-cols-2">
+        <SecondaryPageLinks className="gap-2.5 md:grid-cols-2">
           <SecondaryPageLinkCard
             to="/programmation"
             icon={BookOpen}
@@ -236,8 +332,8 @@ function ResourcesPage() {
 
         {screen === "bibliotheque" ? (
           <section className="mt-6">
-            <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-[28px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-4 shadow-card">
-              <div className="flex flex-wrap items-center gap-2">
+            <div className="mb-4 flex flex-col gap-3 rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3.5 shadow-card sm:mb-5 sm:rounded-[28px] sm:p-4">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-foreground">
                   {resourceStats.methodCount} supports
                 </span>
@@ -248,7 +344,7 @@ function ResourcesPage() {
                   {resourceStats.sessionCount} séances
                 </span>
               </div>
-              <div className="relative w-full max-w-sm">
+              <div className="relative w-full sm:max-w-sm">
                 <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   value={libraryQuery}
@@ -259,30 +355,29 @@ function ResourcesPage() {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-start justify-center gap-6 sm:justify-start">
+            <div className="flex flex-wrap items-start justify-center gap-3 sm:justify-start sm:gap-6">
               {!loaded
                 ? Array.from({ length: 6 }, (_, index) => (
                     <div
                       key={`resource-skeleton-${index}`}
-                      className="h-[244px] w-[188px] animate-pulse rounded-[28px] border border-border/60 bg-secondary/45 shadow-card"
+                      className="h-52 w-36 animate-pulse rounded-[24px] border border-border/60 bg-secondary/45 shadow-card min-[380px]:h-56 min-[380px]:w-40 sm:h-[244px] sm:w-[188px] sm:rounded-[28px]"
                     />
                   ))
-                : filteredMethods.map((method) => {
-                const cover = methodCoverMeta(method);
+                : filteredShelves.map((shelf) => {
                 return (
                   <NotebookCover
-                    key={method.id}
-                    title={method.label}
-                    subtitle={cover.subtitle}
-                    spineClassName={cover.spine}
+                    key={shelf.id}
+                    title={shelf.label}
+                    subtitle={shelf.subtitle}
+                    spineClassName={shelf.spine}
                     icon={<LibraryBig className="h-5 w-5" />}
-                    opening={openingMethodId === method.id}
-                    onClick={() => openMethod(method)}
+                    opening={shelf.methods.some((method) => openingMethodId === method.id)}
+                    onClick={() => openShelf(shelf)}
                   />
                 );
               })}
             </div>
-            {loaded && filteredMethods.length === 0 ? (
+            {loaded && filteredShelves.length === 0 ? (
               <div className="mt-5 rounded-[24px] border border-dashed border-border bg-card/70 px-5 py-8 text-center text-sm text-muted-foreground">
                 Aucun support ne correspond à cette recherche.
               </div>
@@ -290,14 +385,50 @@ function ResourcesPage() {
           </section>
         ) : null}
 
-        {screen === "sommaire" && selectedMethod ? (
-          <section className="mt-6 max-w-3xl">
+        {screen === "rayon" && selectedShelf ? (
+          <section className="mt-6">
             <div className="space-y-4">
-              <header className="rounded-[30px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-4 shadow-card sm:p-5">
+              <header className="rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3.5 shadow-card sm:rounded-[30px] sm:p-5">
                 <div className="flex items-center gap-2">
                   <Button variant="ghost" size="sm" className="h-8 px-2.5" onClick={backToLibrary}>
                     <ArrowLeft className="mr-1.5 h-4 w-4" />
                     Bibliothèque
+                  </Button>
+                </div>
+                <p className="eyebrow mt-3">Sous-cahiers</p>
+                <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
+                  {selectedShelf.label}
+                </h2>
+              </header>
+
+              <div className="flex flex-wrap items-start justify-center gap-3 sm:justify-start sm:gap-6">
+                {selectedShelf.methods.map((method) => {
+                  const cover = methodCoverMeta(method);
+                  return (
+                    <NotebookCover
+                      key={method.id}
+                      title={methodCoverTitle(method)}
+                      subtitle={cover.subtitle}
+                      spineClassName={cover.spine}
+                      icon={<LibraryBig className="h-5 w-5" />}
+                      opening={openingMethodId === method.id}
+                      onClick={() => openMethod(method, selectedShelf)}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {screen === "sommaire" && selectedMethod ? (
+          <section className="mt-6 max-w-3xl">
+            <div className="space-y-4">
+              <header className="rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3.5 shadow-card sm:rounded-[30px] sm:p-5">
+                <div className="flex items-center gap-2">
+                  <Button variant="ghost" size="sm" className="h-8 px-2.5" onClick={backFromSummary}>
+                    <ArrowLeft className="mr-1.5 h-4 w-4" />
+                    {selectedShelf && selectedShelf.methods.length > 1 ? "Sous-cahiers" : "Bibliothèque"}
                   </Button>
                 </div>
                 <p className="eyebrow mt-3">Sommaire du guide</p>
@@ -337,7 +468,7 @@ function ResourcesPage() {
                         key={sequence.id}
                         type="button"
                         onClick={() => openSequence(sequence)}
-                        className="flex w-full items-center gap-3 rounded-[24px] border border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_95%,transparent),color-mix(in_oklab,var(--color-secondary)_18%,transparent))] px-4 py-3.5 text-left shadow-card transition-colors hover:bg-secondary"
+                        className="flex w-full items-center gap-3 rounded-[20px] border border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_95%,transparent),color-mix(in_oklab,var(--color-secondary)_18%,transparent))] px-3.5 py-3 text-left shadow-card transition-colors hover:bg-secondary sm:rounded-[24px] sm:px-4 sm:py-3.5"
                       >
                         <FolderOpen className="h-4 w-4 shrink-0 text-muted-foreground" />
                         <span className="min-w-0 flex-1">
@@ -365,9 +496,9 @@ function ResourcesPage() {
         ) : null}
 
         {screen === "seance" && selectedMethod && selectedSequence ? (
-          <section className="mt-6 grid gap-5 lg:grid-cols-[minmax(0,1fr)_24rem]">
+          <section className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-5">
             <div className="space-y-4">
-              <header className="rounded-[30px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-4 shadow-card sm:p-5">
+              <header className="rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3.5 shadow-card sm:rounded-[30px] sm:p-5">
                 <div className="flex items-center gap-2">
                   <Button variant="ghost" size="sm" className="h-8 px-2.5" onClick={backToSummary}>
                     <ArrowLeft className="mr-1.5 h-4 w-4" />
@@ -394,9 +525,9 @@ function ResourcesPage() {
               </div>
             </div>
 
-            <aside className="lg:sticky lg:top-20 lg:z-10 lg:self-start">
+            <aside className="order-first lg:order-none lg:sticky lg:top-20 lg:z-10 lg:self-start">
               <div className="card-surface flex max-h-[calc(100vh-7rem)] flex-col overflow-hidden rounded-[28px] border-primary/8 shadow-card">
-                <div className="flex items-start justify-between gap-3 border-b border-border bg-secondary/30 px-4 py-3.5">
+                <div className="flex flex-wrap items-start justify-between gap-3 border-b border-border bg-secondary/30 px-3.5 py-3 sm:px-4 sm:py-3.5">
                   <div className="min-w-0 flex-1">
                     <p className="eyebrow">Aperçu de la fiche</p>
                     {selectedSession ? (
@@ -422,7 +553,7 @@ function ResourcesPage() {
                       </p>
                     )}
                   </div>
-                  <div className="flex shrink-0 items-center gap-1.5">
+                  <div className="flex shrink-0 flex-wrap items-center gap-1.5">
                     <Button
                       type="button"
                       variant="outline"
@@ -460,7 +591,7 @@ function ResourcesPage() {
                 </div>
 
                 {sheet ? (
-                  <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
+                  <div className="min-h-0 flex-1 overflow-y-auto px-3 py-3.5 sm:px-4 sm:py-4">
                     <PrepSheetView sheet={sheet} stickyHeader={false} />
                   </div>
                 ) : (
