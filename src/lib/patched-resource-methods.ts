@@ -59,7 +59,7 @@ function oralDomainLabel(entry: (typeof ORAL_CATALOG)[number]) {
 
 export const REAL_CLEO_METHOD: ResourceMethod = {
   id: "m-cleo",
-  label: "Cléo CE1 — Français",
+  label: "Le monde de Cléo",
   subject: "francais",
   sequences: PERIODS.map((p) => ({
     id: `s-cleo-p${p}`,
@@ -76,7 +76,7 @@ export const REAL_CLEO_METHOD: ResourceMethod = {
 
 export const REAL_ORAL_METHOD: ResourceMethod = {
   id: "m-langage-oral-ce",
-  label: "Langage oral CE — Progression par périodes",
+  label: "Langage oral (Nathan)",
   subject: "francais",
   sequences: PERIODS.map((p) => ({
     id: `s-langage-oral-ce-p${p}`,
@@ -123,7 +123,6 @@ export const PATCHED_RESOURCE_TREE: ResourceMethod[] = [
   MATHS_CE1_CALCUL_MENTAL_P1_RESOURCE_METHOD,
   MATHS_CE1_FLASH_MATHS_P1_RESOURCE_METHOD,
   REAL_ORAL_METHOD,
-  REAL_ORAL_BY_DOMAIN_METHOD,
   ORTHOGRAPHEMIC_RESOURCE_METHOD,
   MDI_PE_RESOURCE_METHOD,
   MDI_ECRITURE_TRANSITION_RESOURCE_METHOD,

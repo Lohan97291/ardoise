@@ -22,7 +22,7 @@ export function getMdiPePrepSheet(id?: string): PrepSheet | undefined {
 
 export const MDI_PE_RESOURCE_METHOD: ResourceMethod = {
   id: "m-mdi-production-ecrit",
-  label: "MDI — Production d'écrit CE1",
+  label: "Production d'écrit (MDI)",
   subject: "francais",
   sequences: PERIODS.map((period) => ({
     id: `mdi-production-ecrit-p${period}`,

@@ -185,7 +185,7 @@ export function getOrthographemicPrepSheet(id?: string): PrepSheet | undefined {
 
 export const ORTHOGRAPHEMIC_RESOURCE_METHOD: ResourceMethod = {
   id: "m-orthographemic-guide",
-  label: "Orthographémic CE1 — Guide du maître",
+  label: "Orthographémic CE1",
   subject: "francais",
   sequences: orthographemicGuide.weeks.map((week) => {
     const chapter = chapterForWeek(week);

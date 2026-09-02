@@ -118,7 +118,7 @@ export function getWellDoneCe1PrepSheet(id?: string): PrepSheet | undefined {
 
 export const WELL_DONE_CE1_RESOURCE_METHOD: ResourceMethod = {
   id: "m-well-done-ce1",
-  label: "Well done! CE1 — Anglais",
+  label: "Anglais (Well done!)",
   subject: "lve",
   sequences: wellDoneCe1Programming.sequences
     .map((programmingSequence) => {

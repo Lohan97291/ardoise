@@ -110,7 +110,7 @@ export function getQlmMdiGuidePrepSheet(id?: string): PrepSheet | undefined {
 
 export const QLM_MDI_GUIDE_RESOURCE_METHOD: ResourceMethod = {
   id: "m-qlm-mdi-guide",
-  label: "QLM MDI — Guide enseignant",
+  label: "Questionner le monde (MDI)",
   subject: "qlm",
   sequences: qlmMdiGuideDossiers.map((dossier) => ({
     id: dossier.id,

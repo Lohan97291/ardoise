@@ -101,7 +101,7 @@ const SEQ_T3 = {
 // ─── ResourceMethod exportée ─────────────────────────────────────────────────
 export const EMC_CE1_RESOURCE_METHOD: ResourceMethod = {
   id: "m-emc-ce1",
-  label: "EMC CE1 — Enseignement moral et civique",
+  label: "EMC (séances animées)",
   subject: "emc",
   sequences: [SEQ_T1, SEQ_T2, SEQ_T3],
 };

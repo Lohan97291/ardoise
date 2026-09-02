@@ -111,7 +111,6 @@ const RESOURCE_GUIDE_GROUPS: ResourceGuideGroup[] = [
     methodIds: [
       "m-cleo",
       "m-langage-oral-ce",
-      "m-langage-oral-ce-domaines",
       "m-orthographemic-guide",
       "m-mdi-production-ecrit",
       "m-mdi-ecriture-transition",
@@ -251,7 +250,7 @@ function ResourcesPage() {
         if (index === 0) {
           shelves.push({
             id: "shelf-personal-resources",
-            label: "Mes ressources",
+            label: "Mes séquences",
             subtitle: "Créations personnelles",
             spine: "bg-slate-700",
             methods: [],
@@ -400,7 +399,7 @@ function ResourcesPage() {
               <div className="flex w-fit rounded-2xl border border-border/70 bg-card/80 p-1 shadow-sm">
                 {[
                   { id: "guides", label: "Guides du maître" },
-                  { id: "personal", label: "Mes ressources" },
+                  { id: "personal", label: "Mes séquences" },
                 ].map((scope) => (
                   <button
                     key={scope.id}
@@ -452,7 +451,7 @@ function ResourcesPage() {
             {loaded && filteredShelves.length === 0 ? (
               <div className="mt-5 rounded-[24px] border border-dashed border-border bg-card/70 px-5 py-8 text-center text-sm text-muted-foreground">
                 {libraryScope === "personal" && !libraryQ
-                  ? "Aucune ressource personnelle pour l’instant."
+                  ? "Aucune séquence pour l’instant."
                   : "Aucun support ne correspond à cette recherche."}
               </div>
             ) : null}
@@ -470,7 +469,7 @@ function ResourcesPage() {
                   </Button>
                 </div>
                 <p className="eyebrow mt-3">
-                  {selectedShelf.id === "shelf-personal-resources" ? "Ressources personnelles" : "Guides du maître"}
+                  {selectedShelf.id === "shelf-personal-resources" ? "Mes séquences" : "Guides du maître"}
                 </p>
                 <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
                   {selectedShelf.label}
@@ -505,7 +504,7 @@ function ResourcesPage() {
                   <Button variant="ghost" size="sm" className="h-8 px-2.5" onClick={backFromSummary}>
                     <ArrowLeft className="mr-1.5 h-4 w-4" />
                     {selectedShelf?.id === "shelf-personal-resources"
-                      ? "Mes ressources"
+                      ? "Mes séquences"
                       : selectedShelf && selectedShelf.methods.length > 1
                         ? "Guides"
                         : "Bibliothèque"}

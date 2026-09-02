@@ -93,7 +93,7 @@ const GROUP_ORDER = [
 
 export const MDI_ECRITURE_TRANSITION_RESOURCE_METHOD: ResourceMethod = {
   id: "m-mdi-ecriture-transition",
-  label: "Écriture MDI — Transition 2025",
+  label: "Écriture (MDI)",
   subject: "francais",
   sequences: GROUP_ORDER.map((group) => {
     const sessions = mdiEcritureTransitionPrepSheets

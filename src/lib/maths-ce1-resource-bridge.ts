@@ -692,7 +692,7 @@ export function getMathsCe1PrepSheet(id?: string): PrepSheet | undefined {
 
 export const MATHS_CE1_RESOURCE_METHOD: ResourceMethod = {
   id: "m-maths-ce1-guide",
-  label: "Maths en CE1 — Guide enseignant",
+  label: "Maths en CE1 (Accès)",
   subject: "maths",
   sequences: VERBATIM_FILES.flatMap((file) =>
     file.periods.flatMap((period) =>

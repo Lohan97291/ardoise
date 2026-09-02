@@ -151,7 +151,7 @@ const SEQ_06 = {
 // ─── ResourceMethod exportée ─────────────────────────────────────────────────
 export const VIVRE_LA_MUSIQUE_CE1_RESOURCE_METHOD: ResourceMethod = {
   id: "m-vivre-la-musique-ce1",
-  label: "Vivre la Musique CE1 — Éducation musicale",
+  label: "Musique (Vivre la Musique)",
   subject: "arts",
   sequences: [SEQ_04, SEQ_05, SEQ_06],
 };
