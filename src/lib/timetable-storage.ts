@@ -20,11 +20,8 @@ export type TimetableSlot = Omit<Session, "id"> & { fixed?: boolean; builderTemp
 export type WeeklyTimetable = Record<Weekday, TimetableSlot[]>;
 
 /**
- * Trame horaire réelle CE1 Romain Rolland (fournie par l'utilisateur, PDF an dernier).
- * Accueil / Récréation / Pause méridienne sont marqués `fixed` (horaires fixes de l'école,
- * ne changent pas d'une année sur l'autre). Reconstruction depuis un tableau PDF —
- * les blocs fixes (accueil/récréation/pause) sont exacts, le contenu pédagogique est une
- * approximation raisonnable à ajuster dans l'éditeur si besoin.
+ * Trame horaire réelle CE1 Romain Rolland 2026-2027.
+ * Source utilisateur : edt_ce1_une_page.pdf, commun Boulard / Durand-Grimal.
  */
 const francais = (
   start: string,
@@ -352,7 +349,7 @@ const SEED_TIMETABLE: WeeklyTimetable = {
       title: "Orthographémic",
       subject: "francais",
       builderTemplateId: "orthographe-dictee",
-      note: "Découverte / classement graphèmes",
+      note: "Découverte, classement de graphèmes et dictée de mots sur ardoise",
     },
     {
       start: "10:35",
@@ -365,26 +362,26 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "11:00",
       end: "11:30",
-      title: "Cléo",
+      title: "Étude de la langue",
       subject: "francais",
       builderTemplateId: "grammaire",
-      note: "EDL grammaire",
+      note: "Cléo",
     },
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     {
       start: "13:20",
-      end: "13:30",
+      end: "13:35",
+      title: "Devoirs / agenda",
+      subject: "rituels",
+      note: "Écriture des devoirs (15 min)",
+    },
+    {
+      start: "13:35",
+      end: "13:50",
       title: "Lecture",
       subject: "francais",
       builderTemplateId: "lecture",
-      note: "Quart d'heure lecture (plaisir)",
-    },
-    {
-      start: "13:30",
-      end: "13:50",
-      title: "Devoirs / agenda",
-      subject: "rituels",
-      note: "Écriture des devoirs",
+      note: "Quart d'heure lecture plaisir",
     },
     {
       start: "13:50",
@@ -400,125 +397,7 @@ const SEED_TIMETABLE: WeeklyTimetable = {
       title: "Lecture",
       subject: "francais",
       builderTemplateId: "lecture",
-      note: "Compréhension guidée",
-    },
-    {
-      start: "14:50",
-      end: "15:05",
-      title: "Récréation (1er service)",
-      subject: "pause",
-      fixed: true,
-    },
-    {
-      start: "15:05",
-      end: "15:35",
-      title: "Éducation musicale",
-      subject: "arts",
-      note: "Chant, écoute",
-    },
-    {
-      start: "15:35",
-      end: "16:05",
-      title: "EPS",
-      subject: "eps",
-      note: "Séance 1 (cour/gymnase)",
-    },
-    {
-      start: "16:05",
-      end: "16:30",
-      title: "EPS",
-      subject: "eps",
-      note: "Séance 1 (suite)",
-    },
-  ],
-  mardi: [
-    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
-    {
-      start: "08:30",
-      end: "08:50",
-      title: "Cléo",
-      subject: "francais",
-      builderTemplateId: "grammaire",
-      note: "EDL lexique",
-    },
-    {
-      start: "08:50",
-      end: "09:20",
-      title: "Mathématiques",
-      subject: "maths",
-      builderTemplateId: "sequence-maths-35",
-      note: "Flash maths + Séquence séance 2",
-    },
-    {
-      start: "09:20",
-      end: "09:50",
-      title: "Mathématiques",
-      subject: "maths",
-      builderTemplateId: "sequence-maths-35",
-      note: "Séquence séance 2 (suite)",
-    },
-    {
-      start: "09:50",
-      end: "10:05",
-      title: "Récréation (1er service)",
-      subject: "pause",
-      fixed: true,
-    },
-    {
-      start: "10:05",
-      end: "10:35",
-      title: "Orthographémic",
-      subject: "francais",
-      builderTemplateId: "orthographe-dictee",
-      note: "Lecture-compréhension du texte",
-    },
-    {
-      start: "10:35",
-      end: "11:00",
-      title: "Orthographémic",
-      subject: "francais",
-      builderTemplateId: "orthographe-dictee",
-      note: "Ateliers Fluence/Mallette/Tapette",
-    },
-    {
-      start: "11:00",
-      end: "11:30",
-      title: "Mathématiques",
-      subject: "maths",
-      builderTemplateId: "calcul-mental",
-      note: "Calcul mental",
-    },
-    { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
-    {
-      start: "13:20",
-      end: "13:30",
-      title: "Lecture",
-      subject: "francais",
-      builderTemplateId: "lecture",
-      note: "Quart d'heure lecture (plaisir)",
-    },
-    {
-      start: "13:30",
-      end: "13:50",
-      title: "Devoirs / agenda",
-      subject: "rituels",
-      note: "Écriture des devoirs",
-    },
-    {
-      start: "13:50",
-      end: "14:20",
-      title: "Production d'écrit",
-      subject: "francais",
-      builderTemplateId: "production-ecrit",
-      note: "Rédaction guidée",
-    },
-    {
-      start: "14:20",
-      end: "14:50",
-      title: "Anglais",
-      subject: "lve",
-      builderTemplateId: "anglais-seance",
-      note: "LV séance 1",
+      note: "Littérature",
     },
     {
       start: "14:50",
@@ -538,10 +417,9 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "15:35",
       end: "16:05",
-      title: "Arts plastiques",
-      subject: "arts",
-      builderTemplateId: "arts-visuels",
-      note: "Projet arts visuels (suite)",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 1 (cour/gymnase)",
     },
     {
       start: "16:05",
@@ -551,16 +429,133 @@ const SEED_TIMETABLE: WeeklyTimetable = {
       note: "Poésie / lecture offerte",
     },
   ],
+  mardi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    {
+      start: "08:30",
+      end: "08:50",
+      title: "Étude de la langue",
+      subject: "francais",
+      builderTemplateId: "grammaire",
+      note: "Cléo",
+    },
+    {
+      start: "08:50",
+      end: "09:20",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "sequence-maths-35",
+      note: "Flash maths + Séquence séance 2",
+    },
+    {
+      start: "09:20",
+      end: "09:50",
+      title: "Anglais",
+      subject: "lve",
+      builderTemplateId: "anglais-seance",
+      note: "LV séance 1",
+    },
+    {
+      start: "09:50",
+      end: "10:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "10:05",
+      end: "10:35",
+      title: "Orthographémic",
+      subject: "francais",
+      builderTemplateId: "orthographe-dictee",
+      note: "Lecture-compréhension du texte",
+    },
+    {
+      start: "10:35",
+      end: "11:00",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "calcul-mental",
+      note: "Calcul mental",
+    },
+    {
+      start: "11:00",
+      end: "11:30",
+      title: "Éducation musicale",
+      subject: "arts",
+      note: "Chant, écoute",
+    },
+    { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    {
+      start: "13:20",
+      end: "13:35",
+      title: "Devoirs / agenda",
+      subject: "rituels",
+      note: "Écriture des devoirs (15 min)",
+    },
+    {
+      start: "13:35",
+      end: "13:50",
+      title: "Lecture",
+      subject: "francais",
+      builderTemplateId: "lecture",
+      note: "Quart d'heure lecture plaisir",
+    },
+    {
+      start: "13:50",
+      end: "14:20",
+      title: "EMC",
+      subject: "emc",
+      builderTemplateId: "emc",
+    },
+    {
+      start: "14:20",
+      end: "14:50",
+      title: "Mathématiques",
+      subject: "maths",
+      builderTemplateId: "sequence-maths-35",
+      note: "Séquence séance 2 (suite)",
+    },
+    {
+      start: "14:50",
+      end: "15:05",
+      title: "Récréation (1er service)",
+      subject: "pause",
+      fixed: true,
+    },
+    {
+      start: "15:05",
+      end: "15:35",
+      title: "Orthographémic",
+      subject: "francais",
+      builderTemplateId: "orthographe-dictee",
+      note: "Dictée",
+    },
+    {
+      start: "15:35",
+      end: "16:05",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 1 (cour/gymnase)",
+    },
+    {
+      start: "16:05",
+      end: "16:30",
+      title: "EPS",
+      subject: "eps",
+      note: "Séance 1 (suite)",
+    },
+  ],
   mercredi: [],
   jeudi: [
     { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
     {
       start: "08:30",
       end: "08:50",
-      title: "Cléo",
+      title: "Étude de la langue",
       subject: "francais",
       builderTemplateId: "grammaire",
-      note: "EDL conjugaison",
+      note: "Cléo",
     },
     {
       start: "08:50",
@@ -603,34 +598,33 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "11:00",
       end: "11:30",
-      title: "Cléo",
-      subject: "francais",
-      builderTemplateId: "grammaire",
-      note: "EDL grammaire (entraînement)",
+      title: "Éducation musicale",
+      subject: "arts",
+      note: "Chant / pratique",
     },
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     {
       start: "13:20",
-      end: "13:30",
+      end: "13:35",
+      title: "Devoirs / agenda",
+      subject: "rituels",
+      note: "Écriture des devoirs (15 min)",
+    },
+    {
+      start: "13:35",
+      end: "13:50",
       title: "Lecture",
       subject: "francais",
       builderTemplateId: "lecture",
-      note: "Quart d'heure lecture (plaisir)",
-    },
-    {
-      start: "13:30",
-      end: "13:50",
-      title: "Devoirs / agenda",
-      subject: "rituels",
-      note: "Écriture des devoirs",
+      note: "Quart d'heure lecture plaisir",
     },
     {
       start: "13:50",
       end: "14:20",
-      title: "EMC",
-      subject: "emc",
-      builderTemplateId: "emc",
-      note: "Débat réglé / vivre ensemble",
+      title: "Questionner le monde",
+      subject: "qlm",
+      builderTemplateId: "qlm",
+      note: "Espace et temps",
     },
     {
       start: "14:20",
@@ -638,7 +632,7 @@ const SEED_TIMETABLE: WeeklyTimetable = {
       title: "Lecture",
       subject: "francais",
       builderTemplateId: "lecture",
-      note: "Lecture textes longs / fluence",
+      note: "Littérature",
     },
     {
       start: "14:50",
@@ -650,10 +644,10 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "15:05",
       end: "15:35",
-      title: "Questionner le monde",
-      subject: "qlm",
-      builderTemplateId: "qlm",
-      note: "Espace et temps",
+      title: "Production d'écrit",
+      subject: "francais",
+      builderTemplateId: "production-ecrit",
+      note: "Rédaction guidée",
     },
     {
       start: "15:35",
@@ -677,10 +671,10 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "08:30",
       end: "08:50",
-      title: "Cléo",
+      title: "Étude de la langue",
       subject: "francais",
       builderTemplateId: "grammaire",
-      note: "EDL orthographe (mots invariables)",
+      note: "Cléo",
     },
     {
       start: "08:50",
@@ -724,26 +718,26 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "11:00",
       end: "11:30",
-      title: "Lecture",
+      title: "Orthographémic",
       subject: "francais",
-      builderTemplateId: "lecture",
-      note: "Lecture à voix haute / fluence",
+      builderTemplateId: "orthographe-dictee",
+      note: "Fluence et fiches",
     },
     { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
     {
       start: "13:20",
-      end: "13:30",
+      end: "13:35",
+      title: "Devoirs / agenda",
+      subject: "rituels",
+      note: "Écriture des devoirs (15 min)",
+    },
+    {
+      start: "13:35",
+      end: "13:50",
       title: "Lecture",
       subject: "francais",
       builderTemplateId: "lecture",
-      note: "Quart d'heure lecture (plaisir)",
-    },
-    {
-      start: "13:30",
-      end: "13:50",
-      title: "Devoirs / agenda",
-      subject: "rituels",
-      note: "Écriture des devoirs",
+      note: "Quart d'heure lecture plaisir",
     },
     {
       start: "13:50",
@@ -770,9 +764,10 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "15:05",
       end: "15:35",
-      title: "Éducation musicale",
-      subject: "arts",
-      note: "Chant / pratique",
+      title: "Écriture",
+      subject: "francais",
+      builderTemplateId: "ecriture-copie",
+      note: "Calligraphie",
     },
     {
       start: "15:35",
@@ -815,6 +810,27 @@ function timetableMatches(a: WeeklyTimetable, b: WeeklyTimetable): boolean {
     if (dayA.length !== dayB.length) return false;
     return dayA.every((slot, index) => slotSignature(slot) === slotSignature(dayB[index]!));
   });
+}
+
+function hasSlot(day: TimetableSlot[], start: string, end: string, title: string, subject?: SubjectKey): boolean {
+  const normalizedTitle = normalizeSlotTitle(title);
+  return day.some(
+    (slot) =>
+      slot.start === start &&
+      slot.end === end &&
+      normalizeSlotTitle(slot.title) === normalizedTitle &&
+      (!subject || slot.subject === subject),
+  );
+}
+
+function looksLikePrePdfSeed(timetable: WeeklyTimetable): boolean {
+  return (
+    hasSlot(timetable.lundi ?? [], "13:20", "13:30", "Lecture", "francais") &&
+    hasSlot(timetable.lundi ?? [], "13:30", "13:50", "Devoirs / agenda", "rituels") &&
+    hasSlot(timetable.mardi ?? [], "09:20", "09:50", "Mathématiques", "maths") &&
+    hasSlot(timetable.jeudi ?? [], "11:00", "11:30", "Cléo", "francais") &&
+    hasSlot(timetable.vendredi ?? [], "15:05", "15:35", "Éducation musicale", "arts")
+  );
 }
 
 function migrateTimetable(timetable: WeeklyTimetable): WeeklyTimetable {
@@ -900,7 +916,8 @@ function migrateTimetable(timetable: WeeklyTimetable): WeeklyTimetable {
 
   if (
     timetableMatches(next, LEGACY_BALANCED_SEED) ||
-    timetableMatches(next, PREVIOUS_SEED_TIMETABLE)
+    timetableMatches(next, PREVIOUS_SEED_TIMETABLE) ||
+    looksLikePrePdfSeed(next)
   ) {
     return cloneTimetable(SEED_TIMETABLE);
   }
@@ -955,6 +972,18 @@ function readTimetablesStore(): TimetablesStore {
     if (raw) {
       const parsed = JSON.parse(raw) as TimetablesStore;
       if (parsed && Array.isArray(parsed.entries) && parsed.entries.length > 0) {
+        let changed = false;
+        const entries = parsed.entries.map((entry) => {
+          const migrated = migrateTimetable(entry.data);
+          if (JSON.stringify(migrated) !== JSON.stringify(entry.data)) changed = true;
+          return { ...entry, data: migrated };
+        });
+        if (changed) {
+          const next = { ...parsed, entries };
+          writeTimetablesStore(next);
+          syncLegacyKey(getActiveEntry(next).data);
+          return next;
+        }
         return parsed;
       }
     }
