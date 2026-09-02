@@ -4,6 +4,7 @@
  */
 import type { Session, SubjectKey } from "@/lib/ardoise-data";
 import { toISODate } from "@/lib/ardoise-data";
+import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
 
 export type Weekday = "lundi" | "mardi" | "mercredi" | "jeudi" | "vendredi";
@@ -944,6 +945,19 @@ export type TimetableEntry = { id: string; name: string; data: WeeklyTimetable }
 type TimetablesStore = { entries: TimetableEntry[]; activeId: string };
 
 export const TIMETABLES_KEY = "ardoise.timetables.v1";
+const CE1_TIMETABLE_VERSION = "2026-2027-pdf-v2";
+
+function shouldApplyCe1Timetable(): boolean {
+  if (typeof window === "undefined") return false;
+
+  const classroom = resolveCurrentClassroomKey();
+  if (!["boulard", "durand", "grimal"].includes(classroom)) return false;
+
+  const key = `ardoise.timetable.applied.${CE1_TIMETABLE_VERSION}.${classroom}`;
+  if (window.localStorage.getItem(key) === "1") return false;
+  window.localStorage.setItem(key, "1");
+  return true;
+}
 
 export type TimetablePreset = { id: string; name: string; data: WeeklyTimetable };
 export const TIMETABLE_PRESETS_KEY = "ardoise.timetablePresets.v1";
@@ -972,6 +986,17 @@ function readTimetablesStore(): TimetablesStore {
     if (raw) {
       const parsed = JSON.parse(raw) as TimetablesStore;
       if (parsed && Array.isArray(parsed.entries) && parsed.entries.length > 0) {
+        // La trame validée par l'équipe remplace une fois l'EDT actif des classes CE1 concernées.
+        // Les éventuels autres emplois du temps nommés restent disponibles.
+        if (shouldApplyCe1Timetable()) {
+          const active = getActiveEntry(parsed);
+          active.name = "Emploi du temps CE1 2026-2027";
+          active.data = cloneTimetable(SEED_TIMETABLE);
+          writeTimetablesStore(parsed);
+          syncLegacyKey(active.data);
+          return parsed;
+        }
+
         let changed = false;
         const entries = parsed.entries.map((entry) => {
           const migrated = migrateTimetable(entry.data);
