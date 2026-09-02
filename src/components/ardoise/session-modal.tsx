@@ -793,7 +793,12 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
                   </section>
                   {prep ? (
                     <div className="max-h-[52vh] overflow-y-auto rounded-[28px] border border-border/70 bg-white/70 p-2 shadow-inner">
-                      <PrepSheetView sheet={prep} sessionId={draft.id} printable={false} />
+                      <PrepSheetView
+                        sheet={prep}
+                        sessionId={draft.id}
+                        stickyHeader={false}
+                        printable={false}
+                      />
                     </div>
                   ) : resourceMatch ? (
                     <section className="rounded-xl border border-border bg-card p-3">
