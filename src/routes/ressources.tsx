@@ -58,6 +58,7 @@ export const Route = createFileRoute("/ressources")({
 });
 
 type Screen = "bibliotheque" | "rayon" | "sommaire" | "seance";
+type LibraryScope = "guides" | "personal";
 
 type ResourceShelf = {
   id: string;
@@ -165,6 +166,7 @@ function ResourcesPage() {
   const [resourceTree, setResourceTree] = useState<ResourceMethod[]>([]);
   const [query, setQuery] = useState("");
   const [libraryQuery, setLibraryQuery] = useState("");
+  const [libraryScope, setLibraryScope] = useState<LibraryScope>("guides");
   const [selectedShelf, setSelectedShelf] = useState<ResourceShelf | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<ResourceMethod | null>(null);
   const [selectedSequence, setSelectedSequence] = useState<ResourceSequence | null>(null);
@@ -256,9 +258,17 @@ function ResourcesPage() {
     return shelves;
   }, [resourceTree]);
 
+  const scopedShelves = useMemo(() => {
+    return libraryShelves.filter((shelf) =>
+      libraryScope === "personal"
+        ? shelf.id === "shelf-personal-resources"
+        : shelf.id !== "shelf-personal-resources",
+    );
+  }, [libraryScope, libraryShelves]);
+
   const filteredShelves = useMemo(() => {
-    if (!libraryQ) return libraryShelves;
-    return libraryShelves.filter((shelf) => {
+    if (!libraryQ) return scopedShelves;
+    return scopedShelves.filter((shelf) => {
       const inShelf =
         shelf.label.toLowerCase().includes(libraryQ) ||
         shelf.subtitle.toLowerCase().includes(libraryQ);
@@ -273,18 +283,7 @@ function ResourcesPage() {
       });
       return inShelf || inChild;
     });
-  }, [libraryQ, libraryShelves]);
-
-  const resourceStats = useMemo(() => {
-    const methodCount = resourceTree.length;
-    const sequenceCount = resourceTree.reduce((total, method) => total + method.sequences.length, 0);
-    const sessionCount = resourceTree.reduce(
-      (total, method) =>
-        total + method.sequences.reduce((subtotal, sequence) => subtotal + sequence.sessions.length, 0),
-      0,
-    );
-    return { methodCount, sequenceCount, sessionCount };
-  }, [resourceTree]);
+  }, [libraryQ, scopedShelves]);
 
   const previousSession =
     selectedSequence && selectedSession
@@ -389,17 +388,25 @@ function ResourcesPage() {
 
         {screen === "bibliotheque" ? (
           <section className="mt-6">
-            <div className="mb-4 flex flex-col gap-3 rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3.5 shadow-card sm:mb-5 sm:rounded-[28px] sm:p-4">
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                <span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-foreground">
-                  {resourceStats.methodCount} supports
-                </span>
-                <span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-muted-foreground">
-                  {resourceStats.sequenceCount} sommaires
-                </span>
-                <span className="rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-muted-foreground">
-                  {resourceStats.sessionCount} séances
-                </span>
+            <div className="mb-4 flex flex-col gap-3 rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3.5 shadow-card sm:mb-5 sm:rounded-[28px] sm:p-4 md:flex-row md:items-center md:justify-between">
+              <div className="flex w-fit rounded-2xl border border-border/70 bg-card/80 p-1 shadow-sm">
+                {[
+                  { id: "guides", label: "Guides du maître" },
+                  { id: "personal", label: "Mes ressources" },
+                ].map((scope) => (
+                  <button
+                    key={scope.id}
+                    type="button"
+                    onClick={() => setLibraryScope(scope.id as LibraryScope)}
+                    className={cn(
+                      "rounded-xl px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors sm:px-4 sm:text-sm",
+                      libraryScope === scope.id &&
+                        "bg-primary text-primary-foreground shadow-sm",
+                    )}
+                  >
+                    {scope.label}
+                  </button>
+                ))}
               </div>
               <div className="relative w-full sm:max-w-sm">
                 <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -436,7 +443,9 @@ function ResourcesPage() {
             </div>
             {loaded && filteredShelves.length === 0 ? (
               <div className="mt-5 rounded-[24px] border border-dashed border-border bg-card/70 px-5 py-8 text-center text-sm text-muted-foreground">
-                Aucun support ne correspond à cette recherche.
+                {libraryScope === "personal" && !libraryQ
+                  ? "Aucune ressource personnelle pour l’instant."
+                  : "Aucun support ne correspond à cette recherche."}
               </div>
             ) : null}
           </section>
