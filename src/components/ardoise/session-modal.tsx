@@ -878,7 +878,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
                     </div>
                   </section>
                   {prep ? (
-                    <div className="max-h-[52vh] overflow-y-auto rounded-[28px] border border-border/70 bg-white/70 p-2 shadow-inner">
+                    <div className="rounded-[28px] border border-border/70 bg-card/40 p-2">
                       <PrepSheetView
                         sheet={prep}
                         sessionId={draft.id}

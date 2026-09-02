@@ -372,9 +372,9 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "13:20",
       end: "13:35",
-      title: "Devoirs / agenda",
+      title: "Copie / agenda",
       subject: "rituels",
-      note: "Écriture des devoirs (15 min)",
+      note: "Copie des leçons (15 min)",
     },
     {
       start: "13:35",
@@ -490,9 +490,9 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "13:20",
       end: "13:35",
-      title: "Devoirs / agenda",
+      title: "Copie / agenda",
       subject: "rituels",
-      note: "Écriture des devoirs (15 min)",
+      note: "Copie des leçons (15 min)",
     },
     {
       start: "13:35",
@@ -607,9 +607,9 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "13:20",
       end: "13:35",
-      title: "Devoirs / agenda",
+      title: "Copie / agenda",
       subject: "rituels",
-      note: "Écriture des devoirs (15 min)",
+      note: "Copie des leçons (15 min)",
     },
     {
       start: "13:35",
@@ -728,9 +728,9 @@ const SEED_TIMETABLE: WeeklyTimetable = {
     {
       start: "13:20",
       end: "13:35",
-      title: "Devoirs / agenda",
+      title: "Copie / agenda",
       subject: "rituels",
-      note: "Écriture des devoirs (15 min)",
+      note: "Copie des leçons (15 min)",
     },
     {
       start: "13:35",
@@ -883,7 +883,7 @@ function migrateTimetable(timetable: WeeklyTimetable): WeeklyTimetable {
     );
 
     if (afterLunchSlot) {
-      afterLunchSlot.title = "Devoirs / agenda";
+      afterLunchSlot.title = "Copie / agenda";
       afterLunchSlot.subject = "rituels";
       afterLunchSlot.builderTemplateId = undefined;
       afterLunchSlot.resourceId = undefined;
@@ -921,6 +921,19 @@ function migrateTimetable(timetable: WeeklyTimetable): WeeklyTimetable {
     looksLikePrePdfSeed(next)
   ) {
     return cloneTimetable(SEED_TIMETABLE);
+  }
+
+  // Renommage du rituel "Devoirs / agenda" → "Copie / agenda" sur les EDT déjà
+  // enregistrés (recopie des leçons plutôt que devoirs). Sans écraser les autres réglages.
+  for (const weekday of WEEKDAYS) {
+    for (const slot of next[weekday] ?? []) {
+      if (normalizeSlotTitle(slot.title) === "devoirs / agenda") {
+        slot.title = "Copie / agenda";
+        if (slot.note && slot.note.toLowerCase().includes("devoir")) {
+          slot.note = "Copie des leçons (15 min)";
+        }
+      }
+    }
   }
 
   return next;
