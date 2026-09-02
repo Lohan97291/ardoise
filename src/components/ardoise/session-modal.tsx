@@ -75,6 +75,7 @@ import {
 import type { AiResourceContext } from "@/lib/ai-resource-context";
 import { getAiJournalContext, type AiJournalContext } from "@/lib/ai-journal-context";
 import { ARDOISE_AI_NAME, ardoiseAiTitle } from "@/lib/ardoise-ai-brand";
+import { OFFICIAL_SOCLE_DOMAINS } from "@/lib/curricular-domains";
 import { getExercisePlan } from "@/lib/exercise-plans";
 import {
   emptyAiResourceContext,
@@ -203,6 +204,48 @@ function associatedNotebookLabel(mode: SessionCorrectionMode, subject: SubjectKe
   return subject === "maths" ? "Cahier de mathématiques" : "Cahier de l'élève";
 }
 
+function uniqueItems(items: string[]): string[] {
+  return [...new Set(items.map((item) => item.trim()).filter(Boolean))];
+}
+
+function buildCustomPrepSheet(
+  session: Session,
+  prep: CustomSessionPrep,
+  phases: CustomPhase[],
+  extras: SessionExtras,
+): PrepSheet {
+  const material = uniqueItems([...extras.material, ...prep.materialSuggestions]);
+  const photocopies = uniqueItems([...extras.photocopies, ...prep.photocopySuggestions]);
+  const notes = uniqueItems([
+    prep.pedagogicalRationale,
+    prep.evaluation ? `Évaluation prévue : ${prep.evaluation}` : "",
+    session.note ?? "",
+  ]);
+
+  return {
+    id: `custom-${session.id}`,
+    title: session.title,
+    subject: session.subject,
+    socleDomains: prep.socleDomains,
+    objective: prep.objective || "Objectif à préciser dans la séance libre.",
+    competence: prep.competence || "Compétence à préciser dans la séance libre.",
+    duration: durationLabel(session.start, session.end),
+    phases:
+      phases.length > 0
+        ? phases
+        : [
+            {
+              title: "Déroulé à compléter",
+              duration: durationLabel(session.start, session.end),
+              detail: session.note || "Décrire ici les étapes de la séance.",
+            },
+          ],
+    material,
+    photocopies,
+    notes,
+  };
+}
+
 function correctionOptions(mode: SessionCorrectionMode) {
   if (mode === "cleo") {
     return CLEO_CATALOG.map((entry) => ({
@@ -257,6 +300,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
   const [customPrep, setCustomPrep] = useState<CustomSessionPrep>({
     competence: "",
     objective: "",
+    socleDomains: [],
     recommendedFormat: "seance",
     pedagogicalRationale: "",
     sequenceSessions: [],
@@ -349,7 +393,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
   }, [draft?.programmingItemId, draft?.resourceId, draft?.subject, draft?.title]);
 
   useEffect(() => {
-    if (!printingPrep || !prep) return;
+    if (!printingPrep) return;
 
     const timeout = window.setTimeout(() => {
       window.print();
@@ -357,7 +401,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
     }, 100);
 
     return () => window.clearTimeout(timeout);
-  }, [prep, printingPrep]);
+  }, [printingPrep]);
 
   if (!draft) return null;
   const resultTarget = getSessionResultTarget(draft);
@@ -368,6 +412,9 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
   const patch = (values: Partial<Session>) => setDraft({ ...draft, ...values });
   const updateFreePrep = (values: Partial<CustomSessionPrep>) =>
     setCustomPrep(updateCustomSessionPrep(draft.id, values));
+  const printablePrep =
+    prep ??
+    (mode === "free" ? buildCustomPrepSheet(draft, customPrep, customPhases, extras) : undefined);
   const assistantJournalContext: AiJournalContext = getAiJournalContext(draft);
   const assistantAnsweredCount = Object.values(assistantAnswers).filter(
     (answer) => (answer.freeText ?? "").trim().length > 0 || Boolean(answer.selectedSuggestion),
@@ -494,6 +541,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
         pedagogicalRationale: assistantPlan.pedagogicalRationale,
         competence: assistantPlan.competence,
         objective: assistantPlan.objective,
+        socleDomains: customPrep.socleDomains,
         sequenceSessions: assistantPlan.sequenceSessions,
         evaluation: assistantPlan.evaluation,
         materialSuggestions: assistantPlan.materialSuggestions,
@@ -679,6 +727,44 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
                       placeholder="Ex. Identifier les personnages d'un album ; comparer deux procédures ; réinvestir une notion travaillée…"
                       className="min-h-24 rounded-xl bg-card"
                     />
+                  </div>
+                </div>
+
+                <div className="mt-3 rounded-xl border border-border bg-secondary/20 p-3">
+                  <p className="eyebrow">Domaines du socle</p>
+                  <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                    {OFFICIAL_SOCLE_DOMAINS.map((domain) => {
+                      const label = `${domain.id} · ${domain.label}`;
+                      const checked = customPrep.socleDomains.includes(label);
+                      return (
+                        <label
+                          key={domain.id}
+                          className={cn(
+                            "flex cursor-pointer items-start gap-2 rounded-xl border bg-card px-3 py-2 text-sm transition-colors",
+                            checked
+                              ? "border-primary/40 bg-primary/10 text-foreground"
+                              : "border-border text-muted-foreground hover:bg-secondary",
+                          )}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={(event) => {
+                              updateFreePrep({
+                                socleDomains: event.target.checked
+                                  ? [...customPrep.socleDomains, label]
+                                  : customPrep.socleDomains.filter((item) => item !== label),
+                              });
+                            }}
+                            className="mt-1"
+                          />
+                          <span>
+                            <span className="font-semibold">{domain.id}</span>
+                            <span className="ml-1">{domain.label}</span>
+                          </span>
+                        </label>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -1160,7 +1246,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
               {resultTarget?.label ?? correctionLabel}
             </Button>
           ) : null}
-          {prep ? (
+          {printablePrep ? (
             <Button
               variant="outline"
               className={onAttachCorrection ? "" : "mr-auto"}
@@ -1175,9 +1261,9 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
           </Button>
           <Button onClick={() => onSave(draft)}>Enregistrer</Button>
         </DialogFooter>
-        {printingPrep && prep ? (
+        {printingPrep && printablePrep ? (
           <div className="fixed -left-[9999px] top-0 w-[794px] print:static print:w-auto">
-            <PrepSheetView sheet={prep} sessionId={draft.id} stickyHeader={false} />
+            <PrepSheetView sheet={printablePrep} sessionId={draft.id} stickyHeader={false} />
           </div>
         ) : null}
       </DialogContent>

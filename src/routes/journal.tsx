@@ -208,6 +208,7 @@ function saveGeneratedPrepIntoSession(sessionId: string, plan: PlumeSessionPlan[
   saveCustomSessionPrep(sessionId, {
     competence: plan.competence,
     objective: plan.objective,
+    socleDomains: [],
     recommendedFormat: "seance",
     pedagogicalRationale: "",
     sequenceSessions: [],

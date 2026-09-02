@@ -181,20 +181,6 @@ function resizeSlotDuration(slot: TimetableSlot, deltaMinutes: number): Timetabl
   };
 }
 
-function visualSlotHeight(slot: TimetableSlot, nextSlot?: TimetableSlot): number {
-  const top = minuteToVisualY(toMinutes(slot.start));
-  const bottom = minuteToVisualY(toMinutes(slot.end));
-  const naturalHeight = Math.max(12, bottom - top);
-
-  if (!nextSlot) return naturalHeight;
-
-  const nextTop = minuteToVisualY(toMinutes(nextSlot.start));
-  const availableHeight = nextTop - top - 2;
-
-  if (availableHeight <= 0) return 8;
-  return Math.max(8, Math.min(naturalHeight, availableHeight));
-}
-
 function roundToStep(minutes: number, step = SLOT_STEP): number {
   return Math.round(minutes / step) * step;
 }
@@ -241,28 +227,51 @@ function buildSlotTitle(
   return SUBJECTS[subject].label;
 }
 
-function minuteToVisualY(minutes: number): number {
+type ScheduleGeometry = {
+  minuteHeight: number;
+  morningHeight: number;
+  middayHeight: number;
+  afternoonHeight: number;
+  afternoonOffset: number;
+  canvasHeight: number;
+};
+
+function createGeometry(minuteHeight: number): ScheduleGeometry {
+  const morningHeight = (MIDDAY_START - SCHOOL_START) * minuteHeight;
+  const afternoonHeight = (SCHOOL_END - MIDDAY_END) * minuteHeight;
+  const afternoonOffset = morningHeight + MIDDAY_VISUAL_HEIGHT;
+  return {
+    minuteHeight,
+    morningHeight,
+    middayHeight: MIDDAY_VISUAL_HEIGHT,
+    afternoonHeight,
+    afternoonOffset,
+    canvasHeight: morningHeight + MIDDAY_VISUAL_HEIGHT + afternoonHeight,
+  };
+}
+
+function minuteToVisualY(minutes: number, geo: ScheduleGeometry): number {
   if (minutes <= MIDDAY_START) {
-    return (minutes - SCHOOL_START) * SCHEDULE_MINUTE_HEIGHT;
+    return (minutes - SCHOOL_START) * geo.minuteHeight;
   }
   if (minutes >= MIDDAY_END) {
-    return AFTERNOON_OFFSET + (minutes - MIDDAY_END) * SCHEDULE_MINUTE_HEIGHT;
+    return geo.afternoonOffset + (minutes - MIDDAY_END) * geo.minuteHeight;
   }
 
   const ratio = (minutes - MIDDAY_START) / (MIDDAY_END - MIDDAY_START);
-  return MORNING_VISUAL_HEIGHT + ratio * MIDDAY_COMPRESSED_HEIGHT;
+  return geo.morningHeight + ratio * geo.middayHeight;
 }
 
-function visualYToMinute(y: number): number {
-  const clamped = Math.max(0, Math.min(DAY_CANVAS_HEIGHT, y));
-  if (clamped <= MORNING_VISUAL_HEIGHT) {
-    return SCHOOL_START + clamped / SCHEDULE_MINUTE_HEIGHT;
+function visualYToMinute(y: number, geo: ScheduleGeometry): number {
+  const clamped = Math.max(0, Math.min(geo.canvasHeight, y));
+  if (clamped <= geo.morningHeight) {
+    return SCHOOL_START + clamped / geo.minuteHeight;
   }
-  if (clamped < AFTERNOON_OFFSET) {
-    const ratio = (clamped - MORNING_VISUAL_HEIGHT) / MIDDAY_COMPRESSED_HEIGHT;
+  if (clamped < geo.afternoonOffset) {
+    const ratio = (clamped - geo.morningHeight) / geo.middayHeight;
     return MIDDAY_START + ratio * (MIDDAY_END - MIDDAY_START);
   }
-  return MIDDAY_END + (clamped - AFTERNOON_OFFSET) / SCHEDULE_MINUTE_HEIGHT;
+  return MIDDAY_END + (clamped - geo.afternoonOffset) / geo.minuteHeight;
 }
 
 function clampMovedSlot(slot: TimetableSlot): TimetableSlot {
@@ -294,15 +303,16 @@ const MIDDAY_START = toMinutes("11:30");
 const MIDDAY_END = toMinutes("13:20");
 const SLOT_STEP = 5;
 const MIN_SLOT_DURATION = 5;
-const SCHEDULE_MINUTE_HEIGHT = 1.85;
-const MIDDAY_COMPRESSED_HEIGHT = 28;
+const MIDDAY_VISUAL_HEIGHT = 28;
 const TIME_LABELS_STEP = 20;
+const ZOOM_LEVELS = [
+  { id: "compact", label: "Compact", minuteHeight: 1.85 },
+  { id: "confort", label: "Confort", minuteHeight: 2.7 },
+  { id: "large", label: "Large", minuteHeight: 3.9 },
+] as const;
+const DEFAULT_ZOOM_INDEX = 1;
+const MIN_VISUAL_SLOT_HEIGHT = 22;
 
-const MORNING_VISUAL_HEIGHT = (MIDDAY_START - SCHOOL_START) * SCHEDULE_MINUTE_HEIGHT;
-const AFTERNOON_VISUAL_HEIGHT = (SCHOOL_END - MIDDAY_END) * SCHEDULE_MINUTE_HEIGHT;
-const DAY_CANVAS_HEIGHT =
-  MORNING_VISUAL_HEIGHT + MIDDAY_COMPRESSED_HEIGHT + AFTERNOON_VISUAL_HEIGHT;
-const AFTERNOON_OFFSET = MORNING_VISUAL_HEIGHT + MIDDAY_COMPRESSED_HEIGHT;
 const TIME_MARKS: number[] = (() => {
   const marks: number[] = [];
   for (let minute = SCHOOL_START; minute <= MIDDAY_START; minute += TIME_LABELS_STEP) {
@@ -857,6 +867,7 @@ function EmploiDuTempsPage() {
   const [periodWeeks, setPeriodWeeks] = useState<PeriodWeeks>(getPeriodWeeks);
   const [period, setPeriod] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [builderMode, setBuilderMode] = useState<BuilderMode>("construct");
+  const [zoomIndex, setZoomIndex] = useState(DEFAULT_ZOOM_INDEX);
   const [dragPayload, setDragPayload] = useState<DragPayload | null>(null);
   const [focusedDay, setFocusedDay] = useState<Weekday | null>(null);
   const [hoverWeekday, setHoverWeekday] = useState<Weekday | null>(null);
@@ -883,6 +894,10 @@ function EmploiDuTempsPage() {
     "h-9 rounded-xl border-primary/15 bg-primary/5 px-3 text-primary shadow-sm hover:bg-primary/10";
   const dayButtonClass =
     "h-7 rounded-lg border-border/70 bg-background/90 px-2.5 text-[0.68rem] shadow-sm hover:bg-secondary";
+  const geo = useMemo(
+    () => createGeometry(ZOOM_LEVELS[zoomIndex]?.minuteHeight ?? ZOOM_LEVELS[DEFAULT_ZOOM_INDEX].minuteHeight),
+    [zoomIndex],
+  );
 
   useEffect(() => {
     setTimetable(getTimetable());
@@ -907,7 +922,7 @@ function EmploiDuTempsPage() {
       if (manipulation.mode === "move") {
         const duration = slotMinutes(manipulation.original);
         const startY = localY - manipulation.pointerOffsetY;
-        const startMinute = roundToStep(visualYToMinute(startY));
+        const startMinute = roundToStep(visualYToMinute(startY, geo));
         const next = clampMovedSlot({
           ...manipulation.original,
           start: toTimeString(startMinute),
@@ -917,7 +932,7 @@ function EmploiDuTempsPage() {
         return;
       }
 
-      const endMinute = roundToStep(visualYToMinute(localY));
+      const endMinute = roundToStep(visualYToMinute(localY, geo));
       const next = clampResizedSlot({
         ...manipulation.original,
         end: toTimeString(endMinute),
@@ -943,7 +958,7 @@ function EmploiDuTempsPage() {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerup", handlePointerUp);
     };
-  }, [directManipulation, directPreview]);
+  }, [directManipulation, directPreview, geo]);
 
   const totals = useMemo(() => {
     const map = new Map<SubjectKey, number>();
@@ -1365,7 +1380,7 @@ function EmploiDuTempsPage() {
     const surface = daySurfaceRefs.current[weekday];
     if (!slot || slot.fixed || !surface) return;
     const rect = surface.getBoundingClientRect();
-    const offsetY = event.clientY - rect.top - minuteToVisualY(toMinutes(slot.start));
+    const offsetY = event.clientY - rect.top - minuteToVisualY(toMinutes(slot.start), geo);
     setDirectManipulation({
       weekday,
       index,
@@ -1715,6 +1730,29 @@ function EmploiDuTempsPage() {
         </section>
 
         <section className="mt-3">
+          <div className="mb-3 flex flex-wrap items-center gap-2 print:hidden">
+            <span className="text-[0.7rem] font-medium text-muted-foreground">
+              Densité de la grille
+            </span>
+            <div className="flex items-center gap-1 rounded-full border border-border bg-card p-0.5 shadow-card">
+              {ZOOM_LEVELS.map((level, index) => (
+                <button
+                  key={level.id}
+                  type="button"
+                  onClick={() => setZoomIndex(index)}
+                  className={cn(
+                    "rounded-full px-2.5 py-1 text-[0.7rem] font-semibold transition-colors",
+                    index === zoomIndex
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:bg-secondary hover:text-foreground",
+                  )}
+                >
+                  {level.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {focusedDay ? (
             <div className="mb-3 flex flex-wrap items-center gap-1.5 print:hidden">
               {SCHOOL_DAYS.map((day) => (
@@ -1884,10 +1922,10 @@ function EmploiDuTempsPage() {
                         daySurfaceRefs.current[weekday] = node;
                       }}
                       className="relative overflow-hidden rounded-2xl border border-border bg-[linear-gradient(180deg,oklch(1_0_0_/_0.96),oklch(0.985_0.006_84_/_0.96))]"
-                      style={{ height: `${DAY_CANVAS_HEIGHT}px` }}
+                      style={{ height: `${geo.canvasHeight}px` }}
                     >
                       {TIME_MARKS.map((minute) => {
-                        const top = minuteToVisualY(minute);
+                        const top = minuteToVisualY(minute, geo);
                         return (
                           <div key={`${weekday}-${minute}`}>
                             <div
@@ -1909,8 +1947,8 @@ function EmploiDuTempsPage() {
                       <div
                         className="absolute left-0 right-0 border-y border-dashed border-border/70 bg-surface/55"
                         style={{
-                          top: `${MORNING_VISUAL_HEIGHT}px`,
-                          height: `${MIDDAY_COMPRESSED_HEIGHT}px`,
+                          top: `${geo.morningHeight}px`,
+                          height: `${geo.middayHeight}px`,
                         }}
                       >
                         <div className="flex h-full items-center justify-center">
@@ -1929,13 +1967,18 @@ function EmploiDuTempsPage() {
                       ) : null}
 
                       {visibleSlots.map((slot, index) => {
-                          const top = minuteToVisualY(toMinutes(slot.start));
-                          const nextSlot = visibleSlots[index + 1];
-                          const height = visualSlotHeight(slot, nextSlot);
+                          const top = minuteToVisualY(toMinutes(slot.start), geo);
+                          const bottom = minuteToVisualY(toMinutes(slot.end), geo);
+                          const rawHeight = bottom - top;
+                          const height = Math.max(MIN_VISUAL_SLOT_HEIGHT, rawHeight);
+                          const tiny = rawHeight < MIN_VISUAL_SLOT_HEIGHT + 6;
                           return (
                             <div
                               key={`${weekday}-${index}-${slot.start}-${slot.title}`}
-                              className="absolute left-10 right-1.5"
+                              className={cn(
+                                "absolute left-10 right-1.5",
+                                tiny ? "z-20 hover:z-30" : "z-10",
+                              )}
                               style={{ top: `${top}px`, height: `${height}px` }}
                               onDragOver={(event) => {
                                 if (!dragPayload || dragPayload.kind !== "slot") return;
@@ -1970,7 +2013,8 @@ function EmploiDuTempsPage() {
                                 directManipulationEnabled={
                                   builderMode === "construct" && !slot.fixed
                                 }
-                                compact={height < 44}
+                                compact={height < 46}
+                                tiny={tiny}
                                 onClick={() => openEdit(weekday, index)}
                                 onPointerMoveStart={(event) =>
                                   startDirectMove(weekday, index, event)
@@ -2338,6 +2382,7 @@ function SlotCard({
   moveMode,
   directManipulationEnabled,
   compact,
+  tiny = false,
   onClick,
   onPointerMoveStart,
   onPointerResizeStart,
@@ -2348,6 +2393,7 @@ function SlotCard({
   moveMode: boolean;
   directManipulationEnabled: boolean;
   compact: boolean;
+  tiny?: boolean;
   onClick: () => void;
   onPointerMoveStart: React.PointerEventHandler<HTMLButtonElement>;
   onPointerResizeStart: React.PointerEventHandler<HTMLButtonElement>;
@@ -2355,14 +2401,11 @@ function SlotCard({
   onDragEnd: React.DragEventHandler<HTMLButtonElement>;
 }) {
   const moveHandleLabel = compactSlotLabel(slot);
+  const durationLabel = hoursLabel(slotMinutes(slot));
+  const tooltip = `${slot.start}–${slot.end} · ${moveHandleLabel} (${durationLabel})`;
   const secondaryLine =
     slot.note?.trim() ||
     (slot.title.trim() && slot.title !== moveHandleLabel ? slot.title : "");
-  const time = (
-    <span className="font-mono text-[0.68rem] opacity-80">
-      {slot.start}–{slot.end}
-    </span>
-  );
 
   if (slot.fixed) {
     const compactMidday = isMiddayBreak(slot);
@@ -2370,15 +2413,18 @@ function SlotCard({
 
     return (
       <div
+        title={tooltip}
         className={cn(
           "flex h-full items-center gap-2 rounded-lg border border-dashed border-border bg-surface/70 text-muted-foreground shadow-sm",
-          compact ? "px-2 py-1" : "px-2.5 py-1.5",
+          tiny ? "px-1.5 py-0" : compact ? "px-2 py-1" : "px-2.5 py-1.5",
         )}
       >
-        <Clock className="h-3 w-3 shrink-0 opacity-60" />
-        <span className="min-w-0 flex-1 truncate text-xs">{slot.title}</span>
-        <span className="font-mono text-[0.68rem] opacity-80">
-          {slot.start}–{slot.end}
+        <Clock className={cn("shrink-0 opacity-60", tiny ? "h-2.5 w-2.5" : "h-3 w-3")} />
+        <span className={cn("min-w-0 flex-1 truncate", tiny ? "text-[0.66rem]" : "text-xs")}>
+          {slot.title}
+        </span>
+        <span className={cn("font-mono opacity-80", tiny ? "text-[0.6rem]" : "text-[0.68rem]")}>
+          {tiny ? slot.start : `${slot.start}–${slot.end}`}
         </span>
       </div>
     );
@@ -2388,13 +2434,14 @@ function SlotCard({
 
   return (
     <div
+      title={tooltip}
       className={cn(
         "flex h-full overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-black/5 transition-shadow duration-150 hover:shadow-md",
         SUBJECT_BAND[slot.subject],
       )}
     >
-      <span className={cn("w-1 shrink-0", SUBJECT_STRIP[slot.subject])} />
-      <div className="flex min-w-0 flex-1 flex-col">
+      <span className={cn("shrink-0", tiny ? "w-1.5" : "w-1", SUBJECT_STRIP[slot.subject])} />
+      <div className="relative flex min-w-0 flex-1 flex-col">
         <button
           type="button"
           draggable={moveMode}
@@ -2403,39 +2450,55 @@ function SlotCard({
           onPointerDown={directManipulationEnabled ? onPointerMoveStart : undefined}
           onClick={onClick}
           className={cn(
-            "flex min-w-0 flex-1 flex-col items-start gap-0.5 px-2.5 py-1.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "flex min-w-0 flex-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            tiny
+              ? "items-center gap-1.5 px-2 py-0"
+              : "flex-col items-start gap-0.5 px-2.5 py-1.5",
             (moveMode || directManipulationEnabled) && "cursor-grab active:cursor-grabbing",
           )}
         >
-          <span className="flex w-full items-center justify-between gap-2">
-            <span className="flex min-w-0 items-center gap-1">
-              {moveMode || directManipulationEnabled ? (
-                <GripVertical className="h-3 w-3 shrink-0 opacity-60" />
-              ) : null}
-              <span
-                className={cn(
-                  "truncate font-semibold leading-tight",
-                  compact ? "text-xs" : "text-sm",
-                )}
-              >
+          {tiny ? (
+            <>
+              <span className="min-w-0 flex-1 truncate text-[0.68rem] font-semibold leading-none">
                 {moveHandleLabel}
               </span>
-            </span>
-            <span className="shrink-0 rounded-full bg-white/50 px-1.5 py-0.5 font-mono text-[0.62rem] opacity-80">
-              {slot.start}–{slot.end}
-            </span>
-          </span>
-          {!compact && secondaryLine ? (
-            <span className="truncate text-[0.68rem] opacity-80">{secondaryLine}</span>
-          ) : null}
-          {!compact && progLabel ? (
-            <span className="flex min-w-0 items-center gap-1 text-[0.65rem] opacity-90">
-              <BookOpen className="h-3 w-3 shrink-0" />
-              <span className="truncate">{progLabel}</span>
-            </span>
-          ) : null}
+              <span className="shrink-0 rounded-full bg-white/60 px-1 font-mono text-[0.58rem] font-semibold leading-tight">
+                {durationLabel}
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="flex w-full items-center justify-between gap-2">
+                <span className="flex min-w-0 items-center gap-1">
+                  {moveMode || directManipulationEnabled ? (
+                    <GripVertical className="h-3 w-3 shrink-0 opacity-60" />
+                  ) : null}
+                  <span
+                    className={cn(
+                      "truncate font-semibold leading-tight",
+                      compact ? "text-xs" : "text-sm",
+                    )}
+                  >
+                    {moveHandleLabel}
+                  </span>
+                </span>
+                <span className="shrink-0 rounded-full bg-white/50 px-1.5 py-0.5 font-mono text-[0.62rem] opacity-80">
+                  {compact ? durationLabel : `${slot.start}–${slot.end}`}
+                </span>
+              </span>
+              {!compact && secondaryLine ? (
+                <span className="truncate text-[0.68rem] opacity-80">{secondaryLine}</span>
+              ) : null}
+              {!compact && progLabel ? (
+                <span className="flex min-w-0 items-center gap-1 text-[0.65rem] opacity-90">
+                  <BookOpen className="h-3 w-3 shrink-0" />
+                  <span className="truncate">{progLabel}</span>
+                </span>
+              ) : null}
+            </>
+          )}
         </button>
-        {directManipulationEnabled ? (
+        {directManipulationEnabled && !tiny ? (
           <button
             type="button"
             onPointerDown={onPointerResizeStart}
@@ -2443,6 +2506,16 @@ function SlotCard({
             className="flex h-3 items-center justify-center opacity-0 transition-opacity hover:opacity-100"
           >
             <span className="h-1 w-10 rounded-full bg-current/40" />
+          </button>
+        ) : null}
+        {directManipulationEnabled && tiny ? (
+          <button
+            type="button"
+            onPointerDown={onPointerResizeStart}
+            aria-label="Redimensionner"
+            className="absolute inset-x-0 bottom-0 h-1.5 cursor-ns-resize opacity-0 hover:opacity-100"
+          >
+            <span className="sr-only">Redimensionner</span>
           </button>
         ) : null}
       </div>

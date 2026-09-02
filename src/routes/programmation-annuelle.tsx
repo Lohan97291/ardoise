@@ -28,6 +28,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { CLEO_CATALOG, DOMAIN_LABELS, MATHS_CATALOG, type CatalogEntry } from "@/lib/ardoise-eval";
+import { MDI_PE_CATALOG } from "@/lib/mdi-pe-data";
 import {
   BO_REFERENTIEL,
   FRENCH_DOMAIN_ORDER,
@@ -110,7 +111,7 @@ function ProgrammationAnnuellePage() {
   const [boTarget, setBoTarget] = useState<string | null>(null);
   const [scheduleTarget, setScheduleTarget] = useState<CatalogEntry | null>(null);
 
-  const catalog: CatalogEntry[] = subject === "francais" ? CLEO_CATALOG : MATHS_CATALOG;
+  const catalog: CatalogEntry[] = subject === "francais" ? [...CLEO_CATALOG, ...MDI_PE_CATALOG] : MATHS_CATALOG;
   const domains = subject === "francais" ? FRENCH_DOMAIN_ORDER : MATHS_DOMAIN_ORDER;
 
   const cell = (domain: string, period: number) =>

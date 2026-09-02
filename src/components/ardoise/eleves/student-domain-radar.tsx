@@ -52,7 +52,8 @@ export function StudentDomainRadar({
   return (
     <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
       <div>
-        <ChartContainer config={RADAR_CONFIG} className="mx-auto aspect-square max-h-[280px]">
+        <div className="rounded-[28px] border border-white/60 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_94%,white_10%),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3 shadow-[0_24px_50px_-36px_rgba(15,23,42,0.42)]">
+          <ChartContainer config={RADAR_CONFIG} className="mx-auto aspect-square max-h-[280px]">
           <RadarChart
             data={data}
             outerRadius="72%"
@@ -93,7 +94,8 @@ export function StudentDomainRadar({
               />
             ) : null}
           </RadarChart>
-        </ChartContainer>
+          </ChartContainer>
+        </div>
 
         <div className="mt-1 flex flex-wrap gap-1.5">
           {active.map((domain) => (
@@ -102,10 +104,10 @@ export function StudentDomainRadar({
               type="button"
               onClick={() => setSelectedKey(domain.key === selectedKey ? null : domain.key)}
               className={cn(
-                "rounded-full border px-2.5 py-1 text-[0.7rem] font-semibold transition-colors",
+                "rounded-full border px-2.5 py-1 text-[0.68rem] font-semibold transition-colors",
                 domain.key === selectedKey
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border bg-background/80 text-muted-foreground hover:bg-secondary",
+                  ? "border-primary/35 bg-primary/10 text-primary shadow-sm"
+                  : "border-border/80 bg-background/85 text-muted-foreground hover:bg-secondary",
               )}
             >
               {domain.short} · {domain.score}%
@@ -126,7 +128,7 @@ export function StudentDomainRadar({
         ) : null}
       </div>
 
-      <div className="rounded-2xl border border-border bg-background/70 p-3">
+      <div className="rounded-[28px] border border-white/60 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_95%,white_10%),color-mix(in_oklab,var(--color-primary)_6%,transparent))] p-3 shadow-[0_24px_50px_-36px_rgba(15,23,42,0.38)]">
         {selected ? (
           <>
             <div className="flex items-start justify-between gap-2">

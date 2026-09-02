@@ -102,7 +102,7 @@ export function removeBoCompetency(id: string, text: string): ProgressionState {
 // ─────────────────────────────────────────────
 // Domaines : ordre d'affichage par matière
 // ─────────────────────────────────────────────
-export const FRENCH_DOMAIN_ORDER = ["C", "V", "G", "O"] as const;
+export const FRENCH_DOMAIN_ORDER = ["C", "V", "G", "O", "pe"] as const;
 export const MATHS_DOMAIN_ORDER = ["nb", "calc", "gm", "geo", "don"] as const;
 
 // ─────────────────────────────────────────────

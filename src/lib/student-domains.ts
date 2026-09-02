@@ -13,6 +13,7 @@ import {
   type CatalogEntry,
   type StatusKey,
 } from "@/lib/ardoise-eval";
+import { MDI_PE_CATALOG } from "@/lib/mdi-pe-data";
 
 export type DomainKey = CatalogEntry["domain"];
 
@@ -37,7 +38,7 @@ export type DomainScore = {
   items: DomainDetailItem[];
 };
 
-const DOMAIN_ORDER: DomainKey[] = ["C", "V", "G", "O", "nb", "calc", "gm", "geo", "don"];
+const DOMAIN_ORDER: DomainKey[] = ["C", "V", "G", "O", "pe", "nb", "calc", "gm", "geo", "don"];
 
 const DOMAIN_SHORT: Record<DomainKey, string> = {
   C: "Compr.",
@@ -49,10 +50,11 @@ const DOMAIN_SHORT: Record<DomainKey, string> = {
   gm: "Mesures",
   geo: "Géom.",
   don: "Données",
+  pe: "Prod. écrit",
 };
 
 const CATALOG_BY_ID = new Map<string, CatalogEntry>(
-  [...CLEO_CATALOG, ...MATHS_CATALOG].map((entry) => [entry.id, entry]),
+  [...CLEO_CATALOG, ...MATHS_CATALOG, ...MDI_PE_CATALOG].map((entry) => [entry.id, entry]),
 );
 
 function statusWeight(status: StatusKey): number | null {

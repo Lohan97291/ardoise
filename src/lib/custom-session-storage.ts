@@ -10,6 +10,7 @@ export type CustomPhase = {
 export type CustomSessionPrep = {
   competence: string;
   objective: string;
+  socleDomains: string[];
   recommendedFormat: "seance" | "sequence";
   pedagogicalRationale: string;
   sequenceSessions: string[];
@@ -37,6 +38,7 @@ const LEGACY_SESSION_EXTRAS_KEY = "ardoise.sessionExtras.v1";
 export const EMPTY_CUSTOM_PREP: CustomSessionPrep = {
   competence: "",
   objective: "",
+  socleDomains: [],
   recommendedFormat: "seance",
   pedagogicalRationale: "",
   sequenceSessions: [],
@@ -59,6 +61,7 @@ function normalizePrep(value?: Partial<CustomSessionPrep> | null): CustomSession
   return {
     ...EMPTY_CUSTOM_PREP,
     ...(value ?? {}),
+    socleDomains: value?.socleDomains ?? EMPTY_CUSTOM_PREP.socleDomains,
     sequenceSessions: value?.sequenceSessions ?? EMPTY_CUSTOM_PREP.sequenceSessions,
     materialSuggestions: value?.materialSuggestions ?? EMPTY_CUSTOM_PREP.materialSuggestions,
     photocopySuggestions: value?.photocopySuggestions ?? EMPTY_CUSTOM_PREP.photocopySuggestions,

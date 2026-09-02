@@ -91,6 +91,7 @@ const METHOD_COVER_STYLES: Record<string, { spine: string; subtitle: string }> =
   "m-qlm-mdi-guide": { spine: "bg-teal-500", subtitle: "Guide enseignant" },
   "m-well-done-ce1": { spine: "bg-lime-500", subtitle: "Anglais" },
   "m-vivre-la-musique-ce1": { spine: "bg-orange-500", subtitle: "Éducation musicale" },
+  "m-emc-ce1": { spine: "bg-stone-600", subtitle: "Guide du maître" },
   "m-premiere-journee-ce1": { spine: "bg-slate-600", subtitle: "Rentrée" },
 };
 
@@ -136,6 +137,13 @@ const RESOURCE_GUIDE_GROUPS: ResourceGuideGroup[] = [
     subtitle: "Anglais · musique",
     spine: "bg-orange-500",
     methodIds: ["m-well-done-ce1", "m-vivre-la-musique-ce1"],
+  },
+  {
+    id: "shelf-emc-ce1",
+    label: "EMC CE1",
+    subtitle: "Enseignement moral et civique",
+    spine: "bg-stone-600",
+    methodIds: ["m-emc-ce1"],
   },
 ];
 

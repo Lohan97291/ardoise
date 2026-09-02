@@ -31,6 +31,7 @@ import {
   type OrthoEntry,
 } from "@/lib/ardoise-eval";
 import { createLocalStore } from "@/lib/local-store";
+import { emcCe1Programming } from "@/lib/emc-ce1-programming";
 import { wellDoneCe1Programming } from "@/lib/well-done-ce1-programming";
 import { cn } from "@/lib/utils";
 
@@ -111,9 +112,10 @@ const ORAL_DOMAIN_BADGE: Record<string, string> = {
 
 /* ─────────────── Component ─────────────── */
 
-type Subject = "francais" | "maths" | "ortho" | "oral" | "anglais";
+type Subject = "francais" | "maths" | "ortho" | "oral" | "anglais" | "emc";
 type Period = 1 | 2 | 3 | 4 | 5;
 type EnglishProgrammingSequence = (typeof wellDoneCe1Programming.sequences)[number];
+type EmcProgrammingFiche = (typeof emcCe1Programming.fiches)[number];
 
 const PERIODS: Period[] = [1, 2, 3, 4, 5];
 
@@ -123,6 +125,7 @@ const SUBJECT_LABELS: Record<Subject, string> = {
   ortho: "Orthographémic",
   oral: "Langage Oral · Nathan",
   anglais: "Anglais · Well done!",
+  emc: "EMC",
 };
 
 function ProgrammationPage() {
@@ -141,11 +144,14 @@ function ProgrammationPage() {
   const oralItems =
     subject === "oral" ? (ORAL_CATALOG as OralEntry[]).filter((e) => e.period === period) : [];
   const englishItems = subject === "anglais" ? wellDoneCe1Programming.sequences : [];
+  const emcItems = subject === "emc" ? emcCe1Programming.fiches : [];
 
   const catalogItems =
-    subject === "anglais"
-      ? englishItems
-      : subject === "ortho"
+    subject === "emc"
+      ? emcItems
+      : subject === "anglais"
+        ? englishItems
+        : subject === "ortho"
         ? orthoItems
         : subject === "maths"
           ? mathItems
@@ -158,7 +164,7 @@ function ProgrammationPage() {
   const pct = catalogItems.length > 0 ? Math.round((doneCount / catalogItems.length) * 100) : 0;
   const activeMethodLabel = useMemo(() => SUBJECT_LABELS[subject], [subject]);
   const scopeLabel =
-    subject === "anglais"
+    subject === "anglais" || subject === "emc"
       ? "Vue globale de la méthode"
       : `Période ${period} · progression en cours`;
   const nextItems = useMemo(() => {
@@ -179,7 +185,9 @@ function ProgrammationPage() {
             ? `${ORTHO_TYPE_LABELS[(item as OrthoEntry).type]}`
             : subject === "oral"
               ? `${ORAL_DOMAIN_LABELS[(item as OralEntry).domain]}`
-              : `${(item as EnglishProgrammingSequence).sessionCount} séances`,
+              : subject === "emc"
+                ? `Thème ${(item as EmcProgrammingFiche).theme} — ${(item as EmcProgrammingFiche).themeTitle}`
+                : `${(item as EnglishProgrammingSequence).sessionCount} séances`,
     }));
   }, [catalogItems, completed, subject]);
   const breakdown = useMemo(() => {
@@ -211,6 +219,18 @@ function ProgrammationPage() {
           ORAL_DOMAIN_LABELS[entry.domain],
           isDone,
           ORAL_DOMAIN_BADGE[entry.domain] ?? "bg-secondary text-muted-foreground",
+        );
+      } else if (subject === "emc") {
+        const entry = item as EmcProgrammingFiche;
+        upsert(
+          `theme-${entry.theme}`,
+          `Thème ${entry.theme} — ${entry.themeTitle}`,
+          isDone,
+          entry.theme === 1
+            ? "bg-orange-100 text-orange-700"
+            : entry.theme === 2
+              ? "bg-teal-100 text-teal-700"
+              : "bg-blue-100 text-blue-700",
         );
       } else {
         const entry = item as EnglishProgrammingSequence;
@@ -261,7 +281,9 @@ function ProgrammationPage() {
           ? "bg-subject-lve"
           : subject === "oral"
             ? "bg-teal-500"
-            : "bg-emerald-500";
+            : subject === "emc"
+              ? "bg-orange-500"
+              : "bg-emerald-500";
 
   return (
     <AppShell>
@@ -318,7 +340,7 @@ function ProgrammationPage() {
 
         <div className="sticky top-16 z-20 -mx-4 mt-6 space-y-2 bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
           <div className="flex w-fit flex-wrap gap-1 rounded-xl border border-border bg-secondary p-1">
-            {(["francais", "maths", "ortho", "oral", "anglais"] as Subject[]).map((s) => (
+            {(["francais", "maths", "ortho", "oral", "anglais", "emc"] as Subject[]).map((s) => (
               <button
                 key={s}
                 type="button"
@@ -334,7 +356,9 @@ function ProgrammationPage() {
                           ? "bg-subject-lve text-subject-lve-foreground shadow-sm"
                           : s === "oral"
                             ? "bg-teal-600 text-white shadow-sm"
-                            : "bg-emerald-600 text-white shadow-sm"
+                            : s === "emc"
+                              ? "bg-orange-600 text-white shadow-sm"
+                              : "bg-emerald-600 text-white shadow-sm"
                     : "text-muted-foreground hover:text-foreground",
                 )}
               >
@@ -347,6 +371,11 @@ function ProgrammationPage() {
             <div className="rounded-xl border border-dashed border-border bg-secondary/50 px-4 py-3 text-sm text-muted-foreground">
               Le scan CE1 de <span className="font-medium text-foreground">Well done!</span> liste 18
               séquences, mais ne les rattache pas explicitement aux périodes 1 à 5.
+            </div>
+          ) : subject === "emc" ? (
+            <div className="rounded-xl border border-dashed border-border bg-secondary/50 px-4 py-3 text-sm text-muted-foreground">
+              L'<span className="font-medium text-foreground">EMC CE1</span> est organisé en 3 thèmes
+              annuels, non découpés en périodes 1 à 5.
             </div>
           ) : (
             <div className="flex w-fit gap-1 rounded-xl border border-border bg-secondary p-1">
@@ -509,7 +538,9 @@ function ProgrammationPage() {
             <p className="py-12 text-center text-sm text-muted-foreground">
               {subject === "anglais"
                 ? "Aucune séquence d'anglais disponible."
-                : "Aucun module pour cette période."}
+                : subject === "emc"
+                  ? "Aucune fiche EMC disponible."
+                  : "Aucun module pour cette période."}
             </p>
           )}
           <ul className="divide-y divide-border">
@@ -639,6 +670,83 @@ function ProgrammationPage() {
                       </li>
                     );
                   })
+                : subject === "emc"
+                  ? (catalogItems as EmcProgrammingFiche[]).map((entry, idx) => {
+                      const done = completed.has(entry.id);
+                      const themeColor =
+                        entry.theme === 1
+                          ? "bg-orange-100 text-orange-700"
+                          : entry.theme === 2
+                            ? "bg-teal-100 text-teal-700"
+                            : "bg-blue-100 text-blue-700";
+                      const checkColor =
+                        entry.theme === 1
+                          ? "border-orange-500 bg-orange-500 text-white"
+                          : entry.theme === 2
+                            ? "border-teal-500 bg-teal-500 text-white"
+                            : "border-blue-500 bg-blue-500 text-white";
+                      return (
+                        <li
+                          key={entry.id}
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => toggle(entry.id)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") toggle(entry.id);
+                          }}
+                          className={cn(
+                            "grid cursor-pointer grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 transition-colors duration-150 hover:bg-secondary/40",
+                            done && "opacity-60",
+                          )}
+                        >
+                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-secondary text-[0.65rem] font-semibold text-muted-foreground">
+                            F{entry.ficheNumber}
+                          </span>
+                          <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              <span
+                                className={cn(
+                                  "rounded-md px-1.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-wide",
+                                  themeColor,
+                                )}
+                              >
+                                T{entry.theme}
+                              </span>
+                              <span className="text-[0.7rem] text-muted-foreground">
+                                {entry.themeTitle}
+                              </span>
+                            </div>
+                            <p
+                              className={cn(
+                                "mt-0.5 text-sm font-medium leading-snug",
+                                done && "line-through",
+                              )}
+                            >
+                              {entry.title}
+                            </p>
+                            <p className="mt-0.5 text-[0.65rem] text-muted-foreground">
+                              EMC CE1 · guide p. {entry.guidePages[0]}–{entry.guidePages[entry.guidePages.length - 1]}
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggle(entry.id);
+                            }}
+                            title={done ? "Marquer comme à faire" : "Marquer comme fait"}
+                            className={cn(
+                              "grid h-7 w-7 shrink-0 place-items-center rounded-full border-2 transition-colors duration-150",
+                              done
+                                ? checkColor
+                                : "border-border text-transparent hover:border-muted-foreground",
+                            )}
+                          >
+                            <Check className="h-3.5 w-3.5" />
+                          </button>
+                        </li>
+                      );
+                    })
                 : subject === "ortho"
                   ? (catalogItems as OrthoEntry[]).map((entry) => {
                       const done = completed.has(entry.id);
@@ -826,6 +934,21 @@ function ProgrammationPage() {
               18 séquences CE1 issues du scan
             </span>
             <span>Programmation annuelle non découpée en périodes dans la source</span>
+          </div>
+        ) : subject === "emc" ? (
+          <div className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
+            {[
+              { theme: 1, label: "Altérité et sociabilité", color: "bg-orange-100 text-orange-700" },
+              { theme: 2, label: "Règles collectives et prises d'initiative", color: "bg-teal-100 text-teal-700" },
+              { theme: 3, label: "Principes et symboles de la République", color: "bg-blue-100 text-blue-700" },
+            ].map(({ theme, label, color }) => (
+              <span key={theme} className="flex items-center gap-1.5">
+                <span className={cn("rounded px-1.5 py-0.5 text-[0.6rem] font-bold uppercase", color)}>
+                  T{theme}
+                </span>
+                {label}
+              </span>
+            ))}
           </div>
         ) : (
           <div className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5">

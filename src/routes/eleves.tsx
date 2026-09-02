@@ -967,7 +967,7 @@ function ElevesPage() {
           description="Retrouvez la classe, faites l'appel et basculez rapidement vers les outils de suivi qui prolongent les corrections."
         />
 
-        <SecondaryPageLinks className="md:grid-cols-3">
+        <SecondaryPageLinks className="gap-2.5 md:grid-cols-3">
           <SecondaryPageLinkCard
             to="/fluence"
             icon={Gauge}
@@ -988,18 +988,18 @@ function ElevesPage() {
           />
         </SecondaryPageLinks>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <div className="flex gap-1 rounded-full border border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_90%,transparent),color-mix(in_oklab,var(--color-secondary)_48%,transparent))] p-1 shadow-sm">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="flex w-full gap-1 rounded-full border border-white/60 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_92%,white_8%),color-mix(in_oklab,var(--color-secondary)_42%,transparent))] p-1 shadow-[0_20px_40px_-32px_rgba(15,23,42,0.45)] sm:w-auto">
             {(["liste", "appel"] as Tab[]).map((value) => (
               <button
                 key={value}
                 type="button"
                 onClick={() => setTab(value)}
                 className={cn(
-                  "rounded-full px-4 py-1.5 text-xs font-medium transition-colors duration-150",
+                  "flex-1 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-150 sm:flex-none sm:px-4",
                   tab === value
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground",
+                    ? "bg-primary text-primary-foreground shadow-[0_16px_30px_-18px_rgba(37,99,235,0.6)]"
+                    : "text-muted-foreground hover:bg-background/80 hover:text-foreground",
                 )}
               >
                 {value === "liste" ? "Fiches élèves" : "Cahier d'appel"}
@@ -1008,13 +1008,19 @@ function ElevesPage() {
           </div>
 
           {tab === "liste" ? (
-            <Button type="button" variant="outline" size="sm" onClick={loadDomainDemo}>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={loadDomainDemo}
+              className="w-full sm:w-auto"
+            >
               Charger une démo
             </Button>
           ) : null}
 
           {tab === "liste" ? null : (
-            <div className="ml-auto flex gap-1 rounded-full border border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_90%,transparent),color-mix(in_oklab,var(--color-secondary)_48%,transparent))] p-1 shadow-sm">
+            <div className="flex w-full gap-1 rounded-full border border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_90%,transparent),color-mix(in_oklab,var(--color-secondary)_48%,transparent))] p-1 shadow-sm sm:ml-auto sm:w-auto">
               {(
                 [
                   { key: "register", label: "Registre d'appel" },
@@ -1026,7 +1032,7 @@ function ElevesPage() {
                   type="button"
                   onClick={() => setAttendanceView(key)}
                   className={cn(
-                    "rounded-full px-4 py-1.5 text-xs font-medium transition-colors duration-150",
+                    "flex-1 rounded-full px-3 py-1.5 text-xs font-medium transition-colors duration-150 sm:flex-none sm:px-4",
                     attendanceView === key
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "text-muted-foreground hover:text-foreground",
@@ -1042,12 +1048,13 @@ function ElevesPage() {
         {tab === "liste" && (
           <div className="mt-4 space-y-4">
             {/* ── Sélecteur d'élève (menu déroulant) ─────────────────────── */}
-            <div className="card-surface flex flex-wrap items-center gap-2 rounded-[26px] border-primary/8 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_28%,transparent))] p-3 shadow-raised">
+            <div className="card-surface flex flex-wrap items-center gap-2 rounded-[24px] border-white/60 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,white_6%),color-mix(in_oklab,var(--color-secondary)_24%,transparent),color-mix(in_oklab,var(--color-primary)_6%,transparent))] p-2.5 shadow-[0_26px_60px_-40px_rgba(15,23,42,0.48)] sm:rounded-[28px] sm:p-3">
               <Button
                 variant="ghost"
                 size="icon"
                 aria-label="Élève précédent"
                 onClick={() => shiftStudent(-1)}
+                className="rounded-full border border-white/60 bg-background/85 shadow-sm hover:bg-secondary/60"
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
@@ -1056,7 +1063,7 @@ function ElevesPage() {
                 <PopoverTrigger asChild>
                   <button
                     type="button"
-                  className="flex min-w-0 flex-1 items-center gap-3 rounded-[22px] border border-border/70 bg-background/85 px-3 py-2 text-left shadow-sm transition-colors hover:bg-secondary/50"
+                    className="flex min-w-0 flex-1 items-center gap-2.5 rounded-[20px] border border-white/70 bg-background/90 px-2.5 py-2 text-left shadow-[0_16px_32px_-24px_rgba(15,23,42,0.42)] transition-all hover:border-primary/15 hover:bg-secondary/50 sm:gap-3 sm:rounded-[24px] sm:px-3"
                   >
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-primary)_90%,transparent),color-mix(in_oklab,var(--color-primary)_68%,var(--color-sage)))] font-display text-sm font-bold text-primary-foreground shadow-sm">
                       {selectedStudent ? initials(selectedStudent) : "—"}
@@ -1116,11 +1123,12 @@ function ElevesPage() {
                 size="icon"
                 aria-label="Élève suivant"
                 onClick={() => shiftStudent(1)}
+                className="rounded-full border border-white/60 bg-background/85 shadow-sm hover:bg-secondary/60"
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>
 
-              <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <span className="rounded-full border border-primary/15 bg-primary/10 px-3 py-1 font-mono text-[0.72rem] font-semibold text-primary">
                 {studentPosition}/{STUDENTS.length}
               </span>
             </div>
@@ -1174,22 +1182,32 @@ function ElevesPage() {
 
                 {/* ── Détail de la fiche, un onglet à la fois ──────────── */}
                 <Tabs value={detailTab} onValueChange={setDetailTab} className="gap-3">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <TabsList className="flex-wrap">
-                      <TabsTrigger value="domaines">Domaines</TabsTrigger>
-                      <TabsTrigger value="corrections">Corrections</TabsTrigger>
-                      <TabsTrigger value="fluence">Fluence</TabsTrigger>
-                      <TabsTrigger value="presences">Présences</TabsTrigger>
-                      <TabsTrigger value="notes">Notes</TabsTrigger>
+                  <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+                    <TabsList className="h-auto w-full flex-nowrap overflow-x-auto rounded-[18px] border border-white/60 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_90%,white_8%),color-mix(in_oklab,var(--color-secondary)_34%,transparent))] p-1 shadow-[0_20px_36px_-30px_rgba(15,23,42,0.42)] sm:w-auto sm:flex-wrap sm:overflow-visible sm:rounded-[20px]">
+                      <TabsTrigger value="domaines" className="rounded-2xl px-3 py-1.5 text-[0.7rem] font-semibold whitespace-nowrap">
+                        Domaines
+                      </TabsTrigger>
+                      <TabsTrigger value="corrections" className="rounded-2xl px-3 py-1.5 text-[0.7rem] font-semibold whitespace-nowrap">
+                        Corrections
+                      </TabsTrigger>
+                      <TabsTrigger value="fluence" className="rounded-2xl px-3 py-1.5 text-[0.7rem] font-semibold whitespace-nowrap">
+                        Fluence
+                      </TabsTrigger>
+                      <TabsTrigger value="presences" className="rounded-2xl px-3 py-1.5 text-[0.7rem] font-semibold whitespace-nowrap">
+                        Présences
+                      </TabsTrigger>
+                      <TabsTrigger value="notes" className="rounded-2xl px-3 py-1.5 text-[0.7rem] font-semibold whitespace-nowrap">
+                        Notes
+                      </TabsTrigger>
                     </TabsList>
-                    <div className="ml-auto">
+                    <div className="w-full sm:ml-auto sm:w-auto">
                       <PedagogicalAiDialog
                         title={ardoiseAiTitle("Analyse élève")}
                         description={`${ARDOISE_AI_NAME} relit les résultats de l'élève pour proposer des pistes de remédiation ou de devoirs ciblés.`}
                         triggerLabel="Analyser avec l'IA"
                         modes={["remediation", "homework"]}
                         initialMode="remediation"
-                        className="h-9 rounded-full px-3 text-xs"
+                        className="h-9 w-full rounded-full px-3 text-xs sm:w-auto"
                         buildRequest={(mode) => ({
                           title:
                             mode === "remediation"
@@ -1251,7 +1269,7 @@ function ElevesPage() {
                         title="Domaines d'apprentissage"
                         hint="Vue d'ensemble de tous les apprentissages, puis zoom par matière"
                       />
-                      <div className="mt-4 rounded-3xl border border-border/70 bg-gradient-to-br from-background via-background to-secondary/20 p-3 shadow-sm">
+                      <div className="mt-4 rounded-3xl border border-white/60 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,white_6%),color-mix(in_oklab,var(--color-secondary)_20%,transparent),rgba(255,255,255,0.28))] p-3 shadow-[0_24px_46px_-34px_rgba(15,23,42,0.42)]">
                         <div className="mb-2 flex items-center justify-between gap-3">
                           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                             Vue matière
@@ -1260,7 +1278,7 @@ function ElevesPage() {
                             Cliquer pour changer de focale
                           </p>
                         </div>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
                           {studentDashboard.globalSubjects.map((subject) => {
                             const isActive = subjectFocus === subject.key;
                             return (
@@ -1269,18 +1287,18 @@ function ElevesPage() {
                                 type="button"
                                 onClick={() => setSubjectFocus(subject.key)}
                                 className={cn(
-                                  "group inline-flex items-center gap-2 rounded-full border px-3 py-2 text-left transition-all",
+                                  "group inline-flex items-center gap-2 rounded-full border px-2.5 py-1.5 text-left transition-all",
                                   isActive
-                                    ? "border-primary/40 bg-primary/10 shadow-sm ring-1 ring-primary/15"
-                                    : "border-border bg-background/90 hover:border-primary/25 hover:bg-secondary/40",
+                                    ? "border-primary/35 bg-primary/10 shadow-[0_16px_28px_-20px_rgba(37,99,235,0.45)] ring-1 ring-primary/10"
+                                    : "border-border/80 bg-background/90 hover:border-primary/25 hover:bg-secondary/40",
                                 )}
                               >
-                                <span className="text-sm font-semibold text-foreground">
+                                <span className="text-[0.82rem] font-semibold text-foreground">
                                   {subject.shortLabel}
                                 </span>
                                 <span
                                   className={cn(
-                                    "rounded-full border px-2 py-0.5 text-[0.68rem] font-semibold",
+                                    "rounded-full border px-2 py-0.5 font-mono text-[0.66rem] font-semibold",
                                     scoreTone(subject.score),
                                   )}
                                 >

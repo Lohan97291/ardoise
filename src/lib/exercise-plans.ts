@@ -10,13 +10,14 @@ import { CLEO_SEANCES } from "@/lib/cleo-seances";
 import { CLEO_WORKBOOK_EXERCISES, CLEO_WORKBOOK_PAGE_MAP } from "@/lib/cleo-workbook-data";
 import { ACCES_WORKBOOK_EXERCISES, accesCahierCorrigeUrl } from "@/lib/acces-workbook-data";
 import { MATHS_PREP_SHEETS_P1 } from "@/lib/maths-prep-sheets-p1";
+import { mdiPePrepFor, MDI_PE_CATALOG } from "@/lib/mdi-pe-data";
 
 export type ExercisePlanItem = {
   id: string;
   page?: number;
   label: string;
   instruction: string;
-  source: "Cléo" | "ACCÈS" | "Orthographémic";
+  source: "Cléo" | "ACCÈS" | "Orthographémic" | "MDI";
   studentPages?: number[];
   /** Identifiant de l'exercice du catalogue lié à cet item (quand il existe). */
   exerciseId?: string;
@@ -120,7 +121,7 @@ function pageFrom(text: string): number | undefined {
 }
 
 function catalogEntry(id: string): CatalogEntry | OrthoEntry | undefined {
-  return [...CLEO_CATALOG, ...MATHS_CATALOG, ...ORTHO_CATALOG].find((entry) => entry.id === id);
+  return [...CLEO_CATALOG, ...MATHS_CATALOG, ...ORTHO_CATALOG, ...MDI_PE_CATALOG].find((entry) => entry.id === id);
 }
 
 function isOrthoEntry(entry: CatalogEntry | OrthoEntry): entry is OrthoEntry {
@@ -240,6 +241,20 @@ export function getExercisePlan(programmingItemId?: string): ExercisePlanItem[] 
   const entry = catalogEntry(programmingItemId);
   if (!entry) return [];
   if (isOrthoEntry(entry)) return orthoPlanFor(entry);
+
+  // MDI Production d'écrit — fiche de préparation dédiée
+  if (entry.domain === "pe") {
+    const prep = mdiPePrepFor(entry.id);
+    if (!prep) return [];
+    return prep.phases
+      .map((phase, index) => ({
+        id: `${programmingItemId}-phase-${index + 1}`,
+        label: phase.title,
+        instruction: phase.detail,
+        source: "MDI" as const,
+      }))
+      .filter((item) => item.instruction.trim().length > 0);
+  }
 
   const isFrench = ["C", "V", "G", "O"].includes(entry.domain);
   if (isFrench) {
