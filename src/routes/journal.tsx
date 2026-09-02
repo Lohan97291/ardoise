@@ -507,7 +507,12 @@ function JournalPage() {
 
   return (
     <AppShell>
-      <div className="print-sheet mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+      <div
+        className={cn(
+          "mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8",
+          printPrep?.sheet ? "journal-print-hidden" : "print-sheet",
+        )}
+      >
         {/* En-tête jour : navigation de date, l'action la plus fréquente */}
         <header className="card-surface overflow-hidden border-primary/10 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_97%,transparent),color-mix(in_oklab,var(--color-secondary)_36%,transparent))] p-4 shadow-raised sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-3">

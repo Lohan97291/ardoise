@@ -275,6 +275,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
   const [assistantAnswers, setAssistantAnswers] = useState<Record<string, AssistantQuestionAnswer>>(
     {},
   );
+  const [printingPrep, setPrintingPrep] = useState(false);
   const [assistantResourceContext, setAssistantResourceContext] = useState<AiResourceContext>(
     emptyAiResourceContext(session?.subject ?? "francais"),
   );
@@ -346,6 +347,17 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
       active = false;
     };
   }, [draft?.programmingItemId, draft?.resourceId, draft?.subject, draft?.title]);
+
+  useEffect(() => {
+    if (!printingPrep || !prep) return;
+
+    const timeout = window.setTimeout(() => {
+      window.print();
+      window.setTimeout(() => setPrintingPrep(false), 250);
+    }, 100);
+
+    return () => window.clearTimeout(timeout);
+  }, [prep, printingPrep]);
 
   if (!draft) return null;
   const resultTarget = getSessionResultTarget(draft);
@@ -780,7 +792,9 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
                     </div>
                   </section>
                   {prep ? (
-                    <PrepSheetView sheet={prep} sessionId={draft.id} />
+                    <div className="max-h-[52vh] overflow-y-auto rounded-[28px] border border-border/70 bg-white/70 p-2 shadow-inner">
+                      <PrepSheetView sheet={prep} sessionId={draft.id} printable={false} />
+                    </div>
                   ) : resourceMatch ? (
                     <section className="rounded-xl border border-border bg-card p-3">
                       <p className="eyebrow">Ressource rattachée</p>
@@ -1141,11 +1155,26 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
               {resultTarget?.label ?? correctionLabel}
             </Button>
           ) : null}
+          {prep ? (
+            <Button
+              variant="outline"
+              className={onAttachCorrection ? "" : "mr-auto"}
+              onClick={() => setPrintingPrep(true)}
+            >
+              <Printer className="mr-2 h-4 w-4" />
+              Fiche PDF
+            </Button>
+          ) : null}
           <Button variant="ghost" onClick={() => onOpenChange(false)}>
             Annuler
           </Button>
           <Button onClick={() => onSave(draft)}>Enregistrer</Button>
         </DialogFooter>
+        {printingPrep && prep ? (
+          <div className="fixed -left-[9999px] top-0 w-[794px] print:static print:w-auto">
+            <PrepSheetView sheet={prep} sessionId={draft.id} stickyHeader={false} />
+          </div>
+        ) : null}
       </DialogContent>
     </Dialog>
   );

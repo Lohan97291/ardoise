@@ -240,10 +240,12 @@ export function PrepSheetView({
   sheet,
   sessionId,
   stickyHeader = true,
+  printable = true,
 }: {
   sheet: PrepSheet;
   sessionId?: string;
   stickyHeader?: boolean;
+  printable?: boolean;
 }) {
   const differentiations = sheet.phases
     .map((p, i) => ({ index: i + 1, title: p.title, text: p.differentiation }))
@@ -289,7 +291,12 @@ export function PrepSheetView({
   }
 
   return (
-    <div className="print-sheet prep-document space-y-4 rounded-[28px] border border-border/80 bg-[linear-gradient(180deg,#ffffff,#f7f8fb)] p-3 shadow-[0_22px_56px_-34px_rgba(31,41,55,0.22)] print:border-0 print:bg-white print:p-0 print:shadow-none sm:p-5">
+    <div
+      className={cn(
+        "prep-document space-y-4 rounded-[28px] border border-border/80 bg-[linear-gradient(180deg,#ffffff,#f7f8fb)] p-3 shadow-[0_22px_56px_-34px_rgba(31,41,55,0.22)] print:border-0 print:bg-white print:p-0 print:shadow-none sm:p-5",
+        printable && "print-sheet",
+      )}
+    >
       {/* Identité de la fiche */}
       <header
         className={cn(
