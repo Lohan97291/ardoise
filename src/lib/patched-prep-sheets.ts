@@ -48,6 +48,10 @@ import {
   getEpsJeuxOppositionPrepSheet,
   EPS_JEUX_OPPOSITION_SESSION_PREP_SHEETS,
 } from "@/lib/eps-jeux-opposition-resource-bridge";
+import {
+  getEpsCourirPrepSheet,
+  EPS_COURIR_SESSION_PREP_SHEETS,
+} from "@/lib/eps-courir-resource-bridge";
 
 export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
   if (!id) return undefined;
@@ -68,6 +72,7 @@ export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
     LITTERATURE_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     EPS_JEUX_COLLECTIFS_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     EPS_JEUX_OPPOSITION_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
+    EPS_COURIR_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     getMathsCe1AuxiliaryPrepSheet(id) ??
     getMathsCe1PrepSheet(id) ??
     getOrthographemicPrepSheet(id) ??
@@ -80,6 +85,7 @@ export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
     getLitteratureCe1PrepSheet(id) ??
     getEpsJeuxCollectifsPrepSheet(id) ??
     getEpsJeuxOppositionPrepSheet(id) ??
+    getEpsCourirPrepSheet(id) ??
     getPrepSheet(id)
   );
 }

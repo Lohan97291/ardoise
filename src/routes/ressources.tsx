@@ -149,7 +149,7 @@ const RESOURCE_GUIDE_GROUPS: ResourceGuideGroup[] = [
     label: "EPS",
     subtitle: "Vivre l'EPS (Accès)",
     spine: "bg-rose-500",
-    methodIds: ["m-eps-jeux-collectifs", "m-eps-jeux-opposition"],
+    methodIds: ["m-eps-courir", "m-eps-jeux-collectifs", "m-eps-jeux-opposition"],
   },
 ];
 

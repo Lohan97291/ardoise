@@ -21,6 +21,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { SUBJECT_BAND } from "@/components/ardoise/subject-styles";
+import { PhaseDetailCompact } from "@/components/ardoise/phase-detail-compact";
 import { Button } from "@/components/ui/button";
 import {
   SUBJECTS,
@@ -585,7 +586,10 @@ function CompanionClassPage() {
                         {PHASE_LABEL[phaseStatuses[activePhaseIndex] ?? "not_started"]}
                       </span>
                     </div>
-                    <p className="mt-3 text-base leading-7 text-foreground">{activePhase.detail}</p>
+                    <PhaseDetailCompact
+                      detail={activePhase.detail}
+                      className="mt-3 text-base leading-7 text-foreground"
+                    />
                     <div className="mt-4 grid grid-cols-3 gap-2">
                       <Button
                         type="button"
@@ -690,9 +694,10 @@ function CompanionClassPage() {
                                     </span>
                                   ) : null}
                                 </div>
-                                <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                                  {phase.detail}
-                                </p>
+                                <PhaseDetailCompact
+                                  detail={phase.detail}
+                                  className="mt-1 text-sm leading-6"
+                                />
                               </div>
                             </div>
                           </li>

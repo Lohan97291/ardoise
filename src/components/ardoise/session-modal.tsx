@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { PrepSheetView } from "@/components/ardoise/prep-sheet-view";
+import { PhaseDetailCompact } from "@/components/ardoise/phase-detail-compact";
 import {
   AssistantClarificationPanel,
   AssistantContextDetails,
@@ -1189,9 +1190,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
                             </span>
                           ) : null}
                         </div>
-                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                          {phase.detail}
-                        </p>
+                        <PhaseDetailCompact detail={phase.detail} className="mt-2 text-sm" />
                         {phase.differentiation ? (
                           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                             <span className="font-semibold">Différenciation :</span>{" "}

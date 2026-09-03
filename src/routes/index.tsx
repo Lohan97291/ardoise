@@ -92,6 +92,7 @@ import {
 import { getRecentSignals } from "@/lib/signal-storage";
 import { getZoneCSchoolRhythm } from "@/lib/school-rhythm";
 import { cn } from "@/lib/utils";
+import { PhaseDetailCompact } from "@/components/ardoise/phase-detail-compact";
 import { readJournalDays } from "@/lib/journal-storage";
 import { useAppEdition } from "@/lib/app-edition";
 import { getPatchedPrepSheet } from "@/lib/resource-tree-patched";
@@ -702,9 +703,9 @@ function Dashboard() {
                                   </button>
                                 </div>
                                 {expandedPhase === i ? (
-                                  <p className="px-2.5 pb-2 pl-9 text-xs leading-relaxed text-muted-foreground">
-                                    {phase.detail}
-                                  </p>
+                                  <div className="px-2.5 pb-2 pl-9">
+                                    <PhaseDetailCompact detail={phase.detail} className="text-xs" />
+                                  </div>
                                 ) : null}
                               </li>
                             );
