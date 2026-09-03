@@ -110,7 +110,7 @@ const SESSION_STATUS_LABEL: Record<PhaseStatus, string> = {
 };
 
 /* ── Système visuel partagé par les widgets du centre de pilotage ─────────── */
-const WIDGET = "card-surface p-5 shadow-card transition-shadow duration-300 hover:shadow-raised";
+const WIDGET = "card-surface p-5 shadow-card transition-shadow duration-300 hover:shadow-raised sm:p-6";
 const WIDGET_TITLE = "panel-heading flex min-w-0 items-center gap-2.5 text-[0.95rem]";
 const WIDGET_ICON =
   "h-7 w-7 shrink-0 rounded-lg border border-border/70 bg-secondary/70 p-1.5 text-primary";

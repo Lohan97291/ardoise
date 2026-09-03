@@ -439,7 +439,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                         aria-current={active ? "page" : undefined}
                         title={sidebarCompact ? item.label : undefined}
                         className={cn(
-                          "group relative flex items-center rounded-2xl text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-secondary/85 hover:text-foreground",
+                          "group relative flex min-h-11 items-center rounded-xl text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-secondary/85 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                           sidebarCompact ? "justify-center px-2 py-2.5" : "gap-2.5 px-3 py-2.5",
                           active &&
                             "bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-primary)_90%,transparent),color-mix(in_oklab,var(--color-primary)_74%,var(--color-sage)))] text-primary-foreground shadow-[var(--shadow-raised)] hover:bg-primary hover:text-primary-foreground",
