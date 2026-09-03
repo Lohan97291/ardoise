@@ -538,19 +538,6 @@
     background-attachment: fixed;
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.22;
-    background-image:
-      radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--color-primary) 10%, transparent) 1px, transparent 0);
-    background-size: 18px 18px;
-    mask-image: linear-gradient(180deg, black, transparent 92%);
-  }
-
   h1,
   h2,
   h3,
@@ -741,18 +728,19 @@
 @utility card-surface {
   position: relative;
   isolation: isolate;
-  border: 1px solid color-mix(in oklab, var(--color-border) 78%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-border) 86%, transparent);
   border-radius: var(--radius-xl);
   background-color: var(--color-card);
-  background-image: linear-gradient(
-    180deg,
-    color-mix(in oklab, white 55%, transparent),
-    transparent 42%
-  );
-  box-shadow:
-    var(--shadow-inset-top),
-    var(--shadow-card);
-  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+@utility section-surface {
+  border: 1px solid color-mix(in oklab, var(--color-border) 78%, transparent);
+  border-radius: var(--radius-2xl);
+  background: color-mix(in oklab, var(--color-card) 88%, transparent);
 }
 
 @utility card-surface {
@@ -772,7 +760,6 @@
   }
 }
 
-
 @utility card-interactive {
   transition:
     transform 0.22s var(--ease-out-soft),
@@ -781,9 +768,7 @@
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow:
-      var(--shadow-raised),
-      var(--shadow-soft-glow);
+    box-shadow: var(--shadow-raised), var(--shadow-soft-glow);
     border-color: color-mix(in oklab, var(--color-primary) 22%, var(--color-border));
   }
 }
