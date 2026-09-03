@@ -49,7 +49,12 @@ import {
   saveGeneratedSequence,
   saveGeneratedStandaloneSession,
 } from "@/lib/generated-resources-storage";
-import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
+import {
+  getLegacyJournalRecovery,
+  readJournalDays,
+  restoreLegacyJournal,
+  writeJournalDays,
+} from "@/lib/journal-storage";
 import { loadPatchedPrepSheet } from "@/lib/resource-library";
 import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 import {
@@ -261,6 +266,10 @@ function JournalPage() {
   const [exportOptions, setExportOptions] = useState<JournalPrintOptions>(DEFAULT_PRINT_OPTIONS);
   const [exporting, setExporting] = useState(false);
   const exportRef = useRef<HTMLDivElement>(null);
+  const [legacyRecovery, setLegacyRecovery] = useState<{ available: boolean; days: number }>({
+    available: false,
+    days: 0,
+  });
 
   const key = toISODate(date);
   const sessions = days[key] ?? [];
@@ -343,6 +352,24 @@ function JournalPage() {
   }, [date, days, exportMode, sessions, weekDays]);
 
   const runExport = () => setExporting(true);
+
+  // Détecte un ancien cahier journal récupérable (classes collègues, journal vide).
+  useEffect(() => {
+    setLegacyRecovery(getLegacyJournalRecovery());
+  }, [days]);
+
+  const handleRestoreLegacy = () => {
+    const restored = restoreLegacyJournal();
+    if (restored > 0) {
+      setDays(readJournalDays());
+      setLegacyRecovery({ available: false, days: 0 });
+      toast.success(`Ancien cahier journal restauré — ${restored} journée${restored > 1 ? "s" : ""}.`, {
+        description: "Il est de nouveau visible et sera sauvegardé automatiquement.",
+      });
+    } else {
+      toast.error("Aucun ancien cahier journal à restaurer sur cet appareil.");
+    }
+  };
 
   const stats = useMemo(
     () => ({
@@ -895,6 +922,34 @@ function JournalPage() {
             })}
           </div>
         </header>
+
+        {/* Récupération d'un ancien cahier journal (données présentes sur cet ordinateur) */}
+        {legacyRecovery.available ? (
+          <div className="journal-print-hidden mt-4 flex flex-col gap-3 rounded-2xl border border-amber-300/80 bg-amber-50 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-3">
+              <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-amber-100 text-amber-700">
+                <Download className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-amber-900">
+                  Un ancien cahier journal a été retrouvé sur cet ordinateur
+                  {" "}({legacyRecovery.days} journée{legacyRecovery.days > 1 ? "s" : ""}).
+                </p>
+                <p className="mt-0.5 text-xs text-amber-800">
+                  Il provient d'une version précédente de l'application. Tu peux le restaurer dans ta
+                  classe en un clic — rien ne sera écrasé.
+                </p>
+              </div>
+            </div>
+            <Button
+              className="shrink-0 bg-amber-600 text-white hover:bg-amber-700"
+              size="sm"
+              onClick={handleRestoreLegacy}
+            >
+              Restaurer mon cahier journal
+            </Button>
+          </div>
+        ) : null}
 
         {/* Journée : le cœur de la page, en priorité visuelle */}
         {viewMode === "week" ? (

@@ -29,10 +29,27 @@ export function readStoredJson<T>(key: string, fallback: StoreFallback<T>): T {
   }
 }
 
+/** Clé de méta de la synchro cloud : ne doit jamais déclencher de synchro (boucle). */
+const CLOUD_SYNC_META_KEY = "ardoise.cloudSync.v1";
+const SYNCABLE_KEY_PATTERN = /^ardoise([.-]|$)/i;
+
+/** Signale qu'une donnée synchronisable a changé localement (pour la sauvegarde auto). */
+function notifyLocalWrite(key: string): void {
+  if (typeof window === "undefined") return;
+  if (key === CLOUD_SYNC_META_KEY) return;
+  if (!SYNCABLE_KEY_PATTERN.test(key)) return;
+  try {
+    window.dispatchEvent(new CustomEvent("ardoise-local-write", { detail: { key } }));
+  } catch {
+    /* noop */
+  }
+}
+
 export function writeStoredJson<T>(key: string, value: T): T {
   if (!canUseStorage()) return value;
   try {
     window.localStorage.setItem(key, JSON.stringify(value));
+    notifyLocalWrite(key);
   } catch {
     /* noop */
   }
@@ -43,6 +60,7 @@ export function removeStoredValue(key: string): void {
   if (!canUseStorage()) return;
   try {
     window.localStorage.removeItem(key);
+    notifyLocalWrite(key);
   } catch {
     /* noop */
   }

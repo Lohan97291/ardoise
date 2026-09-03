@@ -30,6 +30,50 @@ export function writeJournalDays(days: JournalDaysMap): JournalDaysMap {
   return writeStoredJson(journalStorageKey(), days);
 }
 
+/* ─────────────── Récupération d'un ancien cahier journal ───────────────
+ * Avant le stockage par classe (clé `…v2.<classe>`), le cahier journal était
+ * enregistré sous une clé unique `ardoise.journal.v1`. Pour M. Boulard, cette
+ * migration est automatique (voir readJournalDays). Pour les classes collègues,
+ * on propose une récupération EXPLICITE et NON destructive : on ne remplit le
+ * journal de la classe que s'il est actuellement vide.
+ */
+
+function countFilledDays(map: JournalDaysMap): number {
+  return Object.values(map).filter((sessions) => Array.isArray(sessions) && sessions.length > 0)
+    .length;
+}
+
+export function readLegacyJournalDays(): JournalDaysMap {
+  return readStoredJson<JournalDaysMap>(LEGACY_JOURNAL_STORAGE_KEY, {});
+}
+
+/**
+ * Indique si un ancien cahier journal récupérable existe sur cet appareil pour
+ * la classe courante (uniquement pour les classes collègues, et seulement si le
+ * cahier journal actuel est vide — pour ne jamais rien écraser).
+ */
+export function getLegacyJournalRecovery(): { available: boolean; days: number } {
+  if (typeof window === "undefined") return { available: false, days: 0 };
+  if (resolveCurrentClassroomKey() === "boulard") return { available: false, days: 0 };
+  if (countFilledDays(readJournalDays()) > 0) return { available: false, days: 0 };
+  const days = countFilledDays(readLegacyJournalDays());
+  return { available: days > 0, days };
+}
+
+/**
+ * Restaure l'ancien cahier journal (`v1`) dans la classe courante. Ne fait rien
+ * si le cahier journal actuel n'est pas vide (protection anti-écrasement).
+ * Renvoie le nombre de journées restaurées.
+ */
+export function restoreLegacyJournal(): number {
+  if (countFilledDays(readJournalDays()) > 0) return 0;
+  const legacy = readLegacyJournalDays();
+  const days = countFilledDays(legacy);
+  if (days === 0) return 0;
+  writeJournalDays(legacy);
+  return days;
+}
+
 export function updateJournalDays(
   updater: (days: JournalDaysMap) => JournalDaysMap,
 ): JournalDaysMap {

@@ -20,7 +20,7 @@ export function SecondaryPageHeader({
   return (
     <header
       className={cn(
-        "relative isolate grid gap-3 overflow-hidden rounded-[28px] border border-white/55 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_97%,transparent),color-mix(in_oklab,var(--color-secondary)_28%,transparent)_54%,color-mix(in_oklab,var(--color-primary)_10%,transparent))] px-3.5 py-3.5 shadow-[0_28px_70px_-44px_rgba(15,23,42,0.42)] ring-1 ring-black/5 backdrop-blur-md sm:rounded-[32px] sm:px-5 sm:py-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center",
+        "relative isolate grid gap-4 overflow-hidden rounded-2xl border border-border/80 bg-card px-4 py-4 shadow-card sm:px-6 sm:py-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center",
         className,
       )}
     >
