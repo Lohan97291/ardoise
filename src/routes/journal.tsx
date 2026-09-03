@@ -14,7 +14,7 @@ import {
   Settings2,
   Sparkles,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { AiActionStrip } from "@/components/ardoise/ai-action-strip";
 import { AppShell } from "@/components/ardoise/app-shell";
@@ -260,6 +260,7 @@ function JournalPage() {
   const [exportTheme, setExportTheme] = useState<JournalExportTheme>("ardoise");
   const [exportOptions, setExportOptions] = useState<JournalPrintOptions>(DEFAULT_PRINT_OPTIONS);
   const [exporting, setExporting] = useState(false);
+  const exportRef = useRef<HTMLDivElement>(null);
 
   const key = toISODate(date);
   const sessions = days[key] ?? [];
@@ -291,14 +292,44 @@ function JournalPage() {
     return () => window.clearTimeout(timeout);
   }, [printPrep]);
 
-  // Lance l'impression / l'export PDF une fois la vue imprimable montée.
+  // Ouvre la vue imprimable dans une fenêtre isolée (rendu propre, orientation
+  // forcée) plutôt que d'imprimer toute l'application : bien plus fiable, surtout
+  // pour l'hebdomadaire en paysage.
+  const openPrintWindow = () => {
+    const node = exportRef.current?.querySelector(".journal-export");
+    if (!node) return;
+    const win = window.open("", "_blank", "width=1200,height=850");
+    if (!win) {
+      toast.error("Autorise les fenêtres pop-up pour ce site afin de générer le PDF.");
+      return;
+    }
+    win.document.open();
+    win.document.write(
+      `<!doctype html><html lang="fr"><head><meta charset="utf-8" />` +
+        `<meta name="viewport" content="width=device-width, initial-scale=1" />` +
+        `<title>Cahier journal — ${exportMode === "week" ? "semaine" : "jour"}</title>` +
+        `</head><body style="margin:0;background:#fff">${node.outerHTML}</body></html>`,
+    );
+    win.document.close();
+    const trigger = () => {
+      win.focus();
+      win.print();
+    };
+    win.onload = () => window.setTimeout(trigger, 300);
+    // Filet de sécurité si onload a déjà été émis.
+    window.setTimeout(() => {
+      if (win.document.readyState === "complete") trigger();
+    }, 600);
+  };
+
   useEffect(() => {
     if (!exporting) return;
     const timeout = window.setTimeout(() => {
-      window.print();
-      window.setTimeout(() => setExporting(false), 350);
-    }, 150);
+      openPrintWindow();
+      setExporting(false);
+    }, 140);
     return () => window.clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exporting]);
 
   const exportEntries = useMemo<JournalPrintEntry[]>(() => {
@@ -556,7 +587,7 @@ function JournalPage() {
       <div
         className={cn(
           "mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8",
-          printPrep?.sheet || exporting ? "journal-print-hidden" : "print-sheet",
+          printPrep?.sheet ? "journal-print-hidden" : "print-sheet",
         )}
       >
         {/* En-tête jour : navigation de date, l'action la plus fréquente */}
@@ -655,7 +686,12 @@ function JournalPage() {
               </DropdownMenu>
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="default" size="sm" className="rounded-full">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="rounded-full"
+                    onClick={() => setExportMode(viewMode)}
+                  >
                     <Download className="mr-2 h-4 w-4" />
                     Exporter PDF
                   </Button>
@@ -767,10 +803,12 @@ function JournalPage() {
 
                     <Button className="mt-4 w-full" size="sm" onClick={runExport}>
                       <Download className="mr-2 h-4 w-4" />
-                      Télécharger le PDF
+                      Générer le PDF
                     </Button>
                     <p className="mt-2 text-[0.68rem] leading-snug text-muted-foreground">
-                      Dans la fenêtre d'impression, choisis « Enregistrer au format PDF ».
+                      Un aperçu propre s'ouvre dans un nouvel onglet, puis la fenêtre
+                      d'impression : choisis « Enregistrer au format PDF ». L'orientation
+                      (portrait / paysage) est déjà réglée.
                     </p>
                   </div>
                 </PopoverContent>
@@ -1068,7 +1106,11 @@ function JournalPage() {
       </div>
 
       {exporting ? (
-        <div className="pointer-events-none fixed -left-[9999px] top-0 print:static print:left-0">
+        <div
+          ref={exportRef}
+          aria-hidden
+          className="pointer-events-none fixed -left-[9999px] top-0"
+        >
           <JournalPrintView
             mode={exportMode}
             title={formatLongDate(date)}
