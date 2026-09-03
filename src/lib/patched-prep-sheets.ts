@@ -40,6 +40,10 @@ import {
   getLitteratureCe1PrepSheet,
   LITTERATURE_CE1_SESSION_PREP_SHEETS,
 } from "@/lib/litterature-ce1-resource-bridge";
+import {
+  getEpsJeuxCollectifsPrepSheet,
+  EPS_JEUX_COLLECTIFS_SESSION_PREP_SHEETS,
+} from "@/lib/eps-jeux-collectifs-resource-bridge";
 
 export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
   if (!id) return undefined;
@@ -58,6 +62,7 @@ export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
     VLM_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     EMC_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     LITTERATURE_CE1_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
+    EPS_JEUX_COLLECTIFS_SESSION_PREP_SHEETS.find((prep) => prep.id === id) ??
     getMathsCe1AuxiliaryPrepSheet(id) ??
     getMathsCe1PrepSheet(id) ??
     getOrthographemicPrepSheet(id) ??
@@ -68,6 +73,7 @@ export function getPatchedPrepSheet(id?: string): PrepSheet | undefined {
     getVlmCe1PrepSheet(id) ??
     getEmcCe1PrepSheet(id) ??
     getLitteratureCe1PrepSheet(id) ??
+    getEpsJeuxCollectifsPrepSheet(id) ??
     getPrepSheet(id)
   );
 }

@@ -144,6 +144,13 @@ const RESOURCE_GUIDE_GROUPS: ResourceGuideGroup[] = [
     spine: "bg-stone-600",
     methodIds: ["m-emc-ce1"],
   },
+  {
+    id: "shelf-eps-ce1",
+    label: "EPS",
+    subtitle: "Vivre l'EPS (Accès)",
+    spine: "bg-rose-500",
+    methodIds: ["m-eps-jeux-collectifs"],
+  },
 ];
 
 function isMathsCe1Method(method: ResourceMethod) {

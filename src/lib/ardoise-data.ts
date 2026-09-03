@@ -74,6 +74,13 @@ export type PrepSheet = {
   notes?: string[];
   coverageNote?: string;
   sourceExcerpt?: string;
+  illustrations?: PrepIllustration[];
+};
+
+export type PrepIllustration = {
+  src: string;
+  alt?: string;
+  caption?: string;
 };
 
 export type SessionCorrectionMode = "auto" | "none" | "cleo" | "maths" | "dictation" | "fluence";

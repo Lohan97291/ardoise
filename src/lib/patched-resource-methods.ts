@@ -15,6 +15,7 @@ import { WELL_DONE_CE1_RESOURCE_METHOD } from "@/lib/well-done-ce1-resource-brid
 import { VIVRE_LA_MUSIQUE_CE1_RESOURCE_METHOD } from "@/lib/vivre-la-musique-ce1-resource-bridge";
 import { EMC_CE1_RESOURCE_METHOD } from "@/lib/emc-ce1-resource-bridge";
 import { LITTERATURE_CE1_RESOURCE_METHOD } from "@/lib/litterature-ce1-resource-bridge";
+import { EPS_JEUX_COLLECTIFS_RESOURCE_METHOD } from "@/lib/eps-jeux-collectifs-resource-bridge";
 
 const PERIODS = [1, 2, 3, 4, 5] as const;
 const ORAL_PERIOD_LABELS: Record<(typeof PERIODS)[number], string> = {
@@ -130,5 +131,6 @@ export const PATCHED_RESOURCE_TREE: ResourceMethod[] = [
   WELL_DONE_CE1_RESOURCE_METHOD,
   VIVRE_LA_MUSIQUE_CE1_RESOURCE_METHOD,
   EMC_CE1_RESOURCE_METHOD,
+  EPS_JEUX_COLLECTIFS_RESOURCE_METHOD,
   LITTERATURE_CE1_RESOURCE_METHOD,
 ];

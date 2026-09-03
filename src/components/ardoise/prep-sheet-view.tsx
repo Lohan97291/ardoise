@@ -582,6 +582,41 @@ export function PrepSheetView({
         </ol>
       </section>
 
+      {/* Illustrations (situations de jeu, schémas…) */}
+      {sheet.illustrations && sheet.illustrations.length > 0 ? (
+        <section
+          id="sheet-illustrations"
+          className="prep-section scroll-mt-24 rounded-[22px] border border-border/80 bg-card p-4 shadow-sm print:border print:bg-white print:shadow-none"
+        >
+          <SectionTitle
+            eyebrow="Support visuel"
+            title="Illustrations"
+            description="Situations de jeu à projeter ou à afficher."
+            icon={<GraduationCap className="h-4 w-4" />}
+          />
+          <div className="mt-3 grid gap-4 sm:grid-cols-2">
+            {sheet.illustrations.map((ill, i) => (
+              <figure
+                key={i}
+                className="overflow-hidden rounded-xl border border-border/70 bg-white"
+              >
+                <img
+                  src={ill.src}
+                  alt={ill.alt ?? sheet.title}
+                  loading="lazy"
+                  className="w-full"
+                />
+                {ill.caption ? (
+                  <figcaption className="px-3 py-2 text-xs text-muted-foreground">
+                    {ill.caption}
+                  </figcaption>
+                ) : null}
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       {/* Matériel / photocopies */}
       <div id="sheet-materiel" className="prep-section scroll-mt-24 grid gap-3 sm:grid-cols-2">
         <ListBlock
