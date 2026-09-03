@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   BookOpen,
   CalendarDays,
+  Check,
   CheckCircle2,
   ChevronDown,
   ChevronLeft,
@@ -14,7 +15,7 @@ import {
   TrendingUp,
   UsersRound,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import {
@@ -541,7 +542,7 @@ function AttendancePanel({
   icon,
   attendance,
   onChange,
-  onSave,
+  saved,
   onSetAllPresent,
 }: {
   title: string;
@@ -549,7 +550,7 @@ function AttendancePanel({
   icon: React.ReactNode;
   attendance: Record<string, AttendanceStatus>;
   onChange: (studentId: string, status: AttendanceStatus) => void;
-  onSave: () => void;
+  saved: boolean;
   onSetAllPresent: () => void;
 }) {
   const counts = countAttendance(attendance);
@@ -576,13 +577,18 @@ function AttendancePanel({
           >
             Tous présents
           </button>
-          <button
-            type="button"
-            onClick={onSave}
-            className="rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          <span
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-300",
+              saved
+                ? "bg-status-a/15 text-status-a-foreground"
+                : "bg-secondary text-muted-foreground",
+            )}
+            title="L'appel est enregistré automatiquement à chaque changement."
           >
-            Enregistrer
-          </button>
+            <Check className="h-3.5 w-3.5" />
+            {saved ? "Enregistré" : "Enregistrement auto"}
+          </span>
         </div>
       </div>
 
@@ -671,9 +677,12 @@ function ElevesPage() {
   const [mounted, setMounted] = useState(false);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [detailTab, setDetailTab] = useState("domaines");
+  const [savedFlash, setSavedFlash] = useState<AttendanceMoment | null>(null);
+  const savedFlashTimer = useRef<number>(0);
 
   useEffect(() => {
     setMounted(true);
+    return () => window.clearTimeout(savedFlashTimer.current);
   }, []);
 
   useEffect(() => {
@@ -940,14 +949,30 @@ function ElevesPage() {
     toast.success("Démo chargée pour visualiser les domaines des élèves.");
   }
 
-  function saveMoment(moment: AttendanceMoment) {
-    const data = moment === "morning" ? morningAttendance : afternoonAttendance;
-    const counts = countAttendance(data);
+  // Enregistrement automatique : à chaque changement de statut, l'appel est
+  // sauvegardé immédiatement (plus besoin de cliquer sur « Enregistrer »).
+  function persistMoment(moment: AttendanceMoment, data: Record<string, AttendanceStatus>) {
     saveAttendance(selectedDate, data, moment);
     setAttendanceVersion((value) => value + 1);
-    toast.success(
-      `Appel ${moment === "morning" ? "du matin" : "de l'après-midi"} enregistré — ${counts.present} présent${counts.present > 1 ? "s" : ""}${counts.retard ? `, ${counts.retard} retard${counts.retard > 1 ? "s" : ""}` : ""}${counts.absent ? `, ${counts.absent} absent${counts.absent > 1 ? "s" : ""}` : ""}.`,
-    );
+    setSavedFlash(moment);
+    window.clearTimeout(savedFlashTimer.current);
+    savedFlashTimer.current = window.setTimeout(() => setSavedFlash(null), 1800);
+  }
+
+  function changeMoment(moment: AttendanceMoment, studentId: string, status: AttendanceStatus) {
+    if (moment === "morning") {
+      setMorningAttendance((current) => {
+        const next = { ...current, [studentId]: status };
+        persistMoment("morning", next);
+        return next;
+      });
+    } else {
+      setAfternoonAttendance((current) => {
+        const next = { ...current, [studentId]: status };
+        persistMoment("afternoon", next);
+        return next;
+      });
+    }
   }
 
   function setAllPresent(moment: AttendanceMoment) {
@@ -956,6 +981,7 @@ function ElevesPage() {
     );
     if (moment === "morning") setMorningAttendance(next);
     else setAfternoonAttendance(next);
+    persistMoment(moment, next);
   }
 
   return (
@@ -1816,10 +1842,8 @@ function ElevesPage() {
                     subtitle="Appel de début de journée"
                     icon={<Sunrise className="h-5 w-5" />}
                     attendance={morningAttendance}
-                    onChange={(studentId, status) =>
-                      setMorningAttendance((current) => ({ ...current, [studentId]: status }))
-                    }
-                    onSave={() => saveMoment("morning")}
+                    onChange={(studentId, status) => changeMoment("morning", studentId, status)}
+                    saved={savedFlash === "morning"}
                     onSetAllPresent={() => setAllPresent("morning")}
                   />
 
@@ -1828,10 +1852,8 @@ function ElevesPage() {
                     subtitle="Retour de pause méridienne"
                     icon={<SunMedium className="h-5 w-5" />}
                     attendance={afternoonAttendance}
-                    onChange={(studentId, status) =>
-                      setAfternoonAttendance((current) => ({ ...current, [studentId]: status }))
-                    }
-                    onSave={() => saveMoment("afternoon")}
+                    onChange={(studentId, status) => changeMoment("afternoon", studentId, status)}
+                    saved={savedFlash === "afternoon"}
                     onSetAllPresent={() => setAllPresent("afternoon")}
                   />
                 </div>

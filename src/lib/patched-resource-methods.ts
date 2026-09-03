@@ -18,6 +18,7 @@ import { LITTERATURE_CE1_RESOURCE_METHOD } from "@/lib/litterature-ce1-resource-
 import { EPS_JEUX_COLLECTIFS_RESOURCE_METHOD } from "@/lib/eps-jeux-collectifs-resource-bridge";
 import { EPS_JEUX_OPPOSITION_RESOURCE_METHOD } from "@/lib/eps-jeux-opposition-resource-bridge";
 import { EPS_COURIR_RESOURCE_METHOD } from "@/lib/eps-courir-resource-bridge";
+import { EPS_SAUTER_RESOURCE_METHOD } from "@/lib/eps-sauter-resource-bridge";
 
 const PERIODS = [1, 2, 3, 4, 5] as const;
 const ORAL_PERIOD_LABELS: Record<(typeof PERIODS)[number], string> = {
@@ -134,6 +135,7 @@ export const PATCHED_RESOURCE_TREE: ResourceMethod[] = [
   VIVRE_LA_MUSIQUE_CE1_RESOURCE_METHOD,
   EMC_CE1_RESOURCE_METHOD,
   EPS_COURIR_RESOURCE_METHOD,
+  EPS_SAUTER_RESOURCE_METHOD,
   EPS_JEUX_COLLECTIFS_RESOURCE_METHOD,
   EPS_JEUX_OPPOSITION_RESOURCE_METHOD,
   LITTERATURE_CE1_RESOURCE_METHOD,

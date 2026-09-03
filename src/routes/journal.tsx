@@ -19,6 +19,13 @@ import { useEffect, useMemo, useState } from "react";
 import { AiActionStrip } from "@/components/ardoise/ai-action-strip";
 import { AppShell } from "@/components/ardoise/app-shell";
 import { JournalPlumeDialog } from "@/components/ardoise/journal-plume-dialog";
+import {
+  JournalPrintView,
+  DEFAULT_PRINT_OPTIONS,
+  type JournalExportTheme,
+  type JournalPrintOptions,
+  type JournalPrintEntry,
+} from "@/components/ardoise/journal-print-view";
 import { PrepSheetView } from "@/components/ardoise/prep-sheet-view";
 import { SessionCard } from "@/components/ardoise/session-card";
 import { SessionModal } from "@/components/ardoise/session-modal";
@@ -85,6 +92,9 @@ const today = new Date();
 /* ─────────────── Week navigation ─────────────── */
 
 const DAY_LABELS = ["Lu", "Ma", "Me", "Je", "Ve"] as const;
+const WEEKDAY_NAME = new Intl.DateTimeFormat("fr-FR", { weekday: "long" });
+const DAY_MONTH = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long" });
+const capitalize = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
 const BOULARD_RESET_FROM_KEY = "2026-09-03";
 const BOULARD_RESET_MARKER_KEY = "ardoise.journal.boulard.reset-from-2026-09-03.v1";
 
@@ -245,6 +255,12 @@ function JournalPage() {
     useState<JournalDisplayOptions>(DEFAULT_DISPLAY_OPTIONS);
   const [printPrep, setPrintPrep] = useState<{ sessionId: string; sheet: Awaited<ReturnType<typeof loadPatchedPrepSheet>> } | null>(null);
 
+  // Export PDF (cahier journal quotidien ou hebdomadaire)
+  const [exportMode, setExportMode] = useState<"day" | "week">("day");
+  const [exportTheme, setExportTheme] = useState<JournalExportTheme>("ardoise");
+  const [exportOptions, setExportOptions] = useState<JournalPrintOptions>(DEFAULT_PRINT_OPTIONS);
+  const [exporting, setExporting] = useState(false);
+
   const key = toISODate(date);
   const sessions = days[key] ?? [];
   const visibleSessions = getVisibleSessions(sessions, displayOptions);
@@ -275,6 +291,28 @@ function JournalPage() {
     return () => window.clearTimeout(timeout);
   }, [printPrep]);
 
+  // Lance l'impression / l'export PDF une fois la vue imprimable montée.
+  useEffect(() => {
+    if (!exporting) return;
+    const timeout = window.setTimeout(() => {
+      window.print();
+      window.setTimeout(() => setExporting(false), 350);
+    }, 150);
+    return () => window.clearTimeout(timeout);
+  }, [exporting]);
+
+  const exportEntries = useMemo<JournalPrintEntry[]>(() => {
+    if (exportMode === "week") {
+      return weekDays.map((day) => ({
+        dateLabel: capitalize(WEEKDAY_NAME.format(day)),
+        sessions: days[toISODate(day)] ?? [],
+      }));
+    }
+    return [{ dateLabel: formatLongDate(date), sessions }];
+  }, [date, days, exportMode, sessions, weekDays]);
+
+  const runExport = () => setExporting(true);
+
   const stats = useMemo(
     () => ({
       total: sessions.filter((s) => s.subject !== "pause").length,
@@ -290,6 +328,13 @@ function JournalPage() {
     (session) => !session.prepSheetId && !session.free,
   );
   const schoolRhythm = useMemo(() => getZoneCSchoolRhythm(date), [date]);
+  const exportWeekTitle = useMemo(() => {
+    const first = weekDays[0];
+    const last = weekDays[weekDays.length - 1];
+    const range = first && last ? ` · du ${DAY_MONTH.format(first)} au ${DAY_MONTH.format(last)}` : "";
+    return `Organisation hebdomadaire des apprentissages — Période ${schoolRhythm.period.label}${range}`;
+  }, [schoolRhythm.period.label, weekDays]);
+  const exportDayMeta = `CE1 · Période ${schoolRhythm.period.label} · Zone C`;
   const correctionTargets = teachingSessions
     .map((session) => ({ session, target: getSessionResultTarget(session) }))
     .filter(
@@ -511,7 +556,7 @@ function JournalPage() {
       <div
         className={cn(
           "mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8",
-          printPrep?.sheet ? "journal-print-hidden" : "print-sheet",
+          printPrep?.sheet || exporting ? "journal-print-hidden" : "print-sheet",
         )}
       >
         {/* En-tête jour : navigation de date, l'action la plus fréquente */}
@@ -608,6 +653,128 @@ function JournalPage() {
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="default" size="sm" className="rounded-full">
+                    <Download className="mr-2 h-4 w-4" />
+                    Exporter PDF
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent align="end" className="w-80 p-0">
+                  <div className="max-h-[70vh] overflow-y-auto p-4">
+                    <p className="text-sm font-semibold text-foreground">Exporter en PDF</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                      Belle mise en page prête à imprimer.
+                    </p>
+
+                    {/* Période */}
+                    <p className="mt-4 text-[0.7rem] font-semibold uppercase tracking-wide text-muted-foreground">
+                      Période
+                    </p>
+                    <div className="mt-1.5 grid grid-cols-2 gap-1.5">
+                      {(
+                        [
+                          ["day", "Quotidien"],
+                          ["week", "Hebdomadaire"],
+                        ] as const
+                      ).map(([value, label]) => (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => setExportMode(value)}
+                          className={cn(
+                            "rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
+                            exportMode === value
+                              ? "border-primary bg-primary/10 text-primary"
+                              : "border-border bg-background text-muted-foreground hover:bg-secondary",
+                          )}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Style */}
+                    <p className="mt-4 text-[0.7rem] font-semibold uppercase tracking-wide text-muted-foreground">
+                      Style d'impression
+                    </p>
+                    <div className="mt-1.5 grid grid-cols-2 gap-1.5">
+                      {(
+                        [
+                          ["ardoise", "Ardoise", "#2f5d50"],
+                          ["ocean", "Océan", "#1d4ed8"],
+                          ["colore", "Coloré", "#7c3aed"],
+                          ["sobre", "Sobre N&B", "#111827"],
+                        ] as const
+                      ).map(([value, label, color]) => (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => setExportTheme(value)}
+                          className={cn(
+                            "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
+                            exportTheme === value
+                              ? "border-primary bg-primary/10 text-foreground"
+                              : "border-border bg-background text-muted-foreground hover:bg-secondary",
+                          )}
+                        >
+                          <span
+                            className="h-3 w-3 shrink-0 rounded-full"
+                            style={{ backgroundColor: color }}
+                          />
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Éléments à afficher */}
+                    <p className="mt-4 text-[0.7rem] font-semibold uppercase tracking-wide text-muted-foreground">
+                      À faire apparaître
+                    </p>
+                    <div className="mt-1.5 grid grid-cols-2 gap-x-3 gap-y-1">
+                      {(
+                        [
+                          ["times", "Horaires"],
+                          ["subjects", "Matières"],
+                          ["domaine", "Domaine"],
+                          ["competence", "Compétence"],
+                          ["objectif", "Objectif"],
+                          ["materiel", "Matériel"],
+                          ["activites", "Déroulé"],
+                          ["notes", "Notes"],
+                          ["pauses", "Pauses"],
+                        ] as const
+                      ).map(([optionKey, label]) => (
+                        <label
+                          key={optionKey}
+                          className="flex cursor-pointer items-center gap-2 py-1 text-xs text-foreground"
+                        >
+                          <input
+                            type="checkbox"
+                            className="h-3.5 w-3.5 accent-primary"
+                            checked={exportOptions[optionKey]}
+                            onChange={(event) =>
+                              setExportOptions((current) => ({
+                                ...current,
+                                [optionKey]: event.target.checked,
+                              }))
+                            }
+                          />
+                          {label}
+                        </label>
+                      ))}
+                    </div>
+
+                    <Button className="mt-4 w-full" size="sm" onClick={runExport}>
+                      <Download className="mr-2 h-4 w-4" />
+                      Télécharger le PDF
+                    </Button>
+                    <p className="mt-2 text-[0.68rem] leading-snug text-muted-foreground">
+                      Dans la fenêtre d'impression, choisis « Enregistrer au format PDF ».
+                    </p>
+                  </div>
+                </PopoverContent>
+              </Popover>
               <Button
                 variant="outline"
                 size="sm"
@@ -899,6 +1066,20 @@ function JournalPage() {
           </details>
         </section>
       </div>
+
+      {exporting ? (
+        <div className="pointer-events-none fixed -left-[9999px] top-0 print:static print:left-0">
+          <JournalPrintView
+            mode={exportMode}
+            title={formatLongDate(date)}
+            meta={exportDayMeta}
+            weekTitle={exportWeekTitle}
+            entries={exportEntries}
+            options={exportOptions}
+            theme={exportTheme}
+          />
+        </div>
+      ) : null}
 
       <SessionModal
         session={editing}
