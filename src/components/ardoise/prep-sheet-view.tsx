@@ -1159,12 +1159,13 @@ function ListBlock({
 }: {
   title: string;
   icon?: React.ReactNode;
-  items: string[];
+  items?: string[];
   dotClass?: string;
   collapsible?: boolean;
 }) {
   const [open, setOpen] = useState(true);
   const expanded = collapsible ? open : true;
+  const safeItems = items ?? [];
 
   return (
     <section className="rounded-[20px] border border-border/80 bg-card p-4 shadow-sm">
@@ -1194,10 +1195,10 @@ function ListBlock({
               {title}
             </p>
           )}
-          {!expanded ? null : items.length ? (
+          {!expanded ? null : safeItems.length ? (
 
             <ul className="mt-2.5 space-y-2 text-sm">
-              {items.map((m) => (
+              {safeItems.map((m) => (
                 <li key={m} className="flex gap-2.5">
                   <span className={cn("mt-2 h-1.5 w-1.5 shrink-0 rounded-full", dotClass)} />
                   <span className="leading-relaxed text-foreground/90">{m}</span>
