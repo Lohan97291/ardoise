@@ -1,4 +1,4 @@
-const CACHE_NAME = "ardoise-orthographemic-ce1-v1";
+const CACHE_NAME = "ardoise-orthographemic-ce1-v2";
 const ASSETS = [
   "/modules/orthographemic/Orthographemic-CE1.html",
   "/modules/orthographemic/orthographemic-module.js",
