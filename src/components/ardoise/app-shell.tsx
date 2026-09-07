@@ -551,10 +551,13 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Link
                 key={item.label}
                 to={item.to}
+                aria-current={pathname === item.to ? "page" : undefined}
+                aria-label={item.label}
+                title={item.label}
                 className={cn(
-                  "shrink-0 rounded-full border border-border bg-card px-2.5 py-1.5 text-[0.72rem] font-medium text-muted-foreground transition-colors max-[430px]:px-2",
+                  "min-h-10 shrink-0 rounded-xl border border-border/80 bg-card px-3 py-2 text-[0.72rem] font-semibold text-muted-foreground transition-colors hover:border-primary/30 hover:bg-secondary hover:text-foreground max-[430px]:px-2.5",
                   pathname === item.to &&
-                    "border-transparent bg-primary text-primary-foreground shadow-card",
+                    "border-primary/20 bg-primary text-primary-foreground shadow-card hover:bg-primary hover:text-primary-foreground",
                 )}
               >
                 <span className="inline-flex items-center gap-1.5">
