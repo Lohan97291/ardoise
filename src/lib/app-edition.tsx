@@ -16,6 +16,7 @@ export type AppRoutePath =
   | "/programmation-annuelle"
   | "/emploi-du-temps"
   | "/ressources"
+  | "/orthographemic"
   | "/correction-rapide"
   | "/fluence"
   | "/bilan-seance"
@@ -47,6 +48,7 @@ const ENABLED_ROUTES: Record<AppEdition, AppRoutePath[]> = {
     "/programmation-annuelle",
     "/emploi-du-temps",
     "/ressources",
+    "/orthographemic",
     "/correction-rapide",
     "/fluence",
     "/bilan-seance",
@@ -61,6 +63,7 @@ const ENABLED_ROUTES: Record<AppEdition, AppRoutePath[]> = {
     "/",
     "/journal",
     "/ressources",
+    "/orthographemic",
     "/correction-rapide",
     "/carnet-notes",
     "/eleves",
