@@ -11,8 +11,8 @@ import {
 import { STATUS_CHIP, STATUS_SOLID } from "@/components/ardoise/status-styles";
 import { Button } from "@/components/ui/button";
 import {
+  EVALUABLE_STUDENTS,
   STATUSES,
-  STUDENTS,
   STATUS_BY_KEY,
   fullName,
   initials,
@@ -75,7 +75,7 @@ function ResultatsExercicesPage() {
 
   const counts = useMemo(() => {
     const base = Object.fromEntries(STATUSES.map((s) => [s.key, 0])) as Record<StatusKey, number>;
-    for (const s of STUDENTS) {
+    for (const s of EVALUABLE_STUDENTS) {
       const status = (exerciseResults[s.id] ?? "NF") as StatusKey;
       base[status] += 1;
     }
@@ -121,7 +121,7 @@ function ResultatsExercicesPage() {
     );
   }
 
-  const evaluated = STUDENTS.length - counts.AB - counts.NF;
+  const evaluated = EVALUABLE_STUDENTS.length - counts.AB - counts.NF;
   const mastery = Math.round(((counts.A + counts.PA * 0.5) / Math.max(1, evaluated)) * 100);
 
   return (
@@ -215,13 +215,13 @@ function ResultatsExercicesPage() {
                 <span
                   key={s.key}
                   className={cn("h-full transition-all duration-200", STATUS_SOLID[s.key])}
-                  style={{ width: `${(counts[s.key] / STUDENTS.length) * 100}%` }}
+                  style={{ width: `${(counts[s.key] / EVALUABLE_STUDENTS.length) * 100}%` }}
                 />
               ) : null,
             )}
           </div>
           <p className="mt-2.5 text-sm text-muted-foreground">
-            {evaluated} élèves évalués sur {STUDENTS.length} · {exercise.date}
+            {evaluated} élèves évalués sur {EVALUABLE_STUDENTS.length} · {exercise.date}
           </p>
         </section>
 
@@ -245,7 +245,7 @@ function ResultatsExercicesPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {STUDENTS.map((s) => {
+              {EVALUABLE_STUDENTS.map((s) => {
                 const status = (exerciseResults[s.id] ?? "NF") as StatusKey;
                 const isAlert = status === "NA";
                 return (

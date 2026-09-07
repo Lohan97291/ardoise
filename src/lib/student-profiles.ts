@@ -41,7 +41,11 @@ const DEFAULT_STUDENT_PROFILES: Record<string, StudentProfile> = {
     notes:
       "Évaluations diagnostiques Orthographémic - septembre 2026\nSyllabes niveau 1 : 35/36. Syllabes niveau 2 : 34/36, 2 erreurs. Exercices 1 et 3 réussis sur les pages observées ; exercice 2 non compris à plusieurs reprises.\nFluence : page 6, 36 mots/min avec 1 erreur ; page 7, 44 mots/min avec 0 erreur.\nAnalyse : décodage de syllabes très correct, mais lecture de texte lente. Le point prioritaire semble être l'automatisation et la compréhension de consignes plutôt qu'un problème massif de code. Suite : lectures courtes répétées, reformulation de consigne, reprise de l'exercice 2 en atelier dirigé.",
   },
-  "el-5": { birthDate: "2018-09-26" },
+  "el-5": {
+    birthDate: "2018-09-26",
+    notes:
+      "Suivi adapté - septembre 2026\nDossier MDPH très lourd. Troubles du spectre autistique indiqués. N’entre pas actuellement dans les apprentissages scolaires ordinaires. À retirer des corrections et évaluations collectives dans Ardoise afin de ne pas fausser les bilans de classe. Prévoir un suivi individualisé, avec objectifs fonctionnels et éducatifs adaptés, hors notation de classe.",
+  },
   "el-6": {
     birthDate: "2019-07-22",
     notes:

@@ -30,6 +30,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  EVALUABLE_STUDENTS,
   FLUENCE_TARGET,
   STUDENTS,
   fluenceLevel,
@@ -225,7 +226,7 @@ function FluencePage() {
   /* ── Tableau classe trié par wpm décroissant ── */
   const rows = useMemo(
     () =>
-      STUDENTS.map((student) => {
+      EVALUABLE_STUDENTS.map((student) => {
         const record = fluenceData.find((f) => f.studentId === student.id)!;
         return { student, record, level: fluenceLevel(record.wpm) };
       }).sort((a, b) => b.record.wpm - a.record.wpm),
@@ -289,7 +290,7 @@ function FluencePage() {
           title="Fluence de lecture"
           description="Bilan des lectures chronométrées selon Orthographémic, avec un suivi simple des seuils et des élèves à accompagner."
           actions={
-            <Button size="sm" onClick={() => openModal(selected ?? STUDENTS[0]!.id)}>
+            <Button size="sm" onClick={() => openModal(selected ?? EVALUABLE_STUDENTS[0]!.id)}>
               <Plus className="mr-1.5 h-4 w-4" />
               Nouvelle mesure
             </Button>
@@ -395,7 +396,7 @@ function FluencePage() {
               icon: Users,
               label: "Élèves évalués",
               value: `${stats.evaluated}`,
-              unit: `sur ${STUDENTS.length}`,
+              unit: `sur ${EVALUABLE_STUDENTS.length}`,
             },
             {
               icon: Target,
@@ -436,7 +437,7 @@ function FluencePage() {
             <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-7">
               {chapterStats.map((c) => {
                 const hasData = c.bilanCount > 0;
-                const allReached = hasData && c.reached === STUDENTS.length;
+                const allReached = hasData && c.reached === EVALUABLE_STUDENTS.length;
                 const someReached = hasData && c.reached > 0;
                 return (
                   <div
@@ -473,7 +474,7 @@ function FluencePage() {
                     {hasData ? (
                       <>
                         <p className="text-[0.65rem] leading-tight text-muted-foreground">
-                          {c.reached}/{STUDENTS.length} élèves
+                          {c.reached}/{EVALUABLE_STUDENTS.length} élèves
                         </p>
                         {c.avg !== null && (
                           <p className="font-display text-sm font-bold tabular-nums">

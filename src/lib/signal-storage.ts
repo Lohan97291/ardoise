@@ -5,7 +5,7 @@
  * alimenté depuis correction-rapide.tsx en plus de saveOneResult (storage.ts,
  * protégé, non modifié).
  */
-import { fluenceLevel, STUDENTS, type Student, type StatusKey } from "@/lib/ardoise-eval";
+import { EVALUABLE_STUDENTS, fluenceLevel, type Student, type StatusKey } from "@/lib/ardoise-eval";
 import { getFluenceRecords } from "@/lib/storage";
 
 export type ResultLogEntry = {
@@ -73,7 +73,7 @@ export function getRecentSignals(days = RECENT_DAYS): StudentSignal[] {
 
   return Array.from(scores.entries())
     .map(([studentId, { weight, reasons }]) => ({
-      student: STUDENTS.find((s) => s.id === studentId),
+      student: EVALUABLE_STUDENTS.find((s) => s.id === studentId),
       reason: reasons[0]!,
       weight,
     }))

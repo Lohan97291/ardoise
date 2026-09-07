@@ -8,6 +8,7 @@ import {
   MATHS_CATALOG,
   ORTHO_CATALOG,
   SEEDED_RESULTS,
+  EVALUABLE_STUDENTS,
   STUDENTS,
   STATUS_BY_KEY,
   catalogToExercise,
@@ -390,7 +391,7 @@ export function saveFluenceData(store: FluenceStore): void {
 export function getFluenceRecords(): FluenceRecord[] {
   const store = loadFluenceData();
   const seeded = getSeededFluenceStore();
-  return STUDENTS.map((s) => {
+  return EVALUABLE_STUDENTS.map((s) => {
     const stored = store[s.id] ?? seeded[s.id];
     if (stored) return { studentId: s.id, wpm: stored.wpm, history: stored.history };
     return { studentId: s.id, wpm: 0, history: [] };

@@ -10,7 +10,7 @@ import {
 } from "@/components/ardoise/secondary-page-chrome";
 import { STATUS_CHIP } from "@/components/ardoise/status-styles";
 import { Button } from "@/components/ui/button";
-import { STUDENTS, fullName, initials, type StatusKey } from "@/lib/ardoise-eval";
+import { EVALUABLE_STUDENTS, fullName, initials, type StatusKey } from "@/lib/ardoise-eval";
 import { getActiveExercises, getExerciseResults } from "@/lib/storage";
 import { cn } from "@/lib/utils";
 
@@ -36,7 +36,7 @@ function GroupesBesoinPage() {
           const results = getExerciseResults(exercise.id);
           return {
             exercise,
-            students: STUDENTS.filter((s) => {
+            students: EVALUABLE_STUDENTS.filter((s) => {
               const status = results[s.id] as StatusKey | undefined;
               return status === "NA" || status === "PA" || status === "NF";
             }),

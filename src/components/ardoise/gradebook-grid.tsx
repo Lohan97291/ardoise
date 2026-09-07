@@ -2,7 +2,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { STUDENTS, fullName } from "@/lib/ardoise-eval";
+import { EVALUABLE_STUDENTS, fullName } from "@/lib/ardoise-eval";
 import {
   columnAverage,
   makeColumnId,
@@ -49,7 +49,7 @@ export function GradebookGrid() {
 
   const students = useMemo(
     () =>
-      [...STUDENTS].sort((left, right) =>
+      [...EVALUABLE_STUDENTS].sort((left, right) =>
         `${left.lastName} ${left.firstName}`.localeCompare(
           `${right.lastName} ${right.firstName}`,
           "fr",

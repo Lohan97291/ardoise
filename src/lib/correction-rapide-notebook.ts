@@ -8,7 +8,7 @@ import {
   CLEO_CATALOG,
   MATHS_CATALOG,
   ORTHO_CATALOG,
-  STUDENTS,
+  EVALUABLE_STUDENTS,
   catalogToExercise,
   type CatalogEntry,
   type Exercise,
@@ -242,7 +242,7 @@ export function notebookDisplayTitle(exercise?: Exercise): string {
 }
 
 export function orderedStudents(): Student[] {
-  return [...STUDENTS].sort((left, right) => {
+  return [...EVALUABLE_STUDENTS].sort((left, right) => {
     const byLastName = left.lastName.localeCompare(right.lastName, "fr", {
       sensitivity: "base",
     });
@@ -263,7 +263,7 @@ export function studentPagesLabel(pages?: number[]): string | null {
 }
 
 export function studentIndexById(studentId: string): number {
-  return STUDENTS.findIndex((student) => student.id === studentId);
+  return EVALUABLE_STUDENTS.findIndex((student) => student.id === studentId);
 }
 
 export function isStudentDoneForItems(
@@ -384,7 +384,7 @@ export function resolveSessionExercise(
 export function countCompletedStudentsForPlan(exercise?: Exercise): number {
   const plan = exercise?.exercisePlan ?? [];
   if (plan.length === 0) return 0;
-  return STUDENTS.filter((student) =>
+  return EVALUABLE_STUDENTS.filter((student) =>
     plan.every((item) => Boolean(getPlanResults(`${exercise?.id}::${item.id}`)[student.id])),
   ).length;
 }

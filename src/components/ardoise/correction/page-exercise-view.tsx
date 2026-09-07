@@ -6,9 +6,9 @@ import { StatusButtons } from "@/components/ardoise/correction/status-buttons";
 import { STATUS_CHIP } from "@/components/ardoise/status-styles";
 import { Button } from "@/components/ui/button";
 import {
+  EVALUABLE_STUDENTS,
   fullName,
   initials,
-  STUDENTS,
   type StatusKey,
 } from "@/lib/ardoise-eval";
 import {
@@ -66,7 +66,7 @@ export function PageExerciseView({
     setSelectedStudentId(next?.id ?? studentId);
   }
 
-  const selectedStudent = STUDENTS.find((student) => student.id === selectedStudentId);
+  const selectedStudent = EVALUABLE_STUDENTS.find((student) => student.id === selectedStudentId);
 
   return (
     <div className="flex h-full flex-col gap-4">
@@ -105,7 +105,7 @@ export function PageExerciseView({
                 >
                   <span className="text-sm font-semibold">{item.label}</span>
                   <span className="text-xs text-muted-foreground">
-                    {itemDone}/{STUDENTS.length} élèves corrigés
+                    {itemDone}/{students.length} élèves corrigés
                   </span>
                 </button>
               );

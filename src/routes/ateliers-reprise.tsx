@@ -30,7 +30,7 @@ import {
   CLEO_CATALOG,
   DOMAIN_LABELS,
   MATHS_CATALOG,
-  STUDENTS,
+  EVALUABLE_STUDENTS,
   fullName,
   initials,
   type CatalogEntry,
@@ -131,7 +131,7 @@ function AteliersReprisePage() {
         }
       }
     }
-    return STUDENTS.filter((s) => flagged.has(s.id)).map((s) => ({
+    return EVALUABLE_STUDENTS.filter((s) => flagged.has(s.id)).map((s) => ({
       ...s,
       status: statusMap.get(s.id) ?? ("NA" as StatusKey),
     }));

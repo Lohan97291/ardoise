@@ -9,10 +9,10 @@ import { SUBJECT_BAND } from "@/components/ardoise/subject-styles";
 import {
   CLEO_CATALOG,
   DOMAIN_LABELS,
+  EVALUABLE_STUDENTS,
   FLUENCE_TARGET,
   MATHS_CATALOG,
   ORTHO_CATALOG,
-  STUDENTS,
   STATUS_BY_KEY,
   fullName,
   initials,
@@ -143,7 +143,7 @@ function studentMastery(
 function exerciseMastery(results: Record<string, StatusKey>): number {
   let acquis = 0,
     total = 0;
-  for (const s of STUDENTS) {
+  for (const s of EVALUABLE_STUDENTS) {
     const st = (results[s.id] ?? "NF") as StatusKey;
     if (st === "NF" || st === "AB") continue;
     total++;
@@ -409,7 +409,7 @@ function CarnetNotesPage() {
     initialParams.assessment ?? "all",
   );
   const [selectedId, setSelectedId] = useState<string | null>(
-    initialParams.studentId ?? STUDENTS[0]?.id ?? null,
+    initialParams.studentId ?? EVALUABLE_STUDENTS[0]?.id ?? null,
   );
   const [expandedDomain, setExpandedDomain] = useState<string | null>(null);
 
@@ -435,8 +435,8 @@ function CarnetNotesPage() {
   );
 
   const fluenceRecords = useMemo(() => getFluenceRecords(), []);
-  const activeStudentId = selectedId ?? STUDENTS[0]?.id ?? null;
-  const selectedStudent = STUDENTS.find((s) => s.id === activeStudentId) ?? null;
+  const activeStudentId = selectedId ?? EVALUABLE_STUDENTS[0]?.id ?? null;
+  const selectedStudent = EVALUABLE_STUDENTS.find((s) => s.id === activeStudentId) ?? null;
   const selectedFluence = fluenceRecords.find((f) => f.studentId === activeStudentId) ?? null;
   const exerciseIds = useMemo(() => exercises.map((exercise) => exercise.id), [exercises]);
   const requestedExercise = useMemo(
@@ -459,7 +459,7 @@ function CarnetNotesPage() {
   const classAverage = useMemo(() => {
     let total = 0;
     let count = 0;
-    for (const student of STUDENTS) {
+    for (const student of EVALUABLE_STUDENTS) {
       const mastery = studentMastery(student.id, allResults, exerciseIds);
       if (mastery >= 0) {
         total += mastery;
@@ -471,13 +471,13 @@ function CarnetNotesPage() {
 
   const evaluatedStudentsCount = useMemo(
     () =>
-      STUDENTS.filter((student) => studentMastery(student.id, allResults, exerciseIds) >= 0).length,
+      EVALUABLE_STUDENTS.filter((student) => studentMastery(student.id, allResults, exerciseIds) >= 0).length,
     [allResults, exerciseIds],
   );
 
   const studentSummaries = useMemo(
     () =>
-      STUDENTS.map((student) => ({
+      EVALUABLE_STUDENTS.map((student) => ({
         student,
         mastery: studentMastery(student.id, allResults, exerciseIds),
       })).sort((a, b) => a.student.lastName.localeCompare(b.student.lastName, "fr")),
@@ -509,7 +509,7 @@ function CarnetNotesPage() {
 
         let total = 0;
         let count = 0;
-        for (const student of STUDENTS) {
+        for (const student of EVALUABLE_STUDENTS) {
           const mastery = studentMastery(student.id, allResults, ids);
           if (mastery >= 0) {
             total += mastery;
@@ -527,7 +527,7 @@ function CarnetNotesPage() {
           let domainTotal = 0;
           let domainCount = 0;
           const domainIds = domainExercises.map((exercise) => exercise.id);
-          for (const student of STUDENTS) {
+          for (const student of EVALUABLE_STUDENTS) {
             const mastery = studentMastery(student.id, allResults, domainIds);
             if (mastery >= 0) {
               domainTotal += mastery;
@@ -548,7 +548,7 @@ function CarnetNotesPage() {
           label: subject === "francais" ? "Français" : "Mathématiques",
           exerciseCount: subjectExercises.length,
           average: count === 0 ? -1 : Math.round(total / count),
-          evaluated: STUDENTS.filter((student) => studentMastery(student.id, allResults, ids) >= 0)
+          evaluated: EVALUABLE_STUDENTS.filter((student) => studentMastery(student.id, allResults, ids) >= 0)
             .length,
           domains,
           exercises: subjectExercises,
@@ -573,7 +573,7 @@ function CarnetNotesPage() {
         const ids = scopedExercises.map((exercise) => exercise.id);
         let total = 0;
         let count = 0;
-        for (const student of STUDENTS) {
+        for (const student of EVALUABLE_STUDENTS) {
           const mastery = studentMastery(student.id, allResults, ids);
           if (mastery >= 0) {
             total += mastery;
@@ -630,7 +630,7 @@ function CarnetNotesPage() {
       activeDomains.map(({ domain, short, exercises: exs }) => {
         let total = 0,
           sum = 0;
-        for (const s of STUDENTS) {
+        for (const s of EVALUABLE_STUDENTS) {
           const p = studentMastery(
             s.id,
             allResults,
@@ -767,7 +767,7 @@ function CarnetNotesPage() {
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Élèves
               </p>
-              <p className="mt-2 font-display text-3xl font-bold tabular-nums">{STUDENTS.length}</p>
+              <p className="mt-2 font-display text-3xl font-bold tabular-nums">{EVALUABLE_STUDENTS.length}</p>
               <p className="text-xs text-muted-foreground">classe active</p>
             </div>
             <div className="rounded-2xl border border-border bg-card p-4 shadow-card">
@@ -862,7 +862,7 @@ function CarnetNotesPage() {
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-border">
-                          {STUDENTS.map((student) => {
+                          {EVALUABLE_STUDENTS.map((student) => {
                             const pct = studentMastery(student.id, allResults, exerciseIds);
                             const isSelected = activeStudentId === student.id;
                             return (
@@ -987,7 +987,7 @@ function CarnetNotesPage() {
                             const classIds = domainExercises.map((exercise) => exercise.id);
                             let totalAcquis = 0;
                             let totalEval = 0;
-                            for (const student of STUDENTS) {
+                            for (const student of EVALUABLE_STUDENTS) {
                               const mastery = studentMastery(student.id, allResults, classIds);
                               if (mastery >= 0) {
                                 totalAcquis += mastery;
@@ -1060,7 +1060,7 @@ function CarnetNotesPage() {
                                   <div className="border-t border-border bg-secondary/20 px-5 py-4 animate-fade-in">
                                     <p className="eyebrow mb-3">Par élève — {label}</p>
                                     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-                                      {STUDENTS.map((student) => {
+                                      {EVALUABLE_STUDENTS.map((student) => {
                                         const pct = studentMastery(
                                           student.id,
                                           allResults,

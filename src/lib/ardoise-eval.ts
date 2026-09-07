@@ -31,6 +31,8 @@ export type Student = {
   id: string;
   firstName: string;
   lastName: string;
+  /** Hors corrections/évaluations collectives : suivi personnalisé. */
+  excludeFromEvaluations?: boolean;
 };
 
 export type ClassroomKey =
@@ -134,7 +136,7 @@ export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
       { id: "el-2", firstName: "Fanta", lastName: "Berthe" },
       { id: "el-3", firstName: "Lucas", lastName: "Deproge Ngom" },
       { id: "el-4", firstName: "Ylan", lastName: "Ferjule" },
-      { id: "el-5", firstName: "Kamil", lastName: "Mohamed" },
+      { id: "el-5", firstName: "Kamil", lastName: "Mohamed", excludeFromEvaluations: true },
       { id: "el-6", firstName: "Elena", lastName: "Nefous" },
       { id: "el-7", firstName: "Emmanuella", lastName: "Nyapi-Gath" },
       { id: "el-8", firstName: "Fatoumata", lastName: "Sakho" },
@@ -265,6 +267,39 @@ export const STUDENTS: Student[] = new Proxy([] as Student[], {
           enumerable: true,
           writable: false,
           value: Reflect.get(getCurrentClassroom().students, prop),
+        };
+  },
+});
+
+
+export function isEvaluableStudent(student: Student): boolean {
+  return !student.excludeFromEvaluations;
+}
+
+export const EVALUABLE_STUDENTS: Student[] = new Proxy([] as Student[], {
+  get(_target, prop) {
+    const students = getCurrentClassroom().students.filter(isEvaluableStudent);
+    const value = Reflect.get(students, prop, students);
+    return typeof value === "function" ? value.bind(students) : value;
+  },
+  has(_target, prop) {
+    return prop in getCurrentClassroom().students.filter(isEvaluableStudent);
+  },
+  ownKeys() {
+    return Reflect.ownKeys(getCurrentClassroom().students.filter(isEvaluableStudent));
+  },
+  getOwnPropertyDescriptor(_target, prop) {
+    const descriptor = Object.getOwnPropertyDescriptor(
+      getCurrentClassroom().students.filter(isEvaluableStudent),
+      prop,
+    );
+    return descriptor
+      ? { ...descriptor, configurable: true }
+      : {
+          configurable: true,
+          enumerable: true,
+          writable: false,
+          value: Reflect.get(getCurrentClassroom().students.filter(isEvaluableStudent), prop),
         };
   },
 });

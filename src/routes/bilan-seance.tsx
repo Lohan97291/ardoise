@@ -17,7 +17,7 @@ import {
 } from "@/components/ardoise/secondary-page-chrome";
 import { STATUS_CHIP, STATUS_SOLID } from "@/components/ardoise/status-styles";
 import { Button } from "@/components/ui/button";
-import { STATUSES, STUDENTS, fullName, initials, type StatusKey } from "@/lib/ardoise-eval";
+import { EVALUABLE_STUDENTS, STATUSES, fullName, initials, type StatusKey } from "@/lib/ardoise-eval";
 import { getActiveExercises, getExerciseResults, getExercisesForSession } from "@/lib/storage";
 import { findJournalSessionById } from "@/lib/journal-storage";
 import { cn } from "@/lib/utils";
@@ -78,7 +78,7 @@ function BilanSeancePage() {
 
   const counts = useMemo(() => {
     const base = Object.fromEntries(STATUSES.map((s) => [s.key, 0])) as Record<StatusKey, number>;
-    for (const s of STUDENTS) {
+    for (const s of EVALUABLE_STUDENTS) {
       const status = (exerciseResults[s.id] ?? "NF") as StatusKey;
       base[status] += 1;
     }
@@ -124,9 +124,9 @@ function BilanSeancePage() {
     );
   }
 
-  const evaluated = STUDENTS.length - counts.AB - counts.NF;
+  const evaluated = EVALUABLE_STUDENTS.length - counts.AB - counts.NF;
   const mastery = Math.round(((counts.A + counts.PA * 0.5) / Math.max(1, evaluated)) * 100);
-  const toReview = STUDENTS.filter((s) => {
+  const toReview = EVALUABLE_STUDENTS.filter((s) => {
     const st = exerciseResults[s.id];
     return st === "NA" || st === "PA";
   });
@@ -231,13 +231,13 @@ function BilanSeancePage() {
                     <span
                       key={s.key}
                       className={cn("h-full transition-all duration-200", STATUS_SOLID[s.key])}
-                      style={{ width: `${(counts[s.key] / STUDENTS.length) * 100}%` }}
+                      style={{ width: `${(counts[s.key] / EVALUABLE_STUDENTS.length) * 100}%` }}
                     />
                   ) : null,
                 )}
               </div>
               <p className="mt-2.5 text-sm text-muted-foreground">
-                {evaluated} élèves évalués sur {STUDENTS.length} · {counts.A} acquis, {counts.PA}{" "}
+                {evaluated} élèves évalués sur {EVALUABLE_STUDENTS.length} · {counts.A} acquis, {counts.PA}{" "}
                 partiellement.
               </p>
             </section>
@@ -280,7 +280,7 @@ function BilanSeancePage() {
               Tous les élèves
             </h2>
             <ul className="mt-2 max-h-[34rem] space-y-1 overflow-y-auto pr-1">
-              {STUDENTS.map((s) => {
+              {EVALUABLE_STUDENTS.map((s) => {
                 const status = (exerciseResults[s.id] ?? "NF") as StatusKey;
                 return (
                   <li
