@@ -73,6 +73,7 @@ import {
   getSessionResultTarget,
   inferFluencePeriodFromSession,
 } from "@/lib/session-result-links";
+import { getSessionPedagogicalLabels } from "@/lib/session-subdomains";
 import type { AiResourceContext } from "@/lib/ai-resource-context";
 import { getAiJournalContext, type AiJournalContext } from "@/lib/ai-journal-context";
 import { ARDOISE_AI_NAME, ardoiseAiTitle } from "@/lib/ardoise-ai-brand";
@@ -410,6 +411,7 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
   const correctionLabel = getSessionCorrectionLabel(draft);
   const pageLabel = associatedPageLabel(draft);
   const pageHint = associatedPageHint(draft);
+  const pedagogicalLabels = getSessionPedagogicalLabels(draft, prep);
   const patch = (values: Partial<Session>) => setDraft({ ...draft, ...values });
   const updateFreePrep = (values: Partial<CustomSessionPrep>) =>
     setCustomPrep(updateCustomSessionPrep(draft.id, values));
@@ -629,6 +631,25 @@ export function SessionModal({ session, open, onOpenChange, onSave, onAttachCorr
               </Select>
             </Field>
           </div>
+
+          {draft.subject !== "pause" ? (
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <Field label="Domaine">
+                <Input
+                  value={draft.pedagogicalDomain ?? pedagogicalLabels.domain}
+                  onChange={(e) => patch({ pedagogicalDomain: e.target.value })}
+                  placeholder="Ex. Mathématiques, Français, EMC…"
+                />
+              </Field>
+              <Field label="Sous-domaine">
+                <Input
+                  value={draft.pedagogicalSubDomain ?? pedagogicalLabels.subDomain}
+                  onChange={(e) => patch({ pedagogicalSubDomain: e.target.value })}
+                  placeholder="Ex. Calcul mental, dictée, production d'écrit…"
+                />
+              </Field>
+            </div>
+          ) : null}
 
           {draft.exercisePlan?.length ? (
             <section className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-3">

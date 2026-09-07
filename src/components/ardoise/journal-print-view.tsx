@@ -9,6 +9,7 @@ import { getPatchedPrepSheet } from "@/lib/patched-prep-sheets";
 import { getCustomSessionPrep } from "@/lib/custom-session-prep-storage";
 import { getCustomPhases } from "@/lib/custom-phases-storage";
 import { PhaseDetailCompact } from "@/components/ardoise/phase-detail-compact";
+import { getSessionPedagogicalLabels } from "@/lib/session-subdomains";
 
 /**
  * Vue imprimable du cahier journal (quotidienne « fiche » ou hebdomadaire « grille »).
@@ -54,6 +55,7 @@ export const DEFAULT_PRINT_OPTIONS: JournalPrintOptions = {
 
 type ResolvedPrep = {
   domaine: string;
+  sousDomaine: string;
   competence: string;
   objective: string;
   material: string[];
@@ -87,9 +89,11 @@ function resolvePrep(session: Session): ResolvedPrep {
     session.pedagogicalDomain ||
     session.pedagogicalSubDomain ||
     "";
+  const labels = getSessionPedagogicalLabels(session, sheet);
 
   return {
-    domaine,
+    domaine: domaine || labels.domain,
+    sousDomaine: labels.subDomain,
     competence: customPrep.competence || sheet?.competence || "",
     objective: customPrep.objective || sheet?.objective || "",
     material: mergeUnique([...(sheet?.material ?? []), ...customPrep.materialSuggestions]),
@@ -171,6 +175,9 @@ function DaySession({ session, options }: { session: Session; options: JournalPr
 
       <div className="jx-fields">
         {options.domaine && prep.domaine ? <DayField label="Domaine">{prep.domaine}</DayField> : null}
+        {options.domaine && prep.sousDomaine ? (
+          <DayField label="Sous-domaine">{prep.sousDomaine}</DayField>
+        ) : null}
         {options.competence && prep.competence ? (
           <DayField label="Compétence">{prep.competence}</DayField>
         ) : null}
@@ -275,6 +282,9 @@ function GridCell({ session, options }: { session: Session; options: JournalPrin
         </p>
       ) : null}
       {options.domaine && prep.domaine ? <p className="jx-dom">{prep.domaine}</p> : null}
+      {options.domaine && prep.sousDomaine ? (
+        <p className="jx-subdom">{prep.sousDomaine}</p>
+      ) : null}
     </div>
   );
 }
@@ -540,6 +550,11 @@ const EXPORT_CSS = `
 .journal-export .jx-comp { margin:2px 0 0; color:#3a4256; }
 .journal-export .jx-comp-lab { text-decoration:underline; color:var(--muted); font-weight:700; }
 .journal-export .jx-dom { color:var(--muted); font-size:7pt; margin:1px 0 0; }
+.journal-export .jx-subdom {
+  display:inline-block; margin:2px 0 0; padding:1px 6px; border-radius:999px;
+  background:var(--sub-bg,#f1f5f9); color:var(--sub-ink,#475569);
+  font-size:6.8pt; font-weight:700;
+}
 
 .journal-export .jx-band {
   text-align:center; font-weight:800; letter-spacing:.22em; font-size:8pt; color:#6b7280;

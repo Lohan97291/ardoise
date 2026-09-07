@@ -8,6 +8,7 @@ import type { PrepSheet } from "@/lib/ardoise-data";
 import type { PatchedResourceMatch } from "@/lib/resource-tree-patched";
 import { loadPatchedPrepSheet, loadPatchedResourceMatch } from "@/lib/resource-library";
 import { getSessionCorrectionLabel, getSessionResultTarget } from "@/lib/session-result-links";
+import { getSessionPedagogicalLabels } from "@/lib/session-subdomains";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -48,6 +49,7 @@ export function SessionCard({
   const subject = SUBJECTS[session.subject];
   const resultTarget = getSessionResultTarget(session);
   const correctionLabel = getSessionCorrectionLabel(session);
+  const pedagogicalLabels = getSessionPedagogicalLabels(session, prep);
   const compactCorrectionLabel =
     resultTarget?.kind === "fluence" ? "Fluence" : resultTarget ? "Correction" : "Sans correction";
 
@@ -77,6 +79,15 @@ export function SessionCard({
             <h3 className="mt-1 text-base font-semibold leading-snug text-foreground">
               {session.title}
             </h3>
+            {session.subject !== "pause" ? (
+              <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[0.72rem] font-semibold text-muted-foreground">
+                <span>{pedagogicalLabels.domain}</span>
+                <span className="text-border">•</span>
+                <span className="rounded-full bg-secondary px-2 py-0.5 text-secondary-foreground">
+                  {pedagogicalLabels.subDomain}
+                </span>
+              </p>
+            ) : null}
 
             {prep ? (
               <p className="mt-2 inline-flex max-w-full items-center gap-1.5 rounded-md bg-secondary px-2 py-1 text-xs text-secondary-foreground">
