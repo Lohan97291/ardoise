@@ -12,6 +12,7 @@ import {
   Maximize2,
   Search,
   Sparkles,
+  Puzzle,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -385,7 +386,7 @@ function ResourcesPage() {
           description=""
         />
 
-        <SecondaryPageLinks className="gap-2.5 md:grid-cols-2">
+        <SecondaryPageLinks className="gap-2.5 md:grid-cols-3">
           <SecondaryPageLinkCard
             to="/programmation"
             icon={BookOpen}
@@ -397,6 +398,13 @@ function ResourcesPage() {
             icon={CalendarRange}
             title="Programmation annuelle"
             description="Revoir la trame d'année, les répartitions et les projections hebdomadaires."
+          />
+          <SecondaryPageLinkCard
+            to="/orthographemic"
+            icon={Puzzle}
+            title="Orthographémic CE1"
+            description="Ouvrir l'atelier tactile de manipulation pour les élèves."
+            badge="Atelier"
           />
         </SecondaryPageLinks>
 
