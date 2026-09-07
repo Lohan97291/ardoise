@@ -9,10 +9,10 @@ import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 export const Route = createFileRoute("/orthographemic")({
   head: () => ({
     meta: [
-      { title: "Atelier Orthographémic CE1 — Ardoise" },
+      { title: "L'atelier des étiquettes — Ardoise" },
       {
         name: "description",
-        content: "Atelier tactile Orthographémic CE1 intégré à Ardoise.",
+        content: "Atelier tactile des étiquettes, intégré à Ardoise.",
       },
     ],
   }),
@@ -106,7 +106,7 @@ function OrthographemicPage() {
               <Puzzle className="h-4.5 w-4.5" />
             </span>
             <div className="min-w-0">
-              <h1 className="truncate text-sm font-bold text-foreground sm:text-base">Orthographémic CE1</h1>
+              <h1 className="truncate text-sm font-bold text-foreground sm:text-base">L'atelier des étiquettes</h1>
               <p className="hidden text-xs text-muted-foreground sm:block">Atelier tactile de manipulation</p>
             </div>
           </div>
@@ -127,7 +127,7 @@ function OrthographemicPage() {
         <section className="min-h-[calc(100dvh-9.5rem)] flex-1 overflow-hidden rounded-2xl border border-border bg-[#f4f7fc] shadow-raised sm:rounded-3xl">
           <iframe
             ref={frameRef}
-            title="Atelier Orthographémic CE1"
+            title="L'atelier des étiquettes"
             src={src}
             allowFullScreen
             className="block h-full min-h-[620px] w-full border-0"

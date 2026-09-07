@@ -402,7 +402,7 @@ function ResourcesPage() {
           <SecondaryPageLinkCard
             to="/orthographemic"
             icon={Puzzle}
-            title="Orthographémic CE1"
+            title="L'atelier des étiquettes"
             description="Ouvrir l'atelier tactile de manipulation pour les élèves."
             badge="Atelier"
           />
