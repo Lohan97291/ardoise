@@ -138,9 +138,9 @@ export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
       { id: "el-6", firstName: "Elena", lastName: "Nefous" },
       { id: "el-7", firstName: "Emmanuella", lastName: "Nyapi-Gath" },
       { id: "el-8", firstName: "Fatoumata", lastName: "Sakho" },
-      { id: "el-9", firstName: "Nadia Zainab", lastName: "Stolarska Muhammad" },
+      { id: "el-9", firstName: "Nadia zainab", lastName: "Stolarska Muhammad" },
       { id: "el-10", firstName: "Sayden", lastName: "Tessia" },
-      { id: "el-11", firstName: "Fodié", lastName: "Gassama" },
+      { id: "el-11", firstName: "Fodie", lastName: "Gassama" },
     ],
   },
   durand: {

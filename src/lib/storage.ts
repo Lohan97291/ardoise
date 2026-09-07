@@ -12,6 +12,7 @@ import {
   STATUS_BY_KEY,
   catalogToExercise,
   fluenceLevel,
+  resolveCurrentClassroomKey,
   type Exercise,
   type FluenceRecord,
   type StatusKey,
@@ -26,6 +27,74 @@ export const EXERCISE_RESULTS_KEY = "ardoise.exerciseResults.v1";
 export const EXERCISE_TRAJECTORY_KEY = "ardoise.exerciseTrajectory.v1";
 export const FLUENCE_KEY = "ardoise.fluence.v1";
 export const ACTIVE_EXERCISES_KEY = "ardoise.activeExercises.v1";
+
+const BOULARD_ORTHOGRAPHEMIC_DIAGNOSTIC_FLUENCE: Record<
+  string,
+  { wpm: number; history: { period: string; wpm: number; erreurs?: number }[] }
+> = {
+  "el-1": {
+    wpm: 25,
+    history: [
+      { period: "Diagnostic S1 · page 6", wpm: 21, erreurs: 7 },
+      { period: "Diagnostic S1 · page 7", wpm: 25, erreurs: 5 },
+    ],
+  },
+  "el-2": {
+    wpm: 70,
+    history: [
+      { period: "Diagnostic S1 · page 6", wpm: 50, erreurs: 1 },
+      { period: "Diagnostic S1 · page 7", wpm: 70, erreurs: 2 },
+    ],
+  },
+  "el-3": {
+    wpm: 57,
+    history: [
+      { period: "Diagnostic S1 · page 6", wpm: 47, erreurs: 3 },
+      { period: "Diagnostic S1 · page 7", wpm: 57, erreurs: 5 },
+    ],
+  },
+  "el-4": {
+    wpm: 44,
+    history: [
+      { period: "Diagnostic S1 · page 6", wpm: 36, erreurs: 1 },
+      { period: "Diagnostic S1 · page 7", wpm: 44, erreurs: 0 },
+    ],
+  },
+  "el-6": {
+    wpm: 39,
+    history: [
+      { period: "Diagnostic S1 · page 6", wpm: 22, erreurs: 0 },
+      { period: "Diagnostic S1 · page 7", wpm: 39, erreurs: 1 },
+    ],
+  },
+  "el-7": {
+    wpm: 63,
+    history: [
+      { period: "Diagnostic S1 · page 6", wpm: 39 },
+      { period: "Diagnostic S1 · page 7", wpm: 63, erreurs: 2 },
+    ],
+  },
+  "el-8": {
+    wpm: 93,
+    history: [
+      { period: "Diagnostic S1 · page 6", wpm: 70, erreurs: 0 },
+      { period: "Diagnostic S1 · page 7", wpm: 93, erreurs: 1 },
+    ],
+  },
+  "el-9": {
+    wpm: 111,
+    history: [
+      { period: "Diagnostic S1 · page 6", wpm: 61, erreurs: 0 },
+      { period: "Diagnostic S1 · page 7", wpm: 111, erreurs: 0 },
+    ],
+  },
+};
+
+function getSeededFluenceStore(): FluenceStore {
+  return resolveCurrentClassroomKey() === "boulard"
+    ? BOULARD_ORTHOGRAPHEMIC_DIAGNOSTIC_FLUENCE
+    : {};
+}
 
 function formatSeedDate(): string {
   const d = new Date().toLocaleDateString("fr-FR", {
@@ -320,8 +389,9 @@ export function saveFluenceData(store: FluenceStore): void {
  */
 export function getFluenceRecords(): FluenceRecord[] {
   const store = loadFluenceData();
+  const seeded = getSeededFluenceStore();
   return STUDENTS.map((s) => {
-    const stored = store[s.id];
+    const stored = store[s.id] ?? seeded[s.id];
     if (stored) return { studentId: s.id, wpm: stored.wpm, history: stored.history };
     return { studentId: s.id, wpm: 0, history: [] };
   });
