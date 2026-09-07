@@ -21,12 +21,37 @@ export type StudentProfile = {
 };
 
 const DEFAULT_STUDENT_PROFILES: Record<string, StudentProfile> = {
-  "el-1": { birthDate: "2019-03-06" },
-  "el-2": { birthDate: "2019-03-22" },
-  "el-3": { birthDate: "2019-06-30" },
-  "el-4": { birthDate: "2019-07-11" },
+  "el-1": {
+    birthDate: "2019-03-06",
+    notes:
+      "Observation initiale - septembre 2026\nÉlève volontaire, avec une réelle envie de bien faire. Des difficultés globales sont repérées à ce stade, à préciser progressivement sans conclure trop vite. Situation matérielle temporairement fragile en raison d'un déménagement prévu ; à accompagner et à réévaluer quand les repères de classe seront stabilisés.",
+  },
+  "el-2": {
+    birthDate: "2019-03-22",
+    notes:
+      "Observation initiale - septembre 2026\nÉlève concentrée et discrète. Les premières activités de mathématiques semblent demander un accompagnement ; à observer précisément lors des prochaines séances du module 1.",
+  },
+  "el-3": {
+    birthDate: "2019-06-30",
+    notes:
+      "Observation initiale - septembre 2026\nComprend les situations proposées et montre des possibilités. L'attention fluctue et gêne parfois son engagement ; prévoir des consignes courtes et des relances régulières.",
+  },
+  "el-4": {
+    birthDate: "2019-07-11",
+    notes:
+      "Observation initiale - septembre 2026\nTrès bon démarrage : élève concentré, engagé dans le travail et déjà autonome. À encourager dans cette dynamique.",
+  },
   "el-5": { birthDate: "2018-09-26" },
-  "el-6": { birthDate: "2019-07-22" },
+  "el-6": {
+    birthDate: "2019-07-22",
+    notes:
+      "Observation initiale - septembre 2026\nÉlève très curieuse et avide d'apprendre, possiblement sensible. L'écriture et la motricité fine demandent déjà une attention particulière ; proposer des aménagements rassurants et valoriser les essais pour éviter le découragement.",
+  },
+  "el-8": {
+    birthDate: "2019-01-23",
+    notes:
+      "Observation initiale - septembre 2026\nTrès bon démarrage et excellente fluence observée. Les résultats en orthographe et en mathématiques viendront compléter ce premier repère.",
+  },
   "el-7": { birthDate: "2019-08-05" },
   "el-8": { birthDate: "2019-01-23" },
   "el-9": { birthDate: "2019-01-04" },
