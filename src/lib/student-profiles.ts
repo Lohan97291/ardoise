@@ -53,7 +53,6 @@ const DEFAULT_STUDENT_PROFILES: Record<string, StudentProfile> = {
       "Observation initiale - septembre 2026\nTrès bon démarrage et excellente fluence observée. Les résultats en orthographe et en mathématiques viendront compléter ce premier repère.",
   },
   "el-7": { birthDate: "2019-08-05" },
-  "el-8": { birthDate: "2019-01-23" },
   "el-9": { birthDate: "2019-01-04" },
   "el-10": { birthDate: "2019-11-09" },
   "el-11": { birthDate: "2018-08-16" },
