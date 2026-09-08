@@ -1,4 +1,5 @@
 import type { PrepPhase, PrepSheet, ResourceMethod } from "@/lib/ardoise-data";
+import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 import orthographemicGuideData from "@/lib/data/orthographemic-ce1.json";
 
 type OrthographemicPhase = {
@@ -138,7 +139,79 @@ function wordListNotes(week: OrthographemicWeek): string[] {
   return list.lists.map((entry) => `Liste ${entry.n} (${list.letter}) : ${entry.mots.join(", ")}`);
 }
 
+function buildBoulardS2Day1PrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepSheet {
+  const chapter = chapterForWeek(week);
+  return {
+    id: day.id,
+    title: `Semaine ${week.week} · Jour ${day.day} — ${week.title}`,
+    subject: "francais",
+    socleDomains: [
+      "D1 · Les langages pour penser et communiquer",
+      "D2 · Les méthodes et outils pour apprendre",
+    ],
+    disciplinaryDomains: [
+      "Étude de la langue : orthographe et code",
+      "Lecture et compréhension de l'écrit",
+      "Langage oral",
+    ],
+    objective: "Découvrir les valeurs sonores de la lettre a en manipulant et en justifiant des classements de mots.",
+    competence:
+      "Observer les graphèmes, écouter les sons, classer des mots et expliquer oralement ses choix.",
+    duration: "45 min",
+    phases: [
+      {
+        title: "Mise en route : regarder / écouter",
+        duration: "8 min",
+        detail:
+          "Afficher quelques mots de la liste A au tableau ou dans le module Orthographémic. Faire observer la lettre a : Où la voit-on ? Que peut-on entendre ? Les élèves répondent oralement, sans écrire longuement.",
+      },
+      {
+        title: "Manipulation d'étiquettes : trier les mots de la lettre a",
+        duration: "17 min",
+        detail:
+          "Utiliser le module Orthographémic avec le zoom à 130 ou 150 %. Les élèves déplacent les étiquettes pour trier les mots : je vois la lettre a / j'entends le son étudié ; je vois la lettre a / je n'entends pas le même son ; je repère les écritures avec a, à, â, au, eau selon les mots proposés. Chaque déplacement doit être justifié oralement.",
+      },
+      {
+        title: "Atelier dirigé de besoin",
+        duration: "12 min",
+        detail:
+          "Pendant que les élèves autonomes trient ou justifient par binômes, prendre un petit groupe guidé.",
+        differentiation:
+          "Fodie et Ysmaël : 6 étiquettes maximum, sons simples et proches p/b/d/t. Sayden : micro-tâche de 4 étiquettes, une seule consigne, relance adulte. Elena : lettres mobiles ou réponse orale pour éviter que l'écriture masque la compétence. Fatoumata et Nadia zainab : justification experte et aide à la reformulation.",
+      },
+      {
+        title: "Trace orale et mini-bilan",
+        duration: "8 min",
+        detail:
+          "Construire une phrase bilan : La lettre a peut faire plusieurs sons ou entrer dans plusieurs écritures. Garder 3 exemples de mots manipulés. Pour la trace écrite, demander seulement de copier 2 ou 3 mots ; l'essentiel est la verbalisation.",
+      },
+    ],
+    material: [
+      "Ordinateur ou TNI avec Ardoise ouvert",
+      "Module Orthographémic, zoom 130 ou 150 %",
+      "Ardoises et feutres",
+      "Lettres mobiles ou 4 à 6 étiquettes pour le petit groupe fragile",
+      "Cahier du jour ou cahier de dictée pour copier 2 ou 3 mots",
+    ],
+    photocopies: [],
+    notes: [
+      chapter ? `Chapitre ${chapter.number} : ${chapter.title}` : "Chapitre 1 : lettre a",
+      "Séance personnalisée pour la classe de M. Boulard.",
+      "Kamil : hors évaluation collective ; présence adaptée, observation ou manipulation libre selon disponibilité adulte.",
+      ...wordListNotes(week),
+    ],
+  };
+}
+
 function buildPrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepSheet {
+  if (
+    resolveCurrentClassroomKey() === "boulard" &&
+    week.id === "orthographemic-s2" &&
+    day.id === "orthographemic-s2-j1"
+  ) {
+    return buildBoulardS2Day1PrepSheet(week, day);
+  }
+
   const chapter = chapterForWeek(week);
   const phases = day.activities.flatMap(phaseFromActivity);
   const activityTypes = [...new Set(day.activities.map(activityLabel))];

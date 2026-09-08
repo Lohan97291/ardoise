@@ -211,62 +211,48 @@
         {
           "id": "orthographemic-s2-j1",
           "day": 1,
-          "title": "Jour 1 · Découverte et manipulation de la lettre a",
-          "duration": 45,
+          "title": "Jour 1",
+          "duration": 100,
           "activities": [
             {
               "id": "orthographemic-s2-j1-a1",
               "title": "Découverte des valeurs sonores de la lettre a",
               "type": "orthographe",
-              "duration": 8,
+              "duration": 60,
               "optional": false,
               "phases": [
                 {
-                  "n": "Mise en route : regarder / écouter",
-                  "m": 8,
-                  "d": "Afficher quelques mots de la liste A au tableau ou dans le module Orthographémic. Faire observer la lettre a : Où la voit-on ? Que peut-on entendre ? Les élèves répondent oralement, sans écrire longuement."
+                  "n": "Découverte des valeurs sonores de la lettre a",
+                  "m": 60,
+                  "d": "Déroulé issu de la programmation Orthographémic existante. Consulter les déroulés types pour le détail pédagogique."
                 }
               ]
             },
             {
               "id": "orthographemic-s2-j1-a2",
-              "title": "Manipulation d’étiquettes : trier les mots de la lettre a",
-              "type": "ateliers",
-              "duration": 17,
+              "title": "Dictée flash",
+              "type": "dictee-flash",
+              "duration": 25,
               "optional": false,
               "phases": [
                 {
-                  "n": "Tri collectif puis par binômes",
-                  "m": 17,
-                  "d": "Utiliser le module Orthographémic avec le zoom à 130 ou 150 %. Les élèves déplacent les étiquettes pour trier les mots : je vois la lettre a / j’entends le son étudié ; je vois la lettre a / je n’entends pas le même son ; je repère les écritures avec a, à, â, au, eau selon les mots proposés. Chaque déplacement doit être justifié oralement."
+                  "n": "Dictée flash",
+                  "m": 25,
+                  "d": "Déroulé issu de la programmation Orthographémic existante. Consulter les déroulés types pour le détail pédagogique."
                 }
               ]
             },
             {
               "id": "orthographemic-s2-j1-a3",
-              "title": "Atelier dirigé de besoin",
-              "type": "renforcement-code",
-              "duration": 12,
-              "optional": false,
+              "title": "Course aux mots",
+              "type": "course-aux-mots",
+              "duration": 15,
+              "optional": true,
               "phases": [
                 {
-                  "n": "Petit groupe ciblé",
-                  "m": 12,
-                  "d": "Avec Fodie : 6 étiquettes maximum, syllabes simples et sons proches p/b/d/t. Avec Sayden : micro-tâche de 4 étiquettes, une seule consigne, relance adulte. Avec Elena : privilégier les lettres mobiles et les réponses orales pour ne pas confondre difficulté de code et geste graphique. Les élèves très à l’aise justifient les graphèmes et aident à reformuler."
-                }
-              ]
-            },
-            {
-              "id": "orthographemic-s2-j1-a4",
-              "title": "Trace orale et mini-bilan",
-              "type": "trace-ecrite",
-              "duration": 8,
-              "optional": false,
-              "phases": [
-                {
-                  "n": "Institutionnalisation courte",
-                  "m": 8,
-                  "d": "Construire une phrase bilan : La lettre a peut produire plusieurs sons ou entrer dans plusieurs écritures. Garder 3 exemples de mots manipulés. Pour la trace écrite, demander seulement de copier 2 ou 3 mots ; l’essentiel est la verbalisation."
+                  "n": "Course aux mots",
+                  "m": 15,
+                  "d": "Activité facultative dans la programmation source, à placer si le temps disponible le permet."
                 }
               ]
             }
