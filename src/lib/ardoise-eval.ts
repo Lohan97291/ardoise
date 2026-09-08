@@ -33,6 +33,9 @@ export type Student = {
   lastName: string;
   /** Hors corrections/évaluations collectives : suivi personnalisé. */
   excludeFromEvaluations?: boolean;
+  /** Élève radié : conservé dans l'appel pour garder l'historique. */
+  radiatedOn?: string;
+  radiatedReason?: string;
 };
 
 export type ClassroomKey =
@@ -130,9 +133,15 @@ export const CLASSROOMS: Record<ClassroomKey, ClassroomDefinition> = {
     displayName: "M. Boulard",
     initials: "MB",
     classLabel: "CE1 · 2026-2027",
-    schoolLabel: "11 élèves · École Romain Rolland",
+    schoolLabel: "10 élèves actifs · École Romain Rolland",
     students: [
-      { id: "el-1", firstName: "Ysmaël", lastName: "Abdallah" },
+      {
+        id: "el-1",
+        firstName: "Ysmaël",
+        lastName: "Abdallah",
+        radiatedOn: "2026-09-08",
+        radiatedReason: "Déménagement",
+      },
       { id: "el-2", firstName: "Fanta", lastName: "Berthe" },
       { id: "el-3", firstName: "Lucas", lastName: "Deproge Ngom" },
       { id: "el-4", firstName: "Ylan", lastName: "Ferjule" },
@@ -248,6 +257,34 @@ export const CURRENT_CLASSROOM: ClassroomDefinition = new Proxy({} as ClassroomD
 
 export const STUDENTS: Student[] = new Proxy([] as Student[], {
   get(_target, prop) {
+    const students = getCurrentClassroom().students.filter(isActiveStudent);
+    const value = Reflect.get(students, prop, students);
+    return typeof value === "function" ? value.bind(students) : value;
+  },
+  has(_target, prop) {
+    return prop in getCurrentClassroom().students.filter(isActiveStudent);
+  },
+  ownKeys() {
+    return Reflect.ownKeys(getCurrentClassroom().students.filter(isActiveStudent));
+  },
+  getOwnPropertyDescriptor(_target, prop) {
+    const descriptor = Object.getOwnPropertyDescriptor(
+      getCurrentClassroom().students.filter(isActiveStudent),
+      prop,
+    );
+    return descriptor
+      ? { ...descriptor, configurable: true }
+      : {
+          configurable: true,
+          enumerable: true,
+          writable: false,
+          value: Reflect.get(getCurrentClassroom().students.filter(isActiveStudent), prop),
+        };
+  },
+});
+
+export const ATTENDANCE_STUDENTS: Student[] = new Proxy([] as Student[], {
+  get(_target, prop) {
     const students = getCurrentClassroom().students;
     const value = Reflect.get(students, prop, students);
     return typeof value === "function" ? value.bind(students) : value;
@@ -271,9 +308,12 @@ export const STUDENTS: Student[] = new Proxy([] as Student[], {
   },
 });
 
+export function isActiveStudent(student: Student): boolean {
+  return !student.radiatedOn;
+}
 
 export function isEvaluableStudent(student: Student): boolean {
-  return !student.excludeFromEvaluations;
+  return isActiveStudent(student) && !student.excludeFromEvaluations;
 }
 
 export const EVALUABLE_STUDENTS: Student[] = new Proxy([] as Student[], {

@@ -64,6 +64,7 @@ import { ARDOISE_AI_NAME, ardoiseAiTitle } from "@/lib/ardoise-ai-brand";
 import {
   CLEO_CATALOG,
   MATHS_CATALOG,
+  ATTENDANCE_STUDENTS,
   STUDENTS,
   fullName,
   initials,
@@ -146,11 +147,18 @@ function formatDateLabel(value: string): string {
   }).format(date);
 }
 
-function countAttendance(attendance: Record<string, AttendanceStatus>) {
+function attendanceRosterForDate(date: string) {
+  return ATTENDANCE_STUDENTS.filter((student) => !student.radiatedOn || date < student.radiatedOn);
+}
+
+function countAttendance(
+  attendance: Record<string, AttendanceStatus>,
+  roster = STUDENTS,
+) {
   return {
-    present: Object.values(attendance).filter((value) => value === "present").length,
-    retard: Object.values(attendance).filter((value) => value === "retard").length,
-    absent: Object.values(attendance).filter((value) => value === "absent").length,
+    present: roster.filter((student) => (attendance[student.id] ?? "present") === "present").length,
+    retard: roster.filter((student) => attendance[student.id] === "retard").length,
+    absent: roster.filter((student) => attendance[student.id] === "absent").length,
   };
 }
 
@@ -544,6 +552,7 @@ function AttendancePanel({
   onChange,
   saved,
   onSetAllPresent,
+  selectedDate,
 }: {
   title: string;
   subtitle: string;
@@ -552,8 +561,10 @@ function AttendancePanel({
   onChange: (studentId: string, status: AttendanceStatus) => void;
   saved: boolean;
   onSetAllPresent: () => void;
+  selectedDate: string;
 }) {
-  const counts = countAttendance(attendance);
+  const activeRoster = attendanceRosterForDate(selectedDate);
+  const counts = countAttendance(attendance, activeRoster);
 
   return (
     <section className="card-surface overflow-hidden p-4 shadow-card">
@@ -600,18 +611,31 @@ function AttendancePanel({
 
       <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-card">
         <ul className="divide-y divide-border">
-          {STUDENTS.map((student) => {
+          {ATTENDANCE_STUDENTS.map((student) => {
             const current = attendance[student.id] ?? "present";
+            const isRadiated = Boolean(student.radiatedOn);
+            const isRadiatedForSelectedDate = Boolean(
+              student.radiatedOn && selectedDate >= student.radiatedOn,
+            );
             return (
               <li
                 key={student.id}
-                className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3"
+                className={cn(
+                  "grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3",
+                  isRadiated && "bg-muted/30 text-muted-foreground",
+                )}
               >
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-secondary font-display text-xs font-semibold text-muted-foreground">
                   {initials(student)}
                 </span>
-                <span className="min-w-0 truncate text-sm font-medium text-foreground">
-                  {fullName(student)}
+                <span className="min-w-0 text-sm font-medium text-foreground">
+                  <span className="block truncate">{fullName(student)}</span>
+                  {student.radiatedOn ? (
+                    <span className="mt-0.5 block truncate text-[0.68rem] font-semibold text-muted-foreground">
+                      Radié le {formatDateLabel(student.radiatedOn)}
+                      {student.radiatedReason ? ` · ${student.radiatedReason}` : ""}
+                    </span>
+                  ) : null}
                 </span>
                 <div className="flex gap-1">
                   {ATTENDANCE_OPTIONS.map(({ key, label, short }) => (
@@ -619,6 +643,7 @@ function AttendancePanel({
                       key={key}
                       type="button"
                       title={label}
+                      disabled={isRadiatedForSelectedDate}
                       onClick={() => onChange(student.id, key)}
                       className={cn(
                         "rounded-full px-2.5 py-1 text-[0.65rem] font-semibold transition-colors duration-150",
@@ -632,6 +657,7 @@ function AttendancePanel({
                           key === "absent" &&
                           "bg-status-na text-status-na-foreground",
                         current !== key && "bg-secondary text-muted-foreground hover:bg-muted",
+                        isRadiatedForSelectedDate && "cursor-not-allowed opacity-45 hover:bg-secondary",
                       )}
                     >
                       {short}
@@ -977,7 +1003,10 @@ function ElevesPage() {
 
   function setAllPresent(moment: AttendanceMoment) {
     const next = Object.fromEntries(
-      STUDENTS.map((student) => [student.id, "present" as AttendanceStatus]),
+      attendanceRosterForDate(selectedDate).map((student) => [
+        student.id,
+        "present" as AttendanceStatus,
+      ]),
     );
     if (moment === "morning") setMorningAttendance(next);
     else setAfternoonAttendance(next);
@@ -1781,13 +1810,13 @@ function ElevesPage() {
               <div className="mt-4 grid gap-3">
                 <AttendanceStatCard
                   label="Matin"
-                  value={countAttendance(morningAttendance).present}
-                  hint={`${countAttendance(morningAttendance).absent} absent(s)`}
+                  value={countAttendance(morningAttendance, attendanceRosterForDate(selectedDate)).present}
+                  hint={`${countAttendance(morningAttendance, attendanceRosterForDate(selectedDate)).absent} absent(s)`}
                 />
                 <AttendanceStatCard
                   label="Après-midi"
-                  value={countAttendance(afternoonAttendance).present}
-                  hint={`${countAttendance(afternoonAttendance).absent} absent(s)`}
+                  value={countAttendance(afternoonAttendance, attendanceRosterForDate(selectedDate)).present}
+                  hint={`${countAttendance(afternoonAttendance, attendanceRosterForDate(selectedDate)).absent} absent(s)`}
                 />
               </div>
             </aside>
@@ -1845,6 +1874,7 @@ function ElevesPage() {
                     onChange={(studentId, status) => changeMoment("morning", studentId, status)}
                     saved={savedFlash === "morning"}
                     onSetAllPresent={() => setAllPresent("morning")}
+                    selectedDate={selectedDate}
                   />
 
                   <AttendancePanel
@@ -1855,6 +1885,7 @@ function ElevesPage() {
                     onChange={(studentId, status) => changeMoment("afternoon", studentId, status)}
                     saved={savedFlash === "afternoon"}
                     onSetAllPresent={() => setAllPresent("afternoon")}
+                    selectedDate={selectedDate}
                   />
                 </div>
               ) : (

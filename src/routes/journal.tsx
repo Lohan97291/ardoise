@@ -178,7 +178,7 @@ function ensureBoulardOrthographemicS2Session(days: Record<string, Session[]>): 
     resourceId: "orthographemic-s2-j1",
     correctionMode: "none",
     note:
-      "Séance de découverte et manipulation : valeurs sonores de la lettre a. Utiliser le module Orthographémic avec zoom 130/150 %. Différenciation : Fodie et Ysmaël avec 6 étiquettes maximum ; Sayden en micro-tâche de 4 étiquettes ; Elena avec lettres mobiles/réponse orale ; Fatoumata et Nadia zainab en justification experte.",
+      "Séance de découverte et manipulation : valeurs sonores de la lettre a. Utiliser le module Orthographémic avec zoom 130/150 %. Différenciation : Fodie avec 6 étiquettes maximum ; Sayden en micro-tâche de 4 étiquettes ; Elena avec lettres mobiles/réponse orale ; Fatoumata et Nadia zainab en justification experte.",
   };
 
   const next = {

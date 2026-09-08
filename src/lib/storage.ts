@@ -8,6 +8,7 @@ import {
   MATHS_CATALOG,
   ORTHO_CATALOG,
   SEEDED_RESULTS,
+  ATTENDANCE_STUDENTS,
   EVALUABLE_STUDENTS,
   STUDENTS,
   STATUS_BY_KEY,
@@ -443,7 +444,7 @@ export type AttendanceMonthStats = {
 };
 
 function defaultAttendanceStore(): AttendanceStore {
-  return Object.fromEntries(STUDENTS.map((s) => [s.id, "present" as AttendanceStatus]));
+  return Object.fromEntries(ATTENDANCE_STUDENTS.map((s) => [s.id, "present" as AttendanceStatus]));
 }
 
 function isAttendanceStatus(value: unknown): value is AttendanceStatus {
