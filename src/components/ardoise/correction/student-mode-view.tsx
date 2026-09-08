@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
+import { AssistanceButtons } from "@/components/ardoise/correction/assistance-buttons";
 import { CommentField } from "@/components/ardoise/correction/comment-field";
 import { StatusButtons } from "@/components/ardoise/correction/status-buttons";
 import { STATUS_CHIP } from "@/components/ardoise/status-styles";
@@ -13,7 +14,13 @@ import {
   type NotebookSource,
 } from "@/lib/correction-rapide-notebook";
 import { getComment, setComment } from "@/lib/correction-rapide-store";
-import { getPlanResults, saveOnePlanResult } from "@/lib/storage";
+import {
+  getExerciseAssistance,
+  getPlanResults,
+  saveOneExerciseAssistance,
+  saveOnePlanResult,
+  type ExerciseAssistance,
+} from "@/lib/storage";
 import { cn } from "@/lib/utils";
 
 /** Mode "élève par élève" : un élève sélectionné à gauche, ses pages/exercices à droite. */
@@ -41,6 +48,13 @@ export function StudentModeView({
     if (!student) return;
     const planId = `${notebookPagePlanId(source, page)}::${itemId}`;
     saveOnePlanResult(planId, student.id, status);
+    setTick((v) => v + 1);
+  }
+
+  function markAssistance(itemId: string, next?: ExerciseAssistance) {
+    if (!student) return;
+    const planId = `${notebookPagePlanId(source, page)}::${itemId}`;
+    saveOneExerciseAssistance(planId, student.id, next);
     setTick((v) => v + 1);
   }
 
@@ -106,24 +120,41 @@ export function StudentModeView({
           items.map((item) => {
             const planId = `${notebookPagePlanId(source, page)}::${item.id}`;
             const results = getPlanResults(planId);
+            const assistance = getExerciseAssistance(planId);
             const status = student ? results[student.id] : undefined;
+            const help = student ? assistance[student.id] : undefined;
             return (
-              <div key={item.id} className="rounded-xl border border-border p-3">
+              <div key={item.id} className="rounded-[22px] border border-border/70 bg-background/70 p-3 shadow-sm">
                 <div className="mb-2 flex items-center justify-between gap-2">
                   <span className="text-sm font-semibold">{item.label}</span>
-                  {status ? (
-                    <span className={cn("rounded-full px-2 py-0.5 text-[0.65rem] font-semibold", STATUS_CHIP[status])}>
-                      {status}
-                    </span>
-                  ) : null}
+                  <span className="flex items-center gap-1.5">
+                    {help ? (
+                      <span className="rounded-full bg-ochre/15 px-2 py-0.5 text-[0.65rem] font-bold text-ochre-foreground">
+                        {help === "aesh" ? "AESH" : "Aide"}
+                      </span>
+                    ) : null}
+                    {status ? (
+                      <span className={cn("rounded-full px-2 py-0.5 text-[0.65rem] font-semibold", STATUS_CHIP[status])}>
+                        {status}
+                      </span>
+                    ) : null}
+                  </span>
                 </div>
                 <StatusButtons dense value={status} onSelect={(next) => mark(item.id, next)} />
                 {student ? (
-                  <CommentField
-                    className="mt-2"
-                    value={getComment(planId, student.id)}
-                    onSave={(value) => setComment(planId, student.id, value)}
-                  />
+                  <>
+                    <AssistanceButtons
+                      dense
+                      student={student}
+                      value={help}
+                      onChange={(next) => markAssistance(item.id, next)}
+                    />
+                    <CommentField
+                      className="mt-2"
+                      value={getComment(planId, student.id)}
+                      onSave={(value) => setComment(planId, student.id, value)}
+                    />
+                  </>
                 ) : null}
               </div>
             );

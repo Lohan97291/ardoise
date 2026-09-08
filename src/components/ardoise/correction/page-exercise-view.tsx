@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
+import { AssistanceButtons } from "@/components/ardoise/correction/assistance-buttons";
 import { CommentField } from "@/components/ardoise/correction/comment-field";
 import { StatusButtons } from "@/components/ardoise/correction/status-buttons";
 import { STATUS_CHIP } from "@/components/ardoise/status-styles";
@@ -19,7 +20,13 @@ import {
   type NotebookSource,
 } from "@/lib/correction-rapide-notebook";
 import { getComment, setComment } from "@/lib/correction-rapide-store";
-import { getPlanResults, saveOnePlanResult } from "@/lib/storage";
+import {
+  getExerciseAssistance,
+  getPlanResults,
+  saveOneExerciseAssistance,
+  saveOnePlanResult,
+  type ExerciseAssistance,
+} from "@/lib/storage";
 import { cn } from "@/lib/utils";
 
 /** Vue "page" en mode exercice par exercice : un exercice sélectionné, on avance élève par élève. */
@@ -49,6 +56,7 @@ export function PageExerciseView({
   const selectedItem = items.find((item) => item.id === selectedItemId) ?? items[0];
   const planId = selectedItem ? `${notebookPagePlanId(source, page)}::${selectedItem.id}` : "";
   const results = planId ? getPlanResults(planId) : {};
+  const assistance = planId ? getExerciseAssistance(planId) : {};
   const doneCount = Object.keys(results).length;
 
   useEffect(() => {
@@ -64,6 +72,12 @@ export function PageExerciseView({
       (student, index) => index > currentIndex && !getPlanResults(planId)[student.id],
     );
     setSelectedStudentId(next?.id ?? studentId);
+  }
+
+  function markAssistance(studentId: string, next?: ExerciseAssistance) {
+    if (!planId) return;
+    saveOneExerciseAssistance(planId, studentId, next);
+    setTick((value) => value + 1);
   }
 
   const selectedStudent = EVALUABLE_STUDENTS.find((student) => student.id === selectedStudentId);
@@ -144,6 +158,7 @@ export function PageExerciseView({
           <div className="flex flex-wrap gap-1.5 overflow-y-auto pb-1">
             {students.map((student) => {
               const status = results[student.id];
+              const help = assistance[student.id];
               return (
                 <button
                   key={student.id}
@@ -168,6 +183,11 @@ export function PageExerciseView({
                       {status}
                     </span>
                   ) : null}
+                  {help ? (
+                    <span className="rounded-full bg-ochre/15 px-1.5 text-[0.6rem] font-bold text-ochre-foreground">
+                      {help === "aesh" ? "AESH" : "Aide"}
+                    </span>
+                  ) : null}
                 </button>
               );
             })}
@@ -185,6 +205,11 @@ export function PageExerciseView({
                 </span>
               </div>
               <StatusButtons value={results[selectedStudent.id]} onSelect={(status) => mark(selectedStudent.id, status)} />
+              <AssistanceButtons
+                student={selectedStudent}
+                value={assistance[selectedStudent.id]}
+                onChange={(next) => markAssistance(selectedStudent.id, next)}
+              />
               <CommentField
                 value={getComment(planId, selectedStudent.id)}
                 onSave={(value) => setComment(planId, selectedStudent.id, value)}

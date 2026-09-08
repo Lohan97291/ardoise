@@ -27,6 +27,7 @@ import { getExercisePlan, getOrthographemicWeeklyGuide } from "@/lib/exercise-pl
 // ─────────────────────────────────────────────
 export const EXERCISE_RESULTS_KEY = "ardoise.exerciseResults.v1";
 export const EXERCISE_TRAJECTORY_KEY = "ardoise.exerciseTrajectory.v1";
+export const EXERCISE_ASSISTANCE_KEY = "ardoise.exerciseAssistance.v1";
 export const FLUENCE_KEY = "ardoise.fluence.v1";
 export const ACTIVE_EXERCISES_KEY = "ardoise.activeExercises.v1";
 
@@ -150,6 +151,8 @@ function normalizeActiveExercises(exercises: Exercise[]): Exercise[] {
 // Format : { [exerciseId]: { [studentId]: StatusKey } }
 // ─────────────────────────────────────────────
 export type ExerciseResultsStore = Record<string, Record<string, StatusKey>>;
+export type ExerciseAssistance = "help" | "aesh";
+export type ExerciseAssistanceStore = Record<string, Record<string, ExerciseAssistance>>;
 export type ExerciseTrajectoryEntry = {
   page: number | "m";
   status: StatusKey;
@@ -168,6 +171,39 @@ export function loadExerciseResults(): ExerciseResultsStore {
 
 export function saveExerciseResults(store: ExerciseResultsStore): void {
   localStorage.setItem(EXERCISE_RESULTS_KEY, JSON.stringify(store));
+}
+
+export function loadExerciseAssistance(): ExerciseAssistanceStore {
+  try {
+    const raw = localStorage.getItem(EXERCISE_ASSISTANCE_KEY);
+    return raw ? (JSON.parse(raw) as ExerciseAssistanceStore) : {};
+  } catch {
+    return {};
+  }
+}
+
+export function saveExerciseAssistance(store: ExerciseAssistanceStore): void {
+  localStorage.setItem(EXERCISE_ASSISTANCE_KEY, JSON.stringify(store));
+}
+
+export function getExerciseAssistance(planId: string): Record<string, ExerciseAssistance> {
+  return loadExerciseAssistance()[planId] ?? {};
+}
+
+export function saveOneExerciseAssistance(
+  planId: string,
+  studentId: string,
+  assistance?: ExerciseAssistance,
+): void {
+  const store = loadExerciseAssistance();
+  if (!store[planId]) store[planId] = {};
+  if (assistance) {
+    store[planId]![studentId] = assistance;
+  } else {
+    delete store[planId]![studentId];
+    if (Object.keys(store[planId]!).length === 0) delete store[planId];
+  }
+  saveExerciseAssistance(store);
 }
 
 export function loadExerciseTrajectory(): ExerciseTrajectoryStore {

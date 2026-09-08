@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 
+import { AssistanceButtons } from "@/components/ardoise/correction/assistance-buttons";
 import { CommentField } from "@/components/ardoise/correction/comment-field";
 import { StatusButtons } from "@/components/ardoise/correction/status-buttons";
 import { STATUS_CHIP } from "@/components/ardoise/status-styles";
@@ -7,7 +8,13 @@ import { fullName, initials, type StatusKey } from "@/lib/ardoise-eval";
 import { orderedStudents } from "@/lib/correction-rapide-notebook";
 import { getComment, setComment } from "@/lib/correction-rapide-store";
 import { sheetPlanId, type CorrectionSheet } from "@/lib/correction-sheets-store";
-import { getPlanResults, saveOnePlanResult } from "@/lib/storage";
+import {
+  getExerciseAssistance,
+  getPlanResults,
+  saveOneExerciseAssistance,
+  saveOnePlanResult,
+  type ExerciseAssistance,
+} from "@/lib/storage";
 import { cn } from "@/lib/utils";
 
 /** Correction d'une feuille libre (évaluation) : un statut + un commentaire par élève. */
@@ -16,6 +23,7 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
   const planId = sheetPlanId(sheet.id);
   const [tick, setTick] = useState(0);
   const results = useMemo(() => getPlanResults(planId), [planId, tick]);
+  const assistance = useMemo(() => getExerciseAssistance(planId), [planId, tick]);
   const [selectedStudentId, setSelectedStudentId] = useState(students[0]?.id ?? "");
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
   const doneCount = Object.keys(results).length;
@@ -30,6 +38,11 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
     setSelectedStudentId(next?.id ?? studentId);
   }
 
+  function markAssistance(studentId: string, next?: ExerciseAssistance) {
+    saveOneExerciseAssistance(planId, studentId, next);
+    setTick((value) => value + 1);
+  }
+
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-3 shadow-card">
       <div className="flex items-center justify-between px-1">
@@ -41,6 +54,7 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
       <div className="flex flex-wrap gap-1.5">
         {students.map((student) => {
           const status = results[student.id];
+          const help = assistance[student.id];
           return (
             <button
               key={student.id}
@@ -62,6 +76,11 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
                   {status}
                 </span>
               ) : null}
+              {help ? (
+                <span className="rounded-full bg-ochre/15 px-1.5 text-[0.6rem] font-bold text-ochre-foreground">
+                  {help === "aesh" ? "AESH" : "Aide"}
+                </span>
+              ) : null}
             </button>
           );
         })}
@@ -73,6 +92,11 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
           <StatusButtons
             value={results[selectedStudent.id]}
             onSelect={(status) => mark(selectedStudent.id, status)}
+          />
+          <AssistanceButtons
+            student={selectedStudent}
+            value={assistance[selectedStudent.id]}
+            onChange={(next) => markAssistance(selectedStudent.id, next)}
           />
           <CommentField
             value={getComment(planId, selectedStudent.id)}
