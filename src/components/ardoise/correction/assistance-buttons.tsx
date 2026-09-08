@@ -16,7 +16,7 @@ export function AssistanceButtons({
   onChange: (next?: ExerciseAssistance) => void;
   dense?: boolean;
 }) {
-  const aeshExpected = student.id === "el-7";
+  const showAesh = student.id === "el-7";
 
   return (
     <div className={cn("flex flex-wrap items-center gap-2", dense && "gap-1.5")}>
@@ -36,20 +36,22 @@ export function AssistanceButtons({
         <HandHeart className="mr-1.5 h-4 w-4" />
         Avec aide
       </Button>
-      <Button
-        type="button"
-        variant="outline"
-        size={dense ? "sm" : "default"}
-        onClick={() => onChange(value === "aesh" ? undefined : "aesh")}
-        className={cn(
-          "rounded-full border-border bg-card/80 text-xs font-semibold shadow-sm transition-all hover:-translate-y-0.5 hover:bg-secondary",
-          aeshExpected && "border-primary/25",
-          value === "aesh" && "border-primary/40 bg-primary/12 text-primary shadow-card",
-        )}
-      >
-        <UserRoundCheck className="mr-1.5 h-4 w-4" />
-        Avec AESH
-      </Button>
+      {showAesh ? (
+        <Button
+          type="button"
+          variant="outline"
+          size={dense ? "sm" : "default"}
+          onClick={() => onChange(value === "aesh" ? undefined : "aesh")}
+          className={cn(
+            "rounded-full border-border bg-card/80 text-xs font-semibold shadow-sm transition-all hover:-translate-y-0.5 hover:bg-secondary",
+            "border-primary/25",
+            value === "aesh" && "border-primary/40 bg-primary/12 text-primary shadow-card",
+          )}
+        >
+          <UserRoundCheck className="mr-1.5 h-4 w-4" />
+          Avec AESH
+        </Button>
+      ) : null}
       {value ? (
         <Button
           type="button"
