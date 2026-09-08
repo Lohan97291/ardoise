@@ -102,6 +102,10 @@ const DAY_MONTH = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "lon
 const capitalize = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
 const BOULARD_RESET_FROM_KEY = "2026-09-03";
 const BOULARD_RESET_MARKER_KEY = "ardoise.journal.boulard.reset-from-2026-09-03.v1";
+const BOULARD_ORTHOGRAPHEMIC_S2_DATE_KEY = "2026-09-08";
+const BOULARD_ORTHOGRAPHEMIC_S2_SESSION_ID = "2026-09-08-orthographemic-s2-j1";
+const BOULARD_ORTHOGRAPHEMIC_S2_MARKER_KEY =
+  "ardoise.journal.boulard.orthographemic-s2-2026-09-08.v1";
 
 type JournalViewMode = "day" | "week";
 
@@ -143,17 +147,63 @@ function parseRequestedDate(): Date | null {
   return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
+
+function ensureBoulardOrthographemicS2Session(days: Record<string, Session[]>): Record<string, Session[]> {
+  if (resolveCurrentClassroomKey() !== "boulard" || typeof window === "undefined") return days;
+  if (window.localStorage.getItem(BOULARD_ORTHOGRAPHEMIC_S2_MARKER_KEY)) return days;
+
+  const existingSessions = days[BOULARD_ORTHOGRAPHEMIC_S2_DATE_KEY] ?? [];
+  const alreadyPresent = existingSessions.some(
+    (session) =>
+      session.id === BOULARD_ORTHOGRAPHEMIC_S2_SESSION_ID ||
+      session.prepSheetId === "orthographemic-s2-j1" ||
+      session.resourceId === "orthographemic-s2-j1",
+  );
+
+  if (alreadyPresent) {
+    window.localStorage.setItem(BOULARD_ORTHOGRAPHEMIC_S2_MARKER_KEY, "done");
+    return days;
+  }
+
+  const preparedSession: Session = {
+    id: BOULARD_ORTHOGRAPHEMIC_S2_SESSION_ID,
+    start: "09:00",
+    end: "09:45",
+    title: "Orthographémic S2 — Découverte de la lettre a",
+    subject: "francais",
+    pedagogicalDomain: "Français",
+    pedagogicalSubDomain: "Étude de la langue · Orthographe",
+    programmingItemId: "ortho-s2",
+    prepSheetId: "orthographemic-s2-j1",
+    resourceId: "orthographemic-s2-j1",
+    correctionMode: "none",
+    note:
+      "Séance de découverte et manipulation : valeurs sonores de la lettre a. Utiliser le module Orthographémic avec zoom 130/150 %. Différenciation : Fodie et Ysmaël avec 6 étiquettes maximum ; Sayden en micro-tâche de 4 étiquettes ; Elena avec lettres mobiles/réponse orale ; Fatoumata et Nadia zainab en justification experte.",
+  };
+
+  const next = {
+    ...days,
+    [BOULARD_ORTHOGRAPHEMIC_S2_DATE_KEY]: [...existingSessions, preparedSession].sort((left, right) =>
+      left.start.localeCompare(right.start),
+    ),
+  };
+  window.localStorage.setItem(BOULARD_ORTHOGRAPHEMIC_S2_MARKER_KEY, "done");
+  return writeJournalDays(next);
+}
+
 function getInitialDays(): Record<string, Session[]> {
   let days = readJournalDays();
   const isBoulard = resolveCurrentClassroomKey() === "boulard";
 
   if (!isBoulard || typeof window === "undefined") return days;
-  if (window.localStorage.getItem(BOULARD_RESET_MARKER_KEY)) return days;
+  if (window.localStorage.getItem(BOULARD_RESET_MARKER_KEY)) {
+    return ensureBoulardOrthographemicS2Session(days);
+  }
 
   const entriesToReset = Object.entries(days).filter(([dateKey]) => dateKey >= BOULARD_RESET_FROM_KEY);
   if (entriesToReset.length === 0) {
     window.localStorage.setItem(BOULARD_RESET_MARKER_KEY, "done");
-    return days;
+    return ensureBoulardOrthographemicS2Session(days);
   }
 
   const sessionIds = entriesToReset.flatMap(([, sessions]) => sessions.map((session) => session.id));
@@ -165,7 +215,7 @@ function getInitialDays(): Record<string, Session[]> {
     Object.entries(days).filter(([dateKey]) => dateKey < BOULARD_RESET_FROM_KEY),
   );
   window.localStorage.setItem(BOULARD_RESET_MARKER_KEY, "done");
-  return writeJournalDays(next);
+  return ensureBoulardOrthographemicS2Session(writeJournalDays(next));
 }
 
 function toMinutes(value: string): number {
