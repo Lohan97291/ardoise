@@ -102,6 +102,10 @@ export function SessionCard({
             {session.title}
           </h3>
 
+          {session.note ? (
+            <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{session.note}</p>
+          ) : null}
+
           {session.subject !== "pause" ? (
             <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[0.72rem] font-semibold text-muted-foreground">
               <span>{pedagogicalLabels.domain}</span>

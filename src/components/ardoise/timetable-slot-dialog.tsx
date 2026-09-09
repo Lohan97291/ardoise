@@ -313,6 +313,7 @@ export function TimetableSlotDialog({ slot, onClose, onSave, onDelete }: Props) 
     slot?.pedagogicalSubDomain ?? "",
   );
   const [programmingItemId, setProgrammingItemId] = useState(slot?.programmingItemId ?? "");
+  const [note, setNote] = useState(slot?.note ?? "");
 
   const options = programmingOptions(subject);
   const template = slot ? resolveTemplate(slot) : undefined;
@@ -374,6 +375,15 @@ export function TimetableSlotDialog({ slot, onClose, onSave, onDelete }: Props) 
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <Label>Détail affiché dans le cahier journal</Label>
+            <Input
+              value={note}
+              onChange={(event) => setNote(event.target.value)}
+              placeholder="Ex. Calcul mental + problème du jour, Flash maths + Séquence séance 1..."
+            />
           </div>
 
           <div className="grid gap-3 md:grid-cols-2">
@@ -504,6 +514,7 @@ export function TimetableSlotDialog({ slot, onClose, onSave, onDelete }: Props) 
                 end,
                 title: buildSlotTitle(title, subject, pedagogicalDomain, pedagogicalSubDomain),
                 subject,
+                note: note.trim() || undefined,
                 pedagogicalDomain: pedagogicalDomain || undefined,
                 pedagogicalSubDomain: pedagogicalSubDomain || undefined,
                 programmingItemId: programmingItemId || undefined,
