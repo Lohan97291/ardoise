@@ -103,70 +103,70 @@ const GUIDE_TONE_STYLES: Record<
   }
 > = {
   neutral: {
-    badge: "border-slate-200 bg-slate-100 text-slate-700",
+    badge: "border-border bg-secondary text-muted-foreground",
     block: "border-border/70 bg-background/80",
     dot: "bg-muted-foreground/70",
     text: "text-foreground/85",
   },
   teacher: {
-    badge: "border-sky-200 bg-sky-100 text-sky-900",
-    block: "border-sky-200/80 bg-sky-50/90",
+    badge: "border-sky-200 bg-sky-100 text-sky-900 dark:border-sky-800/70 dark:bg-sky-950/50 dark:text-sky-200",
+    block: "border-sky-200/80 bg-sky-50/90 dark:border-sky-800/60 dark:bg-sky-950/30",
     dot: "bg-sky-500",
-    text: "text-sky-950",
+    text: "text-sky-950 dark:text-sky-100",
   },
   student: {
-    badge: "border-emerald-200 bg-emerald-100 text-emerald-900",
-    block: "border-emerald-200/80 bg-emerald-50/90",
+    badge: "border-emerald-200 bg-emerald-100 text-emerald-900 dark:border-emerald-800/70 dark:bg-emerald-950/50 dark:text-emerald-200",
+    block: "border-emerald-200/80 bg-emerald-50/90 dark:border-emerald-800/60 dark:bg-emerald-950/30",
     dot: "bg-emerald-500",
-    text: "text-emerald-950",
+    text: "text-emerald-950 dark:text-emerald-100",
   },
   instruction: {
     badge: "border-violet-300 bg-violet-600 text-white",
-    block: "border-violet-300 bg-violet-50/95 shadow-sm",
+    block: "border-violet-300 bg-violet-50/95 shadow-sm dark:border-violet-800/60 dark:bg-violet-950/40",
     dot: "bg-violet-600",
-    text: "font-semibold italic text-violet-950",
+    text: "font-semibold italic text-violet-950 dark:text-violet-100",
   },
   material: {
-    badge: "border-stone-200 bg-stone-100 text-stone-800",
-    block: "border-stone-200/80 bg-stone-50/90",
+    badge: "border-stone-200 bg-stone-100 text-stone-800 dark:border-stone-700/70 dark:bg-stone-800/50 dark:text-stone-200",
+    block: "border-stone-200/80 bg-stone-50/90 dark:border-stone-700/60 dark:bg-stone-900/30",
     dot: "bg-stone-500",
-    text: "text-stone-900",
+    text: "text-stone-900 dark:text-stone-200",
   },
   evaluation: {
-    badge: "border-rose-200 bg-rose-100 text-rose-900",
-    block: "border-rose-200/80 bg-rose-50/90",
+    badge: "border-rose-200 bg-rose-100 text-rose-900 dark:border-rose-800/70 dark:bg-rose-950/50 dark:text-rose-200",
+    block: "border-rose-200/80 bg-rose-50/90 dark:border-rose-800/60 dark:bg-rose-950/30",
     dot: "bg-rose-500",
-    text: "text-rose-950",
+    text: "text-rose-950 dark:text-rose-100",
   },
   differentiation: {
-    badge: "border-fuchsia-200 bg-fuchsia-100 text-fuchsia-900",
-    block: "border-fuchsia-200/80 bg-fuchsia-50/90",
+    badge: "border-fuchsia-200 bg-fuchsia-100 text-fuchsia-900 dark:border-fuchsia-800/70 dark:bg-fuchsia-950/50 dark:text-fuchsia-200",
+    block: "border-fuchsia-200/80 bg-fuchsia-50/90 dark:border-fuchsia-800/60 dark:bg-fuchsia-950/30",
     dot: "bg-fuchsia-500",
-    text: "text-fuchsia-950",
+    text: "text-fuchsia-950 dark:text-fuchsia-100",
   },
   trace: {
-    badge: "border-stone-200 bg-stone-100 text-stone-800",
-    block: "border-stone-200/80 bg-stone-50/90",
+    badge: "border-stone-200 bg-stone-100 text-stone-800 dark:border-stone-700/70 dark:bg-stone-800/50 dark:text-stone-200",
+    block: "border-stone-200/80 bg-stone-50/90 dark:border-stone-700/60 dark:bg-stone-900/30",
     dot: "bg-stone-500",
-    text: "text-stone-900",
+    text: "text-stone-900 dark:text-stone-200",
   },
   repere: {
-    badge: "border-teal-200 bg-teal-100 text-teal-900",
-    block: "border-teal-200/80 bg-teal-50/90",
+    badge: "border-teal-200 bg-teal-100 text-teal-900 dark:border-teal-800/70 dark:bg-teal-950/50 dark:text-teal-200",
+    block: "border-teal-200/80 bg-teal-50/90 dark:border-teal-800/60 dark:bg-teal-950/30",
     dot: "bg-teal-500",
-    text: "text-teal-950",
+    text: "text-teal-950 dark:text-teal-100",
   },
   reference: {
-    badge: "border-amber-200 bg-amber-100 text-amber-900",
-    block: "border-amber-200/80 bg-amber-50/95",
+    badge: "border-amber-200 bg-amber-100 text-amber-900 dark:border-amber-800/70 dark:bg-amber-950/50 dark:text-amber-200",
+    block: "border-amber-200/80 bg-amber-50/95 dark:border-amber-800/60 dark:bg-amber-950/30",
     dot: "bg-amber-500",
-    text: "text-amber-950",
+    text: "text-amber-950 dark:text-amber-100",
   },
   procedure: {
-    badge: "border-orange-200 bg-orange-100 text-orange-900",
-    block: "border-orange-200/80 bg-orange-50/95",
+    badge: "border-orange-200 bg-orange-100 text-orange-900 dark:border-orange-800/70 dark:bg-orange-950/50 dark:text-orange-200",
+    block: "border-orange-200/80 bg-orange-50/95 dark:border-orange-800/60 dark:bg-orange-950/30",
     dot: "bg-orange-500",
-    text: "text-orange-950",
+    text: "text-orange-950 dark:text-orange-100",
   },
 };
 
@@ -180,52 +180,52 @@ const PHASE_TONE_STYLES: Record<
   }
 > = {
   neutral: {
-    shell: "border-border bg-white",
+    shell: "border-border bg-card",
     rail: "bg-secondary",
-    badge: "border-slate-200 bg-slate-100 text-slate-700",
-    ring: "bg-white",
+    badge: "border-border bg-secondary text-muted-foreground",
+    ring: "bg-card",
   },
   setup: {
-    shell: "border-cyan-200 bg-cyan-50/55",
+    shell: "border-cyan-200 bg-cyan-50/55 dark:border-cyan-800/50 dark:bg-cyan-950/25",
     rail: "bg-cyan-500",
-    badge: "border-cyan-200 bg-cyan-100 text-cyan-900",
-    ring: "bg-cyan-50",
+    badge: "border-cyan-200 bg-cyan-100 text-cyan-900 dark:border-cyan-800/70 dark:bg-cyan-950/50 dark:text-cyan-200",
+    ring: "bg-cyan-50 dark:bg-cyan-950/40",
   },
   teacher: {
-    shell: "border-sky-200 bg-sky-50/55",
+    shell: "border-sky-200 bg-sky-50/55 dark:border-sky-800/50 dark:bg-sky-950/25",
     rail: "bg-sky-500",
-    badge: "border-sky-200 bg-sky-100 text-sky-900",
-    ring: "bg-sky-50",
+    badge: "border-sky-200 bg-sky-100 text-sky-900 dark:border-sky-800/70 dark:bg-sky-950/50 dark:text-sky-200",
+    ring: "bg-sky-50 dark:bg-sky-950/40",
   },
   guided: {
-    shell: "border-indigo-200 bg-indigo-50/55",
+    shell: "border-indigo-200 bg-indigo-50/55 dark:border-indigo-800/50 dark:bg-indigo-950/25",
     rail: "bg-indigo-500",
-    badge: "border-indigo-200 bg-indigo-100 text-indigo-900",
-    ring: "bg-indigo-50",
+    badge: "border-indigo-200 bg-indigo-100 text-indigo-900 dark:border-indigo-800/70 dark:bg-indigo-950/50 dark:text-indigo-200",
+    ring: "bg-indigo-50 dark:bg-indigo-950/40",
   },
   autonomous: {
-    shell: "border-emerald-200 bg-emerald-50/55",
+    shell: "border-emerald-200 bg-emerald-50/55 dark:border-emerald-800/50 dark:bg-emerald-950/25",
     rail: "bg-emerald-500",
-    badge: "border-emerald-200 bg-emerald-100 text-emerald-900",
-    ring: "bg-emerald-50",
+    badge: "border-emerald-200 bg-emerald-100 text-emerald-900 dark:border-emerald-800/70 dark:bg-emerald-950/50 dark:text-emerald-200",
+    ring: "bg-emerald-50 dark:bg-emerald-950/40",
   },
   evaluation: {
-    shell: "border-rose-200 bg-rose-50/55",
+    shell: "border-rose-200 bg-rose-50/55 dark:border-rose-800/50 dark:bg-rose-950/25",
     rail: "bg-rose-500",
-    badge: "border-rose-200 bg-rose-100 text-rose-900",
-    ring: "bg-rose-50",
+    badge: "border-rose-200 bg-rose-100 text-rose-900 dark:border-rose-800/70 dark:bg-rose-950/50 dark:text-rose-200",
+    ring: "bg-rose-50 dark:bg-rose-950/40",
   },
   consolidation: {
-    shell: "border-amber-200 bg-amber-50/55",
+    shell: "border-amber-200 bg-amber-50/55 dark:border-amber-800/50 dark:bg-amber-950/25",
     rail: "bg-amber-500",
-    badge: "border-amber-200 bg-amber-100 text-amber-900",
-    ring: "bg-amber-50",
+    badge: "border-amber-200 bg-amber-100 text-amber-900 dark:border-amber-800/70 dark:bg-amber-950/50 dark:text-amber-200",
+    ring: "bg-amber-50 dark:bg-amber-950/40",
   },
   closing: {
-    shell: "border-violet-200 bg-violet-50/55",
+    shell: "border-violet-200 bg-violet-50/55 dark:border-violet-800/50 dark:bg-violet-950/25",
     rail: "bg-violet-500",
-    badge: "border-violet-200 bg-violet-100 text-violet-900",
-    ring: "bg-violet-50",
+    badge: "border-violet-200 bg-violet-100 text-violet-900 dark:border-violet-800/70 dark:bg-violet-950/50 dark:text-violet-200",
+    ring: "bg-violet-50 dark:bg-violet-950/40",
   },
 };
 
@@ -293,14 +293,14 @@ export function PrepSheetView({
   return (
     <div
       className={cn(
-        "prep-document space-y-4 rounded-[28px] border border-border/80 bg-[linear-gradient(180deg,#ffffff,#f7f8fb)] p-3 shadow-[0_22px_56px_-34px_rgba(31,41,55,0.22)] print:border-0 print:bg-white print:p-0 print:shadow-none sm:p-5",
+        "prep-document space-y-4 rounded-[28px] border border-border/80 bg-gradient-to-b from-card to-background p-3 shadow-[0_22px_56px_-34px_rgba(31,41,55,0.22)] print:border-0 print:bg-white print:p-0 print:shadow-none sm:p-5",
         printable && "print-sheet",
       )}
     >
       {/* Identité de la fiche */}
       <header
         className={cn(
-          "prep-sheet-header overflow-hidden rounded-[24px] border border-border/80 bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(239,244,255,0.92))] p-5 shadow-sm print:static print:bg-white print:shadow-none",
+          "prep-sheet-header overflow-hidden rounded-[24px] border border-border/80 bg-gradient-to-br from-card to-secondary/40 p-5 shadow-sm print:static print:bg-white print:shadow-none",
           stickyHeader ? "sticky top-0 z-10" : "relative",
         )}
       >
@@ -316,10 +316,10 @@ export function PrepSheetView({
               >
                 {SUBJECTS[sheet.subject].label}
               </span>
-              <span className="rounded-full border border-border/70 bg-white px-3 py-1 text-[0.7rem] font-semibold text-muted-foreground shadow-sm">
+              <span className="rounded-full border border-border/70 bg-card px-3 py-1 text-[0.7rem] font-semibold text-muted-foreground shadow-sm">
                 Fiche de prep
               </span>
-              <span className="rounded-full border border-border/70 bg-white px-3 py-1 text-[0.7rem] font-semibold text-muted-foreground shadow-sm">
+              <span className="rounded-full border border-border/70 bg-card px-3 py-1 text-[0.7rem] font-semibold text-muted-foreground shadow-sm">
                 Document enseignant
               </span>
             </div>
@@ -338,7 +338,7 @@ export function PrepSheetView({
           <button
             type="button"
             onClick={() => window.print()}
-            className="prep-print-hidden inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-white px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition-colors hover:bg-secondary"
+            className="prep-print-hidden inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-card px-3 py-2 text-xs font-semibold text-foreground shadow-sm transition-colors hover:bg-secondary"
           >
             <Printer className="h-3.5 w-3.5" />
             Imprimer
@@ -397,7 +397,7 @@ export function PrepSheetView({
 
       <section
         id="sheet-domaines"
-        className="prep-section scroll-mt-24 rounded-[22px] border border-border/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(244,247,255,0.92))] p-4 shadow-sm print:border print:bg-white print:shadow-none"
+        className="prep-section scroll-mt-24 rounded-[22px] border border-border/80 bg-gradient-to-br from-card to-secondary/30 p-4 shadow-sm print:border print:bg-white print:shadow-none"
       >
         <SectionTitle
           eyebrow="Rattachement institutionnel"
@@ -569,7 +569,7 @@ export function PrepSheetView({
                 {phase.detail ? (
                   <div
                     className={cn(
-                      "mt-3 rounded-2xl border border-border/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(249,250,252,0.92))] px-3 py-3 text-sm leading-relaxed transition-colors sm:ml-[2.85rem]",
+                      "mt-3 rounded-2xl border border-border/70 bg-gradient-to-b from-card to-background px-3 py-3 text-sm leading-relaxed transition-colors sm:ml-[2.85rem]",
                       done ? "text-muted-foreground/70" : "text-foreground/85",
                     )}
                   >
@@ -598,7 +598,7 @@ export function PrepSheetView({
             {sheet.illustrations.map((ill, i) => (
               <figure
                 key={i}
-                className="overflow-hidden rounded-xl border border-border/70 bg-white"
+                className="overflow-hidden rounded-xl border border-border/70 bg-card"
               >
                 <img
                   src={ill.src}
@@ -685,20 +685,20 @@ export function PrepSheetView({
             {sheet.exercises.map((exercise) => (
               <article
                 key={exercise.id}
-                className="rounded-2xl border border-border/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,255,0.94))] p-4 shadow-sm"
+                className="rounded-2xl border border-border/80 bg-gradient-to-b from-card to-background p-4 shadow-sm"
               >
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[0.7rem] font-semibold text-primary">
                     {exercise.number ?? "Exercice"}
                   </span>
                   {exercise.page ? (
-                    <span className="rounded-full border border-border/70 bg-white/80 px-2.5 py-1 font-mono text-[0.7rem] text-muted-foreground">
+                    <span className="rounded-full border border-border/70 bg-card/80 px-2.5 py-1 font-mono text-[0.7rem] text-muted-foreground">
                       p. {exercise.page}
                     </span>
                   ) : null}
                 </div>
                 <div className="mt-3 space-y-3">
-                  <div className="rounded-xl border border-border/70 bg-white/80 px-3 py-3">
+                  <div className="rounded-xl border border-border/70 bg-card/80 px-3 py-3">
                     <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted-foreground">
                       Exercice
                     </p>
@@ -707,22 +707,22 @@ export function PrepSheetView({
                     </p>
                   </div>
                   {exercise.title ? (
-                    <div className="rounded-xl border border-violet-200/80 bg-violet-50/80 px-3 py-3">
-                      <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-violet-700">
+                    <div className="rounded-xl border border-violet-200/80 bg-violet-50/80 dark:border-violet-800/50 dark:bg-violet-950/25 px-3 py-3">
+                      <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-violet-700 dark:text-violet-300">
                         Consigne
                       </p>
-                      <p className="mt-1 text-sm leading-relaxed text-violet-950">
+                      <p className="mt-1 text-sm leading-relaxed text-violet-950 dark:text-violet-100">
                         {exercise.instruction}
                       </p>
                     </div>
                   ) : null}
                 </div>
                 {exercise.correction ? (
-                  <div className="mt-3 rounded-xl border border-dashed border-emerald-300 bg-emerald-50/75 px-3 py-3">
-                    <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-emerald-700">
+                  <div className="mt-3 rounded-xl border border-dashed border-emerald-300 bg-emerald-50/75 dark:border-emerald-700/60 dark:bg-emerald-950/25 px-3 py-3">
+                    <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-emerald-700 dark:text-emerald-300">
                       Correction
                     </p>
-                    <p className="mt-1 text-sm leading-relaxed text-emerald-950">
+                    <p className="mt-1 text-sm leading-relaxed text-emerald-950 dark:text-emerald-100">
                       {exercise.correction}
                     </p>
                   </div>
@@ -787,7 +787,7 @@ function PhaseDetailContent({ text }: { text: string }) {
 
   if (displaySteps.length === 0) {
     return (
-      <div className="rounded-xl border border-border/70 bg-white/80 px-3.5 py-3">
+      <div className="rounded-xl border border-border/70 bg-card/80 px-3.5 py-3">
         <p className="text-[0.82rem] leading-relaxed text-foreground/85">{text}</p>
       </div>
     );
@@ -802,11 +802,11 @@ function PhaseDetailContent({ text }: { text: string }) {
         return (
           <li
             key={`${step.heading}-${index}-${step.entries[0]?.slice(0, 24) ?? "step"}`}
-            className="rounded-[18px] border border-border/70 bg-white/75 p-3 shadow-sm"
+            className="rounded-[18px] border border-border/70 bg-card/75 p-3 shadow-sm"
           >
             <div className="grid gap-3 sm:grid-cols-[auto_minmax(0,1fr)]">
               <div className="flex items-start gap-3 sm:block">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-border/70 bg-white text-[0.68rem] font-semibold text-muted-foreground shadow-sm">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-border/70 bg-card text-[0.68rem] font-semibold text-muted-foreground shadow-sm">
                   {index + 1}
                 </span>
               </div>
@@ -822,23 +822,23 @@ function PhaseDetailContent({ text }: { text: string }) {
                 <div
                   className={cn(
                     "rounded-xl border px-3.5 py-3.5",
-                    tone === "instruction" && "border-l-4 border-l-violet-500 bg-violet-50/95",
+                    tone === "instruction" && "border-l-4 border-l-violet-500 bg-violet-50/95 dark:bg-violet-950/40",
                     tone !== "instruction" && GUIDE_TONE_STYLES[tone].block,
                   )}
                 >
                   <div className="space-y-3">
                     <GuideEntryGroup entries={step.entries} tone={tone} label={label} />
                     {step.instructions.length ? (
-                      <div className="space-y-2 rounded-lg border border-violet-200/90 bg-violet-100/45 p-3">
-                        <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-violet-700">
+                      <div className="space-y-2 rounded-lg border border-violet-200/90 bg-violet-100/45 p-3 dark:border-violet-800/60 dark:bg-violet-950/40">
+                        <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-violet-700 dark:text-violet-300">
                           Formulation ou consigne
                         </p>
                         {step.instructions.map((instruction, instructionIndex) => (
                           <div
                             key={`${label}-instruction-${instructionIndex}`}
-                            className="rounded-lg border border-violet-200 bg-white/90 px-3 py-2.5 shadow-sm"
+                            className="rounded-lg border border-violet-200 bg-card/90 px-3 py-2.5 shadow-sm"
                           >
-                            <p className="text-[0.82rem] font-semibold italic leading-relaxed text-violet-950">
+                            <p className="text-[0.82rem] font-semibold italic leading-relaxed text-violet-950 dark:text-violet-100">
                               {instruction}
                             </p>
                           </div>
@@ -1029,7 +1029,7 @@ function GuideEntryGroup({
           isGuideSubstep(entry) ? (
             <div
               key={`${label}-entry-${entryIndex}`}
-              className="rounded-lg border border-border/70 bg-white/85 px-3 py-2.5 shadow-sm"
+              className="rounded-lg border border-border/70 bg-card/85 px-3 py-2.5 shadow-sm"
             >
               <p className="text-[0.72rem] font-bold uppercase tracking-[0.12em] text-foreground/70">
                 {entry}
@@ -1038,7 +1038,7 @@ function GuideEntryGroup({
           ) : (
             <div
               key={`${label}-entry-${entryIndex}`}
-              className="rounded-lg border border-border/60 bg-white/80 px-3 py-2.5 shadow-sm"
+              className="rounded-lg border border-border/60 bg-card/80 px-3 py-2.5 shadow-sm"
             >
               <div className="flex gap-2.5">
                 <span
@@ -1051,7 +1051,7 @@ function GuideEntryGroup({
                   className={cn(
                     "text-[0.84rem] leading-relaxed",
                     tone === "instruction"
-                      ? "font-semibold italic text-violet-950"
+                      ? "font-semibold italic text-violet-950 dark:text-violet-100"
                       : GUIDE_TONE_STYLES[tone].text,
                   )}
                 >
@@ -1076,7 +1076,7 @@ function PrepMetricPill({
   icon?: ReactNode;
 }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-2xl border border-border/70 bg-white px-3 py-2 shadow-sm">
+    <span className="inline-flex items-center gap-2 rounded-2xl border border-border/70 bg-card px-3 py-2 shadow-sm">
       {icon ? <span className="text-muted-foreground">{icon}</span> : null}
       <span className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-muted-foreground">
         {label}
@@ -1098,7 +1098,7 @@ function PageReferencePill({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 border border-border/70 bg-white text-[0.76rem] text-foreground shadow-sm",
+        "inline-flex items-center gap-2 border border-border/70 bg-card text-[0.76rem] text-foreground shadow-sm",
         compact ? "rounded-full px-3 py-1.5" : "rounded-2xl px-3 py-2",
       )}
     >
@@ -1124,7 +1124,7 @@ function KeyBlock({
       className={cn(
         "rounded-[20px] border p-4 shadow-sm",
         accent
-          ? "border-primary/25 bg-[linear-gradient(180deg,rgba(244,247,255,1),rgba(255,255,255,1))]"
+          ? "border-primary/25 bg-gradient-to-b from-primary/10 to-card"
           : "border-border/80 bg-card",
       )}
     >
@@ -1232,15 +1232,15 @@ function DomainCard({
       className={cn(
         "rounded-[18px] border p-3.5",
         tone === "socle"
-          ? "border-sky-200/80 bg-sky-50/80"
-          : "border-amber-200/80 bg-amber-50/80",
+          ? "border-sky-200/80 bg-sky-50/80 dark:border-sky-800/50 dark:bg-sky-950/25"
+          : "border-amber-200/80 bg-amber-50/80 dark:border-amber-800/50 dark:bg-amber-950/25",
       )}
     >
       <div className="flex items-center gap-2">
         <span
           className={cn(
-            "grid h-8 w-8 place-items-center rounded-xl border bg-white/85 shadow-sm",
-            tone === "socle" ? "border-sky-200 text-sky-700" : "border-amber-200 text-amber-700",
+            "grid h-8 w-8 place-items-center rounded-xl border bg-card/85 shadow-sm",
+            tone === "socle" ? "border-sky-200 text-sky-700 dark:border-sky-800 dark:text-sky-300" : "border-amber-200 text-amber-700 dark:border-amber-800 dark:text-amber-300",
           )}
         >
           {icon}
@@ -1253,7 +1253,7 @@ function DomainCard({
         {items.map((item) => (
           <span
             key={item}
-            className="rounded-full border border-white/80 bg-white/90 px-3 py-1.5 text-[0.78rem] font-semibold leading-snug text-foreground shadow-sm"
+            className="rounded-full border border-border/70 bg-card/90 px-3 py-1.5 text-[0.78rem] font-semibold leading-snug text-foreground shadow-sm"
           >
             {item}
           </span>

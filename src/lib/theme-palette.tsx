@@ -4,7 +4,7 @@ import { createLocalStore } from "@/lib/local-store";
 
 export type ThemePaletteId = "forest" | "terracotta" | "slate" | "olive";
 export type ThemeMode = "auto" | "manual";
-export type ThemeAppearanceMode = "light" | "dark";
+export type ThemeAppearanceMode = "light" | "dark" | "auto";
 export type ThemeDensityId = "compact" | "balanced" | "comfortable";
 export type ThemeRadiusId = "tight" | "balanced" | "soft";
 export type ThemeTextSizeId = "compact" | "standard" | "large";
@@ -34,6 +34,7 @@ type ThemeContextValue = {
   mode: ThemeMode;
   appearanceMode: ThemeAppearanceMode;
   isDark: boolean;
+  systemPrefersDark: boolean;
   fontPreset: ThemeFontPresetId;
   density: ThemeDensityId;
   radius: ThemeRadiusId;
@@ -58,7 +59,7 @@ const THEME_PREFERENCES_KEY = "ardoise.theme.palette.v1";
 const DEFAULT_THEME_PREFERENCES: ThemePreferences = {
   mode: "auto",
   manualPalette: "slate",
-  appearanceMode: "light",
+  appearanceMode: "auto",
   fontPreset: "classic",
   density: "balanced",
   radius: "balanced",
@@ -306,6 +307,7 @@ export function ThemePaletteProvider({ children }: { children: ReactNode }) {
   const [preferences, setPreferences] = useState<ThemePreferences>(DEFAULT_THEME_PREFERENCES);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [todayKey, setTodayKey] = useState(() => new Date().toDateString());
+  const [systemPrefersDark, setSystemPrefersDark] = useState(false);
 
   useEffect(() => {
     setPreferences({
@@ -313,6 +315,16 @@ export function ThemePaletteProvider({ children }: { children: ReactNode }) {
       ...themePreferencesStore.get(),
     });
     setHasLoaded(true);
+  }, []);
+
+  // Suit le réglage clair/sombre du système ou du navigateur, en direct.
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return undefined;
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    setSystemPrefersDark(media.matches);
+    const handleChange = (event: MediaQueryListEvent) => setSystemPrefersDark(event.matches);
+    media.addEventListener("change", handleChange);
+    return () => media.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {
@@ -332,7 +344,8 @@ export function ThemePaletteProvider({ children }: { children: ReactNode }) {
     [automaticDate],
   );
   const activePalette = preferences.mode === "auto" ? automaticPalette : preferences.manualPalette;
-  const isDark = preferences.appearanceMode === "dark";
+  const isDark =
+    preferences.appearanceMode === "auto" ? systemPrefersDark : preferences.appearanceMode === "dark";
   const logoAppearance = isDark ? "dark" : "light";
   const automaticLabel = useMemo(
     () => getAutomaticLabel(automaticDate, automaticPalette),
@@ -389,6 +402,7 @@ export function ThemePaletteProvider({ children }: { children: ReactNode }) {
       mode: preferences.mode,
       appearanceMode: preferences.appearanceMode,
       isDark,
+      systemPrefersDark,
       fontPreset: preferences.fontPreset,
       density: preferences.density,
       radius: preferences.radius,
@@ -430,6 +444,7 @@ export function ThemePaletteProvider({ children }: { children: ReactNode }) {
       activePalette,
       preferences.density,
       isDark,
+      systemPrefersDark,
       logoAppearance,
       preferences.appearanceMode,
       preferences.fontPreset,

@@ -17,6 +17,7 @@ import {
   THEME_TEXT_SIZE_ORDER,
   THEME_TEXT_SIZE_PRESETS,
   useThemePalette,
+  type ThemeAppearanceMode,
   type ThemeDensityId,
   type ThemeFontPresetId,
   type ThemePaletteId,
@@ -166,6 +167,7 @@ export function ThemeControls({ className }: { className?: string }) {
     mode,
     radius,
     setAppearanceMode,
+    systemPrefersDark,
     setDensity,
     setFontPreset,
     setManualPalette,
@@ -207,12 +209,17 @@ export function ThemeControls({ className }: { className?: string }) {
                 <SunMedium className="h-3.5 w-3.5 text-ochre" />
               )}
               {isDark ? "Mode nuit actif" : "Mode jour actif"}
+              {appearanceMode === "auto" ? " · automatique" : ""}
             </div>
             <p className="mt-1 text-sm text-muted-foreground">
               {(mode === "auto"
                 ? `${automaticLabel} appliqué partout dans l'app.`
                 : `${THEME_PALETTES[manualPalette].label} appliquée partout dans l'app.`) +
-                (isDark ? " En version nocturne." : " En version lumineuse.")}
+                (appearanceMode === "auto"
+                  ? ` Suit le réglage ${systemPrefersDark ? "sombre" : "clair"} de l'appareil.`
+                  : isDark
+                    ? " En version nocturne."
+                    : " En version lumineuse.")}
             </p>
           </div>
 
@@ -231,18 +238,23 @@ export function ThemeControls({ className }: { className?: string }) {
             />
           </div>
 
-          <div className="flex items-start justify-between gap-3 rounded-xl border border-border bg-card px-3 py-3">
-            <div>
-              <p className="text-sm font-semibold text-foreground">Mode nuit</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                Passe toute l’interface en version nocturne, sans changer la palette active.
-              </p>
+          <div className="rounded-xl border border-border bg-card px-3 py-3">
+            <p className="text-sm font-semibold text-foreground">Apparence</p>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+              En automatique, l’interface suit le réglage clair/sombre de l’appareil et bascule
+              toute seule, sans changer la palette active.
+            </p>
+            <div className="mt-3">
+              <PreferenceChoiceGroup<ThemeAppearanceMode>
+                value={appearanceMode}
+                onChange={setAppearanceMode}
+                options={[
+                  { value: "light", label: "Jour" },
+                  { value: "dark", label: "Nuit" },
+                  { value: "auto", label: "Automatique" },
+                ]}
+              />
             </div>
-            <Switch
-              checked={appearanceMode === "dark"}
-              onCheckedChange={(checked) => setAppearanceMode(checked ? "dark" : "light")}
-              aria-label="Activer le mode nuit"
-            />
           </div>
 
           <div>
