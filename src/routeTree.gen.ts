@@ -23,6 +23,7 @@ import { Route as GroupesBesoinRouteImport } from './routes/groupes-besoin'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MessagerieRouteImport } from './routes/messagerie'
+import { Route as OptionsRouteImport } from './routes/options'
 import { Route as OrthographemicRouteImport } from './routes/orthographemic'
 import { Route as ProgrammationRouteImport } from './routes/programmation'
 import { Route as ProgrammationAnnuelleRouteImport } from './routes/programmation-annuelle'
@@ -110,6 +111,11 @@ const LoginRoute = LoginRouteImport.update({
 const MessagerieRoute = MessagerieRouteImport.update({
   id: '/messagerie',
   path: '/messagerie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OptionsRoute = OptionsRouteImport.update({
+  id: '/options',
+  path: '/options',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrthographemicRoute = OrthographemicRouteImport.update({
@@ -221,6 +227,7 @@ export interface FileRoutesByFullPath {
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
   '/messagerie': typeof MessagerieRoute
+  '/options': typeof OptionsRoute
   '/orthographemic': typeof OrthographemicRoute
   '/programmation': typeof ProgrammationRoute
   '/programmation-annuelle': typeof ProgrammationAnnuelleRoute
@@ -255,6 +262,7 @@ export interface FileRoutesByTo {
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
   '/messagerie': typeof MessagerieRoute
+  '/options': typeof OptionsRoute
   '/orthographemic': typeof OrthographemicRoute
   '/programmation': typeof ProgrammationRoute
   '/programmation-annuelle': typeof ProgrammationAnnuelleRoute
@@ -290,6 +298,7 @@ export interface FileRoutesById {
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
   '/messagerie': typeof MessagerieRoute
+  '/options': typeof OptionsRoute
   '/orthographemic': typeof OrthographemicRoute
   '/programmation': typeof ProgrammationRoute
   '/programmation-annuelle': typeof ProgrammationAnnuelleRoute
@@ -326,6 +335,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/messagerie'
+    | '/options'
     | '/orthographemic'
     | '/programmation'
     | '/programmation-annuelle'
@@ -360,6 +370,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/messagerie'
+    | '/options'
     | '/orthographemic'
     | '/programmation'
     | '/programmation-annuelle'
@@ -394,6 +405,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/messagerie'
+    | '/options'
     | '/orthographemic'
     | '/programmation'
     | '/programmation-annuelle'
@@ -429,6 +441,7 @@ export interface RootRouteChildren {
   JournalRoute: typeof JournalRoute
   LoginRoute: typeof LoginRoute
   MessagerieRoute: typeof MessagerieRoute
+  OptionsRoute: typeof OptionsRoute
   OrthographemicRoute: typeof OrthographemicRoute
   ProgrammationRoute: typeof ProgrammationRoute
   ProgrammationAnnuelleRoute: typeof ProgrammationAnnuelleRoute
@@ -547,6 +560,13 @@ declare module '@tanstack/react-router' {
       path: '/messagerie'
       fullPath: '/messagerie'
       preLoaderRoute: typeof MessagerieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/options': {
+      id: '/options'
+      path: '/options'
+      fullPath: '/options'
+      preLoaderRoute: typeof OptionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/orthographemic': {
@@ -693,6 +713,7 @@ const rootRouteChildren: RootRouteChildren = {
   JournalRoute: JournalRoute,
   LoginRoute: LoginRoute,
   MessagerieRoute: MessagerieRoute,
+  OptionsRoute: OptionsRoute,
   OrthographemicRoute: OrthographemicRoute,
   ProgrammationRoute: ProgrammationRoute,
   ProgrammationAnnuelleRoute: ProgrammationAnnuelleRoute,

@@ -63,7 +63,12 @@ const ROMAIN_ROLLAND_COLLEAGUE_STUDENTS: Student[] = [
   { id: "grimal-6", firstName: "Ayaz", lastName: "Dursun" },
   { id: "grimal-7", firstName: "Lyna", lastName: "Ettabia" },
   { id: "grimal-10", firstName: "Mah-Bintou", lastName: "Keita" },
-  { id: "grimal-11", firstName: "Arielle", lastName: "Ekoue" },
+  {
+    id: "grimal-11",
+    firstName: "Arielle",
+    lastName: "Ekoue",
+    radiatedOn: "2026-09-09",
+  },
   { id: "grimal-12", firstName: "Aymen Isaac", lastName: "Kabongo Mbiya" },
   { id: "durand-1", firstName: "Thania", lastName: "Agad" },
   { id: "durand-2", firstName: "Nousseyba", lastName: "Kherbach" },

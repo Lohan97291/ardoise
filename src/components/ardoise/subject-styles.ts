@@ -37,3 +37,29 @@ export const SUBJECT_STRIP: Record<SubjectKey, string> = {
   rituels: "bg-subject-rituels",
   pause: "bg-subject-pause",
 };
+
+/** Libellés courts utilisés dans les listes denses (sélecteur de ressources). */
+export const SUBJECT_SHORT_LABEL: Record<SubjectKey, string> = {
+  francais: "Français",
+  maths: "Mathématiques",
+  qlm: "Questionner le monde",
+  emc: "EMC",
+  eps: "EPS",
+  arts: "Arts",
+  lve: "Anglais",
+  rituels: "Rituels",
+  pause: "Pause",
+};
+
+/** Petite icône emoji pour repérer la matière d'un coup d'œil. */
+export const SUBJECT_EMOJI: Record<SubjectKey, string> = {
+  francais: "📚",
+  maths: "🔢",
+  qlm: "🌍",
+  emc: "🤝",
+  eps: "🤸",
+  arts: "🎨",
+  lve: "🇬🇧",
+  rituels: "⏰",
+  pause: "☕",
+};

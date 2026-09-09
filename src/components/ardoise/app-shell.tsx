@@ -1,19 +1,17 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import {
   BookOpen,
   CalendarCheck,
   CalendarClock,
   CalendarDays,
-  Cloud,
   ClipboardCheck,
   ClipboardList,
   LayoutDashboard,
-  LogOut,
   Mail,
-  Palette,
   Pin,
   PinOff,
   Printer,
+  Settings2,
   Users2,
   type LucideIcon,
 } from "lucide-react";
@@ -28,12 +26,9 @@ import {
   markMailIdsSeen,
 } from "@/lib/nav-alerts-storage";
 import { CLOUD_SYNC_EVENT, getCloudSyncState, initCloudAutoSync } from "@/lib/cloud-sync";
-import { ThemeControls } from "@/components/ardoise/theme-controls";
-import { ProfileSettingsPanel } from "@/components/ardoise/profile-settings-panel";
 import { AttendanceReminderBanner } from "@/components/ardoise/attendance-reminder-banner";
 import { ChangelogBanner } from "@/components/ardoise/changelog-banner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Tooltip,
   TooltipContent,
@@ -47,7 +42,6 @@ import {
   type ProfileSettings,
 } from "@/lib/profile-settings";
 import {
-  APP_EDITION_STORAGE_KEY,
   FORCE_PASSWORD_CHANGE_STORAGE_KEY,
   getEditionLabel,
   isRouteEnabled,
@@ -113,6 +107,7 @@ const PAGE_LABELS: Record<NavItem["to"], string> = {
   "/groupes-besoin": "Groupes de besoin",
   "/ateliers-reprise": "Ateliers de reprise",
   "/messagerie": "Messagerie",
+  "/options": "Options",
 };
 
 const SECONDARY: { label: string; icon: LucideIcon }[] = [{ label: "Photocopies", icon: Printer }];
@@ -124,8 +119,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [pinned, setPinned] = useState(false);
   const [hovered, setHovered] = useState(false);
   const sidebarCompact = !pinned && !hovered;
-  const [optionsOpen, setOptionsOpen] = useState(false);
-  const [mustChangePassword, setMustChangePassword] = useState(false);
+  const navigate = useNavigate();
   const [mailAlertCount, setMailAlertCount] = useState(0);
   const [agendaAlertCount, setAgendaAlertCount] = useState(0);
   const [mailIds, setMailIds] = useState<string[]>([]);
@@ -155,11 +149,10 @@ export function AppShell({ children }: { children: ReactNode }) {
     const shouldPrompt =
       isColleagueEdition &&
       window.localStorage.getItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY) === "1";
-    setMustChangePassword(shouldPrompt);
-    if (shouldPrompt) {
-      setOptionsOpen(true);
+    if (shouldPrompt && pathname !== "/options") {
+      void navigate({ to: "/options" });
     }
-  }, [isColleagueEdition]);
+  }, [isColleagueEdition, pathname, navigate]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -603,82 +596,40 @@ export function AppShell({ children }: { children: ReactNode }) {
                 {mailAlertCount + agendaAlertCount > 1 ? "s" : ""}
               </span>
             ) : null}
-            <Popover open={optionsOpen} onOpenChange={setOptionsOpen}>
-              <PopoverTrigger asChild>
-                <button
-                  type="button"
-                  className="flex shrink-0 items-center gap-2 rounded-2xl border border-border/80 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_38%,transparent))] px-2 py-1.5 text-left shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-raised sm:gap-3 sm:px-2.5"
-                  aria-label="Options et apparence"
-                  title="Options et apparence"
-                >
-                  <Avatar className="h-10 w-10 border border-primary/15 shadow-card">
-                    <AvatarFallback className="bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-primary)_90%,transparent),color-mix(in_oklab,var(--color-primary)_70%,var(--color-sage)))] text-sm font-semibold text-primary-foreground">
-                      {profile.initials || "MB"}
-                    </AvatarFallback>
-                  </Avatar>
-                  <span className="hidden min-w-0 sm:block">
-                    <span className="block truncate text-sm font-semibold text-foreground">
-                      {profile.displayName || "M. Boulard"}
-                    </span>
-                    <span className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <span
-                        className={cn(
-                          "h-2 w-2 rounded-full",
-                          cloudState.configured ? "bg-sage" : "bg-amber-400",
-                        )}
-                      />
-                      {cloudState.configured ? "Cloud prêt" : "Cloud local"}
-                    </span>
-                    {isColleagueEdition ? (
-                      <span className="mt-0.5 block text-[0.68rem] font-medium tracking-[0.08em] text-muted-foreground uppercase">
-                        {getEditionLabel(edition)}
-                      </span>
-                    ) : null}
-                  </span>
-                  <span className="grid h-7 w-7 place-items-center rounded-full border border-border/70 bg-secondary/85 text-primary sm:h-8 sm:w-8">
-                    <Palette className="h-3.5 w-3.5" />
-                  </span>
-                </button>
-              </PopoverTrigger>
-              <PopoverContent align="end" className="max-h-[80vh] w-[23rem] overflow-y-auto">
-                <ThemeControls />
-                <div className="mt-4 space-y-2 border-t border-border pt-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                      <span className="h-1.5 w-1.5 rounded-full bg-sage" />
-                      {profile.classLabel}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                      <Cloud className="h-3.5 w-3.5" />
-                      {cloudState.configured ? "Cloud prêt" : "Cloud local"}
-                    </span>
-                  </div>
-                  <ProfileSettingsPanel
-                    mustChangePassword={mustChangePassword}
-                    onPasswordChanged={() => {
-                      if (typeof window !== "undefined") {
-                        window.localStorage.removeItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY);
-                      }
-                      setMustChangePassword(false);
-                    }}
+            <Link
+              to="/options"
+              className="flex shrink-0 items-center gap-2 rounded-2xl border border-border/80 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_38%,transparent))] px-2 py-1.5 text-left shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-raised sm:gap-3 sm:px-2.5"
+              aria-label="Ouvrir les options"
+              title="Options"
+            >
+              <Avatar className="h-10 w-10 border border-primary/15 shadow-card">
+                <AvatarFallback className="bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-primary)_90%,transparent),color-mix(in_oklab,var(--color-primary)_70%,var(--color-sage)))] text-sm font-semibold text-primary-foreground">
+                  {profile.initials || "MB"}
+                </AvatarFallback>
+              </Avatar>
+              <span className="hidden min-w-0 sm:block">
+                <span className="block truncate text-sm font-semibold text-foreground">
+                  {profile.displayName || "M. Boulard"}
+                </span>
+                <span className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <span
+                    className={cn(
+                      "h-2 w-2 rounded-full",
+                      cloudState.configured ? "bg-sage" : "bg-amber-400",
+                    )}
                   />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      window.localStorage.removeItem(APP_EDITION_STORAGE_KEY);
-                      window.localStorage.removeItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY);
-                      void fetch("/api/auth/logout", { method: "POST" }).finally(() => {
-                        window.location.href = "/login";
-                      });
-                    }}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                  >
-                    <LogOut className="h-4 w-4" />
-                    Se déconnecter
-                  </button>
-                </div>
-              </PopoverContent>
-            </Popover>
+                  {cloudState.configured ? "Cloud prêt" : "Cloud local"}
+                </span>
+                {isColleagueEdition ? (
+                  <span className="mt-0.5 block text-[0.68rem] font-medium tracking-[0.08em] text-muted-foreground uppercase">
+                    {getEditionLabel(edition)}
+                  </span>
+                ) : null}
+              </span>
+              <span className="grid h-7 w-7 place-items-center rounded-full border border-border/70 bg-secondary/85 text-primary sm:h-8 sm:w-8">
+                <Settings2 className="h-3.5 w-3.5" />
+              </span>
+            </Link>
           </div>
         </header>
         <ChangelogBanner />

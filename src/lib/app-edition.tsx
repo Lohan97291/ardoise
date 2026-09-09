@@ -25,7 +25,8 @@ export type AppRoutePath =
   | "/resultats-exercices"
   | "/groupes-besoin"
   | "/ateliers-reprise"
-  | "/messagerie";
+  | "/messagerie"
+  | "/options";
 
 export type AppEdition = "full" | "collegue";
 
@@ -58,6 +59,7 @@ const ENABLED_ROUTES: Record<AppEdition, AppRoutePath[]> = {
     "/groupes-besoin",
     "/ateliers-reprise",
     "/messagerie",
+    "/options",
   ],
   collegue: [
     "/",
@@ -68,6 +70,7 @@ const ENABLED_ROUTES: Record<AppEdition, AppRoutePath[]> = {
     "/carnet-notes",
     "/eleves",
     "/resultats-exercices",
+    "/options",
   ],
 };
 
