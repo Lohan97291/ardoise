@@ -529,6 +529,19 @@ export function getAttendance(date: string, moment: AttendanceMoment = "morning"
   return normalizeAttendanceStore(record?.[moment]);
 }
 
+/**
+ * Indique si l'appel a réellement été enregistré pour ce jour/moment, à la
+ * différence de getAttendance() qui renvoie toujours une liste par défaut
+ * ("tout le monde présent") même si rien n'a jamais été saisi.
+ */
+export function hasAttendanceRecorded(
+  date: string,
+  moment: AttendanceMoment = "morning",
+): boolean {
+  const record = readAttendanceDayRecord(date);
+  return Boolean(record?.[moment]);
+}
+
 export function saveAttendance(
   date: string,
   data: AttendanceStore,

@@ -593,7 +593,11 @@ function Dashboard() {
                         <span>Durée prévue : {fmtDur(focusTimer.total)}</span>
                         <span>Fin prévue : {currentFocusSession?.end}</span>
                       </span>
-                    ) : null}
+                    ) : (
+                      <span className="mt-2 text-[0.65rem] text-muted-foreground/70 opacity-0 transition-opacity group-hover:opacity-100">
+                        Cliquer pour le détail
+                      </span>
+                    )}
                   </button>
 
                 </div>
@@ -772,6 +776,12 @@ function Dashboard() {
               </Button>
             </div>
 
+            {pendingPreparationItems.length > 0 ? (
+              <p className="mt-2 text-xs font-semibold text-danger-strong">
+                {pendingPreparationItems.length} à anticiper
+              </p>
+            ) : null}
+
             {preparationPreview.length > 0 ? (
               <ul className="mt-3 space-y-1.5">
                 {preparationPreview.map((item) => (
@@ -810,7 +820,7 @@ function Dashboard() {
                 ))}
               </ul>
             ) : (
-              <p className={WIDGET_EMPTY}>Rien à préparer.</p>
+              <p className={WIDGET_EMPTY}>Aucune photocopie ni matériel spécifique à prévoir.</p>
             )}
 
             {pendingPreparationItems.length > preparationPreview.length ? (
@@ -828,6 +838,10 @@ function Dashboard() {
               <DialogContent className="max-w-4xl p-0">
                 <DialogHeader className="border-b border-border px-6 py-5">
                   <DialogTitle>Préparation de la journée</DialogTitle>
+                  <DialogDescription>
+                    Retrouve ici les photocopies, manipulations et ajouts personnels liés aux
+                    séances du jour. Le matériel habituel de classe n'apparaît pas.
+                  </DialogDescription>
                 </DialogHeader>
 
                 <div className="grid gap-0 md:grid-cols-[minmax(0,1.15fr)_320px]">
@@ -835,7 +849,7 @@ function Dashboard() {
                     <div className="space-y-4 p-6">
                       {preparationGroups.length === 0 ? (
                         <div className="rounded-2xl border border-dashed border-border bg-secondary/30 px-5 py-8 text-center text-sm text-muted-foreground">
-                          Rien à préparer.
+                          Rien à préparer pour le moment.
                         </div>
                       ) : (
                         preparationGroups.map((group) => (
@@ -914,6 +928,10 @@ function Dashboard() {
                   <div className="space-y-4 px-6 py-5">
                     <div>
                       <h3 className="text-sm font-semibold">Ajouter quelque chose à préparer</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        Une ligne = un élément. Pratique pour les photocopies, les jeux de cartes,
+                        le matériel de manipulation ou un support à découper.
+                      </p>
                     </div>
 
                     <form
@@ -1015,7 +1033,7 @@ function Dashboard() {
               Mémo
             </h2>
             {memos.length === 0 ? (
-              <p className={WIDGET_EMPTY}>Aucune note.</p>
+              <p className={WIDGET_EMPTY}>Notez vos idées pour ne rien oublier.</p>
             ) : (
               <ul className="mt-3 space-y-1.5">
                 {memos.map((m) => (
@@ -1176,7 +1194,7 @@ function Dashboard() {
                 ) : null}
 
                 {agendaItems.length === 0 && syncedAgendaEvents.length === 0 ? (
-                  <p className={WIDGET_EMPTY}>Rien aujourd'hui.</p>
+                  <p className={WIDGET_EMPTY}>Rien de prévu pour l'instant.</p>
                 ) : (
                   <ol className="mt-3 space-y-0.5">
                     {agendaItems.map((item) => (
@@ -1246,7 +1264,7 @@ function Dashboard() {
                   </Button>
                 </div>
                 {recentMails.length === 0 ? (
-                  <p className={WIDGET_EMPTY}>Aucun mail.</p>
+                  <p className={WIDGET_EMPTY}>Aucun mail analysé pour l'instant.</p>
                 ) : (
                   <ul className="mt-3 space-y-1.5">
                     {recentMails.map((mail) => (
@@ -1348,7 +1366,7 @@ function Dashboard() {
             ) : null}
 
             {signals.length === 0 && manualSignals.length === 0 ? (
-              <p className={WIDGET_EMPTY}>Aucun signal.</p>
+              <p className={WIDGET_EMPTY}>Aucun signal pour l'instant.</p>
             ) : (
               <ul className="mt-3 space-y-1.5">
                 {signals.map(({ student, reason }) => (

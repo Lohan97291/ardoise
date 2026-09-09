@@ -511,8 +511,8 @@ function ResourcesPage() {
           </section>
         ) : null}
 
-        {screen === "sommaire" && selectedMethod ? (
-          <section className="mt-6 max-w-3xl">
+        {(screen === "sommaire" || screen === "seance") && selectedMethod ? (
+          <section className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-5">
             <div className="space-y-4">
               <header className="rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3.5 shadow-card sm:rounded-[30px] sm:p-5">
                 <div className="flex items-center gap-2">
@@ -526,16 +526,46 @@ function ResourcesPage() {
                   </Button>
                 </div>
                 <p className="eyebrow mt-3">Sommaire du guide</p>
-                <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
-                  {selectedMethod.label}
-                </h2>
+                <nav
+                  className="mt-1 flex min-w-0 flex-wrap items-center gap-1.5"
+                  aria-label="Fil d'Ariane"
+                >
+                  <button
+                    type="button"
+                    onClick={backToSummary}
+                    className={cn(
+                      "min-w-0 truncate rounded-lg px-1 text-xl font-bold tracking-tight transition-colors sm:text-2xl",
+                      selectedSequence
+                        ? "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                        : "text-foreground",
+                    )}
+                  >
+                    {selectedMethod.label}
+                  </button>
+                  {selectedSequence ? (
+                    <>
+                      <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
+                      <span className="min-w-0 truncate rounded-lg px-1 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                        {selectedSequence.label}
+                      </span>
+                    </>
+                  ) : null}
+                </nav>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
-                    {selectedMethod.sequences.length} partie{selectedMethod.sequences.length > 1 ? "s" : ""}
-                  </span>
-                  <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
-                    {selectedMethod.sequences.reduce((total, sequence) => total + sequence.sessions.length, 0)} séance{selectedMethod.sequences.reduce((total, sequence) => total + sequence.sessions.length, 0) > 1 ? "s" : ""}
-                  </span>
+                  {selectedSequence ? (
+                    <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
+                      {selectedSequence.sessions.length} séance{selectedSequence.sessions.length > 1 ? "s" : ""}
+                    </span>
+                  ) : (
+                    <>
+                      <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
+                        {selectedMethod.sequences.length} partie{selectedMethod.sequences.length > 1 ? "s" : ""}
+                      </span>
+                      <span className="rounded-full border border-border bg-card px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
+                        {selectedMethod.sequences.reduce((total, sequence) => total + sequence.sessions.length, 0)} séance{selectedMethod.sequences.reduce((total, sequence) => total + sequence.sessions.length, 0) > 1 ? "s" : ""}
+                      </span>
+                    </>
+                  )}
                 </div>
               </header>
 
@@ -550,72 +580,50 @@ function ResourcesPage() {
               </div>
 
               <div className="space-y-2">
-                {(q
-                  ? searchResults.filter((item) => item.method.id === selectedMethod.id).map((item) => item.sequence)
-                  : selectedMethod.sequences
-                )
-                  .filter((sequence, index, array) => array.findIndex((item) => item.id === sequence.id) === index)
-                  .map((sequence) => {
-                    const done = sequence.sessions.filter((item) => item.done).length;
-                    return (
-                      <button
-                        key={sequence.id}
-                        type="button"
-                        onClick={() => openSequence(sequence)}
-                        className="flex w-full items-center gap-3 rounded-[20px] border border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_95%,transparent),color-mix(in_oklab,var(--color-secondary)_18%,transparent))] px-3.5 py-3 text-left shadow-card transition-colors hover:bg-secondary sm:rounded-[24px] sm:px-4 sm:py-3.5"
-                      >
-                        <FolderOpen className="h-4 w-4 shrink-0 text-muted-foreground" />
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-sm font-semibold text-foreground">
-                            {sequence.label}
-                          </span>
-                          <Progress
-                            value={sequence.sessions.length > 0 ? (done / sequence.sessions.length) * 100 : 0}
-                            className="mt-2 h-1"
-                          />
-                          <span className="mt-1 block text-xs text-muted-foreground">
-                            {sequence.sessions.length} séance{sequence.sessions.length > 1 ? "s" : ""}
-                          </span>
-                        </span>
-                        <span className="shrink-0 rounded-full border border-border bg-secondary/40 px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
-                          {done}/{sequence.sessions.length}
-                        </span>
-                        <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
-                      </button>
-                    );
-                  })}
-              </div>
-            </div>
-          </section>
-        ) : null}
-
-        {screen === "seance" && selectedMethod && selectedSequence ? (
-          <section className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-5">
-            <div className="space-y-4">
-              <header className="rounded-[24px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-secondary)_24%,transparent))] p-3.5 shadow-card sm:rounded-[30px] sm:p-5">
-                <div className="flex items-center gap-2">
-                  <Button variant="ghost" size="sm" className="h-8 px-2.5" onClick={backToSummary}>
-                    <ArrowLeft className="mr-1.5 h-4 w-4" />
-                    Sommaire
-                  </Button>
-                </div>
-                <p className="eyebrow mt-3">Séances dans l’ordre du guide</p>
-                <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground">
-                  {selectedSequence.label}
-                </h2>
-                <p className="mt-1 text-sm text-muted-foreground">{selectedMethod.label}</p>
-              </header>
-
-              <div className="space-y-2">
-                {selectedSequence.sessions.map((session) => (
-                  <SessionRow
-                    key={session.id}
-                    label={session.label}
-                    done={session.done}
-                    selected={selectedSession?.id === session.id}
-                    onClick={() => setSelectedSession(session)}
-                  />
-                ))}
+                {selectedSequence
+                  ? selectedSequence.sessions.map((session) => (
+                      <SessionRow
+                        key={session.id}
+                        label={session.label}
+                        done={session.done}
+                        selected={selectedSession?.id === session.id}
+                        onClick={() => setSelectedSession(session)}
+                      />
+                    ))
+                  : (q
+                      ? searchResults.filter((item) => item.method.id === selectedMethod.id).map((item) => item.sequence)
+                      : selectedMethod.sequences
+                    )
+                      .filter((sequence, index, array) => array.findIndex((item) => item.id === sequence.id) === index)
+                      .map((sequence) => {
+                        const done = sequence.sessions.filter((item) => item.done).length;
+                        return (
+                          <button
+                            key={sequence.id}
+                            type="button"
+                            onClick={() => openSequence(sequence)}
+                            className="flex w-full items-center gap-3 rounded-[20px] border border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_95%,transparent),color-mix(in_oklab,var(--color-secondary)_18%,transparent))] px-3.5 py-3 text-left shadow-card transition-colors hover:bg-secondary sm:rounded-[24px] sm:px-4 sm:py-3.5"
+                          >
+                            <FolderOpen className="h-4 w-4 shrink-0 text-muted-foreground" />
+                            <span className="min-w-0 flex-1">
+                              <span className="block truncate text-sm font-semibold text-foreground">
+                                {sequence.label}
+                              </span>
+                              <Progress
+                                value={sequence.sessions.length > 0 ? (done / sequence.sessions.length) * 100 : 0}
+                                className="mt-2 h-1"
+                              />
+                              <span className="mt-1 block text-xs text-muted-foreground">
+                                {sequence.sessions.length} séance{sequence.sessions.length > 1 ? "s" : ""}
+                              </span>
+                            </span>
+                            <span className="shrink-0 rounded-full border border-border bg-secondary/40 px-2.5 py-1 text-[0.72rem] font-medium text-muted-foreground">
+                              {done}/{sequence.sessions.length}
+                            </span>
+                            <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
+                          </button>
+                        );
+                      })}
               </div>
             </div>
 
@@ -698,7 +706,7 @@ function ResourcesPage() {
           </section>
         ) : null}
 
-        {q && screen === "sommaire" && selectedMethod ? (
+        {q && (screen === "sommaire" || screen === "seance") && selectedMethod && !selectedSequence ? (
           <section className="mt-5 rounded-[24px] border border-border bg-card p-4 shadow-card">
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-primary" />

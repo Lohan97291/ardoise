@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import { AssistanceButtons } from "@/components/ardoise/correction/assistance-buttons";
@@ -58,31 +59,55 @@ export function StudentModeView({
     setTick((v) => v + 1);
   }
 
+  // Un élève est "terminé" sur la page courante si tous ses exercices de la page sont notés.
+  const pagePlanIds = items.map((item) => `${notebookPagePlanId(source, page)}::${item.id}`);
+  function studentPageComplete(sId: string): boolean {
+    if (pagePlanIds.length === 0) return false;
+    return pagePlanIds.every((pid) => Boolean(getPlanResults(pid)[sId]));
+  }
+
   return (
     <div className="grid h-full grid-cols-1 gap-4 overflow-hidden md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)]">
       <div className="flex flex-col gap-1.5 overflow-y-auto rounded-2xl border border-border bg-card p-3 shadow-card">
         <p className="eyebrow px-1">Élèves</p>
-        {students.map((s) => (
-          <button
-            key={s.id}
-            type="button"
-            onClick={() => setStudentId(s.id)}
-            className={cn(
-              "flex items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition-colors",
-              s.id === studentId ? "border-primary bg-primary/6" : "border-border hover:bg-secondary",
-            )}
-          >
-            <span className="grid h-6 w-6 place-items-center rounded-full bg-secondary text-[0.65rem]">
-              {initials(s)}
-            </span>
-            <span className="flex min-w-0 flex-col text-left">
-              <span className="truncate text-sm font-semibold text-foreground">{s.firstName}</span>
-              <span className="truncate text-[0.68rem] uppercase tracking-wide text-muted-foreground">
-                {s.lastName}
+        {students.map((s) => {
+          const complete = studentPageComplete(s.id);
+          return (
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => setStudentId(s.id)}
+              className={cn(
+                "flex items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold transition-colors",
+                s.id === studentId
+                  ? "border-primary bg-primary/6"
+                  : complete
+                    ? "border-transparent bg-muted/40 text-muted-foreground hover:bg-secondary"
+                    : "border-border hover:bg-secondary",
+              )}
+            >
+              <span
+                className={cn(
+                  "grid h-6 w-6 shrink-0 place-items-center rounded-full text-[0.65rem]",
+                  complete ? "bg-status-a/40 text-status-a-foreground" : "bg-secondary",
+                )}
+              >
+                {complete ? <Check className="h-3.5 w-3.5 text-status-a-solid" /> : initials(s)}
               </span>
-            </span>
-          </button>
-        ))}
+              <span className="flex min-w-0 flex-1 flex-col text-left">
+                <span className="truncate text-sm font-semibold">{s.firstName}</span>
+                <span className="truncate text-[0.68rem] uppercase tracking-wide text-muted-foreground">
+                  {s.lastName}
+                </span>
+              </span>
+              {complete ? (
+                <span className="shrink-0 rounded-full bg-status-a/20 px-1.5 py-0.5 text-[0.6rem] font-bold text-status-a-foreground">
+                  page finie
+                </span>
+              ) : null}
+            </button>
+          );
+        })}
       </div>
 
       <div className="flex flex-col gap-3 overflow-y-auto rounded-2xl border border-border bg-card p-3 shadow-card">
@@ -124,7 +149,7 @@ export function StudentModeView({
             const status = student ? results[student.id] : undefined;
             const help = student ? assistance[student.id] : undefined;
             return (
-              <div key={item.id} className="rounded-[22px] border border-border/70 bg-background/70 p-3 shadow-sm">
+              <div key={item.id} className="rounded-xl border border-border p-3">
                 <div className="mb-2 flex items-center justify-between gap-2">
                   <span className="text-sm font-semibold">{item.label}</span>
                   <span className="flex items-center gap-1.5">
@@ -150,6 +175,8 @@ export function StudentModeView({
                       onChange={(next) => markAssistance(item.id, next)}
                     />
                     <CommentField
+                      key={`${planId}::${student.id}`}
+                      resetKey={`${planId}::${student.id}`}
                       className="mt-2"
                       value={getComment(planId, student.id)}
                       onSave={(value) => setComment(planId, student.id, value)}

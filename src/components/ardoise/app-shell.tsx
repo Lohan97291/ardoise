@@ -30,6 +30,8 @@ import {
 import { CLOUD_SYNC_EVENT, getCloudSyncState, initCloudAutoSync } from "@/lib/cloud-sync";
 import { ThemeControls } from "@/components/ardoise/theme-controls";
 import { ProfileSettingsPanel } from "@/components/ardoise/profile-settings-panel";
+import { AttendanceReminderBanner } from "@/components/ardoise/attendance-reminder-banner";
+import { ChangelogBanner } from "@/components/ardoise/changelog-banner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
@@ -582,8 +584,14 @@ export function AppShell({ children }: { children: ReactNode }) {
 
           <div className="hidden min-w-0 flex-col lg:flex">
             <span className="eyebrow">Ardoise</span>
-            <span className="panel-heading truncate text-[0.95rem]">
-              {PAGE_LABELS[pathname as keyof typeof PAGE_LABELS] ?? "Ardoise"}
+            <span className="flex min-w-0 items-center gap-2">
+              <span className="panel-heading truncate text-[0.95rem]">
+                {PAGE_LABELS[pathname as keyof typeof PAGE_LABELS] ?? "Ardoise"}
+              </span>
+              <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border/70 bg-secondary/70 px-2.5 py-0.5 text-[0.68rem] font-semibold text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-sage" />
+                {profile.classLabel}
+              </span>
             </span>
           </div>
 
@@ -673,6 +681,8 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Popover>
           </div>
         </header>
+        <ChangelogBanner />
+        <AttendanceReminderBanner />
         <main className="animate-fade-in">{routeEnabled ? children : restrictedPage}</main>
       </div>
     </div>

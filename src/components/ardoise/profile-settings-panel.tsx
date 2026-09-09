@@ -1,4 +1,5 @@
 import {
+  BellRing,
   CloudAlert,
   CloudDownload,
   CloudUpload,
@@ -14,12 +15,18 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import {
   CLOUD_SYNC_EVENT,
   getCloudSyncState,
   pullCloudStateToLocal,
   pushLocalStateToCloud,
 } from "@/lib/cloud-sync";
+import {
+  getAttendanceReminderSettings,
+  saveAttendanceReminderSettings,
+  type AttendanceReminderSettings,
+} from "@/lib/attendance-reminder";
 import {
   DEFAULT_PROFILE_SETTINGS,
   readProfileSettings,
@@ -61,11 +68,19 @@ export function ProfileSettingsPanel({
   const [downloadingCloud, setDownloadingCloud] = useState(false);
   const [checkingCloud, setCheckingCloud] = useState(false);
   const [reloadRecommended, setReloadRecommended] = useState(false);
+  const [attendanceReminder, setAttendanceReminder] = useState<AttendanceReminderSettings>(
+    getAttendanceReminderSettings,
+  );
 
   useEffect(() => {
     setProfile(readProfileSettings());
     setSyncState(getCloudSyncState());
+    setAttendanceReminder(getAttendanceReminderSettings());
   }, []);
+
+  function updateAttendanceReminder(patch: Partial<AttendanceReminderSettings>) {
+    setAttendanceReminder(saveAttendanceReminderSettings(patch));
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -300,6 +315,62 @@ export function ProfileSettingsPanel({
               <RotateCcw className="mr-1.5 h-4 w-4" />
               Réinitialiser
             </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden rounded-2xl border border-border/80 bg-card shadow-sm">
+        <div className="border-b border-border/70 bg-secondary/25 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-primary/10 text-primary">
+              <BellRing className="h-4 w-4" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-foreground">Rappel de l’appel</p>
+              <p className="text-xs text-muted-foreground">
+                Une alerte si l’appel n’est pas fait, les jours d’école.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4 p-4">
+          <div className="flex items-center justify-between gap-3 rounded-2xl border border-border/70 bg-secondary/20 px-3 py-2.5">
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-foreground">Activer le rappel</p>
+              <p className="text-xs text-muted-foreground">
+                Désactive complètement l’alerte si besoin.
+              </p>
+            </div>
+            <Switch
+              checked={attendanceReminder.enabled}
+              onCheckedChange={(checked) => updateAttendanceReminder({ enabled: checked })}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="attendance-reminder-morning">Rappel du matin</Label>
+              <Input
+                id="attendance-reminder-morning"
+                type="time"
+                value={attendanceReminder.morningTime}
+                disabled={!attendanceReminder.enabled}
+                onChange={(event) => updateAttendanceReminder({ morningTime: event.target.value })}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="attendance-reminder-afternoon">Rappel de l’après-midi</Label>
+              <Input
+                id="attendance-reminder-afternoon"
+                type="time"
+                value={attendanceReminder.afternoonTime}
+                disabled={!attendanceReminder.enabled}
+                onChange={(event) =>
+                  updateAttendanceReminder({ afternoonTime: event.target.value })
+                }
+              />
+            </div>
           </div>
         </div>
       </section>

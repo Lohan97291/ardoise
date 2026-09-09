@@ -69,6 +69,41 @@ function getMetropolitanNoSchoolDatesForYear(year: number): Set<string> {
   ]);
 }
 
+function getNoSchoolDatesAroundYear(year: number): Set<string> {
+  return new Set<string>([
+    ...Array.from(getMetropolitanNoSchoolDatesForYear(year - 1)),
+    ...Array.from(getMetropolitanNoSchoolDatesForYear(year)),
+    ...Array.from(getMetropolitanNoSchoolDatesForYear(year + 1)),
+    "2027-05-07",
+  ]);
+}
+
+function getTeachingWeekdays(): Set<Weekday> {
+  const timetable = getTimetable();
+  return new Set<Weekday>(
+    WEEKDAYS.filter((weekday) =>
+      (timetable[weekday] ?? []).some((slot) => slot.subject !== "pause"),
+    ),
+  );
+}
+
+/**
+ * Indique si la date donnée est un jour d'école : un jour de la semaine où
+ * l'emploi du temps prévoit au moins un créneau, et qui n'est ni un jour
+ * férié ni un jour de vacances connu.
+ */
+export function isSchoolDay(date: Date): boolean {
+  const current = atMidday(date);
+  const weekday = JS_DAY_TO_WEEKDAY[current.getDay()];
+  if (!weekday) return false;
+
+  const teachingWeekdays = getTeachingWeekdays();
+  if (!teachingWeekdays.has(weekday)) return false;
+
+  const noSchoolDates = getNoSchoolDatesAroundYear(current.getFullYear());
+  return !noSchoolDates.has(toISODate(current));
+}
+
 export function getZoneCSchoolRhythm(date: Date) {
   const timetable = getTimetable();
   const current = atMidday(date);
