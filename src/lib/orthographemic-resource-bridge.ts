@@ -139,8 +139,164 @@ function wordListNotes(week: OrthographemicWeek): string[] {
   return list.lists.map((entry) => `Liste ${entry.n} (${list.letter}) : ${entry.mots.join(", ")}`);
 }
 
-function buildBoulardS2Day1PrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepSheet {
+function buildBoulardChapter1PrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepSheet {
   const chapter = chapterForWeek(week);
+  const focusByWeek: Record<number, string> = {
+    2: "la lettre a et ses valeurs sonores",
+    3: "a, à, â, au et eau",
+    4: "an, am, ain et aim",
+    5: "ai, ay, ail, aill et aille",
+    6: "la révision de tous les graphèmes de la lettre a",
+  };
+  const focus = focusByWeek[week.week] ?? "la lettre a";
+  const commonDifferentiation =
+    "Groupe guidé : Elena, Fodie, Lucas et Saïden avec peu d'items, manipulation de lettres et consigne unique. " +
+    "Encodage accompagné : Elena et Fanta. Fluence : Ylan et Emmanuella. " +
+    "Autonomie et enrichissement : Fatoumata et Nadia Zainab.";
+
+  const phasesByDay: Record<number, PrepPhase[]> = {
+    1: [
+      {
+        title: `Rituel et découverte : ${focus}`,
+        duration: "8 min",
+        detail:
+          "Faire lire quelques syllabes ou mots connus, puis présenter 4 à 6 mots ciblés. Les élèves observent les lettres, écoutent les sons et justifient oralement leurs remarques.",
+      },
+      {
+        title: "Manipulation et classement",
+        duration: "10 min",
+        detail:
+          "Trier les étiquettes selon le graphème étudié. Pour les élèves fragiles, limiter à 4 ou 6 étiquettes et faire verbaliser chaque choix avant de passer à l'écriture.",
+      },
+      {
+        title: "Dictée sur ardoise",
+        duration: "7 min",
+        detail:
+          "Dicter 2 ou 3 mots courts. Faire segmenter oralement, puis corriger avec le modèle. L'écriture longue n'est pas demandée à Elena ni à Saïden pendant cette phase.",
+      },
+      {
+        title: "Bilan oral",
+        duration: "5 min",
+        detail: `Faire formuler ce que l'on retient sur ${focus}. Garder deux exemples au tableau pour la séance suivante.`,
+      },
+    ],
+    2: [
+      {
+        title: "Lecture ciblée",
+        duration: "8 min",
+        detail:
+          "Lire seulement quelques phrases ou une courte liste de mots du support. La compréhension détaillée du texte n'est pas travaillée ici : le texte sert à repérer le graphème et à lire.",
+      },
+      {
+        title: "Repérage dans les mots",
+        duration: "10 min",
+        detail:
+          "Surligner ou entourer le graphème étudié, puis classer quelques mots. Faire répondre à l'oral ou par pointage avant de demander une production écrite.",
+      },
+      {
+        title: "Trace écrite courte ou fluence",
+        duration: "7 min",
+        detail:
+          "Copier deux mots ou lire une courte série en binôme. Pendant ce temps, reprendre individuellement Elena, Fodie, Lucas ou Saïden.",
+      },
+      {
+        title: "Dictée flash",
+        duration: "5 min",
+        detail: "Dicter deux mots déjà rencontrés et corriger immédiatement.",
+      },
+    ],
+    3: [
+      {
+        title: "Rappel et rituel",
+        duration: "5 min",
+        detail: `Relire les mots de la veille et rappeler la règle ou la graphie de ${focus}.`,
+      },
+      {
+        title: "Atelier de code ou de classement",
+        duration: "12 min",
+        detail:
+          "Faire lire, classer et transformer des mots. Le groupe guidé travaille avec des étiquettes ; les élèves autonomes utilisent la fiche ou le jeu prévu dans le support.",
+      },
+      {
+        title: "Encodage guidé",
+        duration: "8 min",
+        detail:
+          "Faire écrire 2 ou 3 mots en segmentant les sons. Demander aux élèves d'indiquer la partie du mot qu'ils vérifient.",
+      },
+      {
+        title: "Dictée flash",
+        duration: "5 min",
+        detail: "Dicter un mot connu et une courte syllabe ou un groupe de lettres.",
+      },
+    ],
+    4: [
+      {
+        title: "Rituel de réactivation",
+        duration: "5 min",
+        detail: "Relire les mots et les graphèmes étudiés pendant la semaine.",
+      },
+      {
+        title: "Systématisation différenciée",
+        duration: "15 min",
+        detail:
+          "Parcours guidé avec peu d'items pour Elena, Fodie, Lucas et Saïden ; fiche d'entraînement pour Fanta, Ylan et Emmanuella ; activité d'enrichissement pour Fatoumata et Nadia Zainab.",
+      },
+      {
+        title: "Correction active",
+        duration: "5 min",
+        detail: "Faire expliquer une réussite et une correction. Pour Elena, accepter la réponse orale ou la manipulation de lettres.",
+      },
+      {
+        title: "Dictée bilan courte",
+        duration: "5 min",
+        detail: "Dicter 3 mots maximum, puis corriger immédiatement sans attendre une longue production écrite.",
+      },
+    ],
+  };
+
+  if (week.week === 6) {
+    const finalPhases: Record<number, PrepPhase[]> = {
+      1: [
+        { title: "Rituels de révision", duration: "8 min", detail: "Relire les graphèmes et les mots de la lettre a." },
+        { title: "Révision ciblée", duration: "12 min", detail: "Reprendre les graphèmes qui posent encore problème dans chaque groupe." },
+        { title: "Jeu de lecture", duration: "5 min", detail: "Utiliser Tap tap, Tic tac ou la Tapette à mots." },
+        { title: "Dictée flash", duration: "5 min", detail: "Dicter deux mots et une syllabe." },
+      ],
+      2: [
+        { title: "Rituel", duration: "5 min", detail: "Relire une série de mots ciblés." },
+        { title: "Jeu de révision", duration: "15 min", detail: "Faire tourner un jeu court : Tap tap, Tic tac ou mots mêlés." },
+        { title: "Consolidation par groupes", duration: "5 min", detail: "Reprendre une difficulté précise avec le groupe guidé." },
+        { title: "Dictée flash", duration: "5 min", detail: "Dicter deux mots déjà travaillés." },
+      ],
+      3: [
+        { title: "Rituel", duration: "5 min", detail: "Relire les graphèmes de la lettre a." },
+        { title: "Consolidation différenciée", duration: "15 min", detail: "Fiche courte ou manipulation selon le besoin de chaque élève." },
+        { title: "Correction et verbalisation", duration: "5 min", detail: "Faire expliquer la procédure utilisée." },
+        { title: "Dictée flash", duration: "5 min", detail: "Dicter deux mots de révision." },
+      ],
+      4: [
+        { title: "Rituel de rappel", duration: "5 min", detail: "Relire les mots et graphèmes étudiés." },
+        { title: "Évaluation courte", duration: "15 min", detail: "Évaluer uniquement les compétences travaillées, avec adaptation orale ou en quantité réduite pour les élèves concernés." },
+        { title: "Correction différée", duration: "5 min", detail: "Repérer une réussite et une priorité de consolidation par élève." },
+        { title: "Dictée bilan", duration: "5 min", detail: "Dicter trois mots ciblés et noter les réussites." },
+      ],
+    };
+    return {
+      id: day.id,
+      title: `Semaine ${week.week} · Jour ${day.day} — ${week.title}`,
+      subject: "francais",
+      socleDomains: ["D1 · Les langages pour penser et communiquer", "D2 · Les méthodes et outils pour apprendre"],
+      disciplinaryDomains: ["Étude de la langue : orthographe et code", "Lecture et compréhension de l'écrit", "Écriture"],
+      objective: "Réviser et évaluer les graphèmes de la lettre a.",
+      competence: "Lire, encoder et mémoriser des mots contenant les graphèmes étudiés.",
+      duration: "30 min",
+      phases: finalPhases[day.day] ?? finalPhases[1],
+      material: ["Ardoise", "Étiquettes-mots", "Jeux Tap tap / Tic tac / Tapette à mots", "Fiches de consolidation"],
+      photocopies: ["Fiche de bilan ou de consolidation selon le groupe"],
+      notes: ["Chapitre 1 : la lettre a", "Séance courte adaptée à l'emploi du temps de la classe.", commonDifferentiation, ...wordListNotes(week)],
+    };
+  }
+
   return {
     id: day.id,
     title: `Semaine ${week.week} · Jour ${day.day} — ${week.title}`,
@@ -154,50 +310,17 @@ function buildBoulardS2Day1PrepSheet(week: OrthographemicWeek, day: Orthographem
       "Lecture et compréhension de l'écrit",
       "Langage oral",
     ],
-    objective: "Découvrir les valeurs sonores de la lettre a en manipulant et en justifiant des classements de mots.",
-    competence:
-      "Observer les graphèmes, écouter les sons, classer des mots et expliquer oralement ses choix.",
-    duration: "45 min",
-    phases: [
-      {
-        title: "Mise en route : regarder / écouter",
-        duration: "8 min",
-        detail:
-          "Afficher quelques mots de la liste A au tableau ou dans le module Orthographémic. Faire observer la lettre a : Où la voit-on ? Que peut-on entendre ? Les élèves répondent oralement, sans écrire longuement.",
-      },
-      {
-        title: "Manipulation d'étiquettes : trier les mots de la lettre a",
-        duration: "17 min",
-        detail:
-          "Utiliser le module Orthographémic avec le zoom à 130 ou 150 %. Les élèves déplacent les étiquettes pour trier les mots : je vois la lettre a / j'entends le son étudié ; je vois la lettre a / je n'entends pas le même son ; je repère les écritures avec a, à, â, au, eau selon les mots proposés. Chaque déplacement doit être justifié oralement.",
-      },
-      {
-        title: "Atelier dirigé de besoin",
-        duration: "12 min",
-        detail:
-          "Pendant que les élèves autonomes trient ou justifient par binômes, prendre un petit groupe guidé.",
-        differentiation:
-          "Fodie et Ysmaël : 6 étiquettes maximum, sons simples et proches p/b/d/t. Sayden : micro-tâche de 4 étiquettes, une seule consigne, relance adulte. Elena : lettres mobiles ou réponse orale pour éviter que l'écriture masque la compétence. Fatoumata et Nadia zainab : justification experte et aide à la reformulation.",
-      },
-      {
-        title: "Trace orale et mini-bilan",
-        duration: "8 min",
-        detail:
-          "Construire une phrase bilan : La lettre a peut faire plusieurs sons ou entrer dans plusieurs écritures. Garder 3 exemples de mots manipulés. Pour la trace écrite, demander seulement de copier 2 ou 3 mots ; l'essentiel est la verbalisation.",
-      },
-    ],
-    material: [
-      "Ordinateur ou TNI avec Ardoise ouvert",
-      "Module Orthographémic, zoom 130 ou 150 %",
-      "Ardoises et feutres",
-      "Lettres mobiles ou 4 à 6 étiquettes pour le petit groupe fragile",
-      "Cahier du jour ou cahier de dictée pour copier 2 ou 3 mots",
-    ],
-    photocopies: [],
+    objective: `Travailler ${focus} en lecture, encodage et mémorisation.`,
+    competence: "Lire, classer, encoder et mémoriser des mots contenant les graphèmes étudiés.",
+    duration: "30 min",
+    phases: phasesByDay[day.day] ?? phasesByDay[1],
+    material: ["Ardoise", "Étiquettes-mots", "Affiche du graphème", "Fiches élèves selon le groupe", "Lettres mobiles"],
+    photocopies: ["Support élève du jour, uniquement pour les groupes qui en ont besoin"],
     notes: [
       chapter ? `Chapitre ${chapter.number} : ${chapter.title}` : "Chapitre 1 : lettre a",
-      "Séance personnalisée pour la classe de M. Boulard.",
-      "Kamil : hors évaluation collective ; présence adaptée, observation ou manipulation libre selon disponibilité adulte.",
+      "Séance personnalisée pour la classe de M. Boulard, sans modifier l'emploi du temps.",
+      "La compréhension longue est réservée au projet de lecture ; le texte Orthographemic sert ici à lire et repérer les graphèmes.",
+      commonDifferentiation,
       ...wordListNotes(week),
     ],
   };
@@ -206,10 +329,9 @@ function buildBoulardS2Day1PrepSheet(week: OrthographemicWeek, day: Orthographem
 function buildPrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepSheet {
   if (
     resolveCurrentClassroomKey() === "boulard" &&
-    week.id === "orthographemic-s2" &&
-    day.id === "orthographemic-s2-j1"
+    week.chapterId === "orthographemic-ch1"
   ) {
-    return buildBoulardS2Day1PrepSheet(week, day);
+    return buildBoulardChapter1PrepSheet(week, day);
   }
 
   const chapter = chapterForWeek(week);
