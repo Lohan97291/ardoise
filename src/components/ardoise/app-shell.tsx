@@ -112,6 +112,10 @@ const PAGE_LABELS: Record<NavItem["to"], string> = {
 
 const SECONDARY: { label: string; icon: LucideIcon }[] = [{ label: "Photocopies", icon: Printer }];
 
+// Empêche le renvoi forcé vers Options de se redéclencher à chaque navigation
+// (AppShell est remonté à chaque page) : une seule redirection par session d'onglet.
+const PASSWORD_PROMPT_SESSION_KEY = "ardoise-password-prompt-shown";
+
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { edition, isColleagueEdition } = useAppEdition();
@@ -149,14 +153,18 @@ export function AppShell({ children }: { children: ReactNode }) {
     const shouldPrompt =
       isColleagueEdition &&
       window.localStorage.getItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY) === "1";
-    // Ne redirige qu'une fois (à la connexion) : sinon ce useEffect se redéclenche
-    // à chaque changement de page (pathname en dépendance) et renvoie sans arrêt
-    // vers Options, empêchant d'atteindre le cahier journal ou le centre de pilotage.
-    if (shouldPrompt && pathname !== "/options") {
-      void navigate({ to: "/options" });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isColleagueEdition]);
+    if (!shouldPrompt || pathname === "/options") return;
+    // AppShell n'est pas un layout partagé : chaque page (journal, pilotage, options…)
+    // instancie son propre <AppShell>, donc ce composant est démonté puis remonté à
+    // chaque navigation. Sans ce verrou de session, l'effet se redéclenchait à chaque
+    // remontage et renvoyait sans arrêt vers Options — empêchant d'atteindre le cahier
+    // journal ou le centre de pilotage tant que le mot de passe n'était pas changé.
+    // Le sessionStorage survit à la navigation (contrairement à un state React local)
+    // mais se réinitialise à la prochaine connexion, donc l'alerte revient bien reproposer.
+    if (window.sessionStorage.getItem(PASSWORD_PROMPT_SESSION_KEY) === "1") return;
+    window.sessionStorage.setItem(PASSWORD_PROMPT_SESSION_KEY, "1");
+    void navigate({ to: "/options" });
+  }, [isColleagueEdition, pathname, navigate]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
