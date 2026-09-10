@@ -149,10 +149,14 @@ export function AppShell({ children }: { children: ReactNode }) {
     const shouldPrompt =
       isColleagueEdition &&
       window.localStorage.getItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY) === "1";
+    // Ne redirige qu'une fois (à la connexion) : sinon ce useEffect se redéclenche
+    // à chaque changement de page (pathname en dépendance) et renvoie sans arrêt
+    // vers Options, empêchant d'atteindre le cahier journal ou le centre de pilotage.
     if (shouldPrompt && pathname !== "/options") {
       void navigate({ to: "/options" });
     }
-  }, [isColleagueEdition, pathname, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isColleagueEdition]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
