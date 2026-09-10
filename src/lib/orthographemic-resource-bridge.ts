@@ -62,7 +62,7 @@ type OrthographemicGuide = {
   chapters: OrthographemicChapter[];
   weeks: OrthographemicWeek[];
   reusableFlows?: OrthographemicReusableFlow[];
-  wordLists?: Record<string, OrthographemicWordList>;
+  wordLists?: OrthographemicWordList[] | Record<string, OrthographemicWordList>;
 };
 
 const orthographemicGuide = orthographemicGuideData as OrthographemicGuide;
@@ -104,7 +104,9 @@ function activityLabel(activity: OrthographemicActivity): string {
   return activity.optional ? `${type} facultatif` : type;
 }
 
-function reusableFlowForActivity(activity: OrthographemicActivity): OrthographemicReusableFlow | undefined {
+function reusableFlowForActivity(
+  activity: OrthographemicActivity,
+): OrthographemicReusableFlow | undefined {
   const title = activity.title.toLowerCase();
 
   if (title.includes("découverte des valeurs")) return reusableFlowById.get("decouverte-valeurs");
@@ -113,17 +115,28 @@ function reusableFlowForActivity(activity: OrthographemicActivity): Orthographem
     return reusableFlowById.get("consolidation-regulation");
   }
 
-  return reusableFlowById.get(activity.type) ?? reusableFlowById.get(activity.type.replaceAll("-", "_"));
+  return (
+    reusableFlowById.get(activity.type) ?? reusableFlowById.get(activity.type.replaceAll("-", "_"))
+  );
 }
 
 function phaseFromActivity(activity: OrthographemicActivity): PrepPhase[] {
   const fallbackFlow = reusableFlowForActivity(activity);
   const phases =
-    activity.phases?.length && !activity.phases.every((phase) => phase.d.includes("Déroulé issu de la programmation Orthographémic"))
+    activity.phases?.length &&
+    !activity.phases.every((phase) =>
+      phase.d.includes("Déroulé issu de la programmation Orthographémic"),
+    )
       ? activity.phases
       : fallbackFlow?.steps?.length
         ? fallbackFlow.steps
-        : [{ n: activity.title, m: activity.duration, d: "Consulter le support Orthographémic pour le détail de la séance." }];
+        : [
+            {
+              n: activity.title,
+              m: activity.duration,
+              d: "Consulter le support Orthographémic pour le détail de la séance.",
+            },
+          ];
 
   return phases.map((phase) => ({
     title: phase.n || activity.title,
@@ -133,13 +146,20 @@ function phaseFromActivity(activity: OrthographemicActivity): PrepPhase[] {
 }
 
 function wordListNotes(week: OrthographemicWeek): string[] {
-  const list = orthographemicGuide.wordLists?.[String(week.chapterNumber)];
+  const chapter = chapterForWeek(week);
+  const wordLists = orthographemicGuide.wordLists;
+  const list = Array.isArray(wordLists)
+    ? wordLists.find((entry) => entry.letter === chapter?.letter)
+    : wordLists?.[String(week.chapterNumber)];
   if (!list) return [];
 
   return list.lists.map((entry) => `Liste ${entry.n} (${list.letter}) : ${entry.mots.join(", ")}`);
 }
 
-function buildBoulardChapter1PrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepSheet {
+function buildBoulardChapter1PrepSheet(
+  week: OrthographemicWeek,
+  day: OrthographemicDay,
+): PrepSheet {
   const chapter = chapterForWeek(week);
   const focusByWeek: Record<number, string> = {
     2: "la lettre a et ses valeurs sonores",
@@ -244,12 +264,14 @@ function buildBoulardChapter1PrepSheet(week: OrthographemicWeek, day: Orthograph
       {
         title: "Correction active",
         duration: "5 min",
-        detail: "Faire expliquer une réussite et une correction. Pour Elena, accepter la réponse orale ou la manipulation de lettres.",
+        detail:
+          "Faire expliquer une réussite et une correction. Pour Elena, accepter la réponse orale ou la manipulation de lettres.",
       },
       {
         title: "Dictée bilan courte",
         duration: "5 min",
-        detail: "Dicter 3 mots maximum, puis corriger immédiatement sans attendre une longue production écrite.",
+        detail:
+          "Dicter 3 mots maximum, puis corriger immédiatement sans attendre une longue production écrite.",
       },
     ],
   };
@@ -257,43 +279,105 @@ function buildBoulardChapter1PrepSheet(week: OrthographemicWeek, day: Orthograph
   if (week.week === 6) {
     const finalPhases: Record<number, PrepPhase[]> = {
       1: [
-        { title: "Rituels de révision", duration: "8 min", detail: "Relire les graphèmes et les mots de la lettre a." },
-        { title: "Révision ciblée", duration: "12 min", detail: "Reprendre les graphèmes qui posent encore problème dans chaque groupe." },
-        { title: "Jeu de lecture", duration: "5 min", detail: "Utiliser Tap tap, Tic tac ou la Tapette à mots." },
+        {
+          title: "Rituels de révision",
+          duration: "8 min",
+          detail: "Relire les graphèmes et les mots de la lettre a.",
+        },
+        {
+          title: "Révision ciblée",
+          duration: "12 min",
+          detail: "Reprendre les graphèmes qui posent encore problème dans chaque groupe.",
+        },
+        {
+          title: "Jeu de lecture",
+          duration: "5 min",
+          detail: "Utiliser Tap tap, Tic tac ou la Tapette à mots.",
+        },
         { title: "Dictée flash", duration: "5 min", detail: "Dicter deux mots et une syllabe." },
       ],
       2: [
         { title: "Rituel", duration: "5 min", detail: "Relire une série de mots ciblés." },
-        { title: "Jeu de révision", duration: "15 min", detail: "Faire tourner un jeu court : Tap tap, Tic tac ou mots mêlés." },
-        { title: "Consolidation par groupes", duration: "5 min", detail: "Reprendre une difficulté précise avec le groupe guidé." },
+        {
+          title: "Jeu de révision",
+          duration: "15 min",
+          detail: "Faire tourner un jeu court : Tap tap, Tic tac ou mots mêlés.",
+        },
+        {
+          title: "Consolidation par groupes",
+          duration: "5 min",
+          detail: "Reprendre une difficulté précise avec le groupe guidé.",
+        },
         { title: "Dictée flash", duration: "5 min", detail: "Dicter deux mots déjà travaillés." },
       ],
       3: [
         { title: "Rituel", duration: "5 min", detail: "Relire les graphèmes de la lettre a." },
-        { title: "Consolidation différenciée", duration: "15 min", detail: "Fiche courte ou manipulation selon le besoin de chaque élève." },
-        { title: "Correction et verbalisation", duration: "5 min", detail: "Faire expliquer la procédure utilisée." },
+        {
+          title: "Consolidation différenciée",
+          duration: "15 min",
+          detail: "Fiche courte ou manipulation selon le besoin de chaque élève.",
+        },
+        {
+          title: "Correction et verbalisation",
+          duration: "5 min",
+          detail: "Faire expliquer la procédure utilisée.",
+        },
         { title: "Dictée flash", duration: "5 min", detail: "Dicter deux mots de révision." },
       ],
       4: [
-        { title: "Rituel de rappel", duration: "5 min", detail: "Relire les mots et graphèmes étudiés." },
-        { title: "Évaluation courte", duration: "15 min", detail: "Évaluer uniquement les compétences travaillées, avec adaptation orale ou en quantité réduite pour les élèves concernés." },
-        { title: "Correction différée", duration: "5 min", detail: "Repérer une réussite et une priorité de consolidation par élève." },
-        { title: "Dictée bilan", duration: "5 min", detail: "Dicter trois mots ciblés et noter les réussites." },
+        {
+          title: "Rituel de rappel",
+          duration: "5 min",
+          detail: "Relire les mots et graphèmes étudiés.",
+        },
+        {
+          title: "Évaluation courte",
+          duration: "15 min",
+          detail:
+            "Évaluer uniquement les compétences travaillées, avec adaptation orale ou en quantité réduite pour les élèves concernés.",
+        },
+        {
+          title: "Correction différée",
+          duration: "5 min",
+          detail: "Repérer une réussite et une priorité de consolidation par élève.",
+        },
+        {
+          title: "Dictée bilan",
+          duration: "5 min",
+          detail: "Dicter trois mots ciblés et noter les réussites.",
+        },
       ],
     };
     return {
       id: day.id,
       title: `Semaine ${week.week} · Jour ${day.day} — ${week.title}`,
       subject: "francais",
-      socleDomains: ["D1 · Les langages pour penser et communiquer", "D2 · Les méthodes et outils pour apprendre"],
-      disciplinaryDomains: ["Étude de la langue : orthographe et code", "Lecture et compréhension de l'écrit", "Écriture"],
+      socleDomains: [
+        "D1 · Les langages pour penser et communiquer",
+        "D2 · Les méthodes et outils pour apprendre",
+      ],
+      disciplinaryDomains: [
+        "Étude de la langue : orthographe et code",
+        "Lecture et compréhension de l'écrit",
+        "Écriture",
+      ],
       objective: "Réviser et évaluer les graphèmes de la lettre a.",
       competence: "Lire, encoder et mémoriser des mots contenant les graphèmes étudiés.",
       duration: "30 min",
       phases: finalPhases[day.day] ?? finalPhases[1],
-      material: ["Ardoise", "Étiquettes-mots", "Jeux Tap tap / Tic tac / Tapette à mots", "Fiches de consolidation"],
+      material: [
+        "Ardoise",
+        "Étiquettes-mots",
+        "Jeux Tap tap / Tic tac / Tapette à mots",
+        "Fiches de consolidation",
+      ],
       photocopies: ["Fiche de bilan ou de consolidation selon le groupe"],
-      notes: ["Chapitre 1 : la lettre a", "Séance courte adaptée à l'emploi du temps de la classe.", commonDifferentiation, ...wordListNotes(week)],
+      notes: [
+        "Chapitre 1 : la lettre a",
+        "Séance courte adaptée à l'emploi du temps de la classe.",
+        commonDifferentiation,
+        ...wordListNotes(week),
+      ],
     };
   }
 
@@ -314,7 +398,13 @@ function buildBoulardChapter1PrepSheet(week: OrthographemicWeek, day: Orthograph
     competence: "Lire, classer, encoder et mémoriser des mots contenant les graphèmes étudiés.",
     duration: "30 min",
     phases: phasesByDay[day.day] ?? phasesByDay[1],
-    material: ["Ardoise", "Étiquettes-mots", "Affiche du graphème", "Fiches élèves selon le groupe", "Lettres mobiles"],
+    material: [
+      "Ardoise",
+      "Étiquettes-mots",
+      "Affiche du graphème",
+      "Fiches élèves selon le groupe",
+      "Lettres mobiles",
+    ],
     photocopies: ["Support élève du jour, uniquement pour les groupes qui en ont besoin"],
     notes: [
       chapter ? `Chapitre ${chapter.number} : ${chapter.title}` : "Chapitre 1 : lettre a",
@@ -327,10 +417,7 @@ function buildBoulardChapter1PrepSheet(week: OrthographemicWeek, day: Orthograph
 }
 
 function buildPrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepSheet {
-  if (
-    resolveCurrentClassroomKey() === "boulard" &&
-    week.chapterId === "orthographemic-ch1"
-  ) {
+  if (resolveCurrentClassroomKey() === "boulard" && week.chapterId === "orthographemic-ch1") {
     return buildBoulardChapter1PrepSheet(week, day);
   }
 
@@ -346,12 +433,22 @@ function buildPrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepS
       "D1 · Les langages pour penser et communiquer",
       "D2 · Les méthodes et outils pour apprendre",
     ],
-    disciplinaryDomains: ["Étude de la langue : grammaire, orthographe, lexique", "Lecture et compréhension de l'écrit", "Écriture"],
+    disciplinaryDomains: [
+      "Étude de la langue : grammaire, orthographe, lexique",
+      "Lecture et compréhension de l'écrit",
+      "Écriture",
+    ],
     objective: week.title,
-    competence: "Étudier les correspondances graphèmes-phonèmes et mémoriser l'orthographe des mots.",
+    competence:
+      "Étudier les correspondances graphèmes-phonèmes et mémoriser l'orthographe des mots.",
     duration: durationLabel(day.duration) ?? "",
     phases,
-    material: ["Guide du maître Orthographémic CE1", "Cahier de dictée", "Ardoise", "Affichages graphémiques"],
+    material: [
+      "Guide du maître Orthographémic CE1",
+      "Cahier de dictée",
+      "Ardoise",
+      "Affichages graphémiques",
+    ],
     photocopies:
       week.type === "diagnostic"
         ? ["Évaluations diagnostiques Orthographémic CE1"]
@@ -366,10 +463,9 @@ function buildPrepSheet(week: OrthographemicWeek, day: OrthographemicDay): PrepS
   };
 }
 
-export const ORTHOGRAPHEMIC_SESSION_PREP_SHEETS: PrepSheet[] =
-  orthographemicGuide.weeks.flatMap((week) =>
-    week.days.map((day) => buildPrepSheet(week, day)),
-  );
+export const ORTHOGRAPHEMIC_SESSION_PREP_SHEETS: PrepSheet[] = orthographemicGuide.weeks.flatMap(
+  (week) => week.days.map((day) => buildPrepSheet(week, day)),
+);
 
 const prepSheetById = new Map(ORTHOGRAPHEMIC_SESSION_PREP_SHEETS.map((sheet) => [sheet.id, sheet]));
 
