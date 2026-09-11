@@ -96,7 +96,6 @@ const DEFAULT_STUDENT_PROFILES: Record<string, StudentProfile> = {
   "grimal-8": { birthDate: "2018-09-09" },
   "grimal-9": { birthDate: "2018-08-16" },
   "grimal-10": { birthDate: "2019-02-16" },
-  "grimal-11": { birthDate: "2019-04-09" },
   "menager-1": { birthDate: "2019-12-15" },
   "menager-2": { birthDate: "2019-06-04" },
   "menager-3": { birthDate: "2019-01-17" },
