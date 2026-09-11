@@ -405,7 +405,7 @@ export function saveExerciseTrajectoryResult(
 // ─────────────────────────────────────────────
 export type FluenceStore = Record<
   string,
-  { wpm: number; history: { period: string; wpm: number; erreurs?: number }[] }
+  { wpm: number; history: { period: string; wpm: number; erreurs?: number; date?: string }[] }
 >;
 
 export function loadFluenceData(): FluenceStore {
@@ -435,18 +435,27 @@ export function getFluenceRecords(): FluenceRecord[] {
   });
 }
 
-/** Enregistre une nouvelle mesure de fluence pour un élève. */
+/**
+ * Enregistre une nouvelle mesure de fluence pour un élève.
+ * `date` est la date de passation (YYYY-MM-DD) ; si absente, on retient la date du jour.
+ */
 export function saveFluenceMeasure(
   studentId: string,
   wpm: number,
   period: string,
   erreurs?: number,
+  date?: string,
 ): void {
   const store = loadFluenceData();
   const existing = store[studentId];
   const history = existing?.history ?? [];
-  const newEntry: { period: string; wpm: number; erreurs?: number } =
-    erreurs !== undefined ? { period, wpm, erreurs } : { period, wpm };
+  const passationDate = date || new Date().toISOString().slice(0, 10);
+  const newEntry: { period: string; wpm: number; erreurs?: number; date?: string } = {
+    period,
+    wpm,
+    date: passationDate,
+  };
+  if (erreurs !== undefined) newEntry.erreurs = erreurs;
   // Remplace si la période existe déjà, sinon ajoute
   const updatedHistory = history.some((h) => h.period === period)
     ? history.map((h) => (h.period === period ? newEntry : h))

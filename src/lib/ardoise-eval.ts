@@ -1315,7 +1315,7 @@ export type FluenceRecord = {
   /** mots correctement lus par minute */
   wpm: number;
   /** historique des relevés de l'année */
-  history: { period: string; wpm: number; erreurs?: number }[];
+  history: { period: string; wpm: number; erreurs?: number; date?: string }[];
 };
 
 const WPMS = [96, 84, 71, 58, 103, 90, 46, 79, 66, 88, 74];

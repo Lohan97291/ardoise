@@ -16,7 +16,6 @@ import {
   UsersRound,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { toast } from "sonner";
 
 import {
   Bar,
@@ -85,7 +84,6 @@ import {
   getFluenceRecords,
   loadExerciseResults,
   listAttendanceDates,
-  saveExerciseResults,
   saveAttendance,
   type AttendanceStatus,
 } from "@/lib/storage";
@@ -162,29 +160,6 @@ function countAttendance(
   };
 }
 
-function seededStatus(studentIndex: number, exerciseIndex: number): StatusKey {
-  const value = (studentIndex * 7 + exerciseIndex * 11 + 3) % 100;
-  if (value < 42) return "A";
-  if (value < 67) return "PA";
-  if (value < 84) return "NA";
-  if (value < 94) return "NF";
-  return "AB";
-}
-
-function buildDemoExerciseResults(): Record<string, Record<string, StatusKey>> {
-  const catalog = [...CLEO_CATALOG, ...MATHS_CATALOG];
-  const store: Record<string, Record<string, StatusKey>> = {};
-
-  for (const [exerciseIndex, exercise] of catalog.entries()) {
-    store[exercise.id] = {};
-    for (const [studentIndex, student] of STUDENTS.entries()) {
-      store[exercise.id]![student.id] = seededStatus(studentIndex, exerciseIndex);
-    }
-  }
-
-  return store;
-}
-
 const SUBJECT_OVERVIEW_META: {
   key: SubjectOverviewKey;
   label: string;
@@ -198,42 +173,6 @@ const SUBJECT_OVERVIEW_META: {
   { key: "eps", label: "EPS", shortLabel: "EPS" },
   { key: "lve", label: "Anglais", shortLabel: "LVE" },
 ];
-
-function seededSubjectScore(studentIndex: number, subjectIndex: number): number {
-  return 48 + ((studentIndex * 9 + subjectIndex * 13 + 7) % 45);
-}
-
-function buildDemoSubjectSnapshots() {
-  const notesByBand = [
-    "À consolider",
-    "Fragile mais engagé",
-    "En progrès",
-    "À l’aise",
-    "Très solide",
-  ];
-
-  return Object.fromEntries(
-    STUDENTS.map((student, studentIndex) => [
-      student.id,
-      {
-        subjectSnapshots: Object.fromEntries(
-          SUBJECT_OVERVIEW_META.map((subject, subjectIndex) => {
-            const score = seededSubjectScore(studentIndex, subjectIndex);
-            const bandIndex =
-              score < 58 ? 0 : score < 66 ? 1 : score < 76 ? 2 : score < 86 ? 3 : 4;
-            return [
-              subject.key,
-              {
-                score,
-                note: notesByBand[bandIndex],
-              },
-            ];
-          }),
-        ),
-      },
-    ]),
-  );
-}
 
 function averageOf(values: number[]): number | null {
   if (values.length === 0) return null;
@@ -891,8 +830,14 @@ function ElevesPage() {
       }));
     })();
 
-    const globalSubjects = SUBJECT_OVERVIEW_META.map((subject, subjectIndex) => {
+    const globalSubjects = SUBJECT_OVERVIEW_META.map((subject) => {
       const profileSnapshot = profile.subjectSnapshots?.[subject.key];
+      const isCoreSubject = subject.key === "francais" || subject.key === "maths";
+      const evaluated = isCoreSubject
+        ? subject.key === "francais"
+          ? Boolean(studentResults)
+          : domainBreakdown.some((domain) => domain.subject === "maths" && domain.evaluated > 0)
+        : Boolean(profileSnapshot);
       const score =
         subject.key === "francais"
           ? studentResults
@@ -912,15 +857,16 @@ function ElevesPage() {
                     .map((domain) => domain.score),
                 ) ?? 0,
               )
-            : profileSnapshot?.score ?? seededSubjectScore(selectedIndex >= 0 ? selectedIndex : 0, subjectIndex);
+            : profileSnapshot?.score ?? 0;
 
       return {
         key: subject.key,
         label: subject.label,
         shortLabel: subject.shortLabel,
         score,
-        note: profileSnapshot?.note ?? scoreToAppreciation(score),
-        detailAvailable: subject.key === "francais" || subject.key === "maths",
+        evaluated,
+        note: evaluated ? profileSnapshot?.note ?? scoreToAppreciation(score) : "Non évalué",
+        detailAvailable: isCoreSubject,
       };
     });
 
@@ -961,21 +907,7 @@ function ElevesPage() {
     setProfileVersion((value) => value + 1);
   }
 
-  function loadDomainDemo() {
-    saveExerciseResults(buildDemoExerciseResults());
-    const subjectSnapshots = buildDemoSubjectSnapshots();
-    for (const student of STUDENTS) {
-      const snapshot = subjectSnapshots[student.id];
-      if (snapshot) {
-        saveStudentProfile(student.id, snapshot);
-      }
-    }
-    setResultsVersion((value) => value + 1);
-    setProfileVersion((value) => value + 1);
-    toast.success("Démo chargée pour visualiser les domaines des élèves.");
-  }
-
-  // Enregistrement automatique : à chaque changement de statut, l'appel est
+    // Enregistrement automatique : à chaque changement de statut, l'appel est
   // sauvegardé immédiatement (plus besoin de cliquer sur « Enregistrer »).
   function persistMoment(moment: AttendanceMoment, data: Record<string, AttendanceStatus>) {
     saveAttendance(selectedDate, data, moment);
@@ -1061,18 +993,6 @@ function ElevesPage() {
               </button>
             ))}
           </div>
-
-          {tab === "liste" ? (
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={loadDomainDemo}
-              className="w-full sm:w-auto"
-            >
-              Charger une démo
-            </Button>
-          ) : null}
 
           {tab === "liste" ? null : (
             <div className="flex w-full gap-1 rounded-full border border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_90%,transparent),color-mix(in_oklab,var(--color-secondary)_48%,transparent))] p-1 shadow-sm sm:ml-auto sm:w-auto">
@@ -1354,10 +1274,12 @@ function ElevesPage() {
                                 <span
                                   className={cn(
                                     "rounded-full border px-2 py-0.5 font-mono text-[0.66rem] font-semibold",
-                                    scoreTone(subject.score),
+                                    subject.evaluated
+                                      ? scoreTone(subject.score)
+                                      : "border-border bg-muted text-muted-foreground",
                                   )}
                                 >
-                                  {subject.score}%
+                                  {subject.evaluated ? `${subject.score}%` : "—"}
                                 </span>
                                 <span className="hidden text-[0.68rem] text-muted-foreground lg:inline">
                                   {subject.note}
@@ -1534,12 +1456,14 @@ function ElevesPage() {
                                     Niveau repéré
                                   </p>
                                   <p className="mt-3 text-4xl font-semibold tracking-tight text-foreground">
-                                    {activeSubject.score}%
+                                    {activeSubject.evaluated ? `${activeSubject.score}%` : "—"}
                                   </p>
                                   <span
                                     className={cn(
                                       "mt-3 inline-flex rounded-full border px-3 py-1 text-xs font-semibold",
-                                      scoreTone(activeSubject.score),
+                                      activeSubject.evaluated
+                                        ? scoreTone(activeSubject.score)
+                                        : "border-border bg-muted text-muted-foreground",
                                     )}
                                   >
                                     {activeSubject.note}

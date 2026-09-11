@@ -206,6 +206,7 @@ function FluencePage() {
   const [inputWpm, setInputWpm] = useState("");
   const [inputErreurs, setInputErreurs] = useState("");
   const [inputPeriod, setInputPeriod] = useState(initialPeriod);
+  const [inputDate, setInputDate] = useState(() => new Date().toISOString().slice(0, 10));
 
   useEffect(() => {
     if (requestedPeriod && ALL_PERIODS.includes(requestedPeriod)) {
@@ -256,6 +257,7 @@ function FluencePage() {
     setInputWpm("");
     setInputErreurs("");
     setInputPeriod(initialPeriod);
+    setInputDate(new Date().toISOString().slice(0, 10));
     setModalOpen(true);
   }
 
@@ -267,7 +269,7 @@ function FluencePage() {
     }
     const errsRaw = inputErreurs !== "" ? parseInt(inputErreurs, 10) : undefined;
     const erreurs = errsRaw !== undefined && !isNaN(errsRaw) && errsRaw >= 0 ? errsRaw : undefined;
-    saveFluenceMeasure(modalStudent, wpm, inputPeriod, erreurs);
+    saveFluenceMeasure(modalStudent, wpm, inputPeriod, erreurs, inputDate || undefined);
     setFluenceData(getFluenceRecords());
     const student = STUDENTS.find((s) => s.id === modalStudent)!;
     const chapTarget = orthoTargetForPeriod(inputPeriod);
@@ -638,7 +640,14 @@ function FluencePage() {
                       key={h.period}
                       className="grid grid-cols-[5rem_minmax(0,1fr)_auto] items-center gap-3"
                     >
-                      <span className="text-sm text-muted-foreground">{h.period}</span>
+                      <span className="flex flex-col text-sm text-muted-foreground">
+                        {h.period}
+                        {h.date && (
+                          <span className="text-[0.65rem] text-muted-foreground/70">
+                            {new Date(`${h.date}T12:00:00`).toLocaleDateString("fr-FR")}
+                          </span>
+                        )}
+                      </span>
                       <div className="flex flex-col gap-0.5">
                         <span
                           className={cn("block h-2.5 overflow-hidden rounded-full bg-secondary")}
@@ -840,6 +849,16 @@ function FluencePage() {
                   <strong>{orthoTargetForPeriod(inputPeriod)} mots/min</strong>
                 </p>
               )}
+            </div>
+
+            {/* Date de passation (pré-remplie avec aujourd'hui, modifiable) */}
+            <div className="space-y-1.5">
+              <Label>Date de passation</Label>
+              <Input
+                type="date"
+                value={inputDate}
+                onChange={(e) => setInputDate(e.target.value)}
+              />
             </div>
 
             {/* Saisie WPM */}
