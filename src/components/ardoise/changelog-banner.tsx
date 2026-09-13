@@ -28,7 +28,7 @@ export function ChangelogBanner() {
   if (entries.length === 0) return null;
 
   return (
-    <div className="relative mx-3 mt-3 overflow-hidden rounded-2xl border border-primary/15 bg-[linear-gradient(135deg,rgba(30,64,175,0.07),transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] shadow-sm sm:mx-6">
+    <div className="relative mx-3 mt-3 overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-card via-card to-primary/5 shadow-sm sm:mx-6">
       <button
         type="button"
         onClick={() => dismissChangelogEntries(entries.map((entry) => entry.id))}
