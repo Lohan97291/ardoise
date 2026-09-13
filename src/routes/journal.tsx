@@ -41,7 +41,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { addDays, formatLongDate, toISODate, type Session } from "@/lib/ardoise-data";
+import { addDays, formatLongDate, toISODate, type Session, type SubjectKey } from "@/lib/ardoise-data";
 import { ARDOISE_AI_NAME } from "@/lib/ardoise-ai-brand";
 import { saveCustomPhases } from "@/lib/custom-phases-storage";
 import { saveCustomSessionPrep } from "@/lib/custom-session-prep-storage";
@@ -106,6 +106,23 @@ const BOULARD_ORTHOGRAPHEMIC_S2_DATE_KEY = "2026-09-08";
 const BOULARD_ORTHOGRAPHEMIC_S2_SESSION_ID = "2026-09-08-orthographemic-s2-j1";
 const BOULARD_ORTHOGRAPHEMIC_S2_MARKER_KEY =
   "ardoise.journal.boulard.orthographemic-s2-2026-09-08.v1";
+
+// Piscine du lundi 14 au vendredi 25 septembre 2026, 8h55-10h05 (cf. discussion
+// avec l'enseignant) : on ne touche pas à l'emploi du temps (EDT), seulement au
+// cahier journal, et uniquement pour ces deux semaines.
+const BOULARD_PISCINE_MARKER_KEY = "ardoise.journal.boulard.piscine-2026-09-14.v1";
+const BOULARD_PISCINE_START = "08:55";
+const BOULARD_PISCINE_END = "10:05";
+const BOULARD_PISCINE_DATES: { date: string; weekday: Weekday; removeSubjects: SubjectKey[] }[] = [
+  { date: "2026-09-14", weekday: "lundi", removeSubjects: ["eps"] },
+  { date: "2026-09-15", weekday: "mardi", removeSubjects: ["lve"] },
+  { date: "2026-09-17", weekday: "jeudi", removeSubjects: ["eps"] },
+  { date: "2026-09-18", weekday: "vendredi", removeSubjects: [] },
+  { date: "2026-09-21", weekday: "lundi", removeSubjects: ["eps"] },
+  { date: "2026-09-22", weekday: "mardi", removeSubjects: ["lve"] },
+  { date: "2026-09-24", weekday: "jeudi", removeSubjects: ["eps"] },
+  { date: "2026-09-25", weekday: "vendredi", removeSubjects: [] },
+];
 
 type JournalViewMode = "day" | "week";
 
@@ -191,19 +208,65 @@ function ensureBoulardOrthographemicS2Session(days: Record<string, Session[]>): 
   return writeJournalDays(next);
 }
 
+function timeRangesOverlap(aStart: string, aEnd: string, bStart: string, bEnd: string): boolean {
+  return aStart < bEnd && bStart < aEnd;
+}
+
+/**
+ * Piscine (8h55-10h05) du 14 au 25 septembre 2026 : ajoutée dans le cahier
+ * journal uniquement (l'EDT type n'est pas modifié). EPS est retirée lundi et
+ * jeudi, anglais retiré mardi ; QLM du vendredi est conservé tel quel.
+ */
+function ensureBoulardPiscineSessions(days: Record<string, Session[]>): Record<string, Session[]> {
+  if (resolveCurrentClassroomKey() !== "boulard" || typeof window === "undefined") return days;
+  if (window.localStorage.getItem(BOULARD_PISCINE_MARKER_KEY)) return days;
+
+  const next = { ...days };
+  for (const { date, weekday, removeSubjects } of BOULARD_PISCINE_DATES) {
+    let sessions = next[date] ?? [];
+    if (sessions.length === 0) {
+      const slots = getTimetable()[weekday] ?? [];
+      sessions = slots.map((slot, i) => withoutResourceAttachments({ ...slot, id: `${date}-${i}` }));
+    }
+    sessions = sessions.filter(
+      (session) =>
+        !(
+          removeSubjects.includes(session.subject) &&
+          timeRangesOverlap(session.start, session.end, BOULARD_PISCINE_START, BOULARD_PISCINE_END)
+        ),
+    );
+    const piscineId = `${date}-piscine`;
+    if (!sessions.some((session) => session.id === piscineId)) {
+      const piscineSession: Session = {
+        id: piscineId,
+        start: BOULARD_PISCINE_START,
+        end: BOULARD_PISCINE_END,
+        title: "Piscine",
+        subject: "eps",
+        note: "Créneau piscine (14-25 septembre) — transport + séance.",
+      };
+      sessions = [...sessions, piscineSession].sort((a, b) => a.start.localeCompare(b.start));
+    }
+    next[date] = sessions;
+  }
+
+  window.localStorage.setItem(BOULARD_PISCINE_MARKER_KEY, "done");
+  return writeJournalDays(next);
+}
+
 function getInitialDays(): Record<string, Session[]> {
   let days = readJournalDays();
   const isBoulard = resolveCurrentClassroomKey() === "boulard";
 
   if (!isBoulard || typeof window === "undefined") return days;
   if (window.localStorage.getItem(BOULARD_RESET_MARKER_KEY)) {
-    return ensureBoulardOrthographemicS2Session(days);
+    return ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(days));
   }
 
   const entriesToReset = Object.entries(days).filter(([dateKey]) => dateKey >= BOULARD_RESET_FROM_KEY);
   if (entriesToReset.length === 0) {
     window.localStorage.setItem(BOULARD_RESET_MARKER_KEY, "done");
-    return ensureBoulardOrthographemicS2Session(days);
+    return ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(days));
   }
 
   const sessionIds = entriesToReset.flatMap(([, sessions]) => sessions.map((session) => session.id));
@@ -215,7 +278,7 @@ function getInitialDays(): Record<string, Session[]> {
     Object.entries(days).filter(([dateKey]) => dateKey < BOULARD_RESET_FROM_KEY),
   );
   window.localStorage.setItem(BOULARD_RESET_MARKER_KEY, "done");
-  return ensureBoulardOrthographemicS2Session(writeJournalDays(next));
+  return ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(writeJournalDays(next)));
 }
 
 function toMinutes(value: string): number {
