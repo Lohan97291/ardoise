@@ -4,7 +4,7 @@
  */
 import type { Session, SubjectKey } from "@/lib/ardoise-data";
 import { toISODate } from "@/lib/ardoise-data";
-import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
+import { resolveCurrentClassroomKey, type ClassroomKey } from "@/lib/ardoise-eval";
 import { readJournalDays, writeJournalDays } from "@/lib/journal-storage";
 
 export type Weekday = "lundi" | "mardi" | "mercredi" | "jeudi" | "vendredi";
@@ -787,6 +787,104 @@ const SEED_TIMETABLE: WeeklyTimetable = {
   ],
 };
 
+/**
+ * Trame horaire réelle CE1 C — Mme THOMAS / Mme HENRY — École Romain Rolland
+ * — 2026-2027, Période 1.
+ * Source : Emploi du temps P1 1.pdf (export type Edumoov). Reconstruite à
+ * partir des blocs colorés + durées imprimées dans le PDF, recalée sur les
+ * horaires fixes communs à l'école : accueil rituels 8h20-8h30, récréation
+ * 9h50-10h05, pause méridienne (11h30 ou 12h00 selon les jours)-13h20,
+ * accueil 13h20-13h30, récréation 14h50-15h05, sortie 16h30.
+ * Vendredi après-midi : le PDF indique "EPS 50 min", ce qui dépasserait la
+ * sortie fixe de 16h30 (Calcul mental 15 + Ateliers arts/musique 25 + EPS
+ * doivent totaliser 85 min) ; ramené ici à 45 min pour boucler sur 16h30 —
+ * à confirmer avec Mme Thomas / Mme Henry si besoin.
+ */
+const SEED_TIMETABLE_THOMAS_HENRY: WeeklyTimetable = {
+  lundi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    maths("08:30", "08:45", "Mathématiques : rituels"),
+    francais("08:45", "09:00", "Langage oral"),
+    francais("09:00", "09:35", "Etude de la langue (orthographemic S1)"),
+    maths("09:35", "09:50", "Mathématiques : Calcul mental"),
+    { start: "09:50", end: "10:05", title: "Récréation (service 1)", subject: "pause", fixed: true },
+    francais("10:05", "10:30", "Etude de la langue — Orthographe / dictée"),
+    maths("10:30", "11:10", "Mathématiques"),
+    francais("11:10", "11:30", "Etude de la langue : lexique"),
+    rituels("11:30", "12:00", "APC"),
+    { start: "12:00", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
+    francais("13:30", "13:45", "Ecriture (copie)"),
+    francais("13:45", "14:05", "Lecture"),
+    { start: "14:05", end: "14:50", title: "Questionner le monde", subject: "qlm" },
+    { start: "14:50", end: "15:05", title: "Récréation (service 1)", subject: "pause", fixed: true },
+    { start: "15:05", end: "15:25", title: "EPS", subject: "eps" },
+    { start: "15:25", end: "15:55", title: "EMC", subject: "emc" },
+    { start: "15:55", end: "16:30", title: "Arts visuels", subject: "arts" },
+  ],
+  mardi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    maths("08:30", "08:45", "Mathématiques : rituels"),
+    maths("08:45", "09:15", "Mathématiques : ateliers"),
+    francais("09:15", "09:50", "Lecture compréhension"),
+    { start: "09:50", end: "10:05", title: "Récréation (service 1)", subject: "pause", fixed: true },
+    francais("10:05", "10:30", "Etude de la langue — Orthographe / dictée"),
+    maths("10:30", "10:45", "Mathématiques : Calcul mental"),
+    francais("10:45", "11:00", "Lexique"),
+    francais("11:00", "11:30", "Production d'écrit"),
+    { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
+    francais("13:30", "13:45", "Ecriture (copie)"),
+    francais("13:45", "14:10", "Lecture"),
+    maths("14:10", "14:50", "Mathématiques"),
+    { start: "14:50", end: "15:05", title: "Récréation (service 1)", subject: "pause", fixed: true },
+    { start: "15:05", end: "15:20", title: "Musique", subject: "arts" },
+    { start: "15:20", end: "15:50", title: "Anglais", subject: "lve" },
+    { start: "15:50", end: "16:30", title: "EPS", subject: "eps" },
+  ],
+  mercredi: [],
+  jeudi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    francais("08:30", "09:00", "Production d'écrits"),
+    maths("09:00", "09:15", "Mathématiques : Calcul mental"),
+    maths("09:15", "09:50", "Mathématiques"),
+    { start: "09:50", end: "10:05", title: "Récréation (service 1)", subject: "pause", fixed: true },
+    francais("10:05", "10:30", "Etude de la langue — Orthographe / dictée"),
+    maths("10:30", "10:50", "Mathématiques : Problème du jour"),
+    francais("10:50", "11:30", "Etude de la langue — grammaire"),
+    rituels("11:30", "12:00", "APC"),
+    { start: "12:00", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
+    francais("13:30", "13:45", "Ecriture (copie)"),
+    francais("13:45", "14:05", "Lecture"),
+    { start: "14:05", end: "14:50", title: "Questionner le monde", subject: "qlm" },
+    { start: "14:50", end: "15:05", title: "Récréation (service 1)", subject: "pause", fixed: true },
+    { start: "15:05", end: "15:20", title: "Musique", subject: "arts" },
+    { start: "15:20", end: "15:50", title: "Anglais", subject: "lve" },
+    { start: "15:50", end: "16:30", title: "EPS", subject: "eps" },
+  ],
+  vendredi: [
+    { start: "08:20", end: "08:30", title: "Accueil", subject: "rituels", fixed: true },
+    maths("08:30", "08:45", "Mathématiques : rituels"),
+    francais("08:45", "09:20", "Français ateliers"),
+    { start: "09:20", end: "09:50", title: "EMC", subject: "emc" },
+    { start: "09:50", end: "10:05", title: "Récréation (service 1)", subject: "pause", fixed: true },
+    francais("10:05", "10:30", "Etude de la langue — Orthographe / dictée"),
+    maths("10:30", "10:50", "Mathématiques : Problème du jour"),
+    francais("10:50", "11:30", "Littérature"),
+    { start: "11:30", end: "13:20", title: "Pause méridienne", subject: "pause", fixed: true },
+    { start: "13:20", end: "13:30", title: "Accueil", subject: "rituels", fixed: true },
+    francais("13:30", "13:45", "Ecriture (copie)"),
+    francais("13:45", "14:05", "Lecture"),
+    maths("14:05", "14:35", "Mathématiques"),
+    francais("14:35", "14:50", "Écriture (calligraphie)"),
+    { start: "14:50", end: "15:05", title: "Récréation (service 1)", subject: "pause", fixed: true },
+    maths("15:05", "15:20", "Mathématiques : Calcul mental"),
+    { start: "15:20", end: "15:45", title: "Ateliers arts / musique", subject: "arts" },
+    { start: "15:45", end: "16:30", title: "EPS", subject: "eps" },
+  ],
+};
+
 export const TIMETABLE_KEY = "ardoise.timetable.v1";
 
 export function getSeedTimetable(): WeeklyTimetable {
@@ -959,17 +1057,32 @@ type TimetablesStore = { entries: TimetableEntry[]; activeId: string };
 
 export const TIMETABLES_KEY = "ardoise.timetables.v1";
 const CE1_TIMETABLE_VERSION = "2026-2027-pdf-v2";
+const THOMAS_HENRY_TIMETABLE_VERSION = "2026-2027-pdf-p1-v1";
 
-function shouldApplyCe1Timetable(): boolean {
-  if (typeof window === "undefined") return false;
+const CLASSROOM_SEED_TIMETABLES: Partial<
+  Record<ClassroomKey, { version: string; name: string; data: WeeklyTimetable }>
+> = {
+  boulard: { version: CE1_TIMETABLE_VERSION, name: "Emploi du temps CE1 2026-2027", data: SEED_TIMETABLE },
+  durand: { version: CE1_TIMETABLE_VERSION, name: "Emploi du temps CE1 2026-2027", data: SEED_TIMETABLE },
+  grimal: { version: CE1_TIMETABLE_VERSION, name: "Emploi du temps CE1 2026-2027", data: SEED_TIMETABLE },
+  "thomas-henry": {
+    version: THOMAS_HENRY_TIMETABLE_VERSION,
+    name: "Emploi du temps Thomas / Henry — Période 1",
+    data: SEED_TIMETABLE_THOMAS_HENRY,
+  },
+};
+
+function shouldApplyClassroomTimetable(): { name: string; data: WeeklyTimetable } | null {
+  if (typeof window === "undefined") return null;
 
   const classroom = resolveCurrentClassroomKey();
-  if (!["boulard", "durand", "grimal"].includes(classroom)) return false;
+  const entry = CLASSROOM_SEED_TIMETABLES[classroom];
+  if (!entry) return null;
 
-  const key = `ardoise.timetable.applied.${CE1_TIMETABLE_VERSION}.${classroom}`;
-  if (window.localStorage.getItem(key) === "1") return false;
+  const key = `ardoise.timetable.applied.${entry.version}.${classroom}`;
+  if (window.localStorage.getItem(key) === "1") return null;
   window.localStorage.setItem(key, "1");
-  return true;
+  return entry;
 }
 
 export type TimetablePreset = { id: string; name: string; data: WeeklyTimetable };
@@ -999,12 +1112,14 @@ function readTimetablesStore(): TimetablesStore {
     if (raw) {
       const parsed = JSON.parse(raw) as TimetablesStore;
       if (parsed && Array.isArray(parsed.entries) && parsed.entries.length > 0) {
-        // La trame validée par l'équipe remplace une fois l'EDT actif des classes CE1 concernées.
+        // La trame validée par l'équipe remplace une fois l'EDT actif des classes concernées
+        // (CE1 D/A pour Boulard/Durand/Grimal, CE1 C pour Thomas/Henry).
         // Les éventuels autres emplois du temps nommés restent disponibles.
-        if (shouldApplyCe1Timetable()) {
+        const classroomSeed = shouldApplyClassroomTimetable();
+        if (classroomSeed) {
           const active = getActiveEntry(parsed);
-          active.name = "Emploi du temps CE1 2026-2027";
-          active.data = cloneTimetable(SEED_TIMETABLE);
+          active.name = classroomSeed.name;
+          active.data = cloneTimetable(classroomSeed.data);
           writeTimetablesStore(parsed);
           syncLegacyKey(active.data);
           return parsed;

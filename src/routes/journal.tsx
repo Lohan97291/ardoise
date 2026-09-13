@@ -107,21 +107,23 @@ const BOULARD_ORTHOGRAPHEMIC_S2_SESSION_ID = "2026-09-08-orthographemic-s2-j1";
 const BOULARD_ORTHOGRAPHEMIC_S2_MARKER_KEY =
   "ardoise.journal.boulard.orthographemic-s2-2026-09-08.v1";
 
-// Piscine du lundi 14 au vendredi 25 septembre 2026, 8h55-10h05 (cf. discussion
-// avec l'enseignant) : on ne touche pas à l'emploi du temps (EDT), seulement au
-// cahier journal, et uniquement pour ces deux semaines.
-const BOULARD_PISCINE_MARKER_KEY = "ardoise.journal.boulard.piscine-2026-09-14.v1";
-const BOULARD_PISCINE_START = "08:55";
+// Piscine du lundi 14 au vendredi 25 septembre 2026 : séance au bassin de
+// 8h55 à 10h05, mais départ de l'école à 8h30 (temps de trajet). Le créneau
+// du cahier journal couvre donc 8h30-10h05 (l'EDT type n'est pas modifié,
+// uniquement le cahier journal, et uniquement pour ces deux semaines).
+const BOULARD_PISCINE_MARKER_KEY = "ardoise.journal.boulard.piscine-2026-09-14.v2";
+const BOULARD_PISCINE_START = "08:30";
 const BOULARD_PISCINE_END = "10:05";
+const BOULARD_PISCINE_POOL_START = "08:55";
 const BOULARD_PISCINE_DATES: { date: string; weekday: Weekday; removeSubjects: SubjectKey[] }[] = [
-  { date: "2026-09-14", weekday: "lundi", removeSubjects: ["eps"] },
-  { date: "2026-09-15", weekday: "mardi", removeSubjects: ["lve"] },
-  { date: "2026-09-17", weekday: "jeudi", removeSubjects: ["eps"] },
-  { date: "2026-09-18", weekday: "vendredi", removeSubjects: [] },
-  { date: "2026-09-21", weekday: "lundi", removeSubjects: ["eps"] },
-  { date: "2026-09-22", weekday: "mardi", removeSubjects: ["lve"] },
-  { date: "2026-09-24", weekday: "jeudi", removeSubjects: ["eps"] },
-  { date: "2026-09-25", weekday: "vendredi", removeSubjects: [] },
+  { date: "2026-09-14", weekday: "lundi", removeSubjects: ["eps", "francais"] },
+  { date: "2026-09-15", weekday: "mardi", removeSubjects: ["lve", "francais"] },
+  { date: "2026-09-17", weekday: "jeudi", removeSubjects: ["eps", "francais"] },
+  { date: "2026-09-18", weekday: "vendredi", removeSubjects: ["francais"] },
+  { date: "2026-09-21", weekday: "lundi", removeSubjects: ["eps", "francais"] },
+  { date: "2026-09-22", weekday: "mardi", removeSubjects: ["lve", "francais"] },
+  { date: "2026-09-24", weekday: "jeudi", removeSubjects: ["eps", "francais"] },
+  { date: "2026-09-25", weekday: "vendredi", removeSubjects: ["francais"] },
 ];
 
 type JournalViewMode = "day" | "week";
@@ -213,9 +215,12 @@ function timeRangesOverlap(aStart: string, aEnd: string, bStart: string, bEnd: s
 }
 
 /**
- * Piscine (8h55-10h05) du 14 au 25 septembre 2026 : ajoutée dans le cahier
- * journal uniquement (l'EDT type n'est pas modifié). EPS est retirée lundi et
- * jeudi, anglais retiré mardi ; QLM du vendredi est conservé tel quel.
+ * Piscine du 14 au 25 septembre 2026 : bassin 8h55-10h05, départ de l'école
+ * 8h30 (trajet). Le cahier journal affiche donc un créneau 8h30-10h05,
+ * ajouté uniquement dans le cahier journal (l'EDT type n'est pas modifié).
+ * EPS est retirée lundi et jeudi, anglais retiré mardi, le cours de français
+ * de 8h30-8h50 (Langage oral / Étude de la langue) est retiré chaque jour
+ * concerné ; QLM du vendredi est conservé tel quel.
  */
 function ensureBoulardPiscineSessions(days: Record<string, Session[]>): Record<string, Session[]> {
   if (resolveCurrentClassroomKey() !== "boulard" || typeof window === "undefined") return days;
@@ -236,17 +241,16 @@ function ensureBoulardPiscineSessions(days: Record<string, Session[]>): Record<s
         ),
     );
     const piscineId = `${date}-piscine`;
-    if (!sessions.some((session) => session.id === piscineId)) {
-      const piscineSession: Session = {
-        id: piscineId,
-        start: BOULARD_PISCINE_START,
-        end: BOULARD_PISCINE_END,
-        title: "Piscine",
-        subject: "eps",
-        note: "Créneau piscine (14-25 septembre) — transport + séance.",
-      };
-      sessions = [...sessions, piscineSession].sort((a, b) => a.start.localeCompare(b.start));
-    }
+    sessions = sessions.filter((session) => session.id !== piscineId);
+    const piscineSession: Session = {
+      id: piscineId,
+      start: BOULARD_PISCINE_START,
+      end: BOULARD_PISCINE_END,
+      title: "Piscine",
+      subject: "eps",
+      note: `Créneau piscine (14-25 septembre) — départ de l'école à ${BOULARD_PISCINE_START.replace(":", "h")}, arrivée au bassin à ${BOULARD_PISCINE_POOL_START.replace(":", "h")}, retour ${BOULARD_PISCINE_END.replace(":", "h")}.`,
+    };
+    sessions = [...sessions, piscineSession].sort((a, b) => a.start.localeCompare(b.start));
     next[date] = sessions;
   }
 
