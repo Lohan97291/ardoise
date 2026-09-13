@@ -415,7 +415,7 @@ function Dashboard() {
   return (
     <AppShell>
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6 sm:py-8">
-        <header className="overflow-hidden rounded-[30px] border border-primary/20 bg-[linear-gradient(145deg,oklch(1_0_0_/0.98),oklch(0.985_0.012_250_/0.95)),radial-gradient(circle_at_top_left,oklch(0.74_0.08_250_/0.16),transparent_34%)] p-5 shadow-raised sm:p-6">
+        <header className="overflow-hidden rounded-[30px] border border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 p-5 shadow-raised sm:p-6">
           <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-start">
             <div className="min-w-0">
               <p className="text-xs font-semibold uppercase tracking-[0.26em] text-muted-foreground">
@@ -498,7 +498,7 @@ function Dashboard() {
         </header>
 
         {/* Cahier journal du jour — information principale de l'écran */}
-          <section className="card-surface overflow-hidden border-2 border-primary/20 bg-[linear-gradient(135deg,oklch(0.336_0.081_252_/_0.1),transparent_58%),linear-gradient(180deg,oklch(1_0_0_/_0.99),oklch(0.985_0.01_250_/_0.96))] p-5 shadow-raised sm:p-6">
+          <section className="card-surface overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 p-5 shadow-raised sm:p-6">
             <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
               <div className="min-w-0">
                 <span className="eyebrow text-primary">Priorité du jour</span>
@@ -528,7 +528,7 @@ function Dashboard() {
             ) : (
               <>
                 <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
-                  <div className="rounded-2xl border border-primary/20 bg-white/95 px-5 py-5 shadow-card sm:px-6 sm:py-6">
+                  <div className="rounded-2xl border border-primary/20 bg-card px-5 py-5 shadow-card sm:px-6 sm:py-6">
                     <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-primary">
                       Séance en cours
                     </p>

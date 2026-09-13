@@ -376,7 +376,7 @@ function CompanionClassPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,oklch(0.97_0.02_245),transparent_35%),linear-gradient(180deg,oklch(0.995_0.005_250),oklch(0.975_0.01_250))] px-4 py-5 pb-32 text-foreground sm:px-6">
+    <div className="min-h-screen bg-background px-4 py-5 pb-32 text-foreground sm:px-6">
       <div className={cn("mx-auto flex max-w-md flex-col gap-4", focusMode && "max-w-lg")}>
         <header className="rounded-[28px] border border-border/70 bg-background/90 p-4 shadow-[0_20px_45px_-30px_rgba(15,23,42,0.4)] backdrop-blur">
           <div className="flex items-center justify-between gap-3">

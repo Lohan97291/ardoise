@@ -1826,7 +1826,7 @@ function EmploiDuTempsPage() {
                       "border-danger-soft-border ring-danger-soft-border",
                   )}
                 >
-                  <div className="border-b border-border bg-[linear-gradient(180deg,oklch(0.965_0.011_84.6_/_0.88),transparent)] px-3 py-2.5">
+                  <div className="border-b border-border bg-gradient-to-b from-secondary/60 to-transparent px-3 py-2.5">
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0">
                         <h2 className="text-sm font-semibold">{WEEKDAY_LABELS[weekday]}</h2>
@@ -1921,7 +1921,7 @@ function EmploiDuTempsPage() {
                       ref={(node) => {
                         daySurfaceRefs.current[weekday] = node;
                       }}
-                      className="relative overflow-hidden rounded-2xl border border-border bg-[linear-gradient(180deg,oklch(1_0_0_/_0.96),oklch(0.985_0.006_84_/_0.96))]"
+                      className="relative overflow-hidden rounded-2xl border border-border bg-card"
                       style={{ height: `${geo.canvasHeight}px` }}
                     >
                       {TIME_MARKS.map((minute) => {
