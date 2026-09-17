@@ -6,6 +6,7 @@ import {
   ClipboardCheck,
   Plus,
   Target,
+  Timer,
   TrendingUp,
   Users,
 } from "lucide-react";
@@ -13,6 +14,7 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
 import { AppShell } from "@/components/ardoise/app-shell";
+import { FluenceExamDialog } from "@/components/ardoise/fluence-exam-mode";
 import {
   SecondaryPageHeader,
   SecondaryPageLinkCard,
@@ -38,6 +40,12 @@ import {
   initials,
   type FluenceLevel,
 } from "@/lib/ardoise-eval";
+import {
+  ALL_PERIODS,
+  DIAGNOSTIC_PERIOD,
+  ORTHO_CHAPTERS,
+  orthoTargetForPeriod,
+} from "@/lib/fluence-periods";
 import { findJournalSessionById } from "@/lib/journal-storage";
 import { getFluenceRecords, saveFluenceMeasure } from "@/lib/storage";
 import { cn } from "@/lib/utils";
@@ -57,43 +65,6 @@ export const Route = createFileRoute("/fluence")({
   }),
   component: FluencePage,
 });
-
-/* ═══════════════════════════ Données Orthographémic ══════════════════════ */
-
-/** Chapitres lettre de la méthode Orthographémic CE1, avec leur cible de fluence. */
-const ORTHO_CHAPTERS = [
-  { key: "Bilan A", letter: "A", fullLabel: "Chapitre A", target: 55, period: 1 },
-  { key: "Bilan O", letter: "O", fullLabel: "Chapitre O", target: 58, period: 2 },
-  { key: "Bilan E", letter: "E", fullLabel: "Chapitre E", target: 60, period: 2 },
-  { key: "Bilan C", letter: "C", fullLabel: "Chapitre C", target: 64, period: 3 },
-  { key: "Bilan G", letter: "G", fullLabel: "Chapitre G", target: 67, period: 3 },
-  { key: "Bilan S", letter: "S", fullLabel: "Chapitre S", target: 68, period: 4 },
-  { key: "Bilan I", letter: "I", fullLabel: "Chapitre I", target: 70, period: 5 },
-] as const;
-
-type OrthoChapterKey = (typeof ORTHO_CHAPTERS)[number]["key"];
-
-/** Point de départ diagnostique Orthographémic — semaine 1 de CE1. */
-const DIAGNOSTIC_PERIOD = {
-  key: "Diagnostic S1",
-  label: "Diagnostic — début de CE1",
-  target: 50,
-} as const;
-
-/** Cible Orthographémic pour une période donnée (null si période générale). */
-function orthoTargetForPeriod(period: string): number | null {
-  if (period === DIAGNOSTIC_PERIOD.key) return DIAGNOSTIC_PERIOD.target;
-  return ORTHO_CHAPTERS.find((c) => c.key === period)?.target ?? null;
-}
-
-/** Toutes les périodes disponibles dans le modal de saisie. */
-const ALL_PERIODS: string[] = [
-  DIAGNOSTIC_PERIOD.key,
-  ...ORTHO_CHAPTERS.map((c) => c.key),
-  "Octobre",
-  "Janvier",
-  "Juin",
-];
 
 /* ════════════════════════ Couleurs et niveaux ════════════════════════════ */
 
@@ -200,6 +171,9 @@ function FluencePage() {
   const initialPeriod =
     requestedPeriod && ALL_PERIODS.includes(requestedPeriod) ? requestedPeriod : ALL_PERIODS[0]!;
 
+  // Mode examen (saisie rapide en direct, avec minuteur)
+  const [examOpen, setExamOpen] = useState(false);
+
   // Modal saisie
   const [modalOpen, setModalOpen] = useState(false);
   const [modalStudent, setModalStudent] = useState<string | null>(null);
@@ -292,10 +266,16 @@ function FluencePage() {
           title="Fluence de lecture"
           description="Bilan des lectures chronométrées selon Orthographémic, avec un suivi simple des seuils et des élèves à accompagner."
           actions={
-            <Button size="sm" onClick={() => openModal(selected ?? EVALUABLE_STUDENTS[0]!.id)}>
-              <Plus className="mr-1.5 h-4 w-4" />
-              Nouvelle mesure
-            </Button>
+            <div className="flex flex-wrap gap-2">
+              <Button size="sm" variant="outline" onClick={() => setExamOpen(true)}>
+                <Timer className="mr-1.5 h-4 w-4" />
+                Mode examen
+              </Button>
+              <Button size="sm" onClick={() => openModal(selected ?? EVALUABLE_STUDENTS[0]!.id)}>
+                <Plus className="mr-1.5 h-4 w-4" />
+                Nouvelle mesure
+              </Button>
+            </div>
           }
         />
 
@@ -927,6 +907,16 @@ function FluencePage() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* ─── Mode examen (minuteur + saisie rapide classe entière) ─── */}
+      <FluenceExamDialog
+        open={examOpen}
+        onOpenChange={setExamOpen}
+        students={EVALUABLE_STUDENTS}
+        fluenceData={fluenceData}
+        initialPeriod={initialPeriod}
+        onSaved={() => setFluenceData(getFluenceRecords())}
+      />
     </AppShell>
   );
 }

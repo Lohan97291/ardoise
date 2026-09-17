@@ -8,10 +8,12 @@ import {
   ClipboardList,
   LayoutDashboard,
   Mail,
+  Mic2,
   Pin,
   PinOff,
   Printer,
   Settings2,
+  UserCheck,
   Users2,
   type LucideIcon,
 } from "lucide-react";
@@ -62,6 +64,7 @@ const NAV_GROUPS: { title: string; items: NavItem[] }[] = [
     title: "Pilotage",
     items: [
       { to: "/", label: "Centre de pilotage", icon: LayoutDashboard },
+      { to: "/appel", label: "Cahier d'appel", icon: UserCheck },
       { to: "/journal", label: "Cahier journal", icon: BookOpen },
     ],
   },
@@ -85,6 +88,7 @@ const NAV_GROUPS: { title: string; items: NavItem[] }[] = [
     items: [
       { to: "/correction-rapide", label: "Corrections", icon: ClipboardCheck },
       { to: "/eleves", label: "Élèves", icon: Users2 },
+      { to: "/recitations", label: "Récitations", icon: Mic2 },
     ],
   },
 ];
@@ -103,6 +107,8 @@ const PAGE_LABELS: Record<NavItem["to"], string> = {
   "/bilan-seance": "Bilan de séance",
   "/carnet-notes": "Carnet de notes",
   "/eleves": "Élèves",
+  "/appel": "Cahier d'appel",
+  "/recitations": "Récitations",
   "/resultats-exercices": "Résultats d'exercices",
   "/groupes-besoin": "Groupes de besoin",
   "/ateliers-reprise": "Ateliers de reprise",

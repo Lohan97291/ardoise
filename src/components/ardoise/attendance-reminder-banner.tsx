@@ -55,7 +55,7 @@ export function AttendanceReminderBanner() {
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
             <Link
-              to="/eleves?tab=appel"
+              to="/appel"
               className="inline-flex items-center rounded-full bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
             >
               Faire l'appel

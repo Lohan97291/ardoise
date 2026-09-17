@@ -471,10 +471,13 @@ export function saveFluenceMeasure(
 // ─────────────────────────────────────────────
 export type AttendanceStatus = "present" | "retard" | "absent";
 export type AttendanceStore = Record<string, AttendanceStatus>;
+export type AttendanceJustifiedStore = Record<string, boolean>;
 export type AttendanceMoment = "morning" | "afternoon";
 export type AttendanceDayRecord = {
   morning?: AttendanceStore;
   afternoon?: AttendanceStore;
+  morningJustified?: AttendanceJustifiedStore;
+  afternoonJustified?: AttendanceJustifiedStore;
 };
 export type AttendanceMonthStats = {
   studentCount: number;
@@ -521,6 +524,8 @@ function readAttendanceDayRecord(date: string): AttendanceDayRecord | null {
       return {
         morning: record.morning ? normalizeAttendanceStore(record.morning) : undefined,
         afternoon: record.afternoon ? normalizeAttendanceStore(record.afternoon) : undefined,
+        morningJustified: record.morningJustified,
+        afternoonJustified: record.afternoonJustified,
       };
     }
   } catch {
@@ -560,6 +565,39 @@ export function saveAttendance(
   const next: AttendanceDayRecord = {
     ...record,
     [moment]: normalizeAttendanceStore(data),
+  };
+  localStorage.setItem(attendanceKey(date), JSON.stringify(next));
+}
+
+/**
+ * Statut "justifiee" (true) ou "non justifiee" (false, ou absente de
+ * l'objet) des absences enregistrees pour un jour/moment donne.
+ */
+export function getAttendanceJustified(
+  date: string,
+  moment: AttendanceMoment = "morning",
+): AttendanceJustifiedStore {
+  const record = readAttendanceDayRecord(date);
+  const key = moment === "morning" ? "morningJustified" : "afternoonJustified";
+  return record?.[key] ?? {};
+}
+
+/**
+ * Marque (ou demarque) une absence comme justifiee pour un eleve, un jour et
+ * un moment donnes. Ne verifie pas que l'eleve est bien en statut "absent" :
+ * c'est a l'appelant de ne proposer ce controle que pour les absences.
+ */
+export function setAttendanceJustified(
+  date: string,
+  studentId: string,
+  justified: boolean,
+  moment: AttendanceMoment = "morning",
+): void {
+  const record = readAttendanceDayRecord(date) ?? {};
+  const key = moment === "morning" ? "morningJustified" : "afternoonJustified";
+  const next: AttendanceDayRecord = {
+    ...record,
+    [key]: { ...(record[key] ?? {}), [studentId]: justified },
   };
   localStorage.setItem(attendanceKey(date), JSON.stringify(next));
 }
@@ -613,6 +651,87 @@ export function getAttendanceMonthStats(month: string): AttendanceMonthStats {
     absentRate,
     presentRate,
   };
+}
+
+// ────────────────────────────────────────────
+// Récitations (poésies, textes mémorisés à l'oral)
+// Format : liste de séances { id, title, date, entries: [{ studentId, level, comment }] }
+// ─────────────────────────────────────────────
+export type RecitationLevel = "tres_bien" | "bien" | "hesitations" | "a_revoir";
+
+export type RecitationEntry = {
+  studentId: string;
+  level: RecitationLevel;
+  comment?: string;
+};
+
+export type RecitationSession = {
+  id: string;
+  title: string;
+  date: string;
+  entries: RecitationEntry[];
+};
+
+const RECITATIONS_KEY = "ardoise.recitations.v1";
+
+function loadRecitationSessions(): RecitationSession[] {
+  try {
+    const raw = localStorage.getItem(RECITATIONS_KEY);
+    return raw ? (JSON.parse(raw) as RecitationSession[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveRecitationSessions(sessions: RecitationSession[]): void {
+  localStorage.setItem(RECITATIONS_KEY, JSON.stringify(sessions));
+}
+
+/** Séances de récitation, les plus récentes en premier. */
+export function getRecitationSessions(): RecitationSession[] {
+  return [...loadRecitationSessions()].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+}
+
+/** Titres déjà utilisés (pour proposer une auto-complétion à la saisie). */
+export function getRecitationTitles(): string[] {
+  const titles = new Set(loadRecitationSessions().map((session) => session.title));
+  return Array.from(titles).sort((a, b) => a.localeCompare(b, "fr"));
+}
+
+/**
+ * Enregistre (ou met à jour) l'évaluation d'un élève pour une séance de
+ * récitation donnée (identifiée par titre + date). Crée la séance si besoin.
+ */
+export function saveRecitationEntry(
+  title: string,
+  date: string,
+  studentId: string,
+  level: RecitationLevel,
+  comment?: string,
+): void {
+  const sessions = loadRecitationSessions();
+  const sessionIndex = sessions.findIndex((session) => session.title === title && session.date === date);
+  const entry: RecitationEntry = comment ? { studentId, level, comment } : { studentId, level };
+
+  if (sessionIndex === -1) {
+    sessions.push({
+      id: `${date}-${title}`.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-"),
+      title,
+      date,
+      entries: [entry],
+    });
+  } else {
+    const session = sessions[sessionIndex]!;
+    const entryIndex = session.entries.findIndex((e) => e.studentId === studentId);
+    if (entryIndex === -1) session.entries.push(entry);
+    else session.entries[entryIndex] = entry;
+  }
+
+  saveRecitationSessions(sessions);
+}
+
+export function deleteRecitationSession(id: string): void {
+  saveRecitationSessions(loadRecitationSessions().filter((session) => session.id !== id));
 }
 
 // ─────────────────────────────────────────────

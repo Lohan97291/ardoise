@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as AppelRouteImport } from './routes/appel'
 import { Route as AteliersRepriseRouteImport } from './routes/ateliers-reprise'
 import { Route as BilanSeanceRouteImport } from './routes/bilan-seance'
 import { Route as CarnetNotesRouteImport } from './routes/carnet-notes'
@@ -27,6 +28,7 @@ import { Route as OptionsRouteImport } from './routes/options'
 import { Route as OrthographemicRouteImport } from './routes/orthographemic'
 import { Route as ProgrammationRouteImport } from './routes/programmation'
 import { Route as ProgrammationAnnuelleRouteImport } from './routes/programmation-annuelle'
+import { Route as RecitationsRouteImport } from './routes/recitations'
 import { Route as RessourcesRouteImport } from './routes/ressources'
 import { Route as ResultatsExercicesRouteImport } from './routes/resultats-exercices'
 import { Route as ApiAiPedagogicalAssistantRouteImport } from './routes/api/ai/pedagogical-assistant'
@@ -51,6 +53,11 @@ const IndexRoute = IndexRouteImport.update({
 const AgendaRoute = AgendaRouteImport.update({
   id: '/agenda',
   path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppelRoute = AppelRouteImport.update({
+  id: '/appel',
+  path: '/appel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AteliersRepriseRoute = AteliersRepriseRouteImport.update({
@@ -131,6 +138,11 @@ const ProgrammationRoute = ProgrammationRouteImport.update({
 const ProgrammationAnnuelleRoute = ProgrammationAnnuelleRouteImport.update({
   id: '/programmation-annuelle',
   path: '/programmation-annuelle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecitationsRoute = RecitationsRouteImport.update({
+  id: '/recitations',
+  path: '/recitations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RessourcesRoute = RessourcesRouteImport.update({
@@ -215,6 +227,7 @@ const ApiIntegrationsN8nMailRoute = ApiIntegrationsN8nMailRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/appel': typeof AppelRoute
   '/ateliers-reprise': typeof AteliersRepriseRoute
   '/bilan-seance': typeof BilanSeanceRoute
   '/carnet-notes': typeof CarnetNotesRoute
@@ -231,6 +244,7 @@ export interface FileRoutesByFullPath {
   '/orthographemic': typeof OrthographemicRoute
   '/programmation': typeof ProgrammationRoute
   '/programmation-annuelle': typeof ProgrammationAnnuelleRoute
+  '/recitations': typeof RecitationsRoute
   '/ressources': typeof RessourcesRoute
   '/resultats-exercices': typeof ResultatsExercicesRoute
   '/api/ai/pedagogical-assistant': typeof ApiAiPedagogicalAssistantRoute
@@ -250,6 +264,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/appel': typeof AppelRoute
   '/ateliers-reprise': typeof AteliersRepriseRoute
   '/bilan-seance': typeof BilanSeanceRoute
   '/carnet-notes': typeof CarnetNotesRoute
@@ -266,6 +281,7 @@ export interface FileRoutesByTo {
   '/orthographemic': typeof OrthographemicRoute
   '/programmation': typeof ProgrammationRoute
   '/programmation-annuelle': typeof ProgrammationAnnuelleRoute
+  '/recitations': typeof RecitationsRoute
   '/ressources': typeof RessourcesRoute
   '/resultats-exercices': typeof ResultatsExercicesRoute
   '/api/ai/pedagogical-assistant': typeof ApiAiPedagogicalAssistantRoute
@@ -286,6 +302,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/appel': typeof AppelRoute
   '/ateliers-reprise': typeof AteliersRepriseRoute
   '/bilan-seance': typeof BilanSeanceRoute
   '/carnet-notes': typeof CarnetNotesRoute
@@ -302,6 +319,7 @@ export interface FileRoutesById {
   '/orthographemic': typeof OrthographemicRoute
   '/programmation': typeof ProgrammationRoute
   '/programmation-annuelle': typeof ProgrammationAnnuelleRoute
+  '/recitations': typeof RecitationsRoute
   '/ressources': typeof RessourcesRoute
   '/resultats-exercices': typeof ResultatsExercicesRoute
   '/api/ai/pedagogical-assistant': typeof ApiAiPedagogicalAssistantRoute
@@ -323,6 +341,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/agenda'
+    | '/appel'
     | '/ateliers-reprise'
     | '/bilan-seance'
     | '/carnet-notes'
@@ -339,6 +358,7 @@ export interface FileRouteTypes {
     | '/orthographemic'
     | '/programmation'
     | '/programmation-annuelle'
+    | '/recitations'
     | '/ressources'
     | '/resultats-exercices'
     | '/api/ai/pedagogical-assistant'
@@ -358,6 +378,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/agenda'
+    | '/appel'
     | '/ateliers-reprise'
     | '/bilan-seance'
     | '/carnet-notes'
@@ -374,6 +395,7 @@ export interface FileRouteTypes {
     | '/orthographemic'
     | '/programmation'
     | '/programmation-annuelle'
+    | '/recitations'
     | '/ressources'
     | '/resultats-exercices'
     | '/api/ai/pedagogical-assistant'
@@ -393,6 +415,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/agenda'
+    | '/appel'
     | '/ateliers-reprise'
     | '/bilan-seance'
     | '/carnet-notes'
@@ -409,6 +432,7 @@ export interface FileRouteTypes {
     | '/orthographemic'
     | '/programmation'
     | '/programmation-annuelle'
+    | '/recitations'
     | '/ressources'
     | '/resultats-exercices'
     | '/api/ai/pedagogical-assistant'
@@ -429,6 +453,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgendaRoute: typeof AgendaRoute
+  AppelRoute: typeof AppelRoute
   AteliersRepriseRoute: typeof AteliersRepriseRoute
   BilanSeanceRoute: typeof BilanSeanceRoute
   CarnetNotesRoute: typeof CarnetNotesRoute
@@ -445,6 +470,7 @@ export interface RootRouteChildren {
   OrthographemicRoute: typeof OrthographemicRoute
   ProgrammationRoute: typeof ProgrammationRoute
   ProgrammationAnnuelleRoute: typeof ProgrammationAnnuelleRoute
+  RecitationsRoute: typeof RecitationsRoute
   RessourcesRoute: typeof RessourcesRoute
   ResultatsExercicesRoute: typeof ResultatsExercicesRoute
   ApiAiPedagogicalAssistantRoute: typeof ApiAiPedagogicalAssistantRoute
@@ -476,6 +502,13 @@ declare module '@tanstack/react-router' {
       path: '/agenda'
       fullPath: '/agenda'
       preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/appel': {
+      id: '/appel'
+      path: '/appel'
+      fullPath: '/appel'
+      preLoaderRoute: typeof AppelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ateliers-reprise': {
@@ -590,6 +623,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammationAnnuelleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recitations': {
+      id: '/recitations'
+      path: '/recitations'
+      fullPath: '/recitations'
+      preLoaderRoute: typeof RecitationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ressources': {
       id: '/ressources'
       path: '/ressources'
@@ -701,6 +741,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgendaRoute: AgendaRoute,
+  AppelRoute: AppelRoute,
   AteliersRepriseRoute: AteliersRepriseRoute,
   BilanSeanceRoute: BilanSeanceRoute,
   CarnetNotesRoute: CarnetNotesRoute,
@@ -717,6 +758,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrthographemicRoute: OrthographemicRoute,
   ProgrammationRoute: ProgrammationRoute,
   ProgrammationAnnuelleRoute: ProgrammationAnnuelleRoute,
+  RecitationsRoute: RecitationsRoute,
   RessourcesRoute: RessourcesRoute,
   ResultatsExercicesRoute: ResultatsExercicesRoute,
   ApiAiPedagogicalAssistantRoute: ApiAiPedagogicalAssistantRoute,
@@ -736,13 +778,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

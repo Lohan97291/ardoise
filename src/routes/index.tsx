@@ -48,6 +48,8 @@ import {
   initials,
   type Student,
 } from "@/lib/ardoise-eval";
+import { attendanceRosterForDate, countAttendance } from "@/lib/attendance-helpers";
+import { getAttendance, hasAttendanceRecorded, type AttendanceMoment } from "@/lib/storage";
 import {
   addExtraPrepared,
   addManualSignal,
@@ -215,7 +217,39 @@ function Dashboard() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
+  const [attendanceRefresh, setAttendanceRefresh] = useState(0);
+  useEffect(() => {
+    function refresh() {
+      setAttendanceRefresh((value) => value + 1);
+    }
+    window.addEventListener("focus", refresh);
+    const id = window.setInterval(refresh, 60_000);
+    return () => {
+      window.removeEventListener("focus", refresh);
+      window.clearInterval(id);
+    };
+  }, []);
+
   const todayKey = toISODate(today);
+
+  const attendanceSummary = useMemo(() => {
+    if (!mounted) return null;
+    const roster = attendanceRosterForDate(todayKey);
+    return (["morning", "afternoon"] as AttendanceMoment[]).map((moment) => {
+      if (!hasAttendanceRecorded(todayKey, moment)) {
+        return { moment, recorded: false as const };
+      }
+      const attendance = getAttendance(todayKey, moment);
+      return {
+        moment,
+        recorded: true as const,
+        counts: countAttendance(attendance, roster),
+        total: roster.length,
+        absentStudents: roster.filter((student) => attendance[student.id] === "absent"),
+      };
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted, todayKey, attendanceRefresh]);
   const todaySessions = useMemo(() => {
     if (!mounted) return [];
     return readJournalDays()[todayKey] ?? [];
@@ -752,10 +786,43 @@ function Dashboard() {
                 Cahier d'appel
               </h2>
               <Button variant="outline" size="sm" className="shrink-0" asChild>
-                <Link to="/eleves?tab=appel">Faire l'appel</Link>
+                <Link to="/appel">Faire l'appel</Link>
               </Button>
             </div>
-            <p className="mt-3 text-sm text-muted-foreground">{STUDENTS.length} élèves</p>
+            {attendanceSummary ? (
+              <ul className="mt-3 space-y-1.5">
+                {attendanceSummary.map((entry) => (
+                  <li key={entry.moment} className="flex items-center justify-between gap-2 text-sm">
+                    <span className="text-muted-foreground">
+                      {entry.moment === "morning" ? "Matin" : "Après-midi"}
+                    </span>
+                    {entry.recorded ? (
+                      <span className="flex min-w-0 items-center gap-1.5 text-right">
+                        <span className="shrink-0 font-semibold text-foreground">
+                          {entry.counts.present}/{entry.total} présents
+                        </span>
+                        {entry.absentStudents.length > 0 ? (
+                          <span
+                            className="truncate text-xs text-danger-strong"
+                            title={entry.absentStudents.map((student) => fullName(student)).join(", ")}
+                          >
+                            (
+                            {entry.absentStudents.length <= 2
+                              ? entry.absentStudents.map((student) => fullName(student)).join(", ")
+                              : `${entry.absentStudents.length} absents`}
+                            )
+                          </span>
+                        ) : null}
+                      </span>
+                    ) : (
+                      <span className="text-xs text-muted-foreground">Pas encore fait</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-3 text-sm text-muted-foreground">{STUDENTS.length} élèves</p>
+            )}
           </section>
 
           {/* À préparer */}

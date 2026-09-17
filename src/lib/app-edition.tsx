@@ -22,6 +22,8 @@ export type AppRoutePath =
   | "/bilan-seance"
   | "/carnet-notes"
   | "/eleves"
+  | "/appel"
+  | "/recitations"
   | "/resultats-exercices"
   | "/groupes-besoin"
   | "/ateliers-reprise"
@@ -55,6 +57,8 @@ const ENABLED_ROUTES: Record<AppEdition, AppRoutePath[]> = {
     "/bilan-seance",
     "/carnet-notes",
     "/eleves",
+    "/appel",
+    "/recitations",
     "/resultats-exercices",
     "/groupes-besoin",
     "/ateliers-reprise",
@@ -69,6 +73,8 @@ const ENABLED_ROUTES: Record<AppEdition, AppRoutePath[]> = {
     "/correction-rapide",
     "/carnet-notes",
     "/eleves",
+    "/appel",
+    "/recitations",
     "/resultats-exercices",
     "/options",
   ],
@@ -97,7 +103,9 @@ function getStoredEdition(): AppEdition | null {
 }
 
 export function AppEditionProvider({ children }: { children: ReactNode }) {
-  const search = useRouterState({ select: (state) => state.location.search });
+  // .searchStr est la chaîne brute ("?edition=collegue"), le bon format pour
+  // URLSearchParams — .search est l'objet déjà parsé.
+  const search = useRouterState({ select: (state) => state.location.searchStr });
   const queryEdition = useMemo<AppEdition | null>(() => {
     const params = new URLSearchParams(search);
     return params.has(QUERY_KEY) ? normalizeEdition(params.get(QUERY_KEY)) : null;
