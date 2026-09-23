@@ -730,47 +730,48 @@ function JournalPage() {
     <AppShell>
       <div
         className={cn(
-          "mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8",
+          "mx-auto max-w-5xl px-3 py-5 sm:px-6 sm:py-8",
           printPrep?.sheet ? "journal-print-hidden" : "print-sheet",
         )}
       >
         {/* En-tête jour : navigation de date, l'action la plus fréquente */}
-        <header className="card-surface overflow-hidden border-primary/10 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_97%,transparent),color-mix(in_oklab,var(--color-secondary)_36%,transparent))] p-4 shadow-raised sm:p-5">
-          <div className="flex flex-wrap items-start justify-between gap-3">
+        <header className="card-surface overflow-hidden rounded-[20px] border-border/75 bg-card/95 shadow-[var(--shadow-raised)]">
+          <div className="h-1 bg-[linear-gradient(90deg,var(--color-primary),color-mix(in_oklab,var(--color-ochre)_72%,var(--color-primary)))]" />
+          <div className="grid gap-5 p-4 sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
             <div className="min-w-0">
               <p className="eyebrow">Cahier journal</p>
-              <h1 className="panel-heading mt-1 truncate text-3xl capitalize sm:text-4xl">
+              <h1 className="panel-heading mt-1 text-3xl capitalize sm:text-4xl">
                 {formatLongDate(date)}
               </h1>
-              <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[0.7rem] font-semibold">
-                <span className="rounded-full border border-border/60 bg-card/80 px-2.5 py-1 text-muted-foreground shadow-sm">
-                  CE1
-                </span>
-                <span className="rounded-full border border-border/60 bg-card/80 px-2.5 py-1 text-muted-foreground shadow-sm">
-                  {stats.total} séance{stats.total > 1 ? "s" : ""}
-                </span>
-                <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 text-primary shadow-sm">
-                  {stats.linked}/{Math.max(stats.total, 1)} fiches
-                </span>
-                {correctionTargets.length > 0 && (
-                  <span className="rounded-full border border-accent/20 bg-accent/15 px-2.5 py-1 text-accent-foreground shadow-sm">
-                    {correctionTargets.length} correction{correctionTargets.length > 1 ? "s" : ""}
-                  </span>
-                )}
+              <div className="mt-4 grid max-w-xl grid-cols-3 overflow-hidden rounded-xl border border-border/65 bg-secondary/35">
+                <div className="px-3 py-2.5 sm:px-4">
+                  <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">Séances</p>
+                  <p className="mt-0.5 text-lg font-bold tabular-nums text-foreground">{stats.total}</p>
+                </div>
+                <div className="border-x border-border/55 px-3 py-2.5 sm:px-4">
+                  <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">Fiches</p>
+                  <p className="mt-0.5 text-lg font-bold tabular-nums text-primary">
+                    {stats.linked}<span className="text-xs font-semibold text-muted-foreground">/{Math.max(stats.total, 1)}</span>
+                  </p>
+                </div>
+                <div className="px-3 py-2.5 sm:px-4">
+                  <p className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">À corriger</p>
+                  <p className="mt-0.5 text-lg font-bold tabular-nums text-ochre-foreground">{correctionTargets.length}</p>
+                </div>
               </div>
-              <div className="mt-3 inline-flex flex-wrap items-center gap-2 rounded-full border border-emerald-200/80 bg-[linear-gradient(135deg,oklch(0.985_0.02_150),oklch(0.96_0.03_150))] px-3 py-1.5 text-xs text-emerald-900 shadow-sm">
+              <div className="mt-3 flex max-w-xl flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
                 <span className="font-semibold">Zone C</span>
-                <span className="text-emerald-700">•</span>
+                <span className="text-border">•</span>
                 <span className="font-medium">
                   {schoolRhythm.status === "upcoming" ? "Prochaine période" : "Période"}{" "}
                   {schoolRhythm.period.label}
                 </span>
-                <span className="text-emerald-700">•</span>
+                <span className="text-border">•</span>
                 <span>
                   {schoolRhythm.schoolDaysLeft} jour{schoolRhythm.schoolDaysLeft > 1 ? "s" : ""}{" "}
                   de classe
                 </span>
-                <span className="text-emerald-700">•</span>
+                <span className="text-border">•</span>
                 <span>
                   {schoolRhythm.schoolWeeksLeft} semaine
                   {schoolRhythm.schoolWeeksLeft > 1 ? "s" : ""}
@@ -779,11 +780,12 @@ function JournalPage() {
             </div>
 
             {/* Sélecteur / navigation de date : usage quotidien */}
-            <div className="journal-print-hidden flex shrink-0 flex-wrap items-center justify-end gap-1">
-              <div className="flex items-center gap-1 rounded-full border border-border/60 bg-card/75 p-1 shadow-sm">
+            <div className="journal-print-hidden flex flex-col items-stretch gap-3 sm:min-w-[270px]">
+              <div className="grid grid-cols-2 gap-1 rounded-xl border border-border/65 bg-secondary/45 p-1">
                 <Button
                   variant={viewMode === "day" ? "default" : "ghost"}
                   size="sm"
+                  className="rounded-lg"
                   onClick={() => setViewMode("day")}
                 >
                   Jour
@@ -791,14 +793,58 @@ function JournalPage() {
                 <Button
                   variant={viewMode === "week" ? "default" : "ghost"}
                   size="sm"
+                  className="rounded-lg"
                   onClick={() => setViewMode("week")}
                 >
                   Semaine
                 </Button>
               </div>
+              <div className="grid grid-cols-[1fr_auto_auto_auto] gap-1">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="justify-center rounded-xl"
+                  onClick={() => setDate(today)}
+                  disabled={isToday}
+                >
+                  Aujourd'hui
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="rounded-xl"
+                  aria-label="Jour précédent"
+                  onClick={() => setDate(addDays(date, -1))}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="rounded-xl"
+                  aria-label="Jour suivant"
+                  onClick={() => setDate(addDays(date, 1))}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button variant="outline" size="icon" className="rounded-xl" aria-label="Choisir une date">
+                      <CalendarDays className="h-4 w-4" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent align="end" className="w-auto p-0">
+                    <Calendar mode="single" selected={date} onSelect={(d) => d && setDate(d)} />
+                  </PopoverContent>
+                </Popover>
+              </div>
+            </div>
+          </div>
+
+          <div className="journal-print-hidden flex flex-wrap items-center gap-2 border-t border-border/60 bg-secondary/22 px-4 py-3 sm:px-6">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm" className="rounded-full">
+                  <Button variant="outline" size="sm" className="rounded-xl">
                     <Settings2 className="mr-2 h-4 w-4" />
                     Affichage
                   </Button>
@@ -833,7 +879,7 @@ function JournalPage() {
                   <Button
                     variant="default"
                     size="sm"
-                    className="rounded-full"
+                    className="rounded-xl"
                     onClick={() => setExportMode(viewMode)}
                   >
                     <Download className="mr-2 h-4 w-4" />
@@ -960,53 +1006,16 @@ function JournalPage() {
               <Button
                 variant="outline"
                 size="sm"
-                className="rounded-full"
+                className="rounded-xl"
                 onClick={() => window.print()}
               >
                 <Printer className="mr-2 h-4 w-4" />
                 Imprimer
               </Button>
-              <div className="flex items-center gap-1 rounded-full border border-border/60 bg-card/75 p-1 shadow-sm">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setDate(today)}
-                disabled={isToday}
-              >
-                Aujourd'hui
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                aria-label="Jour précédent"
-                onClick={() => setDate(addDays(date, -1))}
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                aria-label="Jour suivant"
-                onClick={() => setDate(addDays(date, 1))}
-              >
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" size="icon" aria-label="Choisir une date">
-                    <CalendarDays className="h-4 w-4" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent align="end" className="w-auto p-0">
-                  <Calendar mode="single" selected={date} onSelect={(d) => d && setDate(d)} />
-                </PopoverContent>
-              </Popover>
-              </div>
-            </div>
           </div>
 
           {/* Navigation semaine */}
-          <div className="journal-print-hidden mt-4 flex gap-1">
+          <div className="journal-print-hidden grid grid-cols-5 gap-px border-t border-border/60 bg-border/60">
             {weekDays.map((d, i) => {
               const dKey = toISODate(d);
               const active = dKey === key;
@@ -1017,19 +1026,19 @@ function JournalPage() {
                   type="button"
                   onClick={() => setDate(d)}
                   className={cn(
-                    "flex h-10 w-10 flex-col items-center justify-center rounded-lg text-[0.65rem] font-semibold transition-colors duration-150",
+                    "relative flex min-h-16 flex-col items-center justify-center bg-card px-1 py-2 text-xs font-semibold transition-colors duration-150 sm:min-h-[72px]",
                     active
-                      ? "bg-primary text-primary-foreground"
+                      ? "z-10 bg-primary/8 text-primary shadow-[inset_0_-3px_0_var(--color-primary)]"
                       : isTodayDay
-                        ? "bg-primary/10 text-primary ring-1 ring-primary/40 hover:bg-primary/20"
+                        ? "bg-ochre/8 text-ochre-foreground shadow-[inset_0_-3px_0_color-mix(in_oklab,var(--color-ochre)_70%,transparent)] hover:bg-ochre/12"
                         : "text-muted-foreground hover:bg-secondary hover:text-foreground",
                   )}
                 >
-                  <span>{DAY_LABELS[i]}</span>
+                  <span className="uppercase tracking-[0.12em]">{DAY_LABELS[i]}</span>
                   <span
                     className={cn(
-                      "text-[0.55rem] leading-none",
-                      active ? "text-primary-foreground/70" : "text-muted-foreground",
+                      "mt-1 text-base font-bold leading-none tabular-nums",
+                      active ? "text-primary" : "text-foreground/75",
                     )}
                   >
                     {d.getDate()}
@@ -1077,14 +1086,14 @@ function JournalPage() {
                 <article
                   key={entry.dateKey}
                   className={cn(
-                    "rounded-[24px] border bg-card/85 p-4 shadow-card",
-                    active ? "border-primary/30 ring-2 ring-primary/10" : "border-border/70",
+                    "overflow-hidden rounded-[20px] border bg-card/92 shadow-[var(--shadow-card)]",
+                    active ? "border-primary/30 ring-2 ring-primary/8" : "border-border/70",
                   )}
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/55 bg-secondary/25 px-4 py-3">
                     <div>
                       <p className="eyebrow">{formatLongDate(entry.date)}</p>
-                      <h2 className="text-lg font-semibold">
+                      <h2 className="mt-0.5 text-base font-semibold">
                         {entry.sessions.filter((session) => session.subject !== "pause").length}{" "}
                         séance
                         {entry.sessions.filter((session) => session.subject !== "pause").length > 1
@@ -1092,17 +1101,17 @@ function JournalPage() {
                           : ""}
                       </h2>
                     </div>
-                    <Button variant="ghost" size="sm" onClick={() => setDate(entry.date)}>
+                    <Button variant="ghost" size="sm" className="rounded-xl" onClick={() => setDate(entry.date)}>
                       Ouvrir
                     </Button>
                   </div>
 
                   {entry.sessions.length === 0 ? (
-                    <p className="mt-3 rounded-2xl border border-dashed border-border/70 bg-secondary/35 px-3 py-4 text-sm text-muted-foreground">
+                    <p className="m-3 rounded-xl border border-dashed border-border/70 bg-secondary/25 px-3 py-4 text-sm text-muted-foreground">
                       Journée vide.
                     </p>
                   ) : (
-                    <div className="mt-3 space-y-2">
+                    <div className="space-y-px bg-border/55">
                       {entry.sessions.map((session) => (
                         <button
                           key={session.id}
@@ -1112,21 +1121,21 @@ function JournalPage() {
                             setEditing(session);
                             setOpen(true);
                           }}
-                          className="w-full rounded-2xl border border-border/70 bg-background/70 px-3 py-2 text-left shadow-sm transition hover:border-primary/30 hover:bg-primary/5"
+                          className="w-full bg-card px-4 py-3 text-left transition-colors hover:bg-primary/[0.045]"
                         >
                           <div className="flex flex-wrap items-center gap-2">
                             {displayOptions.times && (
-                              <span className="rounded-full bg-secondary px-2 py-0.5 text-[0.68rem] font-semibold text-muted-foreground">
+                              <span className="font-mono text-[0.68rem] font-bold tabular-nums text-foreground">
                                 {session.start} - {session.end}
                               </span>
                             )}
                             {displayOptions.subjects && (
-                              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[0.68rem] font-semibold text-primary">
+                              <span className="rounded-md bg-primary/8 px-2 py-0.5 text-[0.68rem] font-semibold text-primary">
                                 {getSubjectLabel(session.subject)}
                               </span>
                             )}
                             {displayOptions.prep && session.prepSheetId && (
-                              <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[0.68rem] font-semibold text-emerald-800">
+                              <span className="rounded-md bg-emerald-100 px-2 py-0.5 text-[0.68rem] font-semibold text-emerald-800">
                                 Fiche liée
                               </span>
                             )}
@@ -1146,7 +1155,7 @@ function JournalPage() {
             })}
           </section>
         ) : visibleSessions.length === 0 ? (
-          <div className="mt-6 animate-rise-in rounded-3xl border border-dashed border-border bg-card/70 px-6 py-14 text-center shadow-card">
+          <div className="mt-6 animate-rise-in rounded-[20px] border border-dashed border-border bg-card/70 px-6 py-14 text-center shadow-[var(--shadow-card)]">
             <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl border border-border bg-secondary/70 text-primary">
               <Download className="h-6 w-6" />
             </span>
@@ -1157,41 +1166,51 @@ function JournalPage() {
             </Button>
           </div>
         ) : (
-          <div className="mt-6 space-y-2.5">
-            {visibleSessions.map((session) => (
-              <SessionCard
-                key={session.id}
-                session={session}
-                onOpen={(s) => {
-                  setEditing(s);
-                  setOpen(true);
-                }}
-                onCorrect={openCorrection}
-                onDuplicate={(s) =>
-                  update(
-                    [...sessions, { ...s, id: `${s.id}-copie-${Date.now()}` }].sort((a, b) =>
-                      a.start.localeCompare(b.start),
-                    ),
-                  )
-                }
-                onDelete={(s) => update(sessions.filter((x) => x.id !== s.id))}
-                onAddAfter={addAfter}
-                onPrintPrep={(s) => {
-                  void loadPatchedPrepSheet(s.prepSheetId).then((sheet) => {
-                    if (!sheet) {
-                      toast.error("Aucune fiche de prep imprimable n'est rattachée à cette séance.");
-                      return;
-                    }
-                    setPrintPrep({ sessionId: s.id, sheet });
-                  });
-                }}
-              />
-            ))}
+          <section className="mt-6 overflow-hidden rounded-[20px] border border-border/70 bg-secondary/20 shadow-[var(--shadow-card)]">
+            <div className="flex items-center justify-between gap-3 border-b border-border/60 bg-card/80 px-4 py-3 sm:px-5">
+              <div>
+                <p className="eyebrow">Organisation du jour</p>
+                <h2 className="mt-0.5 text-lg font-semibold text-foreground">Déroulé de la journée</h2>
+              </div>
+              <span className="rounded-lg border border-border/60 bg-secondary/60 px-2.5 py-1 text-xs font-semibold tabular-nums text-muted-foreground">
+                {visibleSessions.length} séance{visibleSessions.length > 1 ? "s" : ""}
+              </span>
+            </div>
+            <div className="space-y-3 p-3 sm:p-4">
+              {visibleSessions.map((session) => (
+                <SessionCard
+                  key={session.id}
+                  session={session}
+                  onOpen={(s) => {
+                    setEditing(s);
+                    setOpen(true);
+                  }}
+                  onCorrect={openCorrection}
+                  onDuplicate={(s) =>
+                    update(
+                      [...sessions, { ...s, id: `${s.id}-copie-${Date.now()}` }].sort((a, b) =>
+                        a.start.localeCompare(b.start),
+                      ),
+                    )
+                  }
+                  onDelete={(s) => update(sessions.filter((x) => x.id !== s.id))}
+                  onAddAfter={addAfter}
+                  onPrintPrep={(s) => {
+                    void loadPatchedPrepSheet(s.prepSheetId).then((sheet) => {
+                      if (!sheet) {
+                        toast.error("Aucune fiche de prep imprimable n'est rattachée à cette séance.");
+                        return;
+                      }
+                      setPrintPrep({ sessionId: s.id, sheet });
+                    });
+                  }}
+                />
+              ))}
 
-            <div className="flex flex-col gap-2 sm:flex-row">
+              <div className="flex flex-col gap-2 sm:flex-row">
               <Button
                 variant="outline"
-                className="w-full border-dashed sm:flex-1"
+                className="w-full rounded-xl border-dashed bg-card/65 sm:flex-1"
                 onClick={() =>
                   update([
                     ...sessions,
@@ -1208,8 +1227,9 @@ function JournalPage() {
                 <Plus className="mr-2 h-4 w-4" />
                 Ajouter une séance
               </Button>
+              </div>
             </div>
-          </div>
+          </section>
         )}
 
         {printPrep?.sheet ? (

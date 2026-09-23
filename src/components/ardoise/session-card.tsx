@@ -75,7 +75,7 @@ export function SessionCard({
         aria-hidden="true"
         className={cn("absolute inset-y-0 left-0 w-1.5", SUBJECT_STRIP[session.subject])}
       />
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 pl-5 pr-3 py-3">
+      <div className="grid grid-cols-1 items-start gap-3 py-3 pl-5 pr-3 sm:grid-cols-[minmax(0,1fr)_auto]">
         <button
           type="button"
           onClick={() => onOpen(session)}
@@ -98,7 +98,7 @@ export function SessionCard({
             </span>
           </div>
 
-          <h3 className="mt-1.5 truncate text-base font-semibold leading-snug text-foreground">
+          <h3 className="mt-1.5 text-base font-semibold leading-snug text-foreground">
             {session.title}
           </h3>
 
@@ -139,7 +139,7 @@ export function SessionCard({
           </p>
         </button>
 
-        <div className="flex shrink-0 items-center gap-1">
+        <div className="flex shrink-0 items-center justify-end gap-1 border-t border-border/45 pt-2 sm:border-t-0 sm:pt-0">
           {prep && onPrintPrep ? (
             <Button
               type="button"
