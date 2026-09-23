@@ -31,12 +31,7 @@ import { CLOUD_SYNC_EVENT, getCloudSyncState, initCloudAutoSync } from "@/lib/cl
 import { AttendanceReminderBanner } from "@/components/ardoise/attendance-reminder-banner";
 import { ChangelogBanner } from "@/components/ardoise/changelog-banner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useThemePalette } from "@/lib/theme-palette";
 import {
   PROFILE_SETTINGS_EVENT,
@@ -145,7 +140,10 @@ export function AppShell({ children }: { children: ReactNode }) {
       })).filter((group) => group.items.length > 0),
     [edition],
   );
-  const visibleNav = useMemo(() => visibleNavGroups.flatMap((group) => group.items), [visibleNavGroups]);
+  const visibleNav = useMemo(
+    () => visibleNavGroups.flatMap((group) => group.items),
+    [visibleNavGroups],
+  );
   const routeEnabled = isRouteEnabled(pathname, edition);
 
   useEffect(() => {
@@ -157,8 +155,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const shouldPrompt =
-      isColleagueEdition &&
-      window.localStorage.getItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY) === "1";
+      isColleagueEdition && window.localStorage.getItem(FORCE_PASSWORD_CHANGE_STORAGE_KEY) === "1";
     if (!shouldPrompt || pathname === "/options") return;
     // AppShell n'est pas un layout partagé : chaque page (journal, pilotage, options…)
     // instancie son propre <AppShell>, donc ce composant est démonté puis remonté à
@@ -350,8 +347,8 @@ export function AppShell({ children }: { children: ReactNode }) {
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           Cette déclinaison d’Ardoise est recentrée sur le cahier journal, les ressources, les
-          corrections, le carnet de notes et le suivi des élèves pour garder un espace plus simple
-          à utiliser au quotidien.
+          corrections, le carnet de notes et le suivi des élèves pour garder un espace plus simple à
+          utiliser au quotidien.
         </p>
         <div className="mt-5 flex flex-wrap gap-2">
           <Link
@@ -556,42 +553,9 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className={cn("transition-all duration-300", pinned ? "lg:pl-64" : "lg:pl-20")}>
         <header className="app-header sticky top-0 z-30 flex items-center gap-2.5 border-b border-border/60 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-background)_88%,transparent),color-mix(in_oklab,var(--color-card)_76%,transparent))] px-3 py-2.5 backdrop-blur-2xl sm:gap-3 sm:px-6 sm:py-3">
           <img src={logoCompactSrc} alt="Ardoise" className="h-7 w-auto shrink-0 lg:hidden" />
-          <nav
-            className="flex min-w-0 items-center gap-1 overflow-x-auto pb-0.5 lg:hidden"
-            style={{ scrollbarWidth: "none" }}
-          >
-            {visibleNav.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                aria-current={pathname === item.to ? "page" : undefined}
-                aria-label={item.label}
-                title={item.label}
-                className={cn(
-                  "min-h-10 shrink-0 rounded-xl border border-border/80 bg-card px-3 py-2 text-[0.72rem] font-semibold text-muted-foreground transition-colors hover:border-primary/30 hover:bg-secondary hover:text-foreground max-[430px]:px-2.5",
-                  pathname === item.to &&
-                    "border-primary/20 bg-primary text-primary-foreground shadow-card hover:bg-primary hover:text-primary-foreground",
-                )}
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  <item.icon className="h-3.5 w-3.5 shrink-0" />
-                  <span className="max-[430px]:hidden">{item.label}</span>
-                  {getItemAlertCount(item) > 0 ? (
-                    <span
-                      className={cn(
-                        "inline-flex min-w-5 items-center justify-center rounded-full px-1.5 py-0.5 text-[0.62rem] font-semibold",
-                        pathname === item.to
-                          ? "bg-white/20 text-primary-foreground"
-                          : "bg-danger-soft text-danger-strong",
-                      )}
-                    >
-                      {getItemAlertCount(item)}
-                    </span>
-                  ) : null}
-                </span>
-              </Link>
-            ))}
-          </nav>
+          <span className="panel-heading min-w-0 truncate text-[0.95rem] lg:hidden">
+            {PAGE_LABELS[pathname as keyof typeof PAGE_LABELS] ?? "Ardoise"}
+          </span>
 
           <div className="hidden min-w-0 flex-col lg:flex">
             <span className="eyebrow">Ardoise</span>
@@ -650,9 +614,47 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Link>
           </div>
         </header>
+        <nav
+          aria-label="Navigation principale"
+          className="fixed inset-x-0 bottom-0 z-40 flex items-stretch gap-0.5 overflow-x-auto border-t border-border/70 bg-card/95 px-1.5 pt-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_-16px_color-mix(in_oklab,var(--color-foreground)_35%,transparent)] backdrop-blur-xl lg:hidden"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {visibleNav.map((item) => {
+            const active = pathname === item.to;
+            const alerts = getItemAlertCount(item);
+            return (
+              <Link
+                key={item.label}
+                to={item.to}
+                aria-current={active ? "page" : undefined}
+                aria-label={item.label}
+                className={cn(
+                  "relative flex min-h-12 min-w-[4.25rem] shrink-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-xl px-1.5 text-[0.62rem] font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  active && "bg-primary/10 text-primary hover:bg-primary/10 hover:text-primary",
+                )}
+              >
+                {active ? (
+                  <span
+                    className="absolute inset-x-4 top-0 h-0.5 rounded-full bg-primary"
+                    aria-hidden
+                  />
+                ) : null}
+                <item.icon className="h-5 w-5 shrink-0" />
+                <span className="max-w-full truncate">{item.label}</span>
+                {alerts > 0 ? (
+                  <span className="absolute right-2 top-1 inline-flex min-w-4 items-center justify-center rounded-full bg-danger-soft px-1 text-[0.58rem] font-bold text-danger-strong">
+                    {alerts}
+                  </span>
+                ) : null}
+              </Link>
+            );
+          })}
+        </nav>
         <ChangelogBanner />
         <AttendanceReminderBanner />
-        <main className="app-main animate-fade-in">{routeEnabled ? children : restrictedPage}</main>
+        <main className="app-main animate-fade-in pb-24 lg:pb-0">
+          {routeEnabled ? children : restrictedPage}
+        </main>
       </div>
     </div>
   );

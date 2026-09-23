@@ -1,5 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BookOpen, Calculator, ChevronLeft, FileText, LayoutGrid, Maximize2, PenLine, Rows3, Trash2 } from "lucide-react";
+import {
+  BookOpen,
+  Calculator,
+  Check,
+  ChevronLeft,
+  FileText,
+  LayoutGrid,
+  Maximize2,
+  PenLine,
+  Rows3,
+  Trash2,
+} from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import { AppShell } from "@/components/ardoise/app-shell";
@@ -42,7 +53,6 @@ import {
 } from "@/lib/correction-sheets-store";
 import { cn } from "@/lib/utils";
 
-
 export const Route = createFileRoute("/correction-rapide")({
   head: () => ({
     meta: [
@@ -70,7 +80,11 @@ const NOTEBOOKS: {
   spineClassName: string;
   icon: React.ReactNode;
 }[] = [
-  { source: "Cléo", spineClassName: "bg-subject-francais-foreground", icon: <BookOpen className="h-5 w-5" /> },
+  {
+    source: "Cléo",
+    spineClassName: "bg-subject-francais-foreground",
+    icon: <BookOpen className="h-5 w-5" />,
+  },
   { source: "ACCÈS", spineClassName: "bg-ochre", icon: <Calculator className="h-5 w-5" /> },
   { source: "Orthographémic", spineClassName: "bg-sage", icon: <PenLine className="h-5 w-5" /> },
 ];
@@ -102,39 +116,47 @@ function CorrectionSteps({ current }: { current: 1 | 2 | 3 }) {
   ] as const;
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      {steps.map((step) => {
+    <ol className="flex items-center gap-1 sm:gap-1.5" aria-label="Étapes de correction">
+      {steps.map((step, index) => {
         const active = current === step.index;
         const done = current > step.index;
         return (
-          <div
+          <li
             key={step.index}
-            className={cn(
-              "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors",
-              active
-                ? "border-primary bg-primary text-primary-foreground"
-                : done
-                  ? "border-primary/20 bg-primary/8 text-primary"
-                  : "border-border bg-card text-muted-foreground",
-            )}
+            className="flex min-w-0 items-center gap-1 sm:gap-1.5"
+            aria-current={active ? "step" : undefined}
           >
-            <span
+            {index > 0 ? (
+              <span className="h-px w-2.5 shrink-0 bg-border sm:w-5" aria-hidden />
+            ) : null}
+            <div
               className={cn(
-                "grid h-5 w-5 place-items-center rounded-full text-[0.65rem]",
+                "inline-flex min-w-0 items-center gap-1.5 rounded-full border px-2 py-1.5 text-xs font-semibold motion-safe:transition-all motion-safe:duration-300 sm:gap-2 sm:px-3",
                 active
-                  ? "bg-primary-foreground/18 text-primary-foreground"
+                  ? "border-primary bg-primary text-primary-foreground shadow-[var(--shadow-raised)]"
                   : done
-                    ? "bg-primary/12 text-primary"
-                    : "bg-secondary text-muted-foreground",
+                    ? "border-primary/25 bg-primary/8 text-primary"
+                    : "border-border bg-card text-muted-foreground",
               )}
             >
-              {step.index}
-            </span>
-            {step.label}
-          </div>
+              <span
+                className={cn(
+                  "grid h-5 w-5 shrink-0 place-items-center rounded-full text-[0.65rem] motion-safe:transition-colors motion-safe:duration-300",
+                  active
+                    ? "bg-primary-foreground/18 text-primary-foreground"
+                    : done
+                      ? "bg-primary/14 text-primary"
+                      : "bg-secondary text-muted-foreground",
+                )}
+              >
+                {done ? <Check className="h-3 w-3 motion-safe:animate-check-pop" /> : step.index}
+              </span>
+              <span className={cn("truncate", !active && "max-[420px]:sr-only")}>{step.label}</span>
+            </div>
+          </li>
         );
       })}
-    </div>
+    </ol>
   );
 }
 
@@ -181,7 +203,6 @@ function CorrectionRapidePage() {
       setScreen("accueil");
     }
   }
-
 
   function openNotebook(next: NotebookSource) {
     setOpeningSource(next);
@@ -391,7 +412,6 @@ function CorrectionRapidePage() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-
 
         {screen === "sommaire" && source ? (
           <>

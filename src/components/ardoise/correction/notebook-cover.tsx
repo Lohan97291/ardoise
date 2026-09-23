@@ -29,9 +29,10 @@ export function NotebookCover({
     <button
       type="button"
       onClick={onClick}
+      aria-label={`Ouvrir le cahier ${title}`}
       className={cn(
-        "group relative flex h-52 w-36 shrink-0 items-stretch overflow-hidden rounded-[18px] border border-border/75 bg-card shadow-[var(--shadow-card)] transition-[transform,box-shadow,border-color,opacity] duration-200 ease-out min-[380px]:h-56 min-[380px]:w-40 sm:h-72 sm:w-52 sm:rounded-[20px]",
-        "hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-[var(--shadow-raised)]",
+        "group relative flex h-56 w-36 shrink-0 items-stretch overflow-hidden rounded-[18px] border border-border/75 bg-card shadow-[var(--shadow-card)] transition-[transform,box-shadow,border-color,opacity] duration-200 ease-out min-[380px]:h-60 min-[380px]:w-40 sm:h-72 sm:w-52 sm:rounded-[20px]",
+        "hover:-translate-y-1.5 hover:-rotate-1 hover:border-primary/30 hover:shadow-[var(--shadow-raised)] active:scale-[0.98]",
         opening && "translate-y-1 scale-[0.98] opacity-0",
       )}
     >
@@ -46,7 +47,7 @@ export function NotebookCover({
         ) : (
           <span className="pointer-events-none absolute inset-3 rounded-xl border border-dashed border-border/55" />
         )}
-        <span className="relative grid h-10 w-10 place-items-center rounded-xl border border-border/60 bg-secondary/75 text-primary shadow-[inset_0_1px_0_color-mix(in_oklab,white_62%,transparent)] sm:h-11 sm:w-11">
+        <span className="relative grid h-10 w-10 place-items-center rounded-xl border border-border/60 bg-secondary/85 text-primary shadow-[inset_0_1px_0_color-mix(in_oklab,white_62%,transparent)] transition-transform duration-300 group-hover:scale-110 sm:h-11 sm:w-11">
           {icon}
         </span>
         <span className="relative mx-0.5 flex w-[calc(100%-0.25rem)] flex-col items-center gap-1 rounded-xl border border-border/65 bg-card/94 px-2.5 py-2 text-center shadow-[var(--shadow-card)] backdrop-blur-sm sm:px-3 sm:py-2.5">
