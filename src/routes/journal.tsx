@@ -17,6 +17,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { AiActionStrip } from "@/components/ardoise/ai-action-strip";
+import { BOULARD_MATHS_P1_PLANNED_SESSIONS } from "@/lib/boulard-maths-p1-plan";
 import { AppShell } from "@/components/ardoise/app-shell";
 import { JournalPlumeDialog } from "@/components/ardoise/journal-plume-dialog";
 import {
@@ -107,27 +108,27 @@ const BOULARD_ORTHOGRAPHEMIC_S2_SESSION_ID = "2026-09-08-orthographemic-s2-j1";
 const BOULARD_ORTHOGRAPHEMIC_S2_MARKER_KEY =
   "ardoise.journal.boulard.orthographemic-s2-2026-09-08.v1";
 const BOULARD_ORTHOGRAPHEMIC_P1_MARKER_KEY =
-  "ardoise.journal.boulard.orthographemic-p1-listes-3-5.v1";
+  "ardoise.journal.boulard.orthographemic-p1-listes-3-5.v2";
+const BOULARD_MATHS_P1_MARKER_KEY = "ardoise.journal.boulard.maths-p1-from-2026-09-24.v1";
 
 const BOULARD_ORTHOGRAPHEMIC_P1_SESSIONS: Array<{
   date: string; start: string; end: string; id: string; title: string;
 }> = [
-  { date: "2026-09-24", start: "10:05", end: "10:35", id: "boulard-ortho-l3-j1", title: "Orthographémic · Liste 3 · J1 découverte" },
-  { date: "2026-09-25", start: "08:30", end: "08:45", id: "boulard-ortho-l3-j2", title: "Orthographémic · Liste 3 · J2 mémorisation" },
-  { date: "2026-09-25", start: "10:35", end: "10:55", id: "boulard-ortho-l3-atelier", title: "Orthographémic · Liste 3 · Atelier des mots" },
+  { date: "2026-09-24", start: "10:35", end: "11:00", id: "boulard-ortho-l3-j1", title: "Orthographémic · Liste 3 · J1 découverte" },
+  { date: "2026-09-25", start: "10:35", end: "10:55", id: "boulard-ortho-l3-j2", title: "Orthographémic · Liste 3 · J2 mémorisation et atelier" },
   { date: "2026-09-28", start: "10:05", end: "10:25", id: "boulard-ortho-l3-j3", title: "Orthographémic · Liste 3 · J3 entraînement" },
   { date: "2026-09-29", start: "15:05", end: "15:30", id: "boulard-ortho-l3-final", title: "Orthographémic · Liste 3 · Dictée finale" },
-  { date: "2026-10-01", start: "10:05", end: "10:35", id: "boulard-ortho-l4-j1", title: "Orthographémic · Liste 4 · J1 découverte" },
+  { date: "2026-10-01", start: "10:35", end: "11:00", id: "boulard-ortho-l4-j1", title: "Orthographémic · Liste 4 · J1 découverte" },
   { date: "2026-10-02", start: "08:30", end: "08:45", id: "boulard-ortho-l4-j2", title: "Orthographémic · Liste 4 · J2 mémorisation" },
   { date: "2026-10-02", start: "10:35", end: "10:55", id: "boulard-ortho-l4-atelier", title: "Orthographémic · Liste 4 · Atelier des mots" },
   { date: "2026-10-05", start: "10:05", end: "10:25", id: "boulard-ortho-l4-j3", title: "Orthographémic · Liste 4 · J3 entraînement" },
   { date: "2026-10-06", start: "15:05", end: "15:30", id: "boulard-ortho-l4-final", title: "Orthographémic · Liste 4 · Dictée finale" },
-  { date: "2026-10-08", start: "10:05", end: "10:35", id: "boulard-ortho-l5-j1", title: "Orthographémic · Liste 5 · J1 découverte" },
+  { date: "2026-10-08", start: "10:35", end: "11:00", id: "boulard-ortho-l5-j1", title: "Orthographémic · Liste 5 · J1 découverte" },
   { date: "2026-10-09", start: "08:30", end: "08:45", id: "boulard-ortho-l5-j2", title: "Orthographémic · Liste 5 · J2 mémorisation" },
   { date: "2026-10-09", start: "10:35", end: "10:55", id: "boulard-ortho-l5-atelier", title: "Orthographémic · Liste 5 · Atelier des mots" },
   { date: "2026-10-12", start: "10:05", end: "10:25", id: "boulard-ortho-l5-j3", title: "Orthographémic · Liste 5 · J3 entraînement" },
   { date: "2026-10-13", start: "15:05", end: "15:30", id: "boulard-ortho-l5-final", title: "Orthographémic · Liste 5 · Dictée finale" },
-  { date: "2026-10-15", start: "10:05", end: "10:35", id: "boulard-ortho-p1-bilan", title: "Orthographémic · Bilan période 1" },
+  { date: "2026-10-15", start: "10:35", end: "11:00", id: "boulard-ortho-p1-bilan", title: "Orthographémic · Bilan période 1" },
   { date: "2026-10-16", start: "10:35", end: "10:55", id: "boulard-ortho-p1-remediation", title: "Orthographémic · Correction et remédiation" },
 ];
 
@@ -135,7 +136,12 @@ function ensureBoulardOrthographemicP1Sessions(days: Record<string, Session[]>):
   if (resolveCurrentClassroomKey() !== "boulard" || typeof window === "undefined") return days;
   if (window.localStorage.getItem(BOULARD_ORTHOGRAPHEMIC_P1_MARKER_KEY)) return days;
 
-  const next = { ...days };
+  const next = {
+    ...days,
+    "2026-09-25": (days["2026-09-25"] ?? []).filter(
+      (session) => session.id !== "2026-09-25-boulard-ortho-l3-atelier",
+    ),
+  };
   for (const planned of BOULARD_ORTHOGRAPHEMIC_P1_SESSIONS) {
     const date = new Date(`${planned.date}T12:00:00`);
     const weekday = WEEKDAYS[date.getDay() - 1];
@@ -144,9 +150,9 @@ function ensureBoulardOrthographemicP1Sessions(days: Record<string, Session[]>):
           withoutResourceAttachments({ ...slot, id: `${planned.date}-${index}` }),
         )
       : []);
-    if (current.some((session) => session.id === `${planned.date}-${planned.id}`)) continue;
+    const plannedSessionId = `${planned.date}-${planned.id}`;
     const session: Session = {
-      id: `${planned.date}-${planned.id}`,
+      id: plannedSessionId,
       start: planned.start,
       end: planned.end,
       title: planned.title,
@@ -161,14 +167,61 @@ function ensureBoulardOrthographemicP1Sessions(days: Record<string, Session[]>):
     };
     const withoutReplacedSlot = current.filter(
       (item) =>
-        item.subject === "pause" ||
-        !timeRangesOverlap(item.start, item.end, planned.start, planned.end),
+        item.id !== plannedSessionId &&
+        (item.subject === "pause" ||
+          !timeRangesOverlap(item.start, item.end, planned.start, planned.end)),
     );
     next[planned.date] = [...withoutReplacedSlot, session].sort((a, b) =>
       a.start.localeCompare(b.start),
     );
   }
   window.localStorage.setItem(BOULARD_ORTHOGRAPHEMIC_P1_MARKER_KEY, "done");
+  return writeJournalDays(next);
+}
+
+function ensureBoulardMathsP1Sessions(days: Record<string, Session[]>): Record<string, Session[]> {
+  if (resolveCurrentClassroomKey() !== "boulard" || typeof window === "undefined") return days;
+  if (window.localStorage.getItem(BOULARD_MATHS_P1_MARKER_KEY)) return days;
+
+  const next = { ...days };
+  for (const planned of BOULARD_MATHS_P1_PLANNED_SESSIONS) {
+    const date = new Date(`${planned.date}T12:00:00`);
+    const weekday = WEEKDAYS[date.getDay() - 1];
+    const current = next[planned.date] ?? (weekday
+      ? getTimetable()[weekday].map((slot, index) =>
+          withoutResourceAttachments({ ...slot, id: `${planned.date}-${index}` }),
+        )
+      : []);
+    const sessionId = `${planned.date}-${planned.resourceId}`;
+    const session: Session = {
+      id: sessionId,
+      start: planned.start,
+      end: planned.end,
+      title: planned.title,
+      subject: "maths",
+      pedagogicalDomain: "Mathématiques",
+      pedagogicalSubDomain: planned.title.startsWith("Résolution")
+        ? "Résolution de problèmes"
+        : planned.title.startsWith("Calcul mental") || planned.title.startsWith("Flash")
+          ? "Calcul mental"
+          : "Nombres et calcul",
+      programmingItemId: planned.resourceId,
+      prepSheetId: planned.resourceId,
+      resourceId: planned.resourceId,
+      correctionMode: "maths",
+      note: planned.note,
+    };
+    const withoutReplacedSlot = current.filter(
+      (item) =>
+        item.id !== sessionId &&
+        (item.subject === "pause" ||
+          !timeRangesOverlap(item.start, item.end, planned.start, planned.end)),
+    );
+    next[planned.date] = [...withoutReplacedSlot, session].sort((a, b) =>
+      a.start.localeCompare(b.start),
+    );
+  }
+  window.localStorage.setItem(BOULARD_MATHS_P1_MARKER_KEY, "done");
   return writeJournalDays(next);
 }
 
@@ -329,13 +382,13 @@ function getInitialDays(): Record<string, Session[]> {
 
   if (!isBoulard || typeof window === "undefined") return days;
   if (window.localStorage.getItem(BOULARD_RESET_MARKER_KEY)) {
-    return ensureBoulardOrthographemicP1Sessions(ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(days)));
+    return ensureBoulardMathsP1Sessions(ensureBoulardOrthographemicP1Sessions(ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(days))));
   }
 
   const entriesToReset = Object.entries(days).filter(([dateKey]) => dateKey >= BOULARD_RESET_FROM_KEY);
   if (entriesToReset.length === 0) {
     window.localStorage.setItem(BOULARD_RESET_MARKER_KEY, "done");
-    return ensureBoulardOrthographemicP1Sessions(ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(days)));
+    return ensureBoulardMathsP1Sessions(ensureBoulardOrthographemicP1Sessions(ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(days))));
   }
 
   const sessionIds = entriesToReset.flatMap(([, sessions]) => sessions.map((session) => session.id));
@@ -347,7 +400,7 @@ function getInitialDays(): Record<string, Session[]> {
     Object.entries(days).filter(([dateKey]) => dateKey < BOULARD_RESET_FROM_KEY),
   );
   window.localStorage.setItem(BOULARD_RESET_MARKER_KEY, "done");
-  return ensureBoulardOrthographemicP1Sessions(ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(writeJournalDays(next))));
+  return ensureBoulardMathsP1Sessions(ensureBoulardOrthographemicP1Sessions(ensureBoulardPiscineSessions(ensureBoulardOrthographemicS2Session(writeJournalDays(next)))));
 }
 
 function toMinutes(value: string): number {
