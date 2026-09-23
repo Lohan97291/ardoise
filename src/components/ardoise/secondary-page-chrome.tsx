@@ -20,15 +20,16 @@ export function SecondaryPageHeader({
   return (
     <header
       className={cn(
-        "relative isolate grid gap-4 overflow-hidden rounded-2xl border border-border/80 bg-card px-4 py-4 shadow-card sm:px-6 sm:py-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center",
+        "card-surface relative isolate grid gap-4 overflow-hidden rounded-[1.65rem] px-4 py-4 sm:px-6 sm:py-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center",
         className,
       )}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.85),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.32),transparent_40%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,color-mix(in_oklab,var(--color-primary)_8%,transparent),transparent_34%),linear-gradient(180deg,color-mix(in_oklab,white_35%,transparent),transparent_44%)]" />
+      <div className="pointer-events-none absolute -right-12 -top-16 h-36 w-36 rounded-full border border-primary/10 bg-primary/[0.025]" />
       <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.92),transparent)]" />
       <div className="min-w-0">
         <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-1 truncate text-[1.45rem] font-bold tracking-tight sm:text-3xl">{title}</h1>
+        <h1 className="mt-1 truncate text-[1.45rem] font-semibold tracking-[-0.025em] text-foreground sm:text-3xl">{title}</h1>
         {description ? (
           <p className="mt-1.5 line-clamp-2 max-w-2xl text-[0.8rem] leading-relaxed text-muted-foreground sm:text-[0.82rem]">
             {description}

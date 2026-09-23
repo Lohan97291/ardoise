@@ -378,7 +378,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="app-frame min-h-screen bg-background">
       <aside
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -554,7 +554,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </aside>
 
       <div className={cn("transition-all duration-300", pinned ? "lg:pl-64" : "lg:pl-20")}>
-        <header className="sticky top-0 z-30 flex items-center gap-2.5 border-b border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-background)_84%,transparent),color-mix(in_oklab,var(--color-card)_74%,transparent))] px-3 py-2.5 backdrop-blur-2xl sm:gap-3 sm:px-6 sm:py-3">
+        <header className="app-header sticky top-0 z-30 flex items-center gap-2.5 border-b border-border/60 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-background)_88%,transparent),color-mix(in_oklab,var(--color-card)_76%,transparent))] px-3 py-2.5 backdrop-blur-2xl sm:gap-3 sm:px-6 sm:py-3">
           <img src={logoCompactSrc} alt="Ardoise" className="h-7 w-auto shrink-0 lg:hidden" />
           <nav
             className="flex min-w-0 items-center gap-1 overflow-x-auto pb-0.5 lg:hidden"
@@ -652,7 +652,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </header>
         <ChangelogBanner />
         <AttendanceReminderBanner />
-        <main className="animate-fade-in">{routeEnabled ? children : restrictedPage}</main>
+        <main className="app-main animate-fade-in">{routeEnabled ? children : restrictedPage}</main>
       </div>
     </div>
   );

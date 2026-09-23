@@ -5,22 +5,26 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-transparent text-sm font-semibold cursor-pointer transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        default:
+          "border-primary/15 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-primary)_92%,white),var(--color-primary))] text-primary-foreground shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-raised)] hover:brightness-[1.03]",
+        destructive:
+          "border-destructive/15 bg-destructive text-destructive-foreground shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:bg-destructive/92 hover:shadow-[var(--shadow-raised)]",
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+          "border-input/85 bg-card/88 text-foreground shadow-[var(--shadow-card)] backdrop-blur-sm hover:-translate-y-0.5 hover:border-primary/25 hover:bg-accent/75 hover:text-accent-foreground hover:shadow-[var(--shadow-raised)]",
+        secondary:
+          "border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_58%,var(--color-secondary)),var(--color-secondary))] text-secondary-foreground shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-[var(--shadow-raised)]",
+        ghost:
+          "text-foreground hover:bg-accent/80 hover:text-accent-foreground active:bg-accent",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-[var(--app-control-height,2.25rem)] px-4 py-2",
-        sm: "h-[var(--app-control-height-sm,2rem)] rounded-md px-3 text-xs",
-        lg: "h-[var(--app-control-height-lg,2.75rem)] rounded-md px-8",
+        sm: "h-[var(--app-control-height-sm,2rem)] rounded-lg px-3 text-xs",
+        lg: "h-[var(--app-control-height-lg,2.75rem)] rounded-xl px-8",
         icon: "h-[var(--app-control-height,2.25rem)] w-[var(--app-control-height,2.25rem)]",
       },
     },
