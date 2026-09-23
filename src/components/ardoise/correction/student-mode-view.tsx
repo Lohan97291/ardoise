@@ -75,7 +75,6 @@ export function StudentModeView({
     ? pagePlanIds.filter((pid) => Boolean(getPlanResults(pid)[student.id])).length
     : 0;
   const correctionRemaining = Math.max(0, correctionTotal - correctionDone);
-  const correctionPercent = correctionTotal > 0 ? Math.round((correctionDone / correctionTotal) * 100) : 0;
   const correctionAriaText = correctionTotal > 0
     ? `${correctionDone} exercice${correctionDone > 1 ? "s" : ""} corrigé${correctionDone > 1 ? "s" : ""} sur ${correctionTotal}, ${correctionRemaining} restant${correctionRemaining > 1 ? "s" : ""}`
     : "Aucun exercice à corriger";
@@ -85,43 +84,85 @@ export function StudentModeView({
     return pagePlanIds.every((pid) => Boolean(getPlanResults(pid)[sId]));
   }
 
+  function studentPageProgress(sId: string) {
+    const done = pagePlanIds.filter((pid) => Boolean(getPlanResults(pid)[sId])).length;
+    const percent = correctionTotal > 0 ? Math.round((done / correctionTotal) * 100) : 0;
+    return { done, percent };
+  }
+
   return (
     <div className="grid h-full grid-cols-1 gap-4 overflow-hidden md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)]">
       <div className="flex flex-col gap-1.5 overflow-y-auto rounded-2xl border border-border bg-card p-3 shadow-card">
         <p className="eyebrow px-1">Élèves</p>
         {students.map((s) => {
           const complete = studentPageComplete(s.id);
+          const progress = studentPageProgress(s.id);
+          const selected = s.id === studentId;
           return (
             <button
               key={s.id}
               type="button"
               onClick={() => setStudentId(s.id)}
+              aria-label={`${fullName(s)}, ${progress.done} exercice${progress.done > 1 ? "s" : ""} corrigé${progress.done > 1 ? "s" : ""} sur ${correctionTotal}`}
               className={cn(
-                "flex min-h-12 items-center gap-2 rounded-xl border px-3 py-2 text-left text-sm font-semibold motion-safe:transition-colors motion-safe:duration-150",
-                s.id === studentId
-                  ? "border-primary bg-primary/6"
+                "group relative isolate flex min-h-14 items-center gap-2 overflow-hidden rounded-2xl border px-3 py-2 text-left text-sm font-semibold shadow-[0_8px_22px_-20px_color-mix(in_oklab,var(--color-primary)_35%,transparent)] motion-safe:transition-[border-color,box-shadow,transform] motion-safe:duration-200",
+                selected
+                  ? "border-primary/35 shadow-[0_14px_30px_-20px_color-mix(in_oklab,var(--color-primary)_48%,transparent)] ring-1 ring-primary/10"
                   : complete
                     ? "border-transparent bg-muted/40 text-muted-foreground hover:bg-secondary"
-                    : "border-border hover:bg-secondary",
+                    : "border-border/80 bg-card/75 hover:-translate-y-px hover:border-primary/20 hover:shadow-card",
               )}
             >
               <span
                 className={cn(
-                  "grid h-6 w-6 shrink-0 place-items-center rounded-full text-[0.65rem]",
-                  complete ? "bg-status-a/40 text-status-a-foreground" : "bg-secondary",
+                  "pointer-events-none absolute inset-y-0 left-0 -z-10 overflow-hidden rounded-r-2xl motion-safe:transition-[width] motion-safe:duration-300",
+                  complete
+                    ? "bg-[linear-gradient(100deg,color-mix(in_oklab,var(--color-sage)_36%,transparent),color-mix(in_oklab,var(--color-sage)_16%,var(--color-ochre)_10%),color-mix(in_oklab,var(--color-card)_75%,transparent))]"
+                    : "bg-[linear-gradient(100deg,color-mix(in_oklab,var(--color-primary)_17%,transparent),color-mix(in_oklab,var(--color-sage)_13%,transparent),color-mix(in_oklab,var(--color-ochre)_10%,transparent))]",
+                )}
+                style={{ width: `${progress.percent}%` }}
+                aria-hidden="true"
+              >
+                {progress.percent > 0 && progress.percent < 100 ? (
+                  <span className="absolute inset-y-1 right-0 w-px bg-[linear-gradient(180deg,transparent,color-mix(in_oklab,var(--color-primary)_48%,white),transparent)] shadow-[0_0_12px_2px_color-mix(in_oklab,var(--color-primary)_18%,transparent)]" />
+                ) : null}
+              </span>
+              <span
+                className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(180deg,color-mix(in_oklab,white_52%,transparent),transparent_48%)]"
+                aria-hidden="true"
+              />
+              <span
+                className={cn(
+                  "grid h-7 w-7 shrink-0 place-items-center rounded-xl border text-[0.62rem] shadow-[inset_0_1px_0_color-mix(in_oklab,white_65%,transparent)]",
+                  complete
+                    ? "border-status-a-solid/15 bg-status-a/55 text-status-a-foreground"
+                    : selected
+                      ? "border-primary/15 bg-card/80 text-primary"
+                      : "border-border/60 bg-secondary/80",
                 )}
               >
                 {complete ? <Check className="h-3.5 w-3.5 text-status-a-solid" /> : initials(s)}
               </span>
               <span className="flex min-w-0 flex-1 flex-col text-left">
-                <span className="truncate text-sm font-semibold">{s.firstName}</span>
-                <span className="truncate text-[0.68rem] uppercase tracking-wide text-muted-foreground">
-                  {s.lastName}
+                <span className="flex min-w-0 items-baseline gap-1.5">
+                  <span className="truncate text-sm font-bold tracking-[-0.01em] text-foreground">
+                    {s.firstName}
+                  </span>
+                  <span className="shrink-0 text-[0.64rem] font-bold tabular-nums text-primary/70">
+                    {progress.percent}%
+                  </span>
+                </span>
+                <span className="flex items-center gap-1.5 truncate text-[0.64rem] uppercase tracking-[0.09em] text-muted-foreground">
+                  <span className="truncate">{s.lastName}</span>
+                  <span aria-hidden="true">·</span>
+                  <span className="shrink-0 normal-case tracking-normal">
+                    {progress.done}/{correctionTotal}
+                  </span>
                 </span>
               </span>
               {complete ? (
-                <span className="shrink-0 rounded-full bg-status-a/20 px-1.5 py-0.5 text-[0.6rem] font-bold text-status-a-foreground">
-                  page finie
+                <span className="shrink-0 rounded-full border border-status-a-solid/15 bg-card/65 px-2 py-0.5 text-[0.58rem] font-bold text-status-a-foreground shadow-sm backdrop-blur-sm">
+                  Terminée
                 </span>
               ) : null}
             </button>
@@ -130,11 +171,6 @@ export function StudentModeView({
       </div>
 
       <div className="relative flex min-h-0 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card">
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-0 bg-primary/8 motion-safe:transition-[width] motion-safe:duration-200"
-          style={{ width: `${correctionPercent}%` }}
-          aria-hidden="true"
-        />
         <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-3">
           {student ? (
             <div className="rounded-[22px] border border-primary/12 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_84%,transparent),color-mix(in_oklab,var(--color-secondary)_36%,transparent))] p-3 shadow-card">
@@ -155,20 +191,9 @@ export function StudentModeView({
                   </p>
                 </div>
               </div>
-              <div
-                role="progressbar"
-                aria-label={`Progression de correction pour ${fullName(student)}`}
-                aria-valuemin={0}
-                aria-valuemax={correctionTotal || 1}
-                aria-valuenow={correctionDone}
-                aria-valuetext={correctionAriaText}
-                className="mt-3 h-2.5 overflow-hidden rounded-full bg-secondary/80"
-              >
-                <div
-                  className="h-full rounded-full bg-primary/45 motion-safe:transition-[width] motion-safe:duration-200"
-                  style={{ width: `${correctionPercent}%` }}
-                />
-              </div>
+              <span className="sr-only" role="status">
+                {correctionAriaText}
+              </span>
             </div>
           ) : null}
 
