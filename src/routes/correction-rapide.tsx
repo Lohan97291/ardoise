@@ -3,6 +3,7 @@ import { BookOpen, Calculator, ChevronLeft, FileText, LayoutGrid, Maximize2, Pen
 import { useEffect, useMemo, useState } from "react";
 
 import { AppShell } from "@/components/ardoise/app-shell";
+import { SecondaryPageHeader } from "@/components/ardoise/secondary-page-chrome";
 import { FullscreenBoard } from "@/components/ardoise/correction/fullscreen-board";
 import { NotebookCover } from "@/components/ardoise/correction/notebook-cover";
 import { NotebookSummary } from "@/components/ardoise/correction/notebook-summary";
@@ -69,9 +70,9 @@ const NOTEBOOKS: {
   spineClassName: string;
   icon: React.ReactNode;
 }[] = [
-  { source: "Cléo", spineClassName: "bg-sky-500", icon: <BookOpen className="h-5 w-5" /> },
-  { source: "ACCÈS", spineClassName: "bg-violet-500", icon: <Calculator className="h-5 w-5" /> },
-  { source: "Orthographémic", spineClassName: "bg-rose-500", icon: <PenLine className="h-5 w-5" /> },
+  { source: "Cléo", spineClassName: "bg-subject-francais-foreground", icon: <BookOpen className="h-5 w-5" /> },
+  { source: "ACCÈS", spineClassName: "bg-ochre", icon: <Calculator className="h-5 w-5" /> },
+  { source: "Orthographémic", spineClassName: "bg-sage", icon: <PenLine className="h-5 w-5" /> },
 ];
 
 type Screen = "accueil" | "sommaire" | "page" | "feuille";
@@ -243,20 +244,12 @@ function CorrectionRapidePage() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6">
         {screen === "accueil" ? (
           <>
-            <header className="overflow-hidden rounded-[32px] border border-border/70 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--color-card)_97%,transparent),color-mix(in_oklab,var(--color-secondary)_34%,transparent))] px-5 py-5 shadow-raised sm:px-6">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <p className="eyebrow">Corriger & suivre</p>
-                  <h1 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                    Correction rapide
-                  </h1>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                    Choisissez le cahier, ouvrez la page, puis corrigez sans détour.
-                  </p>
-                </div>
-                <CorrectionSteps current={stepIndex(screen)} />
-              </div>
-            </header>
+            <SecondaryPageHeader
+              eyebrow="Corriger & suivre"
+              title="Correction rapide"
+              description="Choisissez le cahier, ouvrez la page, puis corrigez sans détour."
+              actions={<CorrectionSteps current={stepIndex(screen)} />}
+            />
             <div className="stagger-children flex flex-wrap items-start justify-center gap-6 py-2 sm:justify-start">
               {NOTEBOOKS.map(({ source: notebookSource, spineClassName, icon }) => {
                 const meta = notebookCoverMeta(notebookSource);

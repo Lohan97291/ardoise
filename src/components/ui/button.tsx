@@ -10,13 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border-primary/15 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-primary)_92%,white),var(--color-primary))] text-primary-foreground shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-raised)] hover:brightness-[1.03]",
+          "border-primary/20 bg-primary text-primary-foreground shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:bg-primary/94 hover:shadow-[var(--shadow-raised)]",
         destructive:
           "border-destructive/15 bg-destructive text-destructive-foreground shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:bg-destructive/92 hover:shadow-[var(--shadow-raised)]",
         outline:
           "border-input/85 bg-card/88 text-foreground shadow-[var(--shadow-card)] backdrop-blur-sm hover:-translate-y-0.5 hover:border-primary/25 hover:bg-accent/75 hover:text-accent-foreground hover:shadow-[var(--shadow-raised)]",
         secondary:
-          "border-border/70 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_58%,var(--color-secondary)),var(--color-secondary))] text-secondary-foreground shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-[var(--shadow-raised)]",
+          "border-border/70 bg-secondary text-secondary-foreground shadow-[var(--shadow-card)] hover:-translate-y-0.5 hover:border-primary/20 hover:bg-secondary/82 hover:shadow-[var(--shadow-raised)]",
         ghost:
           "text-foreground hover:bg-accent/80 hover:text-accent-foreground active:bg-accent",
         link: "text-primary underline-offset-4 hover:underline",

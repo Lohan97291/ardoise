@@ -20,12 +20,11 @@ export function SecondaryPageHeader({
   return (
     <header
       className={cn(
-        "card-surface relative isolate grid gap-4 overflow-hidden rounded-[1.65rem] px-4 py-4 sm:px-6 sm:py-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center",
+        "card-surface relative isolate grid gap-4 overflow-hidden rounded-[20px] px-4 py-4 sm:px-6 sm:py-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center",
         className,
       )}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,color-mix(in_oklab,var(--color-primary)_8%,transparent),transparent_34%),linear-gradient(180deg,color-mix(in_oklab,white_35%,transparent),transparent_44%)]" />
-      <div className="pointer-events-none absolute -right-12 -top-16 h-36 w-36 rounded-full border border-primary/10 bg-primary/[0.025]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,color-mix(in_oklab,white_24%,transparent),transparent_46%)]" />
       <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.92),transparent)]" />
       <div className="min-w-0">
         <p className="eyebrow">{eyebrow}</p>

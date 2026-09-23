@@ -70,7 +70,7 @@ export function SessionCard({
     resultTarget?.kind === "fluence" ? "Fluence" : resultTarget ? "Correction" : "Sans correction";
 
   return (
-    <article className="group relative overflow-hidden rounded-xl border border-border bg-card shadow-card transition-shadow hover:shadow-float">
+    <article className="group relative overflow-hidden rounded-2xl border border-border/75 bg-card/92 shadow-[var(--shadow-card)] transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-px hover:border-primary/15 hover:shadow-[var(--shadow-raised)]">
       <div
         aria-hidden="true"
         className={cn("absolute inset-y-0 left-0 w-1.5", SUBJECT_STRIP[session.subject])}
@@ -86,7 +86,7 @@ export function SessionCard({
               {session.start}
             </span>
             <span className="font-mono text-[0.7rem] tabular-nums text-muted-foreground">
-              {"->"} {session.end} · {durationLabel(session.start, session.end)}
+              {"→"} {session.end} · {durationLabel(session.start, session.end)}
             </span>
             <span
               className={cn(
@@ -110,7 +110,7 @@ export function SessionCard({
             <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[0.72rem] font-semibold text-muted-foreground">
               <span>{pedagogicalLabels.domain}</span>
               <span className="text-border">•</span>
-              <span className="rounded-full bg-secondary px-2 py-0.5 text-secondary-foreground">
+              <span className="rounded-md border border-border/55 bg-secondary/65 px-2 py-0.5 text-secondary-foreground">
                 {pedagogicalLabels.subDomain}
               </span>
             </p>
