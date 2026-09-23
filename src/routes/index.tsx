@@ -449,26 +449,27 @@ function Dashboard() {
   return (
     <AppShell>
       <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6 sm:py-8">
-        <header className="overflow-hidden rounded-[30px] border border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 p-5 shadow-raised sm:p-6">
-          <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-start">
+        <header className="card-surface overflow-hidden rounded-[20px] border-border/75 bg-card/95 shadow-[var(--shadow-raised)]">
+          <div className="h-1 bg-[linear-gradient(90deg,var(--color-primary),color-mix(in_oklab,var(--color-ochre)_72%,var(--color-primary)))]" />
+          <div className="grid gap-5 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
             <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-muted-foreground">
+              <p className="eyebrow">
                 Centre de pilotage
               </p>
-              <div className="mt-2 flex flex-wrap items-end gap-x-3 gap-y-2">
+              <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-2">
                 <h1 className="text-3xl font-bold capitalize tracking-tight text-foreground sm:text-4xl">
                   {dateLabel}
                 </h1>
-                <span className="rounded-full border border-border/70 bg-card/85 px-3 py-1 font-mono text-sm text-muted-foreground shadow-sm">
+                <span className="rounded-lg border border-border/65 bg-secondary/55 px-2.5 py-1 font-mono text-sm font-semibold tabular-nums text-muted-foreground">
                   {timeLabel}
                 </span>
               </div>
-              <div className="mt-4">
+              <div className="mt-3">
                 <SchoolRhythmPill rhythm={schoolRhythm} />
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2 xl:justify-end">
+            <div className="flex flex-wrap gap-2 lg:max-w-sm lg:justify-end">
               <Button asChild size="sm">
                 <Link to="/journal">
                   <BookOpen className="mr-1.5 h-4 w-4" />
@@ -493,58 +494,28 @@ function Dashboard() {
               </Button>
             </div>
           </div>
-
-          <div
-            className={cn(
-              "mt-5 grid gap-3 xl:max-w-4xl",
-              isColleagueEdition
-                ? "sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]"
-                : "sm:grid-cols-[minmax(0,1.4fr)_repeat(2,minmax(0,1fr))]",
-            )}
-          >
-            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4 shadow-card">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
-                Journal du jour
-              </p>
-              <p className="mt-2 text-2xl font-bold text-foreground">{daySessions.length}</p>
-              {currentFocusSession ? (
-                <p className="mt-1 text-xs text-muted-foreground">{currentFocusSession.title}</p>
-              ) : null}
-            </div>
-            <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
-                À préparer
-              </p>
-              <p className="mt-2 text-2xl font-bold text-foreground">
-                {pendingPreparationItems.length}
-              </p>
-            </div>
-            {!isColleagueEdition ? (
-              <div className="rounded-2xl border border-border/70 bg-card/85 p-4 shadow-card">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
-                  Mails à traiter
-                </p>
-                <p className="mt-2 text-2xl font-bold text-foreground">{unhandledMailCount}</p>
-              </div>
-            ) : null}
-          </div>
-
         </header>
 
-        {/* Cahier journal du jour — information principale de l'écran */}
-          <section className="card-surface overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 p-5 shadow-raised sm:p-6">
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+        {/* Séance actuelle — information principale de l'écran */}
+          <section className="card-surface overflow-hidden rounded-[20px] border-primary/20 bg-card/95 shadow-[var(--shadow-raised)]">
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-border/60 bg-primary/[0.045] px-5 py-4 sm:px-6">
               <div className="min-w-0">
-                <span className="eyebrow text-primary">Priorité du jour</span>
-                <h2 className="mt-1 flex min-w-0 items-center gap-3 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-                  <BookOpen className="h-8 w-8 shrink-0 rounded-xl border border-primary/25 bg-primary/10 p-1.5 text-primary" />
-                  <span className="truncate">Cahier journal du jour</span>
+                <span className="eyebrow text-primary">Maintenant</span>
+                <h2 className="mt-1 min-w-0 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                  <span className="line-clamp-2">
+                    {currentFocusSession?.title ?? "Journée à organiser"}
+                  </span>
                 </h2>
+                {currentFocusSession ? (
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {currentFocusSession.start} – {currentFocusSession.end} · {SUBJECTS[currentFocusSession.subject].label}
+                  </p>
+                ) : null}
               </div>
               <div className="flex shrink-0 flex-wrap items-center gap-2">
-                <Button asChild variant="outline" size="sm" className="shrink-0 border-primary/25 bg-card text-primary hover:bg-primary/10">
+                <Button asChild variant="outline" size="sm" className="shrink-0 rounded-xl border-primary/25 bg-card text-primary hover:bg-primary/10">
                   <Link to="/journal">
-                    Tout voir
+                    Journal
                     <ArrowRight className="ml-1.5 h-4 w-4" />
                   </Link>
                 </Button>
@@ -552,7 +523,7 @@ function Dashboard() {
             </div>
 
             {daySessions.length === 0 ? (
-              <div className="mt-4 rounded-2xl border border-dashed border-border bg-secondary/30 px-5 py-7 text-center">
+              <div className="m-5 rounded-2xl border border-dashed border-border bg-secondary/30 px-5 py-7 text-center sm:m-6">
                 <BookOpen className="mx-auto h-6 w-6 text-muted-foreground/70" />
                 <p className="mt-2.5 text-sm font-medium">Aucune séance planifiée</p>
                 <Button asChild size="sm" className="mt-4">
@@ -561,10 +532,10 @@ function Dashboard() {
               </div>
             ) : (
               <>
-                <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
-                  <div className="rounded-2xl border border-primary/20 bg-card px-5 py-5 shadow-card sm:px-6 sm:py-6">
-                    <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-primary">
-                      Séance en cours
+                <div className="grid gap-4 p-5 sm:p-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
+                  <div className="rounded-2xl border border-border/70 bg-secondary/25 px-5 py-5 sm:px-6">
+                    <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Créneau en cours
                     </p>
                     <div className="mt-2.5 flex flex-wrap items-center gap-2">
                       {currentFocusSession ? (
@@ -583,12 +554,10 @@ function Dashboard() {
                         </>
                       ) : null}
                     </div>
-                    <p className="mt-3 text-2xl font-bold leading-snug tracking-tight text-foreground">
-                      {currentFocusSession?.title ?? "Aucune séance sélectionnée"}
-                    </p>
-                    <p className="mt-1.5 text-sm text-muted-foreground">
+                    <p className="mt-3 text-sm font-semibold text-foreground">Ensuite</p>
+                    <p className="mt-1 text-sm text-muted-foreground">
                       {nextFocusSession
-                        ? `Ensuite : ${nextFocusSession.start} · ${nextFocusSession.title}`
+                        ? `${nextFocusSession.start} · ${nextFocusSession.title}`
                         : "Fin de journée après cette séance."}
                     </p>
                   </div>
@@ -597,7 +566,7 @@ function Dashboard() {
                     type="button"
                     onClick={() => setTimerOpen((o) => !o)}
                     aria-expanded={timerOpen}
-                    className="group flex flex-col justify-center rounded-2xl border border-border/70 bg-card/85 px-4 py-4 text-left shadow-card transition-colors hover:border-primary/30"
+                    className="group flex flex-col justify-center rounded-2xl border border-border/70 bg-secondary/25 px-5 py-4 text-left transition-colors hover:border-primary/30"
                   >
                     <span className="text-[0.68rem] font-semibold uppercase tracking-wider text-muted-foreground">
                       Temps restant
@@ -636,7 +605,7 @@ function Dashboard() {
 
                 </div>
 
-                <div className="mt-4 flex items-center gap-2">
+                <div className="flex items-center gap-2 border-t border-border/60 bg-secondary/18 px-4 py-4 sm:px-6">
                   <button
                     type="button"
                     disabled={centerIndex <= 0}
@@ -697,7 +666,7 @@ function Dashboard() {
                 </div>
 
                 {expandedSession ? (
-                  <div className="mt-3 rounded-xl border border-border bg-secondary/40 p-3">
+                  <div className="mx-5 mb-5 rounded-xl border border-border bg-secondary/40 p-3 sm:mx-6 sm:mb-6">
                     {expandedPhases ? (
                       <>
                         <p className="eyebrow">Déroulé · {expandedPhases.length} phases</p>
@@ -773,9 +742,9 @@ function Dashboard() {
             )}
           </section>
 
-        {/* Satellites du quotidien : compacts et secondaires */}
+        {/* Outils quotidiens : compacts et secondaires */}
         <div className="flex items-center justify-between gap-3">
-          <p className="eyebrow">Le reste de la journée</p>
+          <p className="eyebrow">À gérer aujourd'hui</p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {/* Cahier d'appel */}
@@ -1366,19 +1335,19 @@ function Dashboard() {
             </section>
           ) : null}
 
-          {/* Signaux à surveiller — automatiques + ajoutés à la main */}
-          <section className={cn(WIDGET_COMPACT, "border-danger-soft-border bg-danger-soft")}>
+          {/* Élèves à suivre — signaux automatiques + ajoutés à la main */}
+          <section className={cn(WIDGET_COMPACT, "border-ochre/25 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-card)_96%,transparent),color-mix(in_oklab,var(--color-ochre)_7%,transparent))]")}>
             <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
               <h2 className={WIDGET_TITLE_COMPACT}>
-                <AlertTriangle className="h-4 w-4 shrink-0 text-danger-strong" />
-                Signaux à surveiller
+                <AlertTriangle className="h-4 w-4 shrink-0 text-ochre-foreground" />
+                Élèves à suivre
               </h2>
               <button
                 type="button"
                 onClick={() => setAddingSignal((v) => !v)}
                 className={cn(
                   WIDGET_ADD,
-                  "border-danger-soft-border text-danger-strong hover:bg-card",
+                  "border-ochre/25 text-ochre-foreground hover:bg-card",
                 )}
                 aria-label="Ajouter un signal"
                 title="Ajouter un signal"
@@ -1389,7 +1358,7 @@ function Dashboard() {
 
             {addingSignal ? (
               <form
-                className={cn(WIDGET_FORM, "border-danger-soft-border bg-card/70")}
+                className={cn(WIDGET_FORM, "border-ochre/25 bg-card/70")}
                 onSubmit={(e) => {
                   e.preventDefault();
                   const reason = signalReason.trim();
