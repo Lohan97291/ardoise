@@ -1,6 +1,10 @@
 import type { PrepPhase, PrepSheet, ResourceMethod } from "@/lib/ardoise-data";
 import { resolveCurrentClassroomKey } from "@/lib/ardoise-eval";
 import orthographemicGuideData from "@/lib/data/orthographemic-ce1.json";
+import {
+  BOULARD_ORTHOGRAPHEMIC_P1_PREP_SHEETS,
+  BOULARD_ORTHOGRAPHEMIC_P1_SEQUENCE,
+} from "@/lib/boulard-orthographemic-p1";
 
 type OrthographemicPhase = {
   n: string;
@@ -467,6 +471,10 @@ export const ORTHOGRAPHEMIC_SESSION_PREP_SHEETS: PrepSheet[] = orthographemicGui
   (week) => week.days.map((day) => buildPrepSheet(week, day)),
 );
 
+if (resolveCurrentClassroomKey() === "boulard") {
+  ORTHOGRAPHEMIC_SESSION_PREP_SHEETS.push(...BOULARD_ORTHOGRAPHEMIC_P1_PREP_SHEETS);
+}
+
 const prepSheetById = new Map(ORTHOGRAPHEMIC_SESSION_PREP_SHEETS.map((sheet) => [sheet.id, sheet]));
 
 export function getOrthographemicPrepSheet(id?: string): PrepSheet | undefined {
@@ -478,18 +486,21 @@ export const ORTHOGRAPHEMIC_RESOURCE_METHOD: ResourceMethod = {
   id: "m-orthographemic-guide",
   label: "Orthographémic CE1",
   subject: "francais",
-  sequences: orthographemicGuide.weeks.map((week) => {
-    const chapter = chapterForWeek(week);
-    return {
-      id: week.id,
-      label: chapter
-        ? `Chapitre ${chapter.number} · Semaine ${week.week} — ${week.title}`
-        : `Semaine ${week.week} — ${week.title}`,
-      sessions: week.days.map((day) => ({
-        id: day.id,
-        label: `Jour ${day.day} — ${day.activities.map((activity) => activity.title).join(" · ")}`,
-        prepSheetId: day.id,
-      })),
-    };
-  }),
+  sequences: [
+    ...(resolveCurrentClassroomKey() === "boulard" ? [BOULARD_ORTHOGRAPHEMIC_P1_SEQUENCE] : []),
+    ...orthographemicGuide.weeks.map((week) => {
+      const chapter = chapterForWeek(week);
+      return {
+        id: week.id,
+        label: chapter
+          ? `Chapitre ${chapter.number} · Semaine ${week.week} — ${week.title}`
+          : `Semaine ${week.week} — ${week.title}`,
+        sessions: week.days.map((day) => ({
+          id: day.id,
+          label: `Jour ${day.day} — ${day.activities.map((activity) => activity.title).join(" · ")}`,
+          prepSheetId: day.id,
+        })),
+      };
+    }),
+  ],
 };
