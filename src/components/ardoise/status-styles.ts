@@ -34,3 +34,21 @@ export const STATUS_RING: Record<StatusKey, string> = {
   NF: "ring-status-nf-solid",
   AB: "ring-status-ab-solid",
 };
+
+/** Fonds de ligne/carte pour rendre la note visible sans masquer le contenu. */
+export const STATUS_SURFACE: Record<StatusKey, string> = {
+  A: "border-status-a-solid/45 bg-status-a/45 shadow-card",
+  PA: "border-status-pa-solid/45 bg-status-pa/45 shadow-card",
+  NA: "border-status-na-solid/45 bg-status-na/45 shadow-card",
+  NF: "border-status-nf-solid/40 bg-status-nf/40 shadow-card",
+  AB: "border-status-ab-solid/40 bg-status-ab/45 shadow-card",
+};
+
+/** État sélectionné posé au-dessus du fond de statut. */
+export const STATUS_SELECTED_SURFACE: Record<StatusKey, string> = {
+  A: "border-status-a-solid/65 bg-status-a/60 ring-2 ring-status-a-solid/25",
+  PA: "border-status-pa-solid/65 bg-status-pa/60 ring-2 ring-status-pa-solid/25",
+  NA: "border-status-na-solid/65 bg-status-na/60 ring-2 ring-status-na-solid/25",
+  NF: "border-status-nf-solid/60 bg-status-nf/55 ring-2 ring-status-nf-solid/25",
+  AB: "border-status-ab-solid/60 bg-status-ab/60 ring-2 ring-status-ab-solid/25",
+};

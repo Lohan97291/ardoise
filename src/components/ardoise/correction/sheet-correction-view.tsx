@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { AssistanceButtons } from "@/components/ardoise/correction/assistance-buttons";
 import { CommentField } from "@/components/ardoise/correction/comment-field";
 import { StatusButtons } from "@/components/ardoise/correction/status-buttons";
-import { STATUS_CHIP } from "@/components/ardoise/status-styles";
+import { STATUS_CHIP, STATUS_SELECTED_SURFACE, STATUS_SURFACE } from "@/components/ardoise/status-styles";
 import { fullName, initials, type StatusKey } from "@/lib/ardoise-eval";
 import { orderedStudents } from "@/lib/correction-rapide-notebook";
 import { getComment, setComment } from "@/lib/correction-rapide-store";
@@ -11,6 +11,7 @@ import { sheetPlanId, type CorrectionSheet } from "@/lib/correction-sheets-store
 import {
   getExerciseAssistance,
   getPlanResults,
+  removeOnePlanResult,
   saveOneExerciseAssistance,
   saveOnePlanResult,
   type ExerciseAssistance,
@@ -26,7 +27,7 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
   const assistance = useMemo(() => getExerciseAssistance(planId), [planId, tick]);
   const [selectedStudentId, setSelectedStudentId] = useState(students[0]?.id ?? "");
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
-  const doneCount = Object.keys(results).length;
+  const doneCount = students.filter((student) => Boolean(results[student.id])).length;
 
   function mark(studentId: string, status: StatusKey) {
     saveOnePlanResult(planId, studentId, status);
@@ -36,6 +37,11 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
       (student, index) => index > currentIndex && !getPlanResults(planId)[student.id],
     );
     setSelectedStudentId(next?.id ?? studentId);
+  }
+
+  function clearMark(studentId: string) {
+    removeOnePlanResult(planId, studentId);
+    setTick((value) => value + 1);
   }
 
   function markAssistance(studentId: string, next?: ExerciseAssistance) {
@@ -61,10 +67,14 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
               type="button"
               onClick={() => setSelectedStudentId(student.id)}
               className={cn(
-                "flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-semibold transition-colors",
-                student.id === selectedStudentId
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border hover:bg-secondary",
+                "flex min-h-10 items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-semibold motion-safe:transition-colors motion-safe:duration-150",
+                status
+                  ? student.id === selectedStudentId
+                    ? STATUS_SELECTED_SURFACE[status]
+                    : STATUS_SURFACE[status]
+                  : student.id === selectedStudentId
+                    ? "border-primary bg-primary/10 text-primary ring-2 ring-primary/20"
+                    : "border-border hover:bg-secondary",
               )}
             >
               <span className="grid h-5 w-5 place-items-center rounded-full bg-secondary text-[0.6rem]">
@@ -87,11 +97,19 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
       </div>
 
       {selectedStudent ? (
-        <div className="mt-1 flex flex-col gap-3 border-t border-border pt-3">
-          <p className="text-sm font-semibold">{fullName(selectedStudent)}</p>
+        <div className="mt-1 flex flex-col gap-4 border-t border-border pt-3">
+          <p
+            className={cn(
+              "rounded-[20px] border border-border/70 bg-secondary/25 px-3 py-3 text-sm font-semibold text-foreground motion-safe:transition-colors motion-safe:duration-150",
+              results[selectedStudent.id] && STATUS_SURFACE[results[selectedStudent.id]],
+            )}
+          >
+            {fullName(selectedStudent)}
+          </p>
           <StatusButtons
             value={results[selectedStudent.id]}
             onSelect={(status) => mark(selectedStudent.id, status)}
+            onClear={() => clearMark(selectedStudent.id)}
           />
           <AssistanceButtons
             student={selectedStudent}
@@ -99,6 +117,8 @@ export function SheetCorrectionView({ sheet }: { sheet: CorrectionSheet }) {
             onChange={(next) => markAssistance(selectedStudent.id, next)}
           />
           <CommentField
+            key={`${planId}::${selectedStudent.id}`}
+            resetKey={`${planId}::${selectedStudent.id}`}
             value={getComment(planId, selectedStudent.id)}
             onSave={(value) => setComment(planId, selectedStudent.id, value)}
           />

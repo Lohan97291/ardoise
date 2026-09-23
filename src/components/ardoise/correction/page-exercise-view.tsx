@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AssistanceButtons } from "@/components/ardoise/correction/assistance-buttons";
 import { CommentField } from "@/components/ardoise/correction/comment-field";
 import { StatusButtons } from "@/components/ardoise/correction/status-buttons";
-import { STATUS_CHIP } from "@/components/ardoise/status-styles";
+import { STATUS_CHIP, STATUS_SELECTED_SURFACE, STATUS_SURFACE } from "@/components/ardoise/status-styles";
 import { Button } from "@/components/ui/button";
 import {
   EVALUABLE_STUDENTS,
@@ -23,6 +23,7 @@ import { getComment, setComment } from "@/lib/correction-rapide-store";
 import {
   getExerciseAssistance,
   getPlanResults,
+  removeOnePlanResult,
   saveOneExerciseAssistance,
   saveOnePlanResult,
   type ExerciseAssistance,
@@ -57,7 +58,7 @@ export function PageExerciseView({
   const planId = selectedItem ? `${notebookPagePlanId(source, page)}::${selectedItem.id}` : "";
   const results = planId ? getPlanResults(planId) : {};
   const assistance = planId ? getExerciseAssistance(planId) : {};
-  const doneCount = Object.keys(results).length;
+  const doneCount = students.filter((student) => Boolean(results[student.id])).length;
 
   useEffect(() => {
     onProgress(selectedItem?.label ?? pageLabel(page, source));
@@ -72,6 +73,12 @@ export function PageExerciseView({
       (student, index) => index > currentIndex && !getPlanResults(planId)[student.id],
     );
     setSelectedStudentId(next?.id ?? studentId);
+  }
+
+  function clearMark(studentId: string) {
+    if (!planId) return;
+    removeOnePlanResult(planId, studentId);
+    setTick((value) => value + 1);
   }
 
   function markAssistance(studentId: string, next?: ExerciseAssistance) {
@@ -104,7 +111,8 @@ export function PageExerciseView({
           ) : (
             items.map((item) => {
               const itemPlanId = `${notebookPagePlanId(source, page)}::${item.id}`;
-              const itemDone = Object.keys(getPlanResults(itemPlanId)).length;
+              const itemResults = getPlanResults(itemPlanId);
+              const itemDone = students.filter((student) => Boolean(itemResults[student.id])).length;
               return (
                 <button
                   key={item.id}
@@ -155,20 +163,25 @@ export function PageExerciseView({
               {doneCount}/{students.length} faits
             </span>
           </div>
-          <div className="flex flex-wrap gap-1.5 overflow-y-auto pb-1">
+          <div className="flex flex-wrap gap-2 overflow-y-auto pb-1">
             {students.map((student) => {
               const status = results[student.id];
               const help = assistance[student.id];
+              const selected = student.id === selectedStudentId;
               return (
                 <button
                   key={student.id}
                   type="button"
                   onClick={() => setSelectedStudentId(student.id)}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-semibold transition-colors",
-                    student.id === selectedStudentId
-                      ? "border-primary bg-primary/10 text-primary"
-                      : "border-border hover:bg-secondary",
+                    "flex min-h-10 items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-semibold motion-safe:transition-all motion-safe:duration-150",
+                    status
+                      ? selected
+                        ? STATUS_SELECTED_SURFACE[status]
+                        : STATUS_SURFACE[status]
+                      : selected
+                        ? "border-primary bg-primary/10 text-primary ring-2 ring-primary/20"
+                        : "border-border hover:bg-secondary",
                   )}
                 >
                   <span className="grid h-5 w-5 place-items-center rounded-full bg-secondary text-[0.6rem]">
@@ -194,8 +207,13 @@ export function PageExerciseView({
           </div>
 
           {selectedStudent && selectedItem ? (
-            <div className="mt-1 flex flex-col gap-3 border-t border-border pt-3">
-              <div className="flex flex-wrap items-center justify-between gap-2 rounded-[20px] border border-border/70 bg-secondary/25 px-3 py-2.5">
+            <div className="mt-1 flex flex-col gap-4 border-t border-border pt-3">
+              <div
+                className={cn(
+                  "flex flex-wrap items-center justify-between gap-2 rounded-[20px] border border-border/70 bg-secondary/25 px-3 py-3 motion-safe:transition-colors motion-safe:duration-150",
+                  results[selectedStudent.id] && STATUS_SURFACE[results[selectedStudent.id]],
+                )}
+              >
                 <div>
                   <p className="text-sm font-semibold text-foreground">{fullName(selectedStudent)}</p>
                   <p className="text-xs text-muted-foreground">Choisis le statut puis passe au cahier suivant.</p>
@@ -204,13 +222,19 @@ export function PageExerciseView({
                   Raccourcis affichés sur les boutons
                 </span>
               </div>
-              <StatusButtons value={results[selectedStudent.id]} onSelect={(status) => mark(selectedStudent.id, status)} />
+              <StatusButtons
+                value={results[selectedStudent.id]}
+                onSelect={(status) => mark(selectedStudent.id, status)}
+                onClear={() => clearMark(selectedStudent.id)}
+              />
               <AssistanceButtons
                 student={selectedStudent}
                 value={assistance[selectedStudent.id]}
                 onChange={(next) => markAssistance(selectedStudent.id, next)}
               />
               <CommentField
+                key={`${planId}::${selectedStudent.id}`}
+                resetKey={`${planId}::${selectedStudent.id}`}
                 value={getComment(planId, selectedStudent.id)}
                 onSave={(value) => setComment(planId, selectedStudent.id, value)}
               />

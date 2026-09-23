@@ -360,6 +360,15 @@ export function saveOnePlanResult(planId: string, studentId: string, status: Sta
   saveExerciseResults(store);
 }
 
+export function removeOnePlanResult(planId: string, studentId: string): void {
+  const store = loadExerciseResults();
+  const results = store[planId];
+  if (!results) return;
+  delete results[studentId];
+  if (Object.keys(results).length === 0) delete store[planId];
+  saveExerciseResults(store);
+}
+
 export function getExerciseTrajectory(
   studentId: string,
   exerciseId: string,
